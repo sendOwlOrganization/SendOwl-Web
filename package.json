@@ -20,7 +20,8 @@
     "react-dom": "18.0.0",
     "react-markdown": "^8.0.2",
     "react-query": "^3.34.19",
-    "recoil": "^0.7.1"
+    "recoil": "^0.7.1",
+    "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
     "@types/node": "17.0.24",
