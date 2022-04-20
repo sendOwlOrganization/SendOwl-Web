@@ -1,5 +1,5 @@
 import { ThumbUp, ThumbUpOutlined } from '@mui/icons-material';
-import { Button, styled } from '@mui/material';
+import { Button, styled, useTheme } from '@mui/material';
 import { useState } from 'react';
 
 interface BoardFooterProps {
@@ -13,6 +13,7 @@ const Footer = styled('footer')`
 const BoardFooter = ({ like }: BoardFooterProps) => {
     const [hasLiked, setHasLiked] = useState<boolean>(false);
     const [nbLike, setNbLike] = useState<number>(like);
+    const theme = useTheme();
 
     const handleLike = () => {
         // TODO: create request to backend
@@ -23,6 +24,7 @@ const BoardFooter = ({ like }: BoardFooterProps) => {
     return (
         <Footer>
             <Button
+                sx={{ color: theme.palette.text.disabled }}
                 startIcon={hasLiked
                     ? <ThumbUp/>
                     : <ThumbUpOutlined/>}
