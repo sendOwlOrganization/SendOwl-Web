@@ -27,7 +27,7 @@ const BoardHeader = ({ title, author, date, pageView, commentCount }: BoardHeade
                 {title}
             </Typography>
             <Typography component={'p'}
-                        color={theme.palette.primary.main}
+                        color={theme.palette.primary.main /* TODO: need to change color */}
                         margin={`${theme.spacing(1)} 0`}
                         variant={'subtitle1'}>
                 {author}
