@@ -1,5 +1,4 @@
 import { CacheProvider } from '@emotion/react';
-import { EmotionCache } from '@emotion/utils';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -12,7 +11,10 @@ import '../styles/globals.css';
 const clientSideEmotionCache = createEmotionCache();
 
 interface MyAppProps extends AppProps {
-    emotionCache?: EmotionCache;
+    // EmotionCache not properly typed, not working with import { EmotionCache } from '@emotion/utils';
+    // EmotionCache@emotion/react !== EmotionCache@emotion/utils !== EmotionCache@emotion/cache
+    // to fix later
+    emotionCache?: any;
 }
 
 function MyApp({ Component, pageProps, emotionCache = clientSideEmotionCache }: MyAppProps) {
