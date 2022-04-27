@@ -1,14 +1,8 @@
-import { Container, Divider } from "@mui/material";
-import MainHeader from "./MainHeader";
-import Content from "./Content";
+import MainContent from './MainContent';
 
 const Main = () => {
   return (
-    <Container fixed>
-      <MainHeader/>
-      <Content/>
-    </Container>
-
+      <MainContent/>
   )
 }
 
