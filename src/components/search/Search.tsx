@@ -1,23 +1,19 @@
 import { Grid, IconButton, Stack, InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
-import Link from 'next/link';
-import { useTheme } from '@mui/material';
 
 const Search = () => {
-    const theme = useTheme();
-
     return (
         <div>
             <Grid
-                className='mobile'
                 flex='1'
                 container
                 justifyContent={'flex-end'}
                 sx={{
                     alignItems: 'center',
                     display: { lg: 'none', xs: 'block' },
-                }}>
+                }}
+            >
                 <IconButton
                     component='form'
                     sx={{
@@ -25,7 +21,8 @@ const Search = () => {
                             lg: 'none',
                             xs: 'block',
                         },
-                    }}>
+                    }}
+                >
                     <SearchIcon
                         sx={{
                             color: '#111111',
@@ -35,8 +32,8 @@ const Search = () => {
                     />
                 </IconButton>
             </Grid>
+
             <Stack
-                className='desktop'
                 component='form'
                 sx={{
                     p: '2px 4px',
@@ -49,11 +46,13 @@ const Search = () => {
                     borderRadius: '25px',
                     margin: '20px 0 20px 0',
                 }}
-                display='flex'>
+                display='flex'
+            >
                 <IconButton
                     type='submit'
                     sx={{ p: '10px', flex: 1 }}
-                    aria-label='search'>
+                    aria-label='search'
+                >
                     <SearchIcon sx={{ color: '#111111' }} />
                 </IconButton>
                 <InputBase

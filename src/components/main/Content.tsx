@@ -1,11 +1,10 @@
-import { Box, Divider, Grid, useMediaQuery } from '@mui/material';
+import { Box, Divider, Grid } from '@mui/material';
 import { Insights } from '@mui/icons-material';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 import { styled } from '@mui/material/styles';
 import Link from 'next/link';
-import { useState } from 'react';
 
 // TODO: need to move from this file + fix types to match with api
 function createData(
@@ -34,17 +33,9 @@ const Item = styled(Grid)(({ theme }) => ({
 }));
 
 const Content = () => {
-    const [isMobile, setIsMobile] = useState('0');
-    const mobile = useMediaQuery('(max-width: 767px)');
-
     return (
         <>
-            <Grid
-                display={'flex'}
-                alignItems={'center'}
-                style={{
-                    borderTop: isMobile ? '0' : '8px solid #f2f2f3',
-                }}>
+            <Grid display={'flex'} alignItems={'center'}>
                 <Grid justifyItems={'center'} marginRight={'5px'}>
                     <Insights />
                 </Grid>
@@ -55,7 +46,8 @@ const Content = () => {
                     justifyContent={'space-between'}
                     height={'70px'}
                     fontSize={'18px'}
-                    fontWeight={'800'}>
+                    fontWeight={'800'}
+                >
                     토픽 베스트
                     <Link href='/category'>
                         <a style={{ fontSize: '12px', fontWeight: '400' }}>
@@ -65,8 +57,10 @@ const Content = () => {
                     </Link>
                 </Grid>
             </Grid>
+
             <Divider />
-            <Box sx={{ flexGrow: 1 }}>
+
+            <Box sx={{ flexGrow: 1 }} marginBottom={'2rem'}>
                 {rows.map((row) => (
                     <>
                         <Grid
@@ -74,7 +68,8 @@ const Content = () => {
                             container
                             spacing={1}
                             marginBottom={'5px'}
-                            marginTop={'5px'}>
+                            marginTop={'5px'}
+                        >
                             <Grid item lg={1} xs={12} paddingTop={0}>
                                 <Item sx={{ border: '1px solid gray' }}>
                                     {row.category}
@@ -91,7 +86,8 @@ const Content = () => {
                                 display={'flex'}
                                 textAlign={'center'}
                                 alignItems={'center'}
-                                flexWrap={'wrap'}>
+                                flexWrap={'wrap'}
+                            >
                                 <ThumbUpAltOutlinedIcon
                                     sx={{ fontSize: 13, color: 'gray' }}
                                 />
@@ -106,7 +102,8 @@ const Content = () => {
                                 display={'flex'}
                                 textAlign={'center'}
                                 alignItems={'center'}
-                                flexWrap={'wrap'}>
+                                flexWrap={'wrap'}
+                            >
                                 <ChatBubbleOutlineOutlinedIcon
                                     sx={{ fontSize: 13, color: 'gray' }}
                                 />
@@ -115,6 +112,7 @@ const Content = () => {
                                 </Item>
                             </Grid>
                         </Grid>
+
                         <Divider
                             sx={{ display: { lg: 'none', xs: 'block' } }}
                         />
@@ -126,6 +124,3 @@ const Content = () => {
 };
 
 export default Content;
-function useEffect(arg0: () => void, arg1: boolean[]) {
-    throw new Error('Function not implemented.');
-}

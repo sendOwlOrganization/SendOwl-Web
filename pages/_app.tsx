@@ -4,7 +4,6 @@ import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useState } from 'react';
-
 import { RecoilRoot } from 'recoil';
 import createEmotionCache from '../src/mui/createEmotionCache';
 import '../styles/globals.css';
