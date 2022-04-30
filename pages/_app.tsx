@@ -4,9 +4,9 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useState } from 'react';
 import { RecoilRoot } from 'recoil';
+import { GlobalLayout } from '../src/components/global';
 import createEmotionCache from '../src/mui/createEmotionCache';
 import '../styles/globals.css';
-import { GlobalLayout } from '../src/components/global';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -17,11 +17,12 @@ interface MyAppProps extends AppProps {
     // to fix later
     emotionCache?: any;
 }
+
 function MyApp({
-    Component,
-    pageProps,
-    emotionCache = clientSideEmotionCache,
-}: MyAppProps) {
+                   Component,
+                   pageProps,
+                   emotionCache = clientSideEmotionCache,
+               }: MyAppProps) {
     const [theme, setTheme] = useState(createTheme());
 
     return (

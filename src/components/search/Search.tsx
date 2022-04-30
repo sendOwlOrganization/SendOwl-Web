@@ -1,10 +1,10 @@
-import { Grid, IconButton, Stack, InputBase } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
+import SearchIcon from '@mui/icons-material/Search';
+import { Grid, IconButton, InputBase, Stack } from '@mui/material';
 
 const Search = () => {
     return (
-        <div>
+        <>
             <Grid
                 flex='1'
                 container
@@ -66,7 +66,7 @@ const Search = () => {
                     <CloseIcon />
                 </IconButton>
             </Stack>
-        </div>
+        </>
     );
 };
 
