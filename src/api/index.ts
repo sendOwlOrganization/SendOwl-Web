@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import { BoardDetails, BoardsResponse } from './types/boards';
+import { Category } from './types/category';
 import HttpStatusCode from './types/HttpStatusCode';
 import { ResponseDto } from './types/ResponseDto';
 
@@ -48,3 +49,5 @@ export const getBoards = async (page: number, pageSize: number): Promise<FetchRe
 export const getBoardDetails = async (id: number): Promise<FetchResponse<BoardDetails>> =>
     await fetchSendOwlApi<BoardDetails>(`boards/${id}`);
 
+export const getCategories = async (): Promise<FetchResponse<Category[]>> =>
+    await fetchSendOwlApi<Category[]>(`categories`);
