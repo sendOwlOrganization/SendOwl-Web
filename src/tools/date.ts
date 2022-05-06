@@ -17,14 +17,14 @@ export const formatDate = (datetime: string): string => {
         return date.toLocaleDateString('ko-KR');
     }
     if (dayDiff >= 2) {
-        return `${dayDiff}일 전`;
+        return `${Math.floor(dayDiff)}일 전`;
     }
     if (dayDiff >= 1) {
         return '어제';
     }
     const hourDiff = dayDiff * TimeConstants.HOURS_IN_DAY;
     if (hourDiff >= 1) {
-        return `${Math.ceil(hourDiff)}시간 전`;
+        return `${Math.floor(hourDiff)}시간 전`;
     }
     const minuteDiff = hourDiff * TimeConstants.MINUTES_IN_HOUR;
     return `${Math.floor(minuteDiff)}분 전`;

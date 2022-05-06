@@ -37,11 +37,11 @@ const testCasesMapping: { name: string, testCases: TestCase<typeof formatDate>[]
                 expected: '7일 전',
             },
             {
-                inputs: ['2022-04-25T12:00:00'],
+                inputs: ['2022-04-25T00:52:00'],
                 expected: '6일 전',
             },
             {
-                inputs: ['2022-04-26T12:00:00'],
+                inputs: ['2022-04-26T05:12:52'],
                 expected: '5일 전',
             },
             {
@@ -49,11 +49,11 @@ const testCasesMapping: { name: string, testCases: TestCase<typeof formatDate>[]
                 expected: '4일 전',
             },
             {
-                inputs: ['2022-04-28T12:00:00'],
+                inputs: ['2022-04-28T10:00:12'],
                 expected: '3일 전',
             },
             {
-                inputs: ['2022-04-29T12:00:00'],
+                inputs: ['2022-04-29T11:42:42'],
                 expected: '2일 전',
             },
         ],
@@ -76,11 +76,11 @@ const testCasesMapping: { name: string, testCases: TestCase<typeof formatDate>[]
         testCases: [
             {
                 inputs: ['2022-04-30T12:10:00'],
-                expected: '24시간 전',
+                expected: '23시간 전',
             },
             {
                 inputs: ['2022-04-30T16:10:00'],
-                expected: '20시간 전',
+                expected: '19시간 전',
             },
             {
                 inputs: ['2022-05-01T11:00:00'],
