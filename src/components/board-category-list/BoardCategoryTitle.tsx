@@ -1,4 +1,9 @@
-import { ClassOutlined, Insights } from '@mui/icons-material';
+import {
+    ClassOutlined,
+    Insights,
+    EmojiObjects,
+    Face,
+} from '@mui/icons-material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Grid, styled } from '@mui/material';
 import Link from 'next/link';
@@ -9,16 +14,16 @@ interface BoardCategoryTitleProps {
 }
 
 const DetailsLink = styled('a')`
-  font-weight: 400;
-  font-size: 12px;
-  text-decoration: none;
-  color: inherit;
+    font-weight: 400;
+    font-size: 12px;
+    text-decoration: none;
+    color: inherit;
 `;
-
 
 const categoryIconMapping: Record<string, ReactNode> = {
     ['토픽 베스트']: <Insights />,
-    ['자유 게시판']: <ClassOutlined />,
+    ['자유 게시판']: <EmojiObjects />,
+    ['익명 게시판']: <Face />,
 };
 
 const BoardCategoryTitle = ({ title }: BoardCategoryTitleProps) => {
