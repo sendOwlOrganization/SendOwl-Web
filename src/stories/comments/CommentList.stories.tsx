@@ -19,7 +19,26 @@ Example.args = {
             modDate: '2022-04-01T13:52:00',
             active: true,
             like: 1231,
-            childComments: [],
+            childComments: [
+                {
+                    id: 11,
+                    user: '테스트',
+                    content: '대댓글 테스트',
+                    regDate: '2022-04-03T13:52:00',
+                    modDate: '2022-04-03T13:52:00',
+                    active: true,
+                    like: 22,
+                },
+                {
+                    id: 12,
+                    user: '테스트',
+                    content: '',
+                    regDate: '2022-04-08T13:52:00',
+                    modDate: '2022-04-08T13:52:00',
+                    active: false,
+                    like: 32,
+                },
+            ],
         },
         {
             id: 2,

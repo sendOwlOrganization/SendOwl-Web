@@ -17,5 +17,15 @@ export const 일반_댓글 = Template.bind({});
     modDate: '2022-05-01T13:52:00',
     active: true,
     like: 2,
-    childComments: [],
+    childComments: [
+        {
+            id: 2,
+            user: 'Test',
+            content: '대댓글 입니다.',
+            regDate: '2022-05-01T13:52:00',
+            modDate: '2022-05-01T13:52:00',
+            active: true,
+            like: 2,
+        },
+    ],
 };

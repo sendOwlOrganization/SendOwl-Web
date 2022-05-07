@@ -9,9 +9,14 @@ interface CommentListItemProps extends Omit<ParentComment, 'childComments'> {
     childComments?: ParentComment['childComments'];
 }
 
-const ListItem = styled('li')`
+interface ListItemProps {
+    isParent: boolean;
+}
+
+const ListItem = styled('li', { shouldForwardProp: (propName: PropertyKey) => propName !== 'isParent' })<ListItemProps>`
   list-style: none;
-  padding: ${({ theme }) => theme.spacing(1)};
+  padding: ${({ theme, isParent }) => isParent ? theme.spacing(1) : `${theme.spacing(1)} ${theme.spacing(4)}`};
+  ${({ theme, isParent }) => !isParent && `background-color: ${theme.palette.grey.A100}`};
   border-bottom: 1px solid ${({ theme }) => theme.palette.divider};
 `;
 
@@ -38,29 +43,33 @@ const DateTime = styled('time')`
 
 const CommentListItem = (props: CommentListItemProps) => {
     const { id, active, content, regDate, modDate, like, user, childComments } = props;
+    const isParent = !!childComments;
     return (
-        <ListItem>
-            <User>{user}</User>
-            {
-                active
-                    ? <Content>{content}</Content>
-                    : <DeletedContent>삭제된 댓글입니다</DeletedContent>
-            }
-            <Stack direction={'row'} spacing={1} marginTop={1} alignItems={'center'}>
-                <Box component={'span'}
-                     color={'text.disabled'}
-                     fontSize={'0.75rem'}
-                     alignItems={'center'}
-                     display={'flex'}>
-                    <AccessTimeOutlined sx={{ marginBottom: '1px', marginRight: '4px' }} fontSize={'inherit'} />
-                    <DateTime dateTime={regDate}>
-                        {formatDate(regDate)}
-                    </DateTime>
-                </Box>
-                <LikeButton id={id} like={like} />
-                {childComments && <ChildCommentButton id={id} childCommentCount={childComments.length} />}
-            </Stack>
-        </ListItem>
+        <>
+            <ListItem isParent={isParent}>
+                <User>{user}</User>
+                {
+                    active
+                        ? <Content>{content}</Content>
+                        : <DeletedContent>삭제된 댓글입니다</DeletedContent>
+                }
+                <Stack direction={'row'} spacing={1} marginTop={1} alignItems={'center'}>
+                    <Box component={'span'}
+                         color={'text.disabled'}
+                         fontSize={'0.75rem'}
+                         alignItems={'center'}
+                         display={'flex'}>
+                        <AccessTimeOutlined sx={{ marginBottom: '1px', marginRight: '4px' }} fontSize={'inherit'} />
+                        <DateTime dateTime={regDate}>
+                            {formatDate(regDate)}
+                        </DateTime>
+                    </Box>
+                    <LikeButton id={id} like={like} />
+                    {childComments && <ChildCommentButton id={id} childCommentCount={childComments.length} />}
+                </Stack>
+            </ListItem>
+            {childComments && childComments.map(child => <CommentListItem key={child.id} {...child} />)}
+        </>
     );
 };
 
