@@ -15,7 +15,7 @@ const Menu = () => {
                 padding={1}
                 marginLeft={'30px'}
                 fontSize={'17px'}>
-                <Link href='/home'>
+                <Link href='/'>
                     <a>홈</a>
                 </Link>
                 <Link href='/review'>

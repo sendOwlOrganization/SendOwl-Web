@@ -1,5 +1,8 @@
+import { Grid } from '@mui/material';
 import { ComponentProps } from 'react';
 import BoardCategoryList from '../src/components/board-category-list/BoardCategoryList';
+import { Search } from '../src/components/search';
+import { boardsMock } from '../src/mocks/boards';
 
 interface HomePageProps {
     boards: ComponentProps<typeof BoardCategoryList>['boards'];
@@ -7,20 +10,23 @@ interface HomePageProps {
 
 const Home = ({ boards }: HomePageProps) => {
     return (
-        <BoardCategoryList title={'토픽 베스트'} boards={boards} />
+        <>
+            <Grid container>
+                <Grid item xs={12} sx={{ display: { lg: 'block', xs: 'none' } }}>
+                    <Search />
+                </Grid>
+            </Grid>
+            <BoardCategoryList title={'토픽 베스트'} boards={boards} />
+            <BoardCategoryList title={'자유 게시판'} boards={boards} />
+            <BoardCategoryList title={'익명 게시판'} boards={boards} />
+        </>
     );
 };
 
 export const getStaticProps = async () => {
     return {
         props: {
-            boards: [{
-                id: 1,
-                category: '테스트',
-                title: '제목',
-                likeCount: 10,
-                commentCount: 20,
-            }],
+            boards: boardsMock,
         },
     };
 };

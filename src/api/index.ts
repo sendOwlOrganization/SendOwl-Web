@@ -4,7 +4,6 @@ import { Category } from './types/category';
 import HttpStatusCode from './types/HttpStatusCode';
 import { ResponseDto } from './types/ResponseDto';
 
-const API_URL = process.env.SENDOWL_API_URL;
 
 interface FetchError {
     code: number;
@@ -18,6 +17,7 @@ interface FetchResponse<T> {
 
 const fetchSendOwlApi = async <T extends unknown>(endpoint: string, init?: Parameters<typeof fetch>[1]): Promise<FetchResponse<T>> => {
     try {
+        const API_URL = process.env.SENDOWL_API_URL;
         const data = await fetch(`${API_URL}/api/${endpoint}`, init);
         if (data.ok) {
             const { response }: ResponseDto<T> = await data.json();

@@ -39,7 +39,7 @@ const BoardLink = ({ board }: { board: Board }) => {
                 </Item>
             </Grid>
             <Grid item lg={9.6} xs={12}>
-                <Link href={`/posts/${board.id}`} passHref>
+                <Link href={`/boards/${board.id}`} passHref>
                     <a>
                         {board.title}
                     </a>

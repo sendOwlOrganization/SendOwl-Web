@@ -1,9 +1,4 @@
-import {
-    ClassOutlined,
-    Insights,
-    EmojiObjects,
-    Face,
-} from '@mui/icons-material';
+import { EmojiObjects, Face, Insights } from '@mui/icons-material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Grid, styled } from '@mui/material';
 import Link from 'next/link';
@@ -11,13 +6,14 @@ import { ReactNode } from 'react';
 
 interface BoardCategoryTitleProps {
     title: string;
+    id?: number;
 }
 
 const DetailsLink = styled('a')`
-    font-weight: 400;
-    font-size: 12px;
-    text-decoration: none;
-    color: inherit;
+  font-weight: 400;
+  font-size: 12px;
+  text-decoration: none;
+  color: inherit;
 `;
 
 const categoryIconMapping: Record<string, ReactNode> = {
@@ -26,7 +22,7 @@ const categoryIconMapping: Record<string, ReactNode> = {
     ['익명 게시판']: <Face />,
 };
 
-const BoardCategoryTitle = ({ title }: BoardCategoryTitleProps) => {
+const BoardCategoryTitle = ({ title, id }: BoardCategoryTitleProps) => {
     return (
         <Grid display={'flex'} alignItems={'center'}>
             <Grid justifyItems={'center'} marginRight={'5px'}>
@@ -41,7 +37,7 @@ const BoardCategoryTitle = ({ title }: BoardCategoryTitleProps) => {
                 fontSize={'18px'}
                 fontWeight={'800'}>
                 {title}
-                <Link href='/category' passHref>
+                <Link href={`/categories/${id}`} passHref>
                     <DetailsLink>
                         더보기
                         <ArrowForwardIosIcon sx={{ fontSize: '10px' }} />

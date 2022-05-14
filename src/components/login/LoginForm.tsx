@@ -31,7 +31,6 @@ const LoginForm = ({}: LoginFormProps) => {
         <form onSubmit={onSubmit}>
             <Stack spacing={1}>
                 <TextField InputProps={{
-                    sx: { borderRadius: 0 },
                     startAdornment: (
                         <InputAdornment position={'start'}>
                             <AlternateEmailOutlined fontSize={'small'} />
@@ -45,7 +44,6 @@ const LoginForm = ({}: LoginFormProps) => {
                                pattern: validationRegex.email,
                            })} />
                 <TextField InputProps={{
-                    sx: { borderRadius: 0 },
                     startAdornment: (
                         <InputAdornment position={'start'}>
                             <LockOutlined fontSize={'small'} />
@@ -59,7 +57,6 @@ const LoginForm = ({}: LoginFormProps) => {
                            {...register('password', { required: '비밀번호를 입력해주세요' })} />
                 <Button size={'large'}
                         variant={'contained'}
-                        sx={{ borderRadius: 0 }}
                         disableElevation
                         startIcon={<LoginOutlined fontSize={'small'} />}
                         type={'submit'}>

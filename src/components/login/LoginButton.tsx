@@ -17,7 +17,6 @@ const OutlinedButton = styled(Button)<ButtonProps>(({ theme }) => ({
     color: theme.palette.text.primary,
     backgroundColor: theme.palette.background.default,
     border: `1px solid ${theme.palette.grey[700]}`,
-    borderRadius: 0,
     fontWeight: 'bold',
     '&:hover': {
         backgroundColor: theme.palette.background.default,
@@ -46,8 +45,7 @@ const LoginButton = ({}: LoginButtonProps) => {
             <OutlinedButton onClick={handleOpenLoginModal}>로그인</OutlinedButton>
             <Dialog open={openLoginModal}
                     onClose={handleCloseLoginModal}
-                    fullWidth
-                    PaperProps={{ sx: { borderRadius: 0 } }}>
+                    fullWidth>
                 <Box sx={{
                     display: 'flex',
                     padding: 1.5,
@@ -58,12 +56,12 @@ const LoginButton = ({}: LoginButtonProps) => {
                         로그인
                     </Typography>
                     <IconButton aria-label={'close'} onClick={handleCloseLoginModal}>
-                        <Close/>
+                        <Close />
                     </IconButton>
                 </Box>
-                <Divider/>
+                <Divider />
                 <DialogContent>
-                    <LoginForm/>
+                    <LoginForm />
                 </DialogContent>
             </Dialog>
         </>

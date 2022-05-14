@@ -7,7 +7,7 @@ interface GlobalLayoutProps {
 
 const Layout = ({ children }: PropsWithChildren<GlobalLayoutProps>) => {
     return (
-        <Container fixed>
+        <Container sx={{ minWidth: '400px' }} fixed>
             <Header />
             {children}
         </Container>

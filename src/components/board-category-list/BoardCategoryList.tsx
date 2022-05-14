@@ -16,8 +16,6 @@ interface BoardCategoryListProps {
 }
 
 const BoardCategory = ({ title, boards }: BoardCategoryListProps) => {
-    const a = boards.map((board) => board.category);
-    console.log(a);
 
     return (
         <>
