@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import CommentList from '../../components/comments/CommentList';
 
 export default {
-    title: 'components/CommentList',
+    title: 'components/comments/CommentList',
     component: CommentList,
 } as ComponentMeta<typeof CommentList>;
 
