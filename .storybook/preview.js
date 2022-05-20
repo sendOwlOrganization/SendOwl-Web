@@ -1,5 +1,6 @@
-import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
-import { ThemeProvider as Emotion10ThemeProvider } from 'emotion-theming';
+import { CssBaseline, ThemeProvider } from '@mui/material'
+import { ThemeProvider as Emotion10ThemeProvider } from 'emotion-theming'
+import createSendOwlTheme from '../styles/sendOwlTheme'
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -9,18 +10,18 @@ export const parameters = {
             date: /Date$/,
         },
     },
-};
+}
 
-const theme = createTheme();
+const theme = createSendOwlTheme()
 
 // https://mui.com/material-ui/guides/migration-v4/#storybook-emotion-with-v5
 export const decorators = [
     (Story) => (
         <Emotion10ThemeProvider theme={theme}>
             <ThemeProvider theme={theme}>
-                <CssBaseline/>
-                <Story/>
+                <CssBaseline />
+                <Story />
             </ThemeProvider>
         </Emotion10ThemeProvider>
     ),
-];
+]

@@ -4,8 +4,6 @@ import { Category } from './types/category';
 import HttpStatusCode from './types/HttpStatusCode';
 import { ResponseDto } from './types/ResponseDto';
 
-const API_URL = process.env.SENDOWL_API_URL;
-
 interface FetchError {
     code: number;
     message?: string;
@@ -16,11 +14,16 @@ interface FetchResponse<T> {
     error: FetchError | null;
 }
 
-const fetchSendOwlApi = async <T extends unknown>(endpoint: string, init?: Parameters<typeof fetch>[1]): Promise<FetchResponse<T>> => {
+const fetchSendOwlApi = async <T extends unknown>(
+    endpoint: string,
+    init?: Parameters<typeof fetch>[1]
+): Promise<FetchResponse<T>> => {
     try {
+        const API_URL = process.env.SENDOWL_API_URL;
         const data = await fetch(`${API_URL}/api/${endpoint}`, init);
         if (data.ok) {
-            const { response }: ResponseDto<T> = await data.json();
+            const response: T = await data.json();
+
             return {
                 data: response,
                 error: null,
@@ -43,10 +46,17 @@ const fetchSendOwlApi = async <T extends unknown>(endpoint: string, init?: Param
     }
 };
 
-export const getBoards = async (page: number, pageSize: number): Promise<FetchResponse<BoardsResponse>> =>
-    await fetchSendOwlApi<BoardsResponse>(`boards?page=${page}&size=${pageSize}&sort=id,DESC`);
+export const getBoards = async (
+    page: number,
+    pageSize: number
+): Promise<FetchResponse<BoardsResponse>> =>
+    await fetchSendOwlApi<BoardsResponse>(
+        `boards?page=${page}&size=${pageSize}&sort=id,DESC`
+    );
 
-export const getBoardDetails = async (id: number): Promise<FetchResponse<BoardDetails>> =>
+export const getBoardDetails = async (
+    id: number
+): Promise<FetchResponse<BoardDetails>> =>
     await fetchSendOwlApi<BoardDetails>(`boards/${id}`);
 
 export const getCategories = async (): Promise<FetchResponse<Category[]>> =>

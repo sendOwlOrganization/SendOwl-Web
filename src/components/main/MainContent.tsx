@@ -1,6 +1,35 @@
 import * as React from 'react';
-import Content from './Content';
+import BoardCategoryList from '../board-category-list/BoardCategoryList';
 
-export default function MainContent() {
-    return <Content />;
+interface BoardCategory {
+    id: number;
+    name: string;
+}
+interface Board {
+    id: number;
+    category: string;
+    title: string;
+    likeCount: number;
+    commentCount: number;
+}
+interface BoardCategoryListProps {
+    categories: BoardCategory[];
+    boards: Board[];
+}
+
+export default function MainContent({
+    categories,
+    boards,
+}: BoardCategoryListProps) {
+    return (
+        <>
+            {categories.map((category) => (
+                <BoardCategoryList
+                    key={category.id}
+                    title={category.name}
+                    boards={boards}
+                />
+            ))}
+        </>
+    );
 }

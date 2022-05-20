@@ -29,6 +29,7 @@ const BoardHeader = ({ title, author, date, pageView, commentCount }: BoardHeade
             <Typography component={'p'}
                         color={theme.palette.primary.main /* TODO: need to change color */}
                         margin={`${theme.spacing(1)} 0`}
+                        fontWeight={'700'}
                         variant={'subtitle1'}>
                 {author}
             </Typography>
@@ -40,7 +41,7 @@ const BoardHeader = ({ title, author, date, pageView, commentCount }: BoardHeade
                             alignItems={'center'}
                             marginRight={theme.spacing(2)}
                             color={theme.palette.text.disabled}>
-                    <AccessTimeOutlined sx={{ marginRight: '2px' }} fontSize={'inherit'}/>
+                    <AccessTimeOutlined sx={{ marginRight: '2px' }} fontSize={'inherit'} />
                     <Typography variant={'inherit'} component={'time'}>
                         {datetime}
                     </Typography>
@@ -52,7 +53,7 @@ const BoardHeader = ({ title, author, date, pageView, commentCount }: BoardHeade
                             alignItems={'center'}
                             marginRight={theme.spacing(2)}
                             color={theme.palette.text.disabled}>
-                    <VisibilityOutlined sx={{ marginRight: '2px' }} fontSize={'inherit'}/>
+                    <VisibilityOutlined sx={{ marginRight: '2px' }} fontSize={'inherit'} />
                     {pageView}
                 </Typography>
 
@@ -61,7 +62,7 @@ const BoardHeader = ({ title, author, date, pageView, commentCount }: BoardHeade
                             display={'flex'}
                             alignItems={'center'}
                             color={theme.palette.text.disabled}>
-                    <CommentOutlined sx={{ marginRight: '2px' }} fontSize={'inherit'}/>
+                    <CommentOutlined sx={{ marginRight: '2px' }} fontSize={'inherit'} />
                     {commentCount}
                 </Typography>
             </Box>

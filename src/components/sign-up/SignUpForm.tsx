@@ -66,7 +66,7 @@ const SignUpForm = ({}: SignUpFormProps) => {
         <form onSubmit={onSubmit}>
             <Box display={'flex'} flexDirection={'column'}>
 
-                <TextField InputProps={{ sx: { borderRadius: 0 }, startAdornment: EmailIcon }}
+                <TextField InputProps={{ startAdornment: EmailIcon }}
                            sx={{ marginBottom: 1 }}
                            label={'이메일'}
                            required
@@ -74,7 +74,7 @@ const SignUpForm = ({}: SignUpFormProps) => {
                            helperText={formState.errors['email']?.message}
                            {...register('email', registerOptions.email)} />
 
-                <TextField InputProps={{ sx: { borderRadius: 0 }, startAdornment: PasswordIcon }}
+                <TextField InputProps={{ startAdornment: PasswordIcon }}
                            sx={{ marginTop: 1, marginBottom: 1 }}
                            label={'비밀번호'}
                            type={'password'}
@@ -83,7 +83,7 @@ const SignUpForm = ({}: SignUpFormProps) => {
                            helperText={formState.errors['password']?.message}
                            {...register('password', registerOptions.password)} />
 
-                <TextField InputProps={{ sx: { borderRadius: 0 }, startAdornment: PasswordIcon }}
+                <TextField InputProps={{ startAdornment: PasswordIcon }}
                            sx={{ marginTop: 1, marginBottom: 1 }}
                            label={'비밀번호 재확인'}
                            type={'password'}
@@ -92,7 +92,7 @@ const SignUpForm = ({}: SignUpFormProps) => {
                            helperText={formState.errors['passwordConfirm']?.message}
                            {...register('passwordConfirm', registerOptions.passwordConfirm(watch))} />
 
-                <TextField InputProps={{ sx: { borderRadius: 0 }, startAdornment: UserIcon }}
+                <TextField InputProps={{ startAdornment: UserIcon }}
                            sx={{ marginTop: 5, marginBottom: 1 }}
                            label={'이름'}
                            required
@@ -100,7 +100,7 @@ const SignUpForm = ({}: SignUpFormProps) => {
                            helperText={formState.errors['name']?.message}
                            {...register('name', registerOptions.name)} />
 
-                <TextField InputProps={{ sx: { borderRadius: 0 }, startAdornment: UserIcon }}
+                <TextField InputProps={{ startAdornment: UserIcon }}
                            sx={{ marginTop: 1, marginBottom: 1 }}
                            label={'닉네임'}
                            required
@@ -108,8 +108,7 @@ const SignUpForm = ({}: SignUpFormProps) => {
                            helperText={formState.errors['nickName']?.message}
                            {...register('nickName', registerOptions.nickName)} />
 
-                <TextField InputProps={{ sx: { borderRadius: 0 } }}
-                           sx={{ marginTop: 1, marginBottom: 1 }}
+                <TextField sx={{ marginTop: 1, marginBottom: 1 }}
                            label={'소개글'}
                            multiline
                            rows={4}
@@ -119,7 +118,7 @@ const SignUpForm = ({}: SignUpFormProps) => {
 
                 <Button size={'large'}
                         variant={'contained'}
-                        sx={{ borderRadius: 0, marginTop: 1 }}
+                        sx={{ marginTop: 1 }}
                         disableElevation
                         startIcon={<GroupAddOutlined fontSize={'small'} />}
                         type={'submit'}>
