@@ -32,7 +32,7 @@ const Menu = () => {
                 sx={{ display: { lg: 'none', xs: 'flex', fontWeight: '500' } }}
                 alignItems='center'
                 padding={2}>
-                <Link href='/home'>
+                <Link href='/'>
                     <a>홈</a>
                 </Link>
                 <Link href='/review'>
