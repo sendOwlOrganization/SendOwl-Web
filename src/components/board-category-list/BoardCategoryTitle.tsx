@@ -1,8 +1,9 @@
-import { EmojiObjects, Face, Insights } from '@mui/icons-material';
+import { Business, BusinessCenter, EmojiObjects, Forum, Insights, School } from '@mui/icons-material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Grid, styled } from '@mui/material';
 import Link from 'next/link';
 import { ReactNode } from 'react';
+import { BoardCategory, getBoardCategoryName } from '../../types/Category';
 
 interface BoardCategoryTitleProps {
     title: string;
@@ -18,8 +19,11 @@ const DetailsLink = styled('a')`
 
 const categoryIconMapping: Record<string, ReactNode> = {
     ['토픽 베스트']: <Insights />,
-    ['자유 게시판']: <EmojiObjects />,
-    ['익명 게시판']: <Face />,
+    [getBoardCategoryName(BoardCategory.FREE)]: <EmojiObjects />,
+    [getBoardCategoryName(BoardCategory.STUDY)]: <School />,
+    [getBoardCategoryName(BoardCategory.CAREER)]: <Business />,
+    [getBoardCategoryName(BoardCategory.INTERVIEW)]: <Forum />,
+    [getBoardCategoryName(BoardCategory.JOB)]: <BusinessCenter />,
 };
 
 const BoardCategoryTitle = ({ title, id }: BoardCategoryTitleProps) => {
