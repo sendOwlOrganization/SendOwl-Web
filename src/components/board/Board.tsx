@@ -8,7 +8,7 @@ interface User {
     id: number;
     isActive: boolean;
     email: string;
-    nickname: string;
+    nickName: string;
 }
 
 // TODO: need to move from this file + fix types to match with api
@@ -32,13 +32,13 @@ const Board = ({ post }: BoardProps) => {
         <Box component={'article'}>
             <BoardHeader title={post.title}
                          date={post.date}
-                         author={post.user.nickname}
+                         author={post.user.nickName}
                          commentCount={post.comments}
-                         pageView={post.view}/>
-            <Divider/>
-            <BoardContent content={post.content}/>
-            <Divider/>
-            <BoardFooter like={post.like}/>
+                         pageView={post.view} />
+            <Divider />
+            <BoardContent content={post.content} />
+            <Divider />
+            <BoardFooter like={post.like} />
         </Box>
     );
 };
