@@ -4,23 +4,6 @@ import { useEffect, useId, useRef } from 'react';
 import { i18nKorean } from './i18n';
 import { EDITOR_JS_TOOLS } from './plugins';
 
-
-const DEFAULT_INITIAL_DATA = () => {
-    return {
-        'time': new Date().getTime(),
-        'blocks': [
-            {
-                id: '12iM3lqzcm',
-                type: 'paragraph',
-                data: {
-                    text:
-                        'Hey. Meet the new Editor. On this page you can see it in action — try to edit this text.',
-                },
-            },
-        ],
-    };
-};
-
 interface EditorProps {
     data: OutputData;
     onChange: (data: OutputData) => void;
