@@ -1,5 +1,6 @@
 import { CacheProvider } from '@emotion/react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
+import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useState } from 'react';
@@ -21,28 +22,30 @@ interface MyAppProps extends AppProps {
 
 function MyApp({
                    Component,
-                   pageProps,
+                   pageProps: { session, ...pageProps },
                    emotionCache = clientSideEmotionCache,
                }: MyAppProps) {
     const [theme, setTheme] = useState(createSendOwlTheme());
 
     return (
-        <CacheProvider value={emotionCache}>
-            <Head>
-                <meta
-                    name='viewport'
-                    content='initial-scale=1, width=device-width'
-                />
-            </Head>
-            <RecoilRoot>
-                <ThemeProvider theme={theme}>
-                    <CssBaseline />
-                    <GlobalLayout>
-                        <Component {...pageProps} />
-                    </GlobalLayout>
-                </ThemeProvider>
-            </RecoilRoot>
-        </CacheProvider>
+        <SessionProvider session={session}>
+            <CacheProvider value={emotionCache}>
+                <Head>
+                    <meta
+                        name='viewport'
+                        content='initial-scale=1, width=device-width'
+                    />
+                </Head>
+                <RecoilRoot>
+                    <ThemeProvider theme={theme}>
+                        <CssBaseline />
+                        <GlobalLayout>
+                            <Component {...pageProps} />
+                        </GlobalLayout>
+                    </ThemeProvider>
+                </RecoilRoot>
+            </CacheProvider>
+        </SessionProvider>
     );
 }
 
