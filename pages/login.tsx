@@ -1,7 +1,8 @@
 import { Button, Typography } from '@mui/material';
 import { BuiltInProviderType } from 'next-auth/providers';
 import { ClientSafeProvider, getProviders, signOut, useSession } from 'next-auth/react';
-import LoginGoogleButton from '../src/components/login/LoginGoogleButton';
+import LoginForm from '../src/components/login/LoginForm';
+import SocialLoginButtons from '../src/components/login/SocialLoginButtons';
 
 interface LoginPageProps {
     providers: Record<BuiltInProviderType, ClientSafeProvider>;
@@ -16,7 +17,8 @@ const LoginPage = ({ providers }: LoginPageProps) => {
         <>
             <Typography component={'pre'}>{JSON.stringify(session, null, 2)}</Typography>
             <Button onClick={() => signOut()}>로그아웃</Button>
-            <LoginGoogleButton />
+            <LoginForm />
+            <SocialLoginButtons />
         </>
     );
 };
