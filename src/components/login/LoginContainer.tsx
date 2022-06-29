@@ -1,5 +1,6 @@
 import { Box, Divider, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
+import FindIdPasswordLink from './FindIdPasswordLink';
 import LoginForm from './LoginForm';
 import SocialLoginButtons from './SocialLoginButtons';
 
@@ -7,6 +8,7 @@ const LoginContainer = () => {
     return (
         <Box maxWidth={420}>
             <LoginForm />
+            <FindIdPasswordLink />
             <Divider sx={{ margin: '16px 0' }} color={grey[500]}>
                 <Typography variant={'subtitle2'} color={grey[500]}>
                     OR

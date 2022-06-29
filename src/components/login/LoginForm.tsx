@@ -2,7 +2,6 @@ import { AlternateEmailOutlined, LockOutlined, LoginOutlined } from '@mui/icons-
 import { Button, InputAdornment, Stack, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { validationRegex } from '../../tools/validation';
-import FindIdPasswordLink from './FindIdPasswordLink';
 
 interface LoginFormProps {
 
@@ -63,7 +62,6 @@ const LoginForm = ({}: LoginFormProps) => {
                         type={'submit'}>
                     로그인
                 </Button>
-                <FindIdPasswordLink />
             </Stack>
         </form>
     );

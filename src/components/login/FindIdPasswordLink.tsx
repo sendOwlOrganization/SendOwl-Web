@@ -4,6 +4,8 @@ import NextLink from 'next/link';
 
 
 const StyledAnchor = styled('a')`
+  margin: ${({ theme }) => theme.spacing(1)} 0;
+  display: block;
   text-align: center;
   font-size: 12px;
   text-decoration: underline;
