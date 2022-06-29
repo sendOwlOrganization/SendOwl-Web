@@ -1,7 +1,6 @@
 import { Button, Typography } from '@mui/material';
 import { signOut, useSession } from 'next-auth/react';
-import LoginForm from '../src/components/login/LoginForm';
-import SocialLoginButtons from '../src/components/login/SocialLoginButtons';
+import LoginContainer from '../src/components/login/LoginContainer';
 
 interface LoginPageProps {
 }
@@ -14,8 +13,7 @@ const LoginPage = ({}: LoginPageProps) => {
         <>
             <Typography component={'pre'}>{JSON.stringify(session, null, 2)}</Typography>
             <Button onClick={() => signOut()}>로그아웃</Button>
-            <LoginForm />
-            <SocialLoginButtons />
+            <LoginContainer />
         </>
     );
 };
