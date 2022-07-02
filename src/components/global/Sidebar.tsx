@@ -1,7 +1,7 @@
-import { Grid, Stack, useTheme, GridProps, styled } from '@mui/material';
+import { Grid, GridProps, Stack, styled, useTheme } from '@mui/material';
+import Image from 'next/image';
 import Link from 'next/link';
 import OutlinedButton from '../../component/UI/atoms/OutlinedButton';
-import Image from 'next/image';
 
 const ListItem = styled(Grid)<GridProps>(({ theme }) => ({
     color: theme.palette.text.primary,
