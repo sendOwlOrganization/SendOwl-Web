@@ -12,8 +12,7 @@ const Search = () => {
                 sx={{
                     alignItems: 'center',
                     display: { lg: 'none', xs: 'block' },
-                }}
-            >
+                }}>
                 <IconButton
                     component='form'
                     sx={{
@@ -21,8 +20,7 @@ const Search = () => {
                             lg: 'none',
                             xs: 'block',
                         },
-                    }}
-                >
+                    }}>
                     <SearchIcon
                         sx={{
                             color: '#111111',
@@ -46,13 +44,11 @@ const Search = () => {
                     borderRadius: '25px',
                     margin: '20px 0 20px 0',
                 }}
-                display='flex'
-            >
+                display='flex'>
                 <IconButton
                     type='submit'
                     sx={{ p: '10px', flex: 1 }}
-                    aria-label='search'
-                >
+                    aria-label='search'>
                     <SearchIcon sx={{ color: '#111111' }} />
                 </IconButton>
                 <InputBase
