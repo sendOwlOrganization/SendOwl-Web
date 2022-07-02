@@ -11,22 +11,10 @@ import {
     Typography,
 } from '@mui/material';
 import { useState } from 'react';
+import OutlinedButton from '../../component/UI/atoms/OutlinedButton';
 import LoginForm from './LoginForm';
 
-const OutlinedButton = styled(Button)<ButtonProps>(({ theme }) => ({
-    color: theme.palette.text.primary,
-    backgroundColor: theme.palette.background.default,
-    border: `1px solid ${theme.palette.grey[700]}`,
-    fontWeight: 'bold',
-    '&:hover': {
-        backgroundColor: theme.palette.background.default,
-        borderColor: theme.palette.grey[500],
-    },
-}));
-
-interface LoginButtonProps {
-
-}
+interface LoginButtonProps {}
 
 const LoginButton = ({}: LoginButtonProps) => {
     const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
@@ -39,23 +27,32 @@ const LoginButton = ({}: LoginButtonProps) => {
         setOpenLoginModal(false);
     };
 
-
     return (
         <>
-            <OutlinedButton onClick={handleOpenLoginModal}>로그인</OutlinedButton>
-            <Dialog open={openLoginModal}
-                    onClose={handleCloseLoginModal}
-                    fullWidth>
-                <Box sx={{
-                    display: 'flex',
-                    padding: 1.5,
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                }}>
-                    <Typography paddingLeft={1} fontSize={'18px'} fontWeight={'700'} component={'h2'}>
+            <OutlinedButton onClick={handleOpenLoginModal}>
+                로그인
+            </OutlinedButton>
+            <Dialog
+                open={openLoginModal}
+                onClose={handleCloseLoginModal}
+                fullWidth>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        padding: 1.5,
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                    }}>
+                    <Typography
+                        paddingLeft={1}
+                        fontSize={'18px'}
+                        fontWeight={'700'}
+                        component={'h2'}>
                         로그인
                     </Typography>
-                    <IconButton aria-label={'close'} onClick={handleCloseLoginModal}>
+                    <IconButton
+                        aria-label={'close'}
+                        onClick={handleCloseLoginModal}>
                         <Close />
                     </IconButton>
                 </Box>
