@@ -6,7 +6,7 @@ import SocialLoginButtons from './SocialLoginButtons';
 
 const LoginContainer = () => {
     return (
-        <Box maxWidth={420}>
+        <Box maxWidth={420} margin={'0 auto'} width={'100%'}>
             <LoginForm />
             <FindIdPasswordLink />
             <Divider sx={{ margin: '16px 0' }} color={grey[500]}>

@@ -1,9 +1,10 @@
 import { CacheProvider } from '@emotion/react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
+import { NextPage } from 'next';
 import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import { RecoilRoot } from 'recoil';
 import { GlobalLayout } from '../src/components/global';
 import createEmotionCache from '../src/mui/createEmotionCache';
@@ -18,6 +19,7 @@ interface MyAppProps extends AppProps {
     // EmotionCache@emotion/react !== EmotionCache@emotion/utils !== EmotionCache@emotion/cache
     // to fix later
     emotionCache?: any;
+    Component: NextPage & { getLayout?: ({ children }: PropsWithChildren<{}>) => JSX.Element };
 }
 
 function MyApp({
@@ -26,6 +28,8 @@ function MyApp({
                    emotionCache = clientSideEmotionCache,
                }: MyAppProps) {
     const [theme, setTheme] = useState(createSendOwlTheme());
+
+    const Layout = Component.getLayout ?? GlobalLayout;
 
     return (
         <SessionProvider session={session}>
@@ -39,9 +43,9 @@ function MyApp({
                 <RecoilRoot>
                     <ThemeProvider theme={theme}>
                         <CssBaseline />
-                        <GlobalLayout>
+                        <Layout>
                             <Component {...pageProps} />
-                        </GlobalLayout>
+                        </Layout>
                     </ThemeProvider>
                 </RecoilRoot>
             </CacheProvider>
