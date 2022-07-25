@@ -1,17 +1,5 @@
-import { Close } from '@mui/icons-material';
-import {
-    Box,
-    Button,
-    ButtonProps,
-    Dialog,
-    DialogContent,
-    Divider,
-    IconButton,
-    styled,
-    Typography,
-} from '@mui/material';
-import { useState } from 'react';
-import LoginForm from './LoginForm';
+import { Button, ButtonProps, styled } from '@mui/material';
+import Link from 'next/link';
 
 const OutlinedButton = styled(Button)<ButtonProps>(({ theme }) => ({
     color: theme.palette.text.primary,
@@ -25,45 +13,16 @@ const OutlinedButton = styled(Button)<ButtonProps>(({ theme }) => ({
 }));
 
 interface LoginButtonProps {
-
 }
 
 const LoginButton = ({}: LoginButtonProps) => {
-    const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
-
-    const handleOpenLoginModal = () => {
-        setOpenLoginModal(true);
-    };
-
-    const handleCloseLoginModal = () => {
-        setOpenLoginModal(false);
-    };
-
-
     return (
         <>
-            <OutlinedButton onClick={handleOpenLoginModal}>로그인</OutlinedButton>
-            <Dialog open={openLoginModal}
-                    onClose={handleCloseLoginModal}
-                    fullWidth>
-                <Box sx={{
-                    display: 'flex',
-                    padding: 1.5,
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                }}>
-                    <Typography paddingLeft={1} fontSize={'18px'} fontWeight={'700'} component={'h2'}>
-                        로그인
-                    </Typography>
-                    <IconButton aria-label={'close'} onClick={handleCloseLoginModal}>
-                        <Close />
-                    </IconButton>
-                </Box>
-                <Divider />
-                <DialogContent>
-                    <LoginForm />
-                </DialogContent>
-            </Dialog>
+            <Link href='/login'>
+                <a>
+                    <OutlinedButton>로그인</OutlinedButton>
+                </a>
+            </Link>
         </>
     );
 };
