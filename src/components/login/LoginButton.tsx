@@ -11,7 +11,7 @@ import {
     Typography,
 } from '@mui/material';
 import { useState } from 'react';
-import OutlinedButton from '../../component/UI/atoms/OutlinedButton';
+import OutlinedButton from '../../component/atoms/OutlinedButton';
 import LoginForm from './LoginForm';
 
 interface LoginButtonProps {}
