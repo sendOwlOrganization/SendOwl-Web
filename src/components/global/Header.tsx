@@ -1,7 +1,6 @@
 import { Grid, useTheme, styled, Box } from '@mui/material';
 import { Search } from '../search';
 import Image from 'next/image';
-import logo from '../../../public/images/logo.png';
 import UserProfile from '../../component/atoms/UserProfile';
 
 const MainHeader = () => {
@@ -23,7 +22,12 @@ const MainHeader = () => {
                         alignItems: 'center',
                     }}
                     alignItems={'baseline'}>
-                    <Image src={logo} alt='logo' width={55} height={55} />
+                    <Image
+                        src='/images/logo.png'
+                        alt='logo'
+                        width={55}
+                        height={55}
+                    />
                 </Grid>
                 <Search />
                 <UserProfile size={65} />

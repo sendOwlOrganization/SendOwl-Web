@@ -1,7 +1,5 @@
 import { Box, Grid, useTheme } from '@mui/material';
 import Image from 'next/image';
-import mainGraph from '../../../../public/images/mainGraph.png';
-import mainGraph2 from '../../../../public/images/mainGraph2.png';
 
 const Mbti = () => {
     const theme = useTheme();
@@ -25,7 +23,7 @@ const Mbti = () => {
                     marginTop={5}>
                     <Image
                         alt='main-graph'
-                        src={mainGraph}
+                        src='/images/mainGraph.png'
                         width={'150'}
                         height={'150'}
                     />
@@ -49,7 +47,7 @@ const Mbti = () => {
                     marginTop={5}>
                     <Image
                         alt='main-graph2'
-                        src={mainGraph2}
+                        src='/images/mainGraph2.png'
                         width={'150'}
                         height={'150'}
                     />
