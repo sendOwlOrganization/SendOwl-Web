@@ -1,5 +1,5 @@
+import OutlinedButton from '@components/UI/atoms/OutlinedButton';
 import Link from 'next/link';
-import OutlinedButton from '../../component/UI/atoms/OutlinedButton';
 
 interface LoginButtonProps {
 }
