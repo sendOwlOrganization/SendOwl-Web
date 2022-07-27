@@ -1,6 +1,5 @@
 import { Box, useTheme } from '@mui/material';
 import Image from 'next/image';
-import enfj from '../../../public/images/enfj.png';
 
 const CreatePost = () => {
     const theme = useTheme();
@@ -42,7 +41,7 @@ const CreatePost = () => {
                         height={45}
                         margin='0px 20px 0px 20px'>
                         <Image
-                            src={enfj}
+                            src='/images/enfj.png'
                             alt=''
                             width={45}
                             height={45}
