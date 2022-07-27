@@ -1,16 +1,16 @@
+import { defaultSignUpDto, SignUpDto } from '@_types/SignUpDto';
 import { AlternateEmailOutlined, BadgeOutlined, GroupAddOutlined, LockOutlined } from '@mui/icons-material';
 import { Box, Button, InputAdornment, TextField } from '@mui/material';
+import { validationRegex } from '@tools/validation';
 import { RegisterOptions, useForm, UseFormWatch } from 'react-hook-form';
-import { validationRegex } from '../../tools/validation';
-import { defaultSignUpDto, SignUpDto } from '../../types/SignUpDto';
 
 interface SignUpFormProps {
 }
 
-const registerOptions:
-    Record<keyof Omit<SignUpDto, 'passwordConfirm'>, RegisterOptions>
+type SignUpDtoRegisterOptions = Record<keyof Omit<SignUpDto, 'passwordConfirm'>, RegisterOptions>
     & Record<keyof Pick<SignUpDto, 'passwordConfirm'>, (watch: UseFormWatch<SignUpDto>) => RegisterOptions>
-    = {
+
+const registerOptions: SignUpDtoRegisterOptions = {
     nickName: {
         required: '닉네임을 입력해주세요',
     },
