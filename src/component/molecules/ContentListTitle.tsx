@@ -21,8 +21,8 @@ const ContentListTitle = ({ title }: CategoryListTitleInfo) => {
                     fontSize={'20px'}
                     fontWeight={'800'}>
                     {title}
-                    <Link href='/category'>
-                        <a style={{ fontSize: '12px', fontWeight: '400' }}>
+                    <Link href='/category' passHref>
+                        <a>
                             더보기
                             <ArrowForwardIosIcon style={{ fontSize: '10px' }} />
                         </a>
