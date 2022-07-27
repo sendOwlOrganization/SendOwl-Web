@@ -1,49 +1,18 @@
-import { Stack } from '@mui/material';
+import { Box, Grid, GridProps, Stack, styled } from '@mui/material';
 import Link from 'next/link';
 
-const Menu = () => {
-    return (
-        <>
-            <Stack
-                spacing={4}
-                direction='row'
-                sx={{
-                    display: { lg: 'flex', xs: 'none', fontWeight: '600' },
-                }}
-                justifyContent='center'
-                alignItems='center'
-                padding={1}
-                marginLeft={'30px'}
-                fontSize={'17px'}>
-                <Link href='/'>
-                    <a>홈</a>
-                </Link>
-                <Link href='/review'>
-                    <a>기업리뷰</a>
-                </Link>
-                <Link href='/community'>
-                    <a>자유 게시판</a>
-                </Link>
-            </Stack>
+const GNB = styled(Grid)<GridProps>(({ theme }) => ({
+    color: theme.palette.text.primary,
+    display: 'flex',
+    padding: '10px',
+    '&:hover': {
+        color: theme.palette.primary.main,
+        borderBottom: '3px solid rgba(125,178,255,1)',
+    },
+}));
 
-            <Stack
-                spacing={4}
-                direction='row'
-                sx={{ display: { lg: 'none', xs: 'flex', fontWeight: '500' } }}
-                alignItems='center'
-                padding={2}>
-                <Link href='/'>
-                    <a>홈</a>
-                </Link>
-                <Link href='/review'>
-                    <a>기업리뷰</a>
-                </Link>
-                <Link href='/community'>
-                    <a>자유 게시판</a>
-                </Link>
-            </Stack>
-        </>
-    );
+const Menu = () => {
+    return <></>;
 };
 
 export default Menu;

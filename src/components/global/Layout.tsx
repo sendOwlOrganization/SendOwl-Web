@@ -1,16 +1,17 @@
-import { Container } from '@mui/material';
+import { Grid, styled, GridProps, useTheme } from '@mui/material';
 import { PropsWithChildren } from 'react';
 import Header from './Header';
 
-interface GlobalLayoutProps {
-}
+interface GlobalLayoutProps {}
 
 const Layout = ({ children }: PropsWithChildren<GlobalLayoutProps>) => {
     return (
-        <Container sx={{ minWidth: '400px' }} fixed>
-            <Header />
-            {children}
-        </Container>
+        <>
+            <Grid>
+                <Header />
+                {children}
+            </Grid>
+        </>
     );
 };
 
