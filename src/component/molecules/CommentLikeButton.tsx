@@ -9,7 +9,7 @@ interface LikeButtonProps {
 
 const iconSx: SxProps<Theme> = { marginBottom: '1px', marginRight: '4px' };
 
-const LikeButton = ({ like }: LikeButtonProps) => {
+const CommentLikeButton = ({ like }: LikeButtonProps) => {
     const [hasLiked, setHasLiked] = useState<boolean>(false);
     const [nbLike, setNbLike] = useState<number>(like);
 
@@ -39,4 +39,4 @@ const LikeButton = ({ like }: LikeButtonProps) => {
     );
 };
 
-export default LikeButton;
+export default CommentLikeButton;

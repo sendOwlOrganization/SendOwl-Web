@@ -1,10 +1,11 @@
-import { Grid, styled, GridProps, useTheme } from '@mui/material';
+import { Grid } from '@mui/material';
 import { PropsWithChildren } from 'react';
-import Header from './Header';
+import Header from '../../components/global/Header';
 
-interface GlobalLayoutProps {}
+interface GlobalLayoutProps {
+}
 
-const Layout = ({ children }: PropsWithChildren<GlobalLayoutProps>) => {
+const GlobalLayout = ({ children }: PropsWithChildren<GlobalLayoutProps>) => {
     return (
         <>
             <Grid>
@@ -15,4 +16,4 @@ const Layout = ({ children }: PropsWithChildren<GlobalLayoutProps>) => {
     );
 };
 
-export default Layout;
+export default GlobalLayout;

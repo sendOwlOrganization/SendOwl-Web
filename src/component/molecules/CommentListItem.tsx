@@ -1,9 +1,9 @@
 import { AccessTimeOutlined } from '@mui/icons-material';
 import { Box, Stack, styled } from '@mui/material';
-import { formatDate } from '../../tools/date';
+import { formatDate } from '@tools/date';
 import ChildCommentButton from './ChildCommentButton';
+import CommentLikeButton from './CommentLikeButton';
 import { ParentComment } from './CommentList';
-import LikeButton from './LikeButton';
 
 interface CommentListItemProps extends Omit<ParentComment, 'childComments'> {
     childComments?: ParentComment['childComments'];
@@ -64,7 +64,7 @@ const CommentListItem = (props: CommentListItemProps) => {
                             {formatDate(regDate)}
                         </DateTime>
                     </Box>
-                    <LikeButton id={id} like={like} />
+                    <CommentLikeButton id={id} like={like} />
                     {childComments && <ChildCommentButton id={id} childCommentCount={childComments.length} />}
                 </Stack>
             </ListItem>
