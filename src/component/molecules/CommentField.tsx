@@ -1,7 +1,7 @@
+import { CommentDto } from '@_types/CommentDto';
 import { Button, Fade, Stack, TextField } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { CommentDto } from '../../types/CommentDto';
 
 interface CommentFieldProps {
     boardId: number;

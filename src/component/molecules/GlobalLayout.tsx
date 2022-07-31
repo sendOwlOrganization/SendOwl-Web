@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import { PropsWithChildren } from 'react';
-import Header from '../../components/global/Header';
+import Header from './Header';
 
 interface GlobalLayoutProps {
 }

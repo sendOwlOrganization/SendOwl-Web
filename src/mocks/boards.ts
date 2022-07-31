@@ -1,5 +1,5 @@
+import BoardCategoryPostList from '@molecules/BoardCategoryPostList';
 import { ComponentProps } from 'react';
-import BoardCategoryPostList from '../components/board-category-list/BoardCategoryPostList';
 import { User, userMocks } from './users';
 
 export interface BoardPost {

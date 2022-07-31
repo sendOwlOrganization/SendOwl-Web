@@ -1,6 +1,6 @@
-import { BoardCategoryList } from '@components/organisms/board-category-list';
-import { MainContent } from '@components/organisms/main';
 import { boardsMock } from '@mocks/boards';
+import { BoardCategoryList } from '@organisms/board-category-list';
+import { MainContent } from '@organisms/main';
 import { ComponentProps } from 'react';
 
 interface HomePageProps {

@@ -1,7 +1,7 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton, InputBase, Stack, useTheme } from '@mui/material';
 
-const Search = () => {
+const MainSearchBar = () => {
     const theme = useTheme();
     return (
         <>
@@ -43,4 +43,4 @@ const Search = () => {
     );
 };
 
-export default Search;
+export default MainSearchBar;
