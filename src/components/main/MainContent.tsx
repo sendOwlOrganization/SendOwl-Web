@@ -13,17 +13,17 @@ interface Board {
     commentCount: number;
 }
 interface BoardCategoryListProps {
-    categorys: BoardCategory[];
+    categories: BoardCategory[];
     boards: Board[];
 }
 
 export default function MainContent({
-    categorys,
+    categories,
     boards,
 }: BoardCategoryListProps) {
     return (
         <>
-            {categorys.map((category) => (
+            {categories.map((category) => (
                 <BoardCategoryList
                     key={category.id}
                     title={category.name}

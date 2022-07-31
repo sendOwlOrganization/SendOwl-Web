@@ -29,7 +29,7 @@ const LoginForm = ({}: LoginFormProps) => {
 
     return (
         <form onSubmit={onSubmit}>
-            <Stack spacing={1}>
+            <Stack spacing={2}>
                 <TextField InputProps={{
                     startAdornment: (
                         <InputAdornment position={'start'}>
