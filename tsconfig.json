@@ -17,7 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": [
-        "src/component/*"
+        "src/components/*"
       ],
       "@public/*": [
         "public/*"
@@ -38,16 +38,16 @@
         "src/types/*"
       ],
       "@molecules/*": [
-        "src/component/molecules/*"
+        "src/components/molecules/*"
       ],
       "@atoms/*": [
-        "src/component/atoms/*"
+        "src/components/atoms/*"
       ],
       "@organisms/*": [
-        "src/component/organisms/*"
+        "src/components/organisms/*"
       ],
       "@UI/*": [
-        "src/component/UI/*"
+        "src/components/UI/*"
       ]
     }
   },

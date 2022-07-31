@@ -1,5 +1,5 @@
+import { MainContent } from '@organisms/main';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { MainContent } from '../../components/main';
 
 export default {
     title: 'components/Main/MainContent',

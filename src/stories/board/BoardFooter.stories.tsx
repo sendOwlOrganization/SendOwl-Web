@@ -1,5 +1,5 @@
+import BoardFooter from '@molecules/BoardFooter';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import BoardFooter from '../../component/molecules/BoardFooter';
 
 export default {
     title: 'components/Board/sub-components',

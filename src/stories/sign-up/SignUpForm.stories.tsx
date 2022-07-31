@@ -1,5 +1,5 @@
+import SignUpForm from '@organisms/sign-up/SignUpForm';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import SignUpForm from '../../component/organisms/sign-up/SignUpForm';
 
 export default {
     title: 'components/SignUp/SignUpForm',

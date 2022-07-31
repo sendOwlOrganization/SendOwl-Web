@@ -1,5 +1,5 @@
+import { Board } from '@organisms/board';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Board } from '../../component/organisms/board';
 
 export default {
     title: 'components/Board/example',

@@ -1,6 +1,6 @@
+import BoxBorder from '@atoms/BoxBorder';
+import BoxGradient from '@atoms/BoxGradient';
 import { Grid } from '@mui/material';
-import BoxGradient from '../../component/atoms/BoxGradient';
-import BoxBorder from '../atoms/BoxBorder';
 
 const CategoryMenu = () => {
     return (

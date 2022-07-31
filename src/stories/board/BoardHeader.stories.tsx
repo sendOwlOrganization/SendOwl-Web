@@ -1,5 +1,5 @@
+import BoardHeader from '@molecules/BoardHeader';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import BoardHeader from '../../component/molecules/BoardHeader';
 
 export default {
     title: 'components/Board/sub-components',
