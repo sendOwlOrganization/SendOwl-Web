@@ -1,10 +1,11 @@
+import BoardCategoryList from '@organisms/board-category-list/BoardCategoryList';
 import * as React from 'react';
-import BoardCategoryList from '../board-category-list/BoardCategoryList';
 
 interface BoardCategory {
     id: number;
     name: string;
 }
+
 interface Board {
     id: number;
     category: string;
@@ -12,15 +13,14 @@ interface Board {
     likeCount: number;
     commentCount: number;
 }
+
 interface BoardCategoryListProps {
     categories: BoardCategory[];
     boards: Board[];
 }
 
-export default function MainContent({
-    categories,
-    boards,
-}: BoardCategoryListProps) {
+
+export default function MainContent({ categories, boards }: BoardCategoryListProps) {
     return (
         <>
             {categories.map((category) => (

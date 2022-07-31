@@ -1,11 +1,9 @@
-import { Grid, useTheme, styled, Box } from '@mui/material';
-import { Search } from '../search';
+import UserProfile from '@atoms/UserProfile';
+import MainSearchBar from '@molecules/MainSearchBar';
+import { Grid } from '@mui/material';
 import Image from 'next/image';
-import UserProfile from '../../component/atoms/UserProfile';
 
 const MainHeader = () => {
-    const theme = useTheme();
-
     return (
         <>
             <Grid
@@ -29,7 +27,7 @@ const MainHeader = () => {
                         height={55}
                     />
                 </Grid>
-                <Search />
+                <MainSearchBar />
                 <UserProfile size={65} />
             </Grid>
         </>
