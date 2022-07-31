@@ -36,6 +36,18 @@
       ],
       "@_types/*": [
         "src/types/*"
+      ],
+      "@molecules/*": [
+        "src/component/molecules/*"
+      ],
+      "@atoms/*": [
+        "src/component/atoms/*"
+      ],
+      "@organisms/*": [
+        "src/component/organisms/*"
+      ],
+      "@UI/*": [
+        "src/component/UI/*"
       ]
     }
   },
