@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { MainContent } from '../../components/main';
-import BoardCategoryPostList from '../../components/board-category-list/BoardCategoryPostList';
 
 export default {
     title: 'components/Main/MainContent',

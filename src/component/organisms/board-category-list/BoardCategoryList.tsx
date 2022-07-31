@@ -1,6 +1,6 @@
+import BoardCategoryPostList from '@components/molecules/BoardCategoryPostList';
+import BoardCategoryTitle from '@components/molecules/BoardCategoryTitle';
 import { Divider } from '@mui/material';
-import BoardCategoryPostList from './BoardCategoryPostList';
-import BoardCategoryTitle from './BoardCategoryTitle';
 
 interface Board {
     id: number;

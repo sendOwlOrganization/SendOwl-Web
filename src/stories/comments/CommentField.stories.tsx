@@ -1,5 +1,5 @@
+import CommentField from '@components/molecules/CommentField';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import CommentField from '../../components/comments/CommentField';
 
 export default {
     title: 'components/comments/CommentField',

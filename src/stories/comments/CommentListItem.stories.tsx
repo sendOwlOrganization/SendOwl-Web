@@ -1,5 +1,5 @@
+import CommentListItem from '@components/molecules/CommentListItem';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import CommentListItem from '../../components/comments/CommentListItem';
 
 export default {
     title: 'components/comments/CommentListItem',

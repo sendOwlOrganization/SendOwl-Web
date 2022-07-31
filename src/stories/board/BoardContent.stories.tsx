@@ -1,12 +1,12 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import BoardContent from '../../components/board/BoardContent';
+import BoardContent from '../../component/organisms/board/BoardContent';
 
 export default {
     title: 'components/Board/sub-components',
     component: BoardContent,
 } as ComponentMeta<typeof BoardContent>;
 
-const Template: ComponentStory<typeof BoardContent> = (args) => <BoardContent {...args}/>;
+const Template: ComponentStory<typeof BoardContent> = (args) => <BoardContent {...args} />;
 
 export const Content = Template.bind({});
 Content.args = {

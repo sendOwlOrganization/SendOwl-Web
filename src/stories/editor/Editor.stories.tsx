@@ -1,6 +1,6 @@
 import { OutputData } from '@editorjs/editorjs';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import Editor from '../../components/editor/Editor';
+import Editor from '../../component/organisms/editor/Editor';
 import { blocksMock } from '../../mocks/editors';
 
 export default {

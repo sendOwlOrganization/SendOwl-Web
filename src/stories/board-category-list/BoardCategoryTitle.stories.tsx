@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import BoardCategoryTitle from '../../components/board-category-list/BoardCategoryTitle';
+import BoardCategoryTitle from '../../component/molecules/BoardCategoryTitle';
 
 export default {
     title: 'components/BoardCategoryList/BoardCategoryTitle',

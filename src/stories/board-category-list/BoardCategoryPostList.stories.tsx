@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import BoardCategoryPostList from '../../components/board-category-list/BoardCategoryPostList';
+import BoardCategoryPostList from '../../component/molecules/BoardCategoryPostList';
 import { boardsMock } from '../../mocks/boards';
 
 export default {
