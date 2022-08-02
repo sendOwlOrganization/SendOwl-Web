@@ -1,7 +1,6 @@
+import BoardFooter from '@components/molecules/BoardFooter';
+import BoardHeader from '@molecules/BoardHeader';
 import { Box, Divider } from '@mui/material';
-import BoardContent from './BoardContent';
-import BoardFooter from './BoardFooter';
-import BoardHeader from './BoardHeader';
 
 // TODO: need to move from this file + fix types to match with api
 interface User {
@@ -34,11 +33,11 @@ const Board = ({ post }: BoardProps) => {
                          date={post.date}
                          author={post.user.nickname}
                          commentCount={post.comments}
-                         pageView={post.view}/>
-            <Divider/>
-            <BoardContent content={post.content}/>
-            <Divider/>
-            <BoardFooter like={post.like}/>
+                         pageView={post.view} />
+            <Divider />
+            {/*<BoardContent content={post.content}/>*/}
+            <Divider />
+            <BoardFooter like={post.like} />
         </Box>
     );
 };

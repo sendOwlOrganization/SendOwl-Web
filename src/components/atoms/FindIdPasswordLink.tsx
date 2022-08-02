@@ -2,7 +2,6 @@ import { styled } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import NextLink from 'next/link';
 
-
 const StyledAnchor = styled('a')`
   margin: ${({ theme }) => theme.spacing(1)} 0;
   display: block;

@@ -1,12 +1,12 @@
+import BoardHeader from '@molecules/BoardHeader';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import BoardHeader from '../../components/board/BoardHeader';
 
 export default {
     title: 'components/Board/sub-components',
     component: BoardHeader,
 } as ComponentMeta<typeof BoardHeader>;
 
-const Template: ComponentStory<typeof BoardHeader> = (args) => <BoardHeader {...args}/>;
+const Template: ComponentStory<typeof BoardHeader> = (args) => <BoardHeader {...args} />;
 
 export const Header = Template.bind({});
 Header.args = {

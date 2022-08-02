@@ -1,12 +1,12 @@
+import { Board } from '@organisms/board';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Board } from '../../components/board';
 
 export default {
     title: 'components/Board/example',
     component: Board,
 } as ComponentMeta<typeof Board>;
 
-const Template: ComponentStory<typeof Board> = (args) => <Board {...args}/>;
+const Template: ComponentStory<typeof Board> = (args) => <Board {...args} />;
 
 export const BoardExample = Template.bind({});
 BoardExample.args = {

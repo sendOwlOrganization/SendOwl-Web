@@ -1,10 +1,7 @@
-import { Grid } from '@mui/material';
+import { boardsMock } from '@mocks/boards';
+import { BoardCategoryList } from '@organisms/board-category-list';
+import { MainContent } from '@organisms/main';
 import { ComponentProps } from 'react';
-import { BoardCategoryList } from '../src/components/board-category-list';
-import SideBar from '../src/components/global/Sidebar';
-import { MainContent } from '../src/component/organisms/main';
-import { Search } from '../src/components/search';
-import { boardsMock } from '../src/mocks/boards';
 
 interface HomePageProps {
     boards: ComponentProps<typeof BoardCategoryList>['boards'];

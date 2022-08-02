@@ -1,7 +1,7 @@
+import LoginLayout from '@molecules/LoginLayout';
 import { Box, Button, Typography } from '@mui/material';
+import LoginContainer from '@organisms/login/LoginContainer';
 import { signOut, useSession } from 'next-auth/react';
-import LoginLayout from '../src/components/layout/LoginLayout';
-import LoginContainer from '../src/components/login/LoginContainer';
 
 interface LoginPageProps {
 }

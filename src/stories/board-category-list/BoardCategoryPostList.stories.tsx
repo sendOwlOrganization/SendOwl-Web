@@ -1,6 +1,6 @@
+import { boardsMock } from '@mocks/boards';
+import BoardCategoryPostList from '@molecules/BoardCategoryPostList';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import BoardCategoryPostList from '../../components/board-category-list/BoardCategoryPostList';
-import { boardsMock } from '../../mocks/boards';
 
 export default {
     title: 'components/BoardCategoryList/BoardCategoryPostList',

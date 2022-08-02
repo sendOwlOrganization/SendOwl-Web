@@ -1,15 +1,15 @@
 import { CacheProvider } from '@emotion/react';
+import GlobalLayout from '@molecules/GlobalLayout';
 import { CssBaseline, ThemeProvider } from '@mui/material';
+import '@styles/globals.css';
+import createSendOwlTheme from '@styles/sendOwlTheme';
 import { NextPage } from 'next';
 import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { PropsWithChildren, useState } from 'react';
 import { RecoilRoot } from 'recoil';
-import { GlobalLayout } from '../src/components/global';
 import createEmotionCache from '../src/mui/createEmotionCache';
-import '../styles/globals.css';
-import createSendOwlTheme from '../styles/sendOwlTheme';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();

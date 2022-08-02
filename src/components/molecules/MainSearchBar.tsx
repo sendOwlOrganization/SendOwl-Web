@@ -1,10 +1,8 @@
-import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
-import { Grid, IconButton, InputBase, Stack, useTheme } from '@mui/material';
+import { IconButton, InputBase, Stack, useTheme } from '@mui/material';
 
-const Search = () => {
+const MainSearchBar = () => {
     const theme = useTheme();
-
     return (
         <>
             <Stack
@@ -45,4 +43,4 @@ const Search = () => {
     );
 };
 
-export default Search;
+export default MainSearchBar;

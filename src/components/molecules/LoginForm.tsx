@@ -1,7 +1,7 @@
 import { AlternateEmailOutlined, LockOutlined, LoginOutlined } from '@mui/icons-material';
 import { Button, InputAdornment, Stack, TextField } from '@mui/material';
+import { validationRegex } from '@tools/validation';
 import { useForm } from 'react-hook-form';
-import { validationRegex } from '../../tools/validation';
 
 interface LoginFormProps {
 

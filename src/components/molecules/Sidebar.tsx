@@ -1,7 +1,7 @@
-import { Grid, GridProps, Stack, styled, useTheme } from '@mui/material';
+import { Grid, GridProps, Stack, styled } from '@mui/material';
+import OutlinedButton from '@UI/atoms/OutlinedButton';
 import Image from 'next/image';
 import Link from 'next/link';
-import OutlinedButton from '../../component/UI/atoms/OutlinedButton';
 
 const ListItem = styled(Grid)<GridProps>(({ theme }) => ({
     color: theme.palette.text.primary,
@@ -15,7 +15,6 @@ const ListItem = styled(Grid)<GridProps>(({ theme }) => ({
 }));
 
 const SideBar = () => {
-    const theme = useTheme();
 
     return (
         <>
