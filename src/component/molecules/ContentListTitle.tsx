@@ -11,7 +11,8 @@ const ContentListTitle = ({ title }: CategoryListTitleInfo) => {
             <Grid
                 display={'flex'}
                 alignItems={'center'}
-                padding={'10px 20px 10px 20px'}>
+                padding={'10px 20px 10px 20px'}
+            >
                 <Grid
                     container
                     display={'flex'}
@@ -21,12 +22,14 @@ const ContentListTitle = ({ title }: CategoryListTitleInfo) => {
                     fontSize={'20px'}
                     fontWeight={'800'}>
                     {title}
-                    <Link href='/category' passHref>
-                        <a>
-                            더보기
-                            <ArrowForwardIosIcon style={{ fontSize: '10px' }} />
-                        </a>
-                    </Link>
+                    <Grid fontSize={'12px'} fontWeight={'500'}>
+                        <Link href='/category' passHref>
+                            <a>
+                                더보기
+                                <ArrowForwardIosIcon style={{ fontSize: '10px' }} />
+                            </a>
+                        </Link>
+                    </Grid>
                 </Grid>
             </Grid>
         </>

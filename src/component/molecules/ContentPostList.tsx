@@ -79,9 +79,6 @@ const ContentPostList = () => {
                                 </Item>
                             </Grid>
                         </Grid>
-                        <Divider
-                            sx={{ display: { lg: 'none', xs: 'block' } }}
-                        />
                     </>
                 ))}
             </Box>

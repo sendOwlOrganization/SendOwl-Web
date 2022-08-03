@@ -4,8 +4,9 @@ import ContentPostList from './ContentPostList';
 
 interface ContentInfo {
     title: string;
+    width: number;
 }
-const ContentList = ({ title }: ContentInfo) => {
+const ContentList = ({ title, width }: ContentInfo) => {
     const theme = useTheme();
 
     return (
@@ -19,9 +20,10 @@ const ContentList = ({ title }: ContentInfo) => {
                 }}
                 borderRadius={'20px'}
                 marginBottom='20px'
-                width={781}
                 height={'auto'}
-                fontSize={'12px'}>
+                fontSize={'12px'}
+                width={width}
+            >
                 <ContentListTitle title={title} />
                 <ContentPostList />
             </Box>

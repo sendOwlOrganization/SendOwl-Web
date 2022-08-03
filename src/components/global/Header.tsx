@@ -1,23 +1,27 @@
-import { Grid, useTheme, styled, Box } from '@mui/material';
+import {Grid, useTheme, styled, Box} from '@mui/material';
 import { Search } from '../search';
 import Image from 'next/image';
 import UserProfile from '../../component/atoms/UserProfile';
 
-const MainHeader = () => {
+interface Size {
+    size: number;
+}
+const MainHeader = ({size}: Size) => {
     const theme = useTheme();
 
     return (
         <>
             <Grid
                 display={'flex'}
-                height={70}
+                height={size}
                 justifyContent={'space-between'}
                 alignItems={'center'}
-                marginTop={'30px'}>
+                margin={'20px 20px 0 20px'}
+                paddingBottom={'10px'}
+            >
                 <Grid
                     sx={{
                         display: 'flex',
-                        marginLeft: '60px',
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
@@ -25,13 +29,14 @@ const MainHeader = () => {
                     <Image
                         src='/images/logo.png'
                         alt='logo'
-                        width={55}
-                        height={55}
+                        width={size-10}
+                        height={size-10}
                     />
                 </Grid>
-                <Search />
-                <UserProfile size={65} />
+                <Search lg={'block'} xs={'none'} size={783}/>
+                <UserProfile size={size} textView={'none'}/>
             </Grid>
+            <Search lg={'none'} xs={'block'} size={355}/>
         </>
     );
 };
