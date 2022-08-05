@@ -34,7 +34,7 @@ const MainContent = () => {
                 {isMobile ?
                     <>
                         <Grid margin={'0 10px 0 10px'}  >
-                            <CategoryMenu width={60} height={60} margin={'0 5px 0 5px'}/>
+                            <CategoryMenu width={55} height={55} margin={'0 5px 0 5px'}/>
                             <Advertisement width={mobileWidth} height={137} margin={'10px 0 0 0'}/>
                             <CreatePost width={mobileWidth}/>
                             <ContentList width={mobileWidth} title='인기글' />

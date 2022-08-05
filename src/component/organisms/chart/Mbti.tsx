@@ -4,9 +4,10 @@ import dynamic from "next/dynamic";
 import { data } from './MbtiPie';
 import * as React from "react";
 
+const MyResponsivePie = dynamic(()=> import ('./MbtiPie'), {ssr:false})
+
 const Mbti = () => {
     const theme = useTheme();
-    const MyResponsivePie = dynamic(()=> import ('./MbtiPie'), {ssr:false})
 
     return (
         <>

@@ -1,24 +1,19 @@
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
-import { Grid, IconButton, InputBase, Stack, useTheme, Box } from '@mui/material';
+import {Grid, IconButton, InputBase, Stack, useTheme, Box, SxProps} from '@mui/material';
 import {MLAB_PALETTE} from "../../../styles/sendOwlTheme";
 
 interface SearchLocation {
-    lg: string;
-    xs: string;
-    size: number;
+    sx: SxProps;
+    width: number;
 }
-const Search = ({lg, xs, size}: SearchLocation) => {
+const Search = ({sx, width}: SearchLocation) => {
     const theme = useTheme();
 
     return (
         <>
-            <Grid sx={{
-                    display: {
-                        lg: lg,
-                        xs: xs
-                    }}}
-                  width={size}>
+            <Stack sx={sx}
+                  width={width}>
                 <Grid display={'flex'}>
                     <Box display={'flex'} justifyContent={'center'} alignItems={'center'} marginLeft={'20px'}
                     >
@@ -39,7 +34,7 @@ const Search = ({lg, xs, size}: SearchLocation) => {
                             margin: '10px 0px 10px 0px',
                             border: `1px solid ${theme.palette.grey[200]}`,
                         }}
-                        width={size-25}
+                        width={width-25}
                         >
                         <InputBase
                             sx={{
@@ -51,7 +46,7 @@ const Search = ({lg, xs, size}: SearchLocation) => {
                         />
                     </Stack>
                 </Grid>
-            </Grid>
+            </Stack>
         </>
     );
 };

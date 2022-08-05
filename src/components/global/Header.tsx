@@ -7,8 +7,6 @@ interface Size {
     size: number;
 }
 const MainHeader = ({size}: Size) => {
-    const theme = useTheme();
-
     return (
         <>
             <Grid
@@ -33,10 +31,10 @@ const MainHeader = ({size}: Size) => {
                         height={size-10}
                     />
                 </Grid>
-                <Search lg={'block'} xs={'none'} size={783}/>
+                <Search sx={{display: { lg: 'block', xs: 'none'}}} size={783}/>
                 <UserProfile size={size} textView={'none'}/>
             </Grid>
-            <Search lg={'none'} xs={'block'} size={355}/>
+            <Search sx={{display: { lg: 'none', xs: 'block'}}} size={355}/>
         </>
     );
 };
