@@ -1,5 +1,6 @@
 import { Box, BoxProps, styled, useTheme } from '@mui/material';
 import Image, { StaticImageData } from 'next/image';
+import {MLAB_PALETTE} from "../../../styles/sendOwlTheme";
 
 interface GradientInfo {
     width: number;
@@ -10,8 +11,8 @@ interface GradientInfo {
 
 const BoxGradient = styled(Box)<BoxProps>(({ theme }) => ({
     border: 'transparent',
-    margin: '20px 20px 10px 0',
-    backgroundImage: 'linear-gradient(#B488F8, #83D9A6, #3FC4EA, #FDBD5F)',
+    margin: '18px 15px 10px 0',
+    backgroundImage: `linear-gradient(${MLAB_PALETTE.violet}, ${MLAB_PALETTE.green}, ${MLAB_PALETTE.blue}, ${MLAB_PALETTE.orange})`,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

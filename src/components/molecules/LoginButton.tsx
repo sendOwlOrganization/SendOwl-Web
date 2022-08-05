@@ -1,8 +1,7 @@
 import OutlinedButton from '@components/UI/atoms/OutlinedButton';
 import Link from 'next/link';
 
-interface LoginButtonProps {
-}
+interface LoginButtonProps {}
 
 const LoginButton = ({}: LoginButtonProps) => {
     return (

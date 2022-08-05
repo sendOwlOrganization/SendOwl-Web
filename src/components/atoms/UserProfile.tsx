@@ -4,8 +4,9 @@ import Image from 'next/image';
 
 interface ProfileSize {
     size: number;
+    textView?: string;
 }
-const UserProfile = ({ size }: ProfileSize) => {
+const UserProfile = ({ size, textView }: ProfileSize) => {
     const theme = useTheme();
 
     return (
@@ -44,17 +45,22 @@ const UserProfile = ({ size }: ProfileSize) => {
                         />
                     </Box>
                 </Box>
-                <Grid
-                    margin={'0 50px 0 20px'}
-                    display={'inline-grid'}
-                    fontSize={'12px'}>
-                    {/* {user.name} + {user.mbti} */}
-                    <Grid color={'red'} fontSize={'10px'}>
-                        welcome
+                <Grid sx={{display: { lg: 'block', xs: 'none'}}}>
+                    <Grid
+                        margin={'0 50px 0 20px'}
+                        display={'inline-grid'}
+                        fontSize={'12px'}
+
+                    >
+                        {/* {user.name} + {user.mbti} */}
+                        <Grid color={'red'} fontSize={'10px'}>
+                            welcome
+                        </Grid>
+                        <span>Professional critic</span>
+                        <span>ENFJ</span>
                     </Grid>
-                    <span>Professional critic</span>
-                    <span>ENFJ</span>
                 </Grid>
+
             </Grid>
         </>
     );

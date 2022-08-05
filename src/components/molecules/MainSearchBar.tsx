@@ -1,43 +1,49 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { IconButton, InputBase, Stack, useTheme } from '@mui/material';
+import {Grid, IconButton, InputBase, Stack, useTheme, Box, SxProps} from '@mui/material';
+import {MLAB_PALETTE} from "@styles/sendOwlTheme";
 
-const MainSearchBar = () => {
+interface SearchLocation {
+    sx: SxProps;
+    width: number;
+}
+const MainSearchBar = ({sx, width}: SearchLocation) => {
     const theme = useTheme();
     return (
         <>
-            <Stack
-                component='form'
-                sx={{
-                    p: '1px 15px',
-                    display: {
-                        lg: 'block',
-                        xs: 'none',
-                    },
-                    alignItems: 'center',
-                    borderRadius: '20px',
-                    margin: '10px 0px 10px 0px',
-                    border: `1px solid ${theme.palette.grey[200]}`,
-                    bgcolor: 'white',
-                }}
-                width='783px'
-                display='flex'>
-                <InputBase
-                    sx={{
-                        ml: 1,
-                        flex: 1,
-                        minWidth: '93%',
-                        minHeight: '65px',
-                    }}
-                    inputProps={{
-                        placeholder: 'search...',
-                    }}
-                />
-                <IconButton
-                    type='submit'
-                    sx={{ p: '10px', flex: 1 }}
-                    aria-label='search'>
-                    <SearchIcon sx={{ color: 'grey' }} />
-                </IconButton>
+            <Stack sx={sx}
+                  width={width}>
+                <Grid display={'flex'}>
+                    <Box display={'flex'} justifyContent={'center'} alignItems={'center'} marginLeft={'20px'}
+                    >
+                        <IconButton
+                            type='submit'
+                            sx={{ p: '10px', backgroundColor: '#B4E8F7', borderRadius: '12px', marginRight: '30px',
+                                }}
+                            aria-label='search'
+                        >
+                        <SearchIcon sx={{ color: `${MLAB_PALETTE.blue}`}} />
+                    </IconButton>
+                    </Box>
+                    <Stack
+                        component='form'
+                        sx={{
+                            p: '1px 15px',
+                            borderRadius: '20px',
+                            margin: '10px 0px 10px 0px',
+                            border: `1px solid ${theme.palette.grey[200]}`,
+                        }}
+                        width={width-25}
+                        >
+                        <InputBase
+                            sx={{
+                                minHeight: '65px',
+                            }}
+                            inputProps={{
+                                placeholder: 'search...',
+                            }}
+                        />
+                    </Stack>
+                </Grid>
             </Stack>
         </>
     );

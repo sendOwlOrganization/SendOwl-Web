@@ -3,19 +3,23 @@ import MainSearchBar from '@molecules/MainSearchBar';
 import { Grid } from '@mui/material';
 import Image from 'next/image';
 
-const MainHeader = () => {
+interface Size {
+    size: number;
+}
+const MainHeader = ({size}: Size) => {
     return (
         <>
             <Grid
                 display={'flex'}
-                height={70}
+                height={size}
                 justifyContent={'space-between'}
                 alignItems={'center'}
-                marginTop={'30px'}>
+                margin={'20px 20px 0 20px'}
+                paddingBottom={'10px'}
+            >
                 <Grid
                     sx={{
                         display: 'flex',
-                        marginLeft: '60px',
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
@@ -23,13 +27,15 @@ const MainHeader = () => {
                     <Image
                         src='/images/logo.png'
                         alt='logo'
-                        width={55}
-                        height={55}
+                        width={size-10}
+                        height={size-10}
                     />
                 </Grid>
-                <MainSearchBar />
                 <UserProfile size={65} />
+                <MainSearchBar sx={{display: { lg: 'block', xs: 'none'}}} width={783}/>
+                <UserProfile size={size} textView={'none'}/>
             </Grid>
+            <MainSearchBar sx={{display: { lg: 'none', xs: 'block'}}} width={355}/>
         </>
     );
 };

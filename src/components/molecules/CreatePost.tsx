@@ -1,7 +1,11 @@
 import { Box, useTheme } from '@mui/material';
 import Image from 'next/image';
 
-const CreatePost = () => {
+interface Display {
+    width: number;
+}
+
+const CreatePost = ({width}: Display) => {
     const theme = useTheme();
 
     return (
@@ -17,7 +21,7 @@ const CreatePost = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}
-                width={783}
+                width={width}
                 height={65}>
                 <Box
                     sx={{
@@ -27,7 +31,7 @@ const CreatePost = () => {
                         alignItems: 'center',
                     }}
                     borderRadius={'20px'}
-                    width={782}
+                    width={width-1}
                     height={64}
                     fontSize={'12px'}>
                     <Box
