@@ -31,7 +31,6 @@ const MainHeader = ({size}: Size) => {
                         height={size-10}
                     />
                 </Grid>
-                <UserProfile size={65} />
                 <MainSearchBar sx={{display: { lg: 'block', xs: 'none'}}} width={783}/>
                 <UserProfile size={size} textView={'none'}/>
             </Grid>
