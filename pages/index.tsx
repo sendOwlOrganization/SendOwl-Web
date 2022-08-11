@@ -3,8 +3,6 @@ import { BoardCategoryList } from '@organisms/board-category-list';
 import { MainContent } from '@organisms/main';
 import { ComponentProps } from 'react';
 import fetch from "node-fetch";
-import Mbti from "@organisms/chart/Mbti";
-import {useRecoilValue} from "recoil";
 
 interface HomePageProps {
     boards: ComponentProps<typeof BoardCategoryList>['boards'];
