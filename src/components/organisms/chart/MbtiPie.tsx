@@ -1,32 +1,6 @@
 import { ResponsivePie } from '@nivo/pie'
 import {MLAB_PALETTE} from "@styles/sendOwlTheme";
 
-export const data = [
-    {
-        "id": "카테고리",
-        "label": "카테고리",
-        "value": 184,
-        "color": MLAB_PALETTE.blue
-    },
-    {
-        "id": "짤방",
-        "label": "짤방",
-        "value": 123,
-        "color": MLAB_PALETTE.orange
-    },
-    {
-        "id": "연애",
-        "label": "연애",
-        "value": 287,
-        "color": MLAB_PALETTE.green
-    },
-    {
-        "id": "대화방",
-        "label": "대화방",
-        "value": 445,
-        "color": MLAB_PALETTE.violet
-    },
-]
 const MyResponsivePie = ({ data }: any) => (
     <ResponsivePie
         data={data}
@@ -36,12 +10,21 @@ const MyResponsivePie = ({ data }: any) => (
             bottom: 20,
             left: 20
         }}
+        arcLabel={
+            function(e):any {
+                let data = e.value
+                if (data == 0) {
+                    return
+                } else {
+                    return e.label
+                }
+            }
+        }
         innerRadius={0.5}
         padAngle={3}
         cornerRadius={3}
         enableArcLinkLabels={false}
-        colors={{scheme: 'pastel1'}}
-        arcLabel={'id'}
+        colors={[`${MLAB_PALETTE.violet}`, `${MLAB_PALETTE.blue}`, `${MLAB_PALETTE.orange}`, `${MLAB_PALETTE.green}`]}
         sortByValue={true}
         />
 )

@@ -1,13 +1,29 @@
 import { Box, Grid, useTheme } from '@mui/material';
-import Image from 'next/image';
 import dynamic from "next/dynamic";
-import { data } from './MbtiPie';
 import * as React from "react";
 
 const MyResponsivePie = dynamic(()=> import ('./MbtiPie'), {ssr:false})
 
-const Mbti = () => {
+interface DataList {
+    id: number;
+    name: string;
+    count: number;
+}
+
+interface Data {
+    data: DataList[]
+}
+
+const Mbti = ({data}: Data) => {
     const theme = useTheme();
+
+    const categoryPopular = data.map((item) => {
+        return {
+            id: item.id,
+            label: item.name,
+            value: item.count
+        }
+    })
 
     return (
         <>
@@ -22,11 +38,9 @@ const Mbti = () => {
                     border: `1px solid ${theme.palette.grey[200]}`,
                 }}
                 textAlign={'center'}>
-                카테고리 별 순위
-                <MyResponsivePie data={data}/>
+                카테고리 인기 순위
+                <MyResponsivePie data={categoryPopular}/>
             </Box>
-
-
         </>
     );
 };

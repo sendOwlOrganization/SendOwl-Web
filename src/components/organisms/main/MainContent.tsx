@@ -10,6 +10,7 @@ interface BoardCategory {
     id: number;
     name: string;
 }
+
 interface Board {
     id: number;
     category: string;
@@ -17,12 +18,23 @@ interface Board {
     likeCount: number;
     commentCount: number;
 }
+
 interface BoardCategoryListProps {
     categories: BoardCategory[];
     boards: Board[];
 }
 
-const MainContent = () => {
+interface DataList {
+    id: number;
+    name: string;
+    count: number;
+}
+
+interface Data {
+    data: DataList[]
+}
+
+const MainContent = ({data}: Data) => {
     const theme = useTheme();
     const isMobile = useMediaQuery("(max-width: 600px)");
     const mobileWidth = 355
@@ -43,7 +55,7 @@ const MainContent = () => {
                     </>
                     :
                     <>
-                        <Mbti />
+                        <Mbti data={data}/>
                         <CategoryMenu width={70} height={70} margin={'20px 20px 20px 0'}/>
                         <Advertisement width={webWidth} height={227}/>
                         <CreatePost width={webWidth} />
@@ -55,5 +67,6 @@ const MainContent = () => {
         </>
     );
 };
+
 
 export default MainContent;
