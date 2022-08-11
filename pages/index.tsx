@@ -2,7 +2,6 @@ import { boardsMock } from '@mocks/boards';
 import { BoardCategoryList } from '@organisms/board-category-list';
 import { MainContent } from '@organisms/main';
 import { ComponentProps } from 'react';
-import fetch from "node-fetch";
 
 interface HomePageProps {
     boards: ComponentProps<typeof BoardCategoryList>['boards'];
