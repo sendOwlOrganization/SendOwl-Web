@@ -1,13 +1,4 @@
-import { styled } from '@mui/material';
-
-const PercentNumber = styled('span')`
-  font-size: 1.25rem;
-  font-weight: bold;
-`;
-const PercentSymbol = styled('span')`
-  font-size: 0.75rem;
-  font-weight: lighter;
-`;
+import { Typography } from '@mui/material';
 
 interface PercentProps {
     number: number;
@@ -16,10 +7,10 @@ interface PercentProps {
 const Percent = ({ number }: PercentProps) => {
     return (
         <>
-            <PercentNumber>
+            <Typography variant={'subtitle3'}>
                 {Math.round(number)}
-                <PercentSymbol>%</PercentSymbol>
-            </PercentNumber>
+                <Typography variant={'body2'} fontWeight={'bold'} component={'span'}>%</Typography>
+            </Typography>
         </>
     );
 };
