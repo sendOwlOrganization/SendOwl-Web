@@ -1,4 +1,5 @@
-import { createTheme, PaletteColor, PaletteColorOptions } from '@mui/material';
+import { createTheme, darken, lighten, PaletteColor, PaletteColorOptions } from '@mui/material';
+import { CSSProperties } from 'react';
 
 declare module '@mui/material/styles' {
     // allow configuration using `createTheme`
@@ -18,6 +19,15 @@ declare module '@mui/material/styles' {
         grey7?: PaletteColorOptions;
         grey8?: PaletteColorOptions;
         grey9?: PaletteColorOptions;
+    }
+
+    // allow configuration using `createTheme`
+    interface TypographyVariantsOptions {
+        subtitle3?: CSSProperties;
+    }
+
+    interface TypographyVariants {
+        subtitle3: CSSProperties;
     }
 
     interface Palette {
@@ -54,6 +64,16 @@ declare module '@mui/material/styles' {
         grey7: true;
         grey8: true;
         grey9: true;
+    }
+}
+
+// Update the Typography's variant prop options
+declare module '@mui/material/Typography' {
+    interface TypographyPropsVariantOverrides {
+        subtitle3: true;
+        h4: false;
+        h5: false;
+        h6: false;
     }
 }
 
@@ -115,8 +135,18 @@ export const MLAB_PALETTE: Record<MlabColorTypes, string> = {
     grey9: '#FFFFFF',
 };
 
+const muiTheme = createTheme();
+
 const mlabPalette: Record<MlabColorTypes, PaletteColorOptions> = Object.entries(MLAB_PALETTE)
-    .reduce((acc, [k, v]) => ({ ...acc, [k]: { main: v } }), {}) as Record<MlabColorTypes, PaletteColorOptions>;
+    .reduce((acc, [k, v]) => ({
+        ...acc,
+        [k]: {
+            light: lighten(v, 0.1),
+            main: v,
+            dark: darken(v, 0.1),
+            contrastText: muiTheme.palette.getContrastText(v),
+        },
+    }), {}) as Record<MlabColorTypes, PaletteColorOptions>;
 
 const createSendOwlTheme = () => createTheme({
     palette: {
@@ -129,8 +159,53 @@ const createSendOwlTheme = () => createTheme({
     },
     typography: {
         fontFamily: [
-            'Noto Sans KR',
+            'Pretendard',
         ].join(','),
+        h1: {
+            fontWeight: 'bold',
+            fontSize: '2.5rem',
+            lineHeight: 1.4,
+        },
+        h2: {
+            fontWeight: 'bold',
+            fontSize: '2.25rem',
+            lineHeight: 1.4,
+        },
+        h3: {
+            fontWeight: 'bold',
+            fontSize: '2rem',
+            lineHeight: 1.4,
+        },
+        h4: undefined,
+        h5: undefined,
+        h6: undefined,
+        subtitle1: {
+            fontWeight: 'bold',
+            fontSize: '1.75rem',
+            lineHeight: 1.5,
+        },
+        subtitle2: {
+            fontWeight: 'bold',
+            fontSize: '1.5rem',
+            lineHeight: 1.5,
+        },
+        subtitle3: {
+            fontWeight: 'bold',
+            fontSize: '1.25rem',
+            lineHeight: 1.5,
+        },
+        body1: {
+            fontSize: '1rem',
+            lineHeight: 1.6,
+        },
+        body2: {
+            fontSize: '0.75rem',
+            lineHeight: 1.6,
+        },
+        caption: {
+            fontSize: '0.5rem',
+            lineHeight: 1.5,
+        },
     },
     components: {
         MuiButton: {
