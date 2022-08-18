@@ -7,17 +7,20 @@ export default class MyDocument extends Document {
         return (
             <Html>
                 <Head>
-                    <link rel="shortcut icon" href="/static/favicon.ico"/>
+                    <link rel="shortcut icon" href="/static/favicon.ico" />
                     <link
                         rel="stylesheet"
                         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
                     />
+                    <link rel="stylesheet" as="style" crossOrigin={'true'}
+                          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard-dynamic-subset.css" />
                     {/* Inject MUI styles first to match with the prepend: true configuration. */}
                     {(this.props as any).emotionStyleTags}
+
                 </Head>
                 <body>
-                <Main/>
-                <NextScript/>
+                <Main />
+                <NextScript />
                 </body>
             </Html>
         );

@@ -1,5 +1,6 @@
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { ThemeProvider as Emotion10ThemeProvider } from 'emotion-theming'
+import '../styles/globals.css'
 import createSendOwlTheme from '../styles/sendOwlTheme'
 
 export const parameters = {
