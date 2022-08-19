@@ -2,6 +2,7 @@ import BannerTitle from '@components/banner/BannerTitle';
 import ApproveIcon from '@components/icons/ApproveIcon';
 import Percent from '@components/widgets/Percent';
 import { Box, Card, css, darken, Stack, styled, Typography } from '@mui/material';
+import NextLink from 'next/link';
 import { useState } from 'react';
 
 interface Choice {
@@ -24,7 +25,7 @@ const SelectButton = styled('button')<{ focused: boolean }>(({ theme, focused })
   padding: 1rem;
   border-radius: 16px;
   border: none;
-  transition: all 275ms ${theme.transitions.easing.easeInOut};
+  transition: all 100ms ${theme.transitions.easing.easeInOut};
 
   :hover {
     background-color: ${focused ? theme.palette.violet.dark : theme.palette.grey6.main};
@@ -76,13 +77,15 @@ const BalanceGameWidget = ({ voteId, choices }: BalanceGameWidgetProps) => {
                         <Box height={'2rem'} paddingBottom={'0.25rem'}>
                             {focused === 1 && <ApproveIcon color={'white'} />}
                         </Box>
-                        <Box height={'3.625rem'} width={'5.5rem'}
-                             display={'flex'}
-                             whiteSpace={'pre'}
-                             alignItems={'center'}
-                             justifyContent={'center'}>
+                        <Typography height={'3.625rem'} width={'5.5rem'}
+                                    display={'flex'}
+                                    fontWeight={'bold'}
+                                    variant={'body2'}
+                                    whiteSpace={'pre'}
+                                    alignItems={'center'}
+                                    justifyContent={'center'}>
                             {first.text}
-                        </Box>
+                        </Typography>
                         <Stack height={'2.125rem'}
                                direction={'row'}
                                alignItems={'center'}
@@ -93,7 +96,7 @@ const BalanceGameWidget = ({ voteId, choices }: BalanceGameWidgetProps) => {
                                         <Typography variant={'body2'}>
                                             {firstVote.toLocaleString('ko-KR')}명
                                         </Typography>
-                                        <Percent number={firstVote / totalVote * 100} />
+                                        <Percent number={firstVote / totalVote * 100} focused={focused === 1} />
                                     </>
                                 )
                             }
@@ -103,13 +106,15 @@ const BalanceGameWidget = ({ voteId, choices }: BalanceGameWidgetProps) => {
                         <Box height={'2rem'}>
                             {focused === 2 && <ApproveIcon color={'white'} />}
                         </Box>
-                        <Box height={'3.625rem'} width={'5.5rem'}
-                             display={'flex'}
-                             whiteSpace={'pre'}
-                             alignItems={'center'}
-                             justifyContent={'center'}>
+                        <Typography height={'3.625rem'} width={'5.5rem'}
+                                    variant={'body2'}
+                                    fontWeight={'bold'}
+                                    display={'flex'}
+                                    whiteSpace={'pre'}
+                                    alignItems={'center'}
+                                    justifyContent={'center'}>
                             {second.text}
-                        </Box>
+                        </Typography>
                         <Stack height={'2.125rem'}
                                direction={'row'}
                                alignItems={'center'}
@@ -120,7 +125,7 @@ const BalanceGameWidget = ({ voteId, choices }: BalanceGameWidgetProps) => {
                                         <Typography variant={'body2'}>
                                             {secondVote.toLocaleString('ko-KR')}명
                                         </Typography>
-                                        <Percent number={secondVote / totalVote * 100} />
+                                        <Percent number={secondVote / totalVote * 100} focused={focused === 2} />
                                     </>
                                 )
                             }
@@ -128,8 +133,23 @@ const BalanceGameWidget = ({ voteId, choices }: BalanceGameWidgetProps) => {
                     </SelectButton>
                 </Stack>
             </BalanceGameWidgetContent>
-            <Box padding={'0 1rem 1.25rem 1rem'}>
-                <Typography fontSize={'0.75rem'} align={'right'} color={(theme) => theme.palette.grey4.main}>
+            <Box padding={'0 1rem 1.25rem 1rem'}
+                 display={'flex'}
+                 alignItems={'center'}
+                 justifyContent={focused ? 'space-between' : 'right'}>
+                {
+                    focused
+                        ? (<NextLink href={'#'} passHref>
+                            <a>
+                                <Typography variant={'body2'} fontWeight={'bold'}
+                                            color={theme => theme.palette.violet.main}>
+                                    의견 작성하러 가기
+                                </Typography>
+                            </a>
+                        </NextLink>)
+                        : null
+                }
+                <Typography fontSize={'0.75rem'} color={(theme) => theme.palette.grey4.main}>
                     현재 <b>{totalVote.toLocaleString('ko-KR')}</b>명 참가중
                 </Typography>
             </Box>
