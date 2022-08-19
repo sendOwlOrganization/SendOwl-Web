@@ -1,3 +1,4 @@
+import Slide from '@components/animations/Slide';
 import BannerTitle from '@components/banner/BannerTitle';
 import ApproveIcon from '@components/icons/ApproveIcon';
 import Percent from '@components/widgets/Percent';
@@ -75,7 +76,15 @@ const BalanceGameWidget = ({ voteId, choices }: BalanceGameWidgetProps) => {
                 <Stack direction={'row'} spacing={1}>
                     <SelectButton focused={focused === 1} onClick={onClick(1)}>
                         <Box height={'2rem'} paddingBottom={'0.25rem'}>
-                            {focused === 1 && <ApproveIcon color={'white'} />}
+                            <Slide direction={'up'}
+                                   height={'1rem'}
+                                   appear={focused === 1}
+                                   in={focused === 1}
+                                   mountOnEnter
+                                   timeout={100}
+                                   unmountOnExit>
+                                <ApproveIcon color={'white'} />
+                            </Slide>
                         </Box>
                         <Typography height={'3.625rem'} width={'5.5rem'}
                                     display={'flex'}
@@ -104,7 +113,15 @@ const BalanceGameWidget = ({ voteId, choices }: BalanceGameWidgetProps) => {
                     </SelectButton>
                     <SelectButton focused={focused === 2} onClick={onClick(2)}>
                         <Box height={'2rem'}>
-                            {focused === 2 && <ApproveIcon color={'white'} />}
+                            <Slide direction={'up'}
+                                   height={'1rem'}
+                                   appear={focused === 2}
+                                   in={focused === 2}
+                                   mountOnEnter
+                                   timeout={100}
+                                   unmountOnExit>
+                                <ApproveIcon color={'white'} />
+                            </Slide>
                         </Box>
                         <Typography height={'3.625rem'} width={'5.5rem'}
                                     variant={'body2'}
