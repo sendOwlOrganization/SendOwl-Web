@@ -11,8 +11,9 @@ interface LabelProps {
 }
 
 const labelCss = (theme: Theme) => css`
+  display: inline-flex;
   border-radius: 4px;
-  padding: 2px 8px;
+  padding: 0 8px;
   font-weight: 700;
   font-size: ${theme.typography.body2.fontSize};
 `;
