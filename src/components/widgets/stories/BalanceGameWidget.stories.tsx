@@ -1,14 +1,14 @@
-import QuickBalanceGame from '@components/quick-balance-game/QuickBalanceGame';
+import BalanceGameWidget from '@components/widgets/BalanceGameWidget';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {
-    title: 'components/quick-balance-game/example',
-    component: QuickBalanceGame,
-} as ComponentMeta<typeof QuickBalanceGame>;
+    title: 'components/widgets/BalanceGame',
+    component: BalanceGameWidget,
+} as ComponentMeta<typeof BalanceGameWidget>;
 
-const Template: ComponentStory<typeof QuickBalanceGame> = (args) => (
+const Template: ComponentStory<typeof BalanceGameWidget> = (args) => (
     <div style={{ maxWidth: '18rem' }}>
-        <QuickBalanceGame {...args} />
+        <BalanceGameWidget {...args} />
     </div>
 );
 

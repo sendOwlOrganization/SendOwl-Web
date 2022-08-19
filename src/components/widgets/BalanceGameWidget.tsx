@@ -1,6 +1,6 @@
 import BannerTitle from '@components/banner/BannerTitle';
 import ApproveIcon from '@components/icons/ApproveIcon';
-import Percent from '@components/quick-balance-game/Percent';
+import Percent from '@components/widgets/Percent';
 import { Box, Card, css, darken, Stack, styled, Typography } from '@mui/material';
 import { useState } from 'react';
 
@@ -10,7 +10,7 @@ interface Choice {
     voteCount: number;
 }
 
-interface QuickBalanceGameProps {
+interface BalanceGameWidgetProps {
     voteId: number;
     choices: [Choice, Choice];
 }
@@ -36,38 +36,29 @@ const SelectButton = styled('button')<{ focused: boolean }>(({ theme, focused })
   }
 `);
 
-const QuickBalanceGameContent = styled('div')`
+const BalanceGameWidgetContent = styled('div')`
   padding: 1rem 1rem 0.75rem 1rem;
 `;
 
+// FIXME: change with API call later
 const wait = (timeToDelay: number) => new Promise((resolve) => setTimeout(resolve, timeToDelay));
 
 const fakeApiCall = async () => {
-    await wait(0);
+    await wait(100);
 };
 
-const QuickBalanceGame = ({ voteId, choices }: QuickBalanceGameProps) => {
+const BalanceGameWidget = ({ voteId, choices }: BalanceGameWidgetProps) => {
     const [focused, setFocused] = useState<number>(0);
     const [first, second] = choices;
     const firstVote = first.voteCount + (focused === 1 ? 1 : 0);
     const secondVote = second.voteCount + (focused === 2 ? 1 : 0);
     const totalVote = firstVote + secondVote;
 
-    const onClickFirst = async () => {
+    const onClick = (button: number) => async () => {
         try {
             await fakeApiCall();
-            setFocused(1);
+            setFocused(button);
         } catch (e) {
-        } finally {
-        }
-    };
-
-    const onClickSecond = async () => {
-        try {
-            await fakeApiCall();
-            setFocused(2);
-        } catch (e) {
-
         } finally {
         }
     };
@@ -79,9 +70,9 @@ const QuickBalanceGame = ({ voteId, choices }: QuickBalanceGameProps) => {
                     이번 주 밸런스 게임
                 </Typography>
             </BannerTitle>
-            <QuickBalanceGameContent>
+            <BalanceGameWidgetContent>
                 <Stack direction={'row'} spacing={1}>
-                    <SelectButton focused={focused === 1} onClick={onClickFirst}>
+                    <SelectButton focused={focused === 1} onClick={onClick(1)}>
                         <Box height={'2rem'} paddingBottom={'0.25rem'}>
                             {focused === 1 && <ApproveIcon color={'white'} />}
                         </Box>
@@ -108,7 +99,7 @@ const QuickBalanceGame = ({ voteId, choices }: QuickBalanceGameProps) => {
                             }
                         </Stack>
                     </SelectButton>
-                    <SelectButton focused={focused === 2} onClick={onClickSecond}>
+                    <SelectButton focused={focused === 2} onClick={onClick(2)}>
                         <Box height={'2rem'}>
                             {focused === 2 && <ApproveIcon color={'white'} />}
                         </Box>
@@ -136,7 +127,7 @@ const QuickBalanceGame = ({ voteId, choices }: QuickBalanceGameProps) => {
                         </Stack>
                     </SelectButton>
                 </Stack>
-            </QuickBalanceGameContent>
+            </BalanceGameWidgetContent>
             <Box padding={'0 1rem 1.25rem 1rem'}>
                 <Typography fontSize={'0.75rem'} align={'right'} color={(theme) => theme.palette.grey4.main}>
                     현재 <b>{totalVote.toLocaleString('ko-KR')}</b>명 참가중
@@ -146,4 +137,4 @@ const QuickBalanceGame = ({ voteId, choices }: QuickBalanceGameProps) => {
     );
 };
 
-export default QuickBalanceGame;
+export default BalanceGameWidget;
