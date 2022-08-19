@@ -9,7 +9,7 @@ declare module '@mui/material/styles' {
         yellow?: PaletteColorOptions;
         lightGreen?: PaletteColorOptions;
         skyBlue?: PaletteColorOptions;
-        violet?: PaletteColorOptions;
+        purple?: PaletteColorOptions;
         grey1?: PaletteColorOptions;
         grey2?: PaletteColorOptions;
         grey3?: PaletteColorOptions;
@@ -36,7 +36,7 @@ declare module '@mui/material/styles' {
         yellow: PaletteColor;
         lightGreen: PaletteColor;
         skyBlue: PaletteColor;
-        violet: PaletteColor;
+        purple: PaletteColor;
         grey1: PaletteColor;
         grey2: PaletteColor;
         grey3: PaletteColor;
@@ -54,7 +54,7 @@ declare module '@mui/material/styles' {
         yellow: true;
         lightGreen: true;
         skyBlue: true;
-        violet: true;
+        purple: true;
         grey1: true;
         grey2: true;
         grey3: true;
@@ -84,7 +84,7 @@ declare module '@mui/material/Button' {
         yellow: true;
         lightGreen: true;
         skyBlue: true;
-        violet: true;
+        purple: true;
         grey1: true;
         grey2: true;
         grey3: true;
@@ -97,13 +97,16 @@ declare module '@mui/material/Button' {
     }
 }
 
-const mlabColorTypes = [
+const mlabBaseColorTypes = [
     'pink',
     'coralPink',
     'yellow',
     'lightGreen',
     'skyBlue',
-    'violet',
+    'purple',
+] as const;
+
+const mlabNeutralColorTypes = [
     'grey1',
     'grey2',
     'grey3',
@@ -115,15 +118,20 @@ const mlabColorTypes = [
     'grey9',
 ] as const;
 
-type MlabColorTypes = typeof mlabColorTypes[number];
+type MlabBaseColorTypes = typeof mlabBaseColorTypes[number];
+type MlabNeutralColorTypes = typeof mlabNeutralColorTypes[number];
+type MlabColorTypes = MlabBaseColorTypes | MlabNeutralColorTypes;
 
-export const MLAB_PALETTE: Record<MlabColorTypes, string> = {
+export const MLAB_BASE_PALETTE: Record<MlabBaseColorTypes, string> = {
     pink: '#EB4869',
     coralPink: '#FF9C9C',
     yellow: '#FFE269',
     lightGreen: '#91F5A6',
     skyBlue: '#749DF8',
-    violet: '#9168F5',
+    purple: '#9168F5',
+};
+
+export const MLAB_NEUTRAL_PALETTE: Record<MlabNeutralColorTypes, string> = {
     grey1: '#2A323B',
     grey2: '#3A4552',
     grey3: '#666F7B',
@@ -133,6 +141,11 @@ export const MLAB_PALETTE: Record<MlabColorTypes, string> = {
     grey7: '#F2F4F6',
     grey8: '#F8F9FB',
     grey9: '#FFFFFF',
+};
+
+export const MLAB_PALETTE: Record<MlabColorTypes, string> = {
+    ...MLAB_BASE_PALETTE,
+    ...MLAB_NEUTRAL_PALETTE,
 };
 
 const muiTheme = createTheme();
@@ -152,7 +165,7 @@ const createSendOwlTheme = () => createTheme({
     palette: {
         ...mlabPalette,
         primary: mlabPalette.pink,
-        secondary: mlabPalette.violet,
+        secondary: mlabPalette.purple,
     },
     shape: {
         borderRadius: 20,

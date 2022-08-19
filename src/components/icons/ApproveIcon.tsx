@@ -9,7 +9,7 @@ const colors = {
     white: '#fff',
     green: MLAB_PALETTE.lightGreen,
     grey: MLAB_PALETTE.grey5,
-    purple: MLAB_PALETTE.violet,
+    purple: MLAB_PALETTE.purple,
 };
 
 const ApproveIcon = ({ color = 'black' }: ApproveIconProps) => {

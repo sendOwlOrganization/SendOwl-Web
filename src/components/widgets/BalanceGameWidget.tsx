@@ -18,7 +18,7 @@ interface BalanceGameWidgetProps {
 }
 
 const SelectButton = styled('button')<{ focused: boolean }>(({ theme, focused }) => css`
-  background-color: ${focused ? theme.palette.violet.main : theme.palette.grey7.main};
+  background-color: ${focused ? theme.palette.purple.main : theme.palette.grey7.main};
   color: ${focused ? theme.palette.grey9.main : theme.palette.grey3.main};
   font-weight: bold;
   width: 100%;
@@ -29,12 +29,12 @@ const SelectButton = styled('button')<{ focused: boolean }>(({ theme, focused })
   transition: all 100ms ${theme.transitions.easing.easeInOut};
 
   :hover {
-    background-color: ${focused ? theme.palette.violet.dark : theme.palette.grey6.main};
+    background-color: ${focused ? theme.palette.purple.dark : theme.palette.grey6.main};
     cursor: pointer;
   }
 
   :active {
-    background-color: ${focused ? darken(theme.palette.violet.dark, 0.1) : theme.palette.grey6.dark};
+    background-color: ${focused ? darken(theme.palette.purple.dark, 0.1) : theme.palette.grey6.dark};
   }
 `);
 
@@ -159,7 +159,7 @@ const BalanceGameWidget = ({ voteId, choices }: BalanceGameWidgetProps) => {
                         ? (<NextLink href={'#'} passHref>
                             <a>
                                 <Typography variant={'body2'} fontWeight={'bold'}
-                                            color={theme => theme.palette.violet.main}>
+                                            color={theme => theme.palette.purple.main}>
                                     의견 작성하러 가기
                                 </Typography>
                             </a>
