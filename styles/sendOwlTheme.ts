@@ -148,7 +148,11 @@ export const MLAB_PALETTE: Record<MlabColorTypes, string> = {
     ...MLAB_NEUTRAL_PALETTE,
 };
 
-const muiTheme = createTheme();
+const muiTheme = createTheme({
+    palette: {
+        contrastThreshold: 2,
+    },
+});
 
 const mlabPalette: Record<MlabColorTypes, PaletteColorOptions> = Object.entries(MLAB_PALETTE)
     .reduce((acc, [k, v]) => ({
@@ -166,6 +170,7 @@ const createSendOwlTheme = () => createTheme({
         ...mlabPalette,
         primary: mlabPalette.pink,
         secondary: mlabPalette.purple,
+        contrastThreshold: 2,
     },
     shape: {
         borderRadius: 20,
