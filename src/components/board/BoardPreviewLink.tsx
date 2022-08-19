@@ -101,16 +101,8 @@ const BoardPreviewLink = ({
             <Box display={'flex'} alignItems={'center'} marginBottom={'5.5px'}>
                 <Box minHeight={90} flexGrow={1} flexBasis={0} flexShrink={0}>
                     <LabelContainer>
-                        {isVote && <NextLink href={'#?fixme=투표'} passHref>
-                            <Anchor>
-                                <Label variant={'filled'} color={'purple'}>투표</Label>
-                            </Anchor>
-                        </NextLink>}
-                        <NextLink href={`#?fixme=${category}`} passHref>
-                            <Anchor>
-                                <Label>{category}</Label>
-                            </Anchor>
-                        </NextLink>
+                        {isVote && <Label href={'#?fixme=투표'} variant={'filled'} color={'purple'}>투표</Label>}
+                        <Label href={`#?fixme=${category}`}>{category}</Label>
                     </LabelContainer>
                     <NextLink href={href} passHref>
                         <Anchor>
