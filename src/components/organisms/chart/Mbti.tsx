@@ -8,6 +8,14 @@ const MyResponsivePie = dynamic(()=> import ('./MbtiPie'), {ssr:false})
 
 const Mbti = () => {
     const theme = useTheme();
+    /* useMemo -> rendering issue delete */
+    const categoryPopular = data.map((item) => {
+        return {
+            id: item.id,
+            label: item.name,
+            value: item.count
+        }
+    })
 
     return (
         <>
@@ -25,8 +33,6 @@ const Mbti = () => {
                 카테고리 별 순위
                 <MyResponsivePie data={data}/>
             </Box>
-
-
         </>
     );
 };
