@@ -9,7 +9,6 @@ const MyResponsivePie = dynamic(()=> import ('./MbtiPie'), {ssr:false})
 const Mbti = () => {
     const theme = useTheme();
 
-
     return (
         <>
             <Box
