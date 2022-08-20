@@ -11,7 +11,7 @@ export const data = [
     {
         "id": "rest",
         "label": "rest",
-        "value": {1000-},
+        "value": 1000,
         "color": MLAB_PALETTE.grey9
     },
 ]
@@ -35,12 +35,12 @@ const MyResponsivePie = ({ data }: any) => (
             bottom: 20,
             left: 20
         }}
+        arcLabel={''}
         innerRadius={0.5}
         padAngle={3}
         cornerRadius={3}
         enableArcLinkLabels={false}
-        colors={{scheme: 'pastel1'}}
-        arcLabel={''}
+        colors={[`${MLAB_PALETTE.pink}`, `${MLAB_PALETTE.grey9}`]}
         sortByValue={true}
         />
 )
