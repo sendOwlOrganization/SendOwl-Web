@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material';
 import { ColorPartial } from '@mui/material/styles/createPalette';
-import { MLAB_THEME } from '@styles/mlabTheme';
+import { MLAB_NEUTRAL_PALETTE, MLAB_PALETTE, MLAB_SEMANTIC_PALETTE } from '@styles/mlabTheme';
 import { CSSProperties } from 'react';
 
 declare module '@mui/material/styles' {
@@ -52,53 +52,33 @@ declare module '@mui/material/Typography' {
     }
 }
 
-const mlabColorTypes = [
-    'pink',
-    'blue',
-    'green',
-    'lightPink',
-    'purple',
-    'yellow',
-    'gray',
-] as const;
 
-type MlabColorTypes = typeof mlabColorTypes[number];
-
-const MLAB_PALETTE: Record<MlabColorTypes, ColorPartial> = {
-    pink: MLAB_THEME.pink,
-    lightPink: MLAB_THEME.lightPink,
-    yellow: MLAB_THEME.yellow,
-    green: MLAB_THEME.green,
-    blue: MLAB_THEME.blue,
-    purple: MLAB_THEME.purple,
-    gray: MLAB_THEME.gray,
-};
-
-const createSendOwlTheme = () => createTheme({
+const createMlabMuiTheme = () => createTheme({
     palette: {
         primary: {
-            main: MLAB_THEME.pink['500'],
+            main: MLAB_PALETTE.pink['500'],
         },
         secondary: {
-            main: MLAB_THEME.purple['500'],
+            main: MLAB_PALETTE.purple['500'],
         },
         common: {
-            white: MLAB_THEME.white,
-            black: MLAB_THEME.black,
+            white: MLAB_NEUTRAL_PALETTE.white,
+            black: MLAB_NEUTRAL_PALETTE.black,
         },
         success: {
-            main: MLAB_THEME.semantic.positive,
+            main: MLAB_SEMANTIC_PALETTE.positive,
         },
         error: {
-            main: MLAB_THEME.semantic.negative,
+            main: MLAB_SEMANTIC_PALETTE.negative,
         },
         info: {
-            main: MLAB_THEME.semantic.accent,
+            main: MLAB_SEMANTIC_PALETTE.accent,
         },
         warning: {
-            main: MLAB_THEME.semantic.notice,
+            main: MLAB_SEMANTIC_PALETTE.notice,
         },
         ...MLAB_PALETTE,
+        gray: MLAB_NEUTRAL_PALETTE.gray,
     },
     shape: {
         borderRadius: 20,
@@ -172,4 +152,4 @@ const createSendOwlTheme = () => createTheme({
     },
 });
 
-export default createSendOwlTheme;
+export default createMlabMuiTheme;

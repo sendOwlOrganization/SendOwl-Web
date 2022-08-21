@@ -1,7 +1,7 @@
 const mlabColors = ['pink', 'blue', 'green', 'lightPink', 'purple', 'yellow'] as const;
 export type MlabColorType = typeof mlabColors[number];
 
-export const MLAB_THEME = {
+export const MLAB_PALETTE = {
     pink: {
         200: '#F9C6D0',
         500: '#EF6580',
@@ -56,8 +56,9 @@ export const MLAB_THEME = {
         900: '#AD9B54',
         1000: '#8D7E44',
     },
-    white: '#FFFFFF',
-    black: '#2A323B',
+} as const;
+
+export const MLAB_NEUTRAL_PALETTE = {
     gray: {
         200: '#F3F4F4',
         300: '#E4E6E9',
@@ -69,34 +70,45 @@ export const MLAB_THEME = {
         900: '#5B626C',
         1000: '#414952',
     },
-    opacity: {
-        black: {
-            100: 'rgba(42, 50, 59, 0.1)',
-            200: 'rgba(42, 50, 59, 0.2)',
-            300: 'rgba(42, 50, 59, 0.3)',
-            400: 'rgba(42, 50, 59, 0.4)',
-            500: 'rgba(42, 50, 59, 0.5)',
-            600: 'rgba(42, 50, 59, 0.6)',
-            700: 'rgba(42, 50, 59, 0.7)',
-            800: 'rgba(42, 50, 59, 0.8)',
-            900: 'rgba(42, 50, 59, 0.9)',
-        },
-        white: {
-            100: 'rgba(255, 255, 255, 0.1)',
-            200: 'rgba(255, 255, 255, 0.2)',
-            300: 'rgba(255, 255, 255, 0.3)',
-            400: 'rgba(255, 255, 255, 0.4)',
-            500: 'rgba(255, 255, 255, 0.5)',
-            600: 'rgba(255, 255, 255, 0.6)',
-            700: 'rgba(255, 255, 255, 0.7)',
-            800: 'rgba(255, 255, 255, 0.8)',
-            900: 'rgba(255, 255, 255, 0.9)',
-        },
+    white: '#FFFFFF',
+    black: '#2A323B',
+} as const;
+
+export const MLAB_OPACITY_PALETTE = {
+    black: {
+        100: 'rgba(42, 50, 59, 0.1)',
+        200: 'rgba(42, 50, 59, 0.2)',
+        300: 'rgba(42, 50, 59, 0.3)',
+        400: 'rgba(42, 50, 59, 0.4)',
+        500: 'rgba(42, 50, 59, 0.5)',
+        600: 'rgba(42, 50, 59, 0.6)',
+        700: 'rgba(42, 50, 59, 0.7)',
+        800: 'rgba(42, 50, 59, 0.8)',
+        900: 'rgba(42, 50, 59, 0.9)',
     },
-    semantic: {
-        negative: '#D84836',
-        notice: '#E78A3E',
-        positive: '#3E8C61',
-        accent: '#5092EC',
+    white: {
+        100: 'rgba(255, 255, 255, 0.1)',
+        200: 'rgba(255, 255, 255, 0.2)',
+        300: 'rgba(255, 255, 255, 0.3)',
+        400: 'rgba(255, 255, 255, 0.4)',
+        500: 'rgba(255, 255, 255, 0.5)',
+        600: 'rgba(255, 255, 255, 0.6)',
+        700: 'rgba(255, 255, 255, 0.7)',
+        800: 'rgba(255, 255, 255, 0.8)',
+        900: 'rgba(255, 255, 255, 0.9)',
     },
+} as const;
+
+export const MLAB_SEMANTIC_PALETTE = {
+    negative: '#D84836',
+    notice: '#E78A3E',
+    positive: '#3E8C61',
+    accent: '#5092EC',
+};
+
+export const MLAB_THEME = {
+    ...MLAB_PALETTE,
+    ...MLAB_NEUTRAL_PALETTE,
+    opacity: MLAB_OPACITY_PALETTE,
+    semantic: MLAB_SEMANTIC_PALETTE,
 } as const;
