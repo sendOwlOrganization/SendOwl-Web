@@ -5,10 +5,11 @@ interface PercentProps {
     focused: boolean;
 }
 
-const Percent = ({ number, focused }: PercentProps) => {
+const BalanceGameWidgetPercent = ({ number, focused }: PercentProps) => {
     return (
         <>
-            <Typography variant={'subtitle3'} color={theme => focused ? theme.palette.yellow.main : 'inherit'}>
+            <Typography variant={'subtitle3'}
+                        color={theme => focused ? theme.palette.yellow[600] : 'inherit'}>
                 {Math.round(number)}
                 <Typography variant={'body2'}
                             fontWeight={'bold'} component={'span'}>%</Typography>
@@ -17,4 +18,4 @@ const Percent = ({ number, focused }: PercentProps) => {
     );
 };
 
-export default Percent;
+export default BalanceGameWidgetPercent;

@@ -1,5 +1,4 @@
-import AngleRightBigIcon from '@components/icons/AngleRightBigIcon';
-import { Box, css, styled } from '@mui/material';
+import { css, styled } from '@mui/material';
 import NextLink from 'next/link';
 import { PropsWithChildren } from 'react';
 
@@ -8,7 +7,7 @@ interface BannerTitleProps {
     gutterBottom?: true;
 }
 
-const TitleContainer = styled('div')<{ gutterBottom?: true }>(({ theme, gutterBottom }) => css`
+const TitleContainer = styled('a')<{ gutterBottom?: true }>(({ theme, gutterBottom }) => css`
   padding: ${gutterBottom ? '1rem' : '1rem 1rem 0 1rem'};
   display: flex;
   align-items: center;
@@ -16,21 +15,19 @@ const TitleContainer = styled('div')<{ gutterBottom?: true }>(({ theme, gutterBo
 
 const BannerTitle = ({ href, gutterBottom, children }: PropsWithChildren<BannerTitleProps>) => {
 
-    return (
-        <TitleContainer gutterBottom={gutterBottom}>
-            {children}
-            {href && (
-                <>
-                    <Box marginLeft={'auto'} />
-                    <NextLink href={href}>
-                        <a>
-                            <AngleRightBigIcon color={'grey'} />
-                        </a>
-                    </NextLink>
-                </>
-            )}
-        </TitleContainer>
-    );
+
+    return href
+        ? (
+            <NextLink href={href} passHref>
+                <TitleContainer gutterBottom={gutterBottom}>
+                    {children}
+                </TitleContainer>
+            </NextLink>
+        ) : (
+            <TitleContainer as={'div'} gutterBottom={gutterBottom}>
+                {children}
+            </TitleContainer>
+        );
 };
 
 export default BannerTitle;

@@ -1,15 +1,15 @@
-import { MLAB_PALETTE } from '@styles/sendOwlTheme';
+import { MLAB_THEME } from '@styles/mlabTheme';
 
 interface ApproveIconProps {
-    color?: 'black' | 'white' | 'green' | 'grey' | 'purple';
+    color?: 'black' | 'white' | 'green' | 'gray' | 'purple';
 }
 
 const colors = {
-    black: '#000',
-    white: '#fff',
-    green: MLAB_PALETTE.lightGreen,
-    grey: MLAB_PALETTE.grey5,
-    purple: MLAB_PALETTE.violet,
+    black: MLAB_THEME.black,
+    white: MLAB_THEME.white,
+    green: MLAB_THEME.green[500],
+    gray: MLAB_THEME.gray[500],
+    purple: MLAB_THEME.purple[500],
 };
 
 const ApproveIcon = ({ color = 'black' }: ApproveIconProps) => {
