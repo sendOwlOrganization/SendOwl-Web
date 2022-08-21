@@ -24,7 +24,7 @@ const BannerTitle = ({ href, gutterBottom, children }: PropsWithChildren<BannerT
                     <Box marginLeft={'auto'} />
                     <NextLink href={href}>
                         <a>
-                            <AngleRightBigIcon color={'grey'} />
+                            <AngleRightBigIcon color={'gray'} />
                         </a>
                     </NextLink>
                 </>

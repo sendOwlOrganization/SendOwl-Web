@@ -2,7 +2,7 @@ import Slide from '@components/animations/Slide';
 import BannerTitle from '@components/banner/BannerTitle';
 import ApproveIcon from '@components/icons/ApproveIcon';
 import Percent from '@components/widgets/Percent';
-import { Box, Card, css, darken, Stack, styled, Typography } from '@mui/material';
+import { Box, Card, css, Stack, styled, Typography } from '@mui/material';
 import NextLink from 'next/link';
 import { useState } from 'react';
 
@@ -18,8 +18,8 @@ interface BalanceGameWidgetProps {
 }
 
 const SelectButton = styled('button')<{ focused: boolean }>(({ theme, focused }) => css`
-  background-color: ${focused ? theme.palette.violet.main : theme.palette.grey7.main};
-  color: ${focused ? theme.palette.grey9.main : theme.palette.grey3.main};
+  background-color: ${focused ? theme.palette.purple[600] : theme.palette.gray[200]};
+  color: ${focused ? theme.palette.common.white : theme.palette.gray[900]};
   font-weight: bold;
   width: 100%;
   height: 9.5rem;
@@ -29,12 +29,12 @@ const SelectButton = styled('button')<{ focused: boolean }>(({ theme, focused })
   transition: all 100ms ${theme.transitions.easing.easeInOut};
 
   :hover {
-    background-color: ${focused ? theme.palette.violet.dark : theme.palette.grey6.main};
+    background-color: ${focused ? theme.palette.purple[700] : theme.palette.gray[300]};
     cursor: pointer;
   }
 
   :active {
-    background-color: ${focused ? darken(theme.palette.violet.dark, 0.1) : theme.palette.grey6.dark};
+    background-color: ${focused ? theme.palette.purple[800] : theme.palette.gray[400]};
   }
 `);
 
@@ -92,6 +92,7 @@ const BalanceGameWidget = ({ voteId, choices }: BalanceGameWidgetProps) => {
                                     variant={'body2'}
                                     whiteSpace={'pre'}
                                     alignItems={'center'}
+                                    lineHeight={1.6}
                                     justifyContent={'center'}>
                             {first.text}
                         </Typography>
@@ -103,7 +104,7 @@ const BalanceGameWidget = ({ voteId, choices }: BalanceGameWidgetProps) => {
                                 !!focused && (
                                     <>
                                         <Typography variant={'body2'}>
-                                            {firstVote.toLocaleString('ko-KR')}명
+                                            {firstVote.toLocaleString()}명
                                         </Typography>
                                         <Percent number={firstVote / totalVote * 100} focused={focused === 1} />
                                     </>
@@ -129,6 +130,7 @@ const BalanceGameWidget = ({ voteId, choices }: BalanceGameWidgetProps) => {
                                     display={'flex'}
                                     whiteSpace={'pre'}
                                     alignItems={'center'}
+                                    lineHeight={1.6}
                                     justifyContent={'center'}>
                             {second.text}
                         </Typography>
@@ -140,7 +142,7 @@ const BalanceGameWidget = ({ voteId, choices }: BalanceGameWidgetProps) => {
                                 !!focused && (
                                     <>
                                         <Typography variant={'body2'}>
-                                            {secondVote.toLocaleString('ko-KR')}명
+                                            {secondVote.toLocaleString()}명
                                         </Typography>
                                         <Percent number={secondVote / totalVote * 100} focused={focused === 2} />
                                     </>
@@ -158,16 +160,20 @@ const BalanceGameWidget = ({ voteId, choices }: BalanceGameWidgetProps) => {
                     focused
                         ? (<NextLink href={'#'} passHref>
                             <a>
-                                <Typography variant={'body2'} fontWeight={'bold'}
-                                            color={theme => theme.palette.violet.main}>
+                                <Typography variant={'body2'}
+                                            fontWeight={'bold'}
+                                            lineHeight={1.6}
+                                            color={theme => theme.palette.purple[600]}>
                                     의견 작성하러 가기
                                 </Typography>
                             </a>
                         </NextLink>)
                         : null
                 }
-                <Typography fontSize={'0.75rem'} color={(theme) => theme.palette.grey4.main}>
-                    현재 <b>{totalVote.toLocaleString('ko-KR')}</b>명 참가중
+                <Typography variant={'body2'}
+                            lineHeight={1.6}
+                            color={(theme) => theme.palette.gray[600]}>
+                    현재 <b>{totalVote.toLocaleString()}</b>명 참가중
                 </Typography>
             </Box>
         </Card>
