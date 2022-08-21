@@ -48,7 +48,7 @@ const BalanceGameWidget = ({ voteId, title, choices }: BalanceGameWidgetProps) =
 
     return (
         <Card elevation={0}>
-            <BalanceGameWidgetTitle title={title} />
+            <BalanceGameWidgetTitle title={title} id={voteId} />
             <BalanceGameWidgetContent direction={'row'} spacing={1}>
                 <BalanceGameWidgetChoice selected={isFirst}
                                          showResult={showResult}

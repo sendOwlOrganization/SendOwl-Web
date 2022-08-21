@@ -2,12 +2,13 @@ import BannerTitle from '@components/banner/BannerTitle';
 import { Typography } from '@mui/material';
 
 interface BalanceGameWidgetTitleProps {
+    id: number;
     title: string;
 }
 
-const BalanceGameWidgetTitle = ({ title }: BalanceGameWidgetTitleProps) => {
+const BalanceGameWidgetTitle = ({ id, title }: BalanceGameWidgetTitleProps) => {
     return (
-        <BannerTitle>
+        <BannerTitle href={`#?FIXME_LINK_ID=${id}`}>
             <Typography variant={'body1'} fontWeight={'bold'}>
                 {
                     title.endsWith('?') && (
