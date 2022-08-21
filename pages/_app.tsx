@@ -2,7 +2,7 @@ import { CacheProvider } from '@emotion/react';
 import GlobalLayout from '@molecules/GlobalLayout';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import '@styles/globals.css';
-import createSendOwlTheme from '@styles/sendOwlTheme';
+import createMlabMuiTheme from '@styles/muiTheme';
 import { NextPage } from 'next';
 import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
@@ -27,7 +27,7 @@ function MyApp({
                    pageProps: { session, ...pageProps },
                    emotionCache = clientSideEmotionCache,
                }: MyAppProps) {
-    const [theme, setTheme] = useState(createSendOwlTheme());
+    const [theme, setTheme] = useState(createMlabMuiTheme());
 
     const Layout = Component.getLayout ?? GlobalLayout;
 

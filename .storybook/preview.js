@@ -1,16 +1,26 @@
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { ThemeProvider as Emotion10ThemeProvider } from 'emotion-theming'
 import '../styles/globals.css'
-import createSendOwlTheme, { MLAB_PALETTE } from '../styles/sendOwlTheme'
+import { MLAB_NEUTRAL_PALETTE } from '../styles/mlabTheme'
+import createMlabMuiTheme from '../styles/muiTheme'
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
     backgrounds: {
-        default: 'grey8',
-        values: Object.entries(MLAB_PALETTE).map(([name, value]) => ({
-            name,
+        default: 'gray200',
+        values: Object.entries(MLAB_NEUTRAL_PALETTE.gray).map(([name, value]) => ({
+            name: `gray${name}`,
             value,
-        })),
+        })).concat([
+            {
+                name: 'white',
+                value: MLAB_NEUTRAL_PALETTE.white,
+            },
+            {
+                name: 'black',
+                value: MLAB_NEUTRAL_PALETTE.black,
+            },
+        ]),
     },
     controls: {
         matchers: {
@@ -20,7 +30,7 @@ export const parameters = {
     },
 }
 
-const theme = createSendOwlTheme()
+const theme = createMlabMuiTheme()
 
 // https://mui.com/material-ui/guides/migration-v4/#storybook-emotion-with-v5
 export const decorators = [

@@ -15,7 +15,7 @@ Default.args = {
     color: 'default',
 };
 
-export const Grey = Template.bind({});
-Grey.args = {
-    color: 'grey',
+export const Purple = Template.bind({});
+Purple.args = {
+    color: 'purple',
 };
