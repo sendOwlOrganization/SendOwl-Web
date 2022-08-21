@@ -1,10 +1,22 @@
 import { createTheme } from '@mui/material';
-import { ColorPartial } from '@mui/material/styles/createPalette';
 import { MLAB_NEUTRAL_PALETTE, MLAB_PALETTE, MLAB_SEMANTIC_PALETTE } from '@styles/mlabTheme';
 import { CSSProperties } from 'react';
 
 declare module '@mui/material/styles' {
     interface Color {
+        1000: string;
+    }
+
+    interface ColorPartial {
+        100?: string;
+        200?: string;
+        300?: string;
+        400?: string;
+        500?: string;
+        600?: string;
+        700?: string;
+        800?: string;
+        900?: string;
         1000?: string;
     }
 
