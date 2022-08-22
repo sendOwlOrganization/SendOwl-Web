@@ -91,6 +91,7 @@ const createMlabMuiTheme = () => createTheme({
         },
         ...MLAB_PALETTE,
         gray: MLAB_NEUTRAL_PALETTE.gray,
+        contrastThreshold: 1,
     },
     shape: {
         borderRadius: 20,
