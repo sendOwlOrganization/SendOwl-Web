@@ -1,4 +1,4 @@
-import BoardPreviewLink from '@components/board/BoardPreviewLink';
+import BoardPreviewLink from '@components/board/board-preview-link';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {

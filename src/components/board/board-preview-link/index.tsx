@@ -1,7 +1,9 @@
 import Label from '@components/label/Label';
-import { Box, Card, styled, Typography } from '@mui/material';
-import { formatDate } from '@tools/date';
+import { Box, Card, Stack, styled, Typography } from '@mui/material';
 import NextLink from 'next/link';
+import BoardPreviewLinkContent from './BoardPreviewLinkContent';
+import BoardPreviewLinkTitle from './BoardPreviewLinkTitle';
+import BoardPreviewLinkUserAndDate from './BoardPreviewLinkUserAndDate';
 
 interface BoardPreviewLinkProps {
     id: number;
@@ -21,25 +23,6 @@ interface BoardPreviewLinkProps {
     date: string;
 }
 
-const Title = styled(Typography)`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  font-weight: bold;
-  color: ${({ theme }) => theme.palette.grey1.main};
-`;
-
-const Preview = styled(Typography)`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  line-height: 160%;
-  color: ${({ theme }) => theme.palette.grey3.main};
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-`;
 
 const LabelContainer = styled('div')`
   display: flex;
@@ -55,22 +38,12 @@ const LabelContainer = styled('div')`
   }
 `;
 
-const LikeCommentContainer = styled('div')`
-  & > * {
-    margin-right: 8px;
-  }
-
-  & > *:last-child {
-    margin-right: 0;
-  }
-`;
-
 const ImagePlaceHolder = styled('div')`
   width: 94px;
   height: 90px;
   margin-left: 32px;
   border-radius: 8px;
-  background-color: ${({ theme }) => theme.palette.grey5.main};
+  background-color: ${({ theme }) => theme.palette.gray[400]};
   display: flex;
   align-items: center;
   color: white;
@@ -106,12 +79,12 @@ const BoardPreviewLink = ({
                     </LabelContainer>
                     <NextLink href={href} passHref>
                         <Anchor>
-                            <Title variant={'body1'}>
+                            <BoardPreviewLinkTitle variant={'body1'}>
                                 {title}
-                            </Title>
-                            <Preview variant={'body2'}>
+                            </BoardPreviewLinkTitle>
+                            <BoardPreviewLinkContent variant={'body2'}>
                                 {preview}
-                            </Preview>
+                            </BoardPreviewLinkContent>
                         </Anchor>
                     </NextLink>
                 </Box>
@@ -128,34 +101,19 @@ const BoardPreviewLink = ({
                 }
             </Box>
             <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
-                <Typography variant={'body2'} color={theme => theme.palette.grey1.main}>
-                    <Typography variant={'body2'}
-                                color={theme => theme.palette.coralPink.main}
-                                fontWeight={700}
-                                component={'span'}>
-                        {`${user.mbti} `}
-                    </Typography>
-                    {user.nickName}
-                    <Typography variant={'body2'}
-                                color={theme => theme.palette.grey4.main}
-                                fontWeight={700}
-                                component={'span'}>
-                        ・
-                    </Typography>
-                    <Typography variant={'body2'} color={theme => theme.palette.grey4.main}
-                                component={'span'}>
-                        {formatDate(date)}
-                    </Typography>
-                </Typography>
+                <BoardPreviewLinkUserAndDate id={user.id}
+                                             name={user.nickName}
+                                             mbti={user.mbti}
+                                             date={date} />
 
-                <LikeCommentContainer>
-                    <Typography component={'span'} variant={'body2'} color={theme => theme.palette.grey3.main}>
+                <Stack spacing={1} direction={'row'}>
+                    <Typography component={'span'} variant={'body2'} color={theme => theme.palette.gray[700]}>
                         ❤️ {likeCount}
                     </Typography>
-                    <Typography component={'span'} variant={'body2'} color={theme => theme.palette.grey3.main}>
+                    <Typography component={'span'} variant={'body2'} color={theme => theme.palette.gray[700]}>
                         💬 {commentCount}
                     </Typography>
-                </LikeCommentContainer>
+                </Stack>
             </Box>
         </Card>
     );
