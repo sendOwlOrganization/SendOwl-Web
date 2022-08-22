@@ -10,22 +10,14 @@ const MyResponsivePie = ({ data }: any) => (
             bottom: 20,
             left: 20
         }}
-        arcLabel={
-            function(e):any {
-                let data = e.value
-                if (data == 0) {
-                    return
-                } else {
-                    return e.label
-                }
-            }
-        }
+        arcLabel={'label'}
         innerRadius={0.5}
         padAngle={3}
         cornerRadius={3}
         enableArcLinkLabels={false}
         colors={[`${MLAB_PALETTE.violet}`, `${MLAB_PALETTE.blue}`, `${MLAB_PALETTE.orange}`, `${MLAB_PALETTE.green}`]}
         sortByValue={true}
+        isInteractive={false}
         />
 )
 
