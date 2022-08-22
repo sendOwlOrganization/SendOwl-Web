@@ -11,15 +11,16 @@ interface LabelProps {
     color?: LabelColor;
     href?: string;
     onClick?: () => void;
+    rounded?: boolean;
 }
 
 interface LabelContainerProps extends Required<Omit<LabelProps, 'href' | 'onClick'>> {
     isClickable: boolean;
 }
 
-const labelCss = (theme: Theme) => css`
+const labelCss = (theme: Theme, rounded: boolean) => css`
   display: inline-flex;
-  border-radius: 4px;
+  border-radius: ${rounded ? 16 : 4}px;
   padding: 4px 8px;
   font-weight: 700;
   font-size: ${theme.typography.body2.fontSize};
@@ -60,21 +61,29 @@ const labelVariants = {
     filled: filledLabelCss,
 };
 
-const LabelContainer = styled('span')<LabelContainerProps>(({ theme, variant, color, isClickable }) => css`
-  ${labelCss(theme)}
+const LabelContainer = styled('span')<LabelContainerProps>(({ theme, variant, color, isClickable, rounded }) => css`
+  ${labelCss(theme, rounded)}
   ${labelVariants[variant](theme, color, isClickable)}
 `);
 
-const Label = ({ color = 'default', children, variant = 'default', href, onClick }: PropsWithChildren<LabelProps>) => {
+const Label = ({
+                   color = 'default',
+                   children,
+                   variant = 'default',
+                   href,
+                   onClick,
+                   rounded = false,
+               }: PropsWithChildren<LabelProps>) => {
     return href
         ? (
             <NextLink href={href} passHref>
-                <LabelContainer as={'a'} color={color} variant={variant} isClickable onClick={onClick}>
+                <LabelContainer rounded={rounded} as={'a'} color={color} variant={variant} isClickable
+                                onClick={onClick}>
                     {children}
                 </LabelContainer>
             </NextLink>
         ) : (
-            <LabelContainer color={color} variant={variant} onClick={onClick} isClickable={!!onClick}>
+            <LabelContainer rounded={rounded} color={color} variant={variant} onClick={onClick} isClickable={!!onClick}>
                 {children}
             </LabelContainer>
         );
