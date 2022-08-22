@@ -17,9 +17,10 @@ const Link = styled('a')(({ theme }) => css`
   margin: 0 -8px;
   padding: 8px;
   border-radius: 8px;
+  transition: all 100ms ${theme.transitions.easing.easeInOut};
 
   :hover {
-    background-color: ${theme.palette.grey8.main};
+    background-color: ${theme.palette.gray[200]};
   }
 `);
 
@@ -28,8 +29,11 @@ const SideCategoryListLink = ({ label, count, href, active }: SideCategoryListLi
     return (
         <NextLink href={href} passHref>
             <Link>
-                <Typography variant={'body1'} fontWeight={active ? 700 : 400}>{label}</Typography>
-                <Label color={'pink'} variant={'default'}>{count.toLocaleString('ko-KR')}</Label>
+                <Typography variant={'body1'}
+                            fontWeight={active ? 700 : 400}>
+                    {label}
+                </Typography>
+                <Label color={'lightPink'} variant={'default'}>{count.toLocaleString()}</Label>
             </Link>
         </NextLink>
     );

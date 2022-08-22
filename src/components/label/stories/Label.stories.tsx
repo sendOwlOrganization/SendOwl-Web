@@ -47,3 +47,13 @@ PurpleFilled.args = {
     children: 'Purple Filled 라벨',
     onClick: undefined,
 };
+
+
+export const Clickable = Template.bind({});
+Clickable.args = {
+    color: 'lightPink',
+    variant: 'default',
+    children: 'Light Pink 라벨 클릭',
+    onClick: () => alert('안녕'),
+};
+

@@ -23,16 +23,17 @@ const labelCss = (theme: Theme) => css`
   padding: 4px 8px;
   font-weight: 700;
   font-size: ${theme.typography.body2.fontSize};
+  transition: all 100ms ${theme.transitions.easing.easeInOut};
 `;
 
 const defaultLabelCss = (theme: Theme, color: LabelColor, isClickable: boolean) => css`
   background-color: ${color === 'default' ? theme.palette.gray[200] : theme.palette[color][200]};
-  color: ${color === 'default' ? theme.palette.gray[800] : theme.palette[color][600]};
+  color: ${color === 'default' ? theme.palette.gray[800] : theme.palette[color][700]};
   ${isClickable && css`
     :hover {
       cursor: pointer;
       background-color: ${color === 'default' ? theme.palette.gray[300] : theme.palette[color][500]};
-      color: ${color === 'default' ? theme.palette.gray[800] : theme.palette[color][900]}
+      color: ${color === 'default' ? theme.palette.gray[800] : theme.palette[color][1000]}
     }
   `}
 `;
