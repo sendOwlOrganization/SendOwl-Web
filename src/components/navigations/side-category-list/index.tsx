@@ -1,4 +1,4 @@
-import SideCategoryListLink from '@components/navigations/SideCategoryListLink';
+import SideCategoryListLink from '@components/navigations/side-category-list/SideCategoryListLink';
 import { Card, Divider, styled } from '@mui/material';
 import { useState } from 'react';
 
