@@ -2,6 +2,7 @@ import { boardsMock } from '@mocks/boards';
 import { BoardCategoryList } from '@organisms/board-category-list';
 import { MainContent } from '@organisms/main';
 import { ComponentProps } from 'react';
+import {getPopularCategories} from "@api/index";
 
 interface HomePageProps {
     boards: ComponentProps<typeof BoardCategoryList>['boards'];
@@ -34,8 +35,9 @@ const Home = ({data}: Data) => {
 // };
 
 export const getServerSideProps = async () => {
-    const res = await fetch(`http://52.90.6.136:8080/api/categories/popular`);
-    const data = await res.json();
+    const res = await getPopularCategories();
+
+    const data = res.data;
 
     return {
         props: {
