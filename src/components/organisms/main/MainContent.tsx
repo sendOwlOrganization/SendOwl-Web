@@ -1,10 +1,10 @@
-import {Container, Grid, useTheme, Box, useMediaQuery} from '@mui/material';
+import { Container, Grid, useMediaQuery, useTheme } from '@mui/material';
 import * as React from 'react';
-import { Mbti } from '../chart';
 import Advertisement from '../../molecules/Advertisement';
 import CategoryMenu from '../../molecules/CategoryMenu';
-import CreatePost from '../../molecules/CreatePost';
 import ContentList from '../../molecules/ContentList';
+import CreatePost from '../../molecules/CreatePost';
+import { Mbti } from '../chart';
 
 interface BoardCategory {
     id: number;
@@ -45,10 +45,10 @@ const MainContent = ({data}: Data) => {
             <Container maxWidth={'md'} disableGutters={true}>
                 {isMobile ?
                     <>
-                        <Grid margin={'0 10px 0 10px'}  >
-                            <CategoryMenu width={55} height={55} margin={'0 5px 0 5px'}/>
-                            <Advertisement width={mobileWidth} height={137} margin={'10px 0 0 0'}/>
-                            <CreatePost width={mobileWidth}/>
+                        <Grid margin={'0 10px 0 10px'}>
+                            <CategoryMenu width={55} height={55} margin={'0 5px 0 5px'} />
+                            <Advertisement width={mobileWidth} height={137} margin={'10px 0 0 0'} />
+                            <CreatePost width={mobileWidth} />
                             <ContentList width={mobileWidth} title='인기글' />
                             <ContentList width={mobileWidth} title='최신글' />
                         </Grid>
@@ -59,8 +59,8 @@ const MainContent = ({data}: Data) => {
                         <CategoryMenu width={70} height={70} margin={'20px 20px 20px 0'}/>
                         <Advertisement width={webWidth} height={227}/>
                         <CreatePost width={webWidth} />
-                        <ContentList width={webWidth} title='인기글'/>
-                        <ContentList width={webWidth} title='최신글'/>
+                        <ContentList width={webWidth} title='인기글' />
+                        <ContentList width={webWidth} title='최신글' />
                     </>
                 }
             </Container>
