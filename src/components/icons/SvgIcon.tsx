@@ -1,16 +1,35 @@
 import { css, styled } from '@mui/material';
-import { MlabColorType } from '@styles/mlabTheme';
+import { MLAB_NEUTRAL_PALETTE, MlabColorType } from '@styles/mlabTheme';
 import { PropsWithChildren } from 'react';
 
 export interface SvgIconProps {
-    color?: MlabColorType | 'gray';
+    color?: MlabColorType | 'gray' | 'white' | 'black';
     onClick?: () => void;
     clickable?: boolean;
 }
 
-const Svg = styled('svg')<{ color: MlabColorType | 'gray', clickable: boolean }>(({ theme, color, clickable }) => css`
+const commonPalette = {
+    white: {
+        main: MLAB_NEUTRAL_PALETTE.white,
+        hover: MLAB_NEUTRAL_PALETTE.gray[200],
+        active: MLAB_NEUTRAL_PALETTE.gray[300],
+    },
+    black: {
+        main: MLAB_NEUTRAL_PALETTE.black,
+        hover: MLAB_NEUTRAL_PALETTE.gray[1000],
+        active: MLAB_NEUTRAL_PALETTE.gray[900],
+    },
+};
+
+const Svg = styled('svg')<{ color: MlabColorType | 'gray' | 'white' | 'black', clickable: boolean }>(({
+                                                                                                          theme,
+                                                                                                          color,
+                                                                                                          clickable,
+                                                                                                      }) => css`
   path {
-    fill: ${theme.palette[color][600]};
+    fill: ${(color === 'white' || color === 'black')
+            ? commonPalette[color].main
+            : theme.palette[color][600]};
   }
 
   ${clickable
@@ -18,11 +37,15 @@ const Svg = styled('svg')<{ color: MlabColorType | 'gray', clickable: boolean }>
             cursor: pointer;
 
             :hover path {
-              fill: ${theme.palette[color][700]};
+              fill: ${(color === 'white' || color === 'black')
+                      ? commonPalette[color].hover
+                      : theme.palette[color][700]};
             }
 
             :active path {
-              fill: ${theme.palette[color][800]};
+              fill: ${(color === 'white' || color === 'black')
+                      ? commonPalette[color].active
+                      : theme.palette[color][800]};
             }
           `
           : ''}
