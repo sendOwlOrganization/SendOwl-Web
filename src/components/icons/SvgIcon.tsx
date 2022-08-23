@@ -11,6 +11,8 @@ export interface SvgIconProps {
     clickable?: boolean;
     spacing?: number;
     scale?: number;
+    badge?: boolean;
+    badgeColor?: MlabColorType;
 }
 
 const commonPalette = {
@@ -46,6 +48,16 @@ const Svg = styled('svg')<{
   }
 `);
 
+
+const Span = styled('span')<{ spacing: number }>(({ theme, spacing }) => css`
+  background-color: transparent;
+  height: ${24 + spacing * 2 * SPACING}px;
+  width: ${24 + spacing * 2 * SPACING}px;
+  padding: 0;
+  position: relative;
+`);
+
+
 const Button = styled('button')<{
     color: MlabColorType | 'gray' | 'white' | 'black',
     spacing: number,
@@ -57,12 +69,13 @@ const Button = styled('button')<{
         disableHoverBackground,
     }) => css`
   border: none;
-  background-color: transparent;
   cursor: pointer;
   border-radius: 4px;
+  background-color: transparent;
   height: ${24 + spacing * 2 * SPACING}px;
   width: ${24 + spacing * 2 * SPACING}px;
   padding: 0;
+  position: relative;
 
   ${disableHoverBackground
           ? ''
@@ -88,6 +101,16 @@ const Button = styled('button')<{
   }
 `);
 
+const Badge = styled('span')<{ color: MlabColorType }>(({ theme, color }) => css`
+  position: absolute;
+  height: 0.5rem;
+  width: 0.5rem;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  background-color: ${theme.palette[color][600]};
+`);
+
 const SvgIcon = ({
                      color = 'gray',
                      onClick,
@@ -96,6 +119,8 @@ const SvgIcon = ({
                      spacing = 0,
                      scale = 0,
                      disableHoverBackground,
+                     badge,
+                     badgeColor = 'pink',
                  }: PropsWithChildren<SvgIconProps>) => {
     return onClick || clickable
         ? (
@@ -108,16 +133,20 @@ const SvgIcon = ({
                      fill='none'>
                     {children}
                 </Svg>
+                {badge && <Badge color={badgeColor} />}
             </Button>
         ) : (
-            <Svg color={color}
-                 xmlns='http://www.w3.org/2000/svg'
-                 spacing={spacing}
-                 scale={scale}
-                 viewBox='0 0 24 24'
-                 fill='none'>
-                {children}
-            </Svg>
+            <Span spacing={spacing}>
+                <Svg color={color}
+                     xmlns='http://www.w3.org/2000/svg'
+                     spacing={spacing}
+                     scale={scale}
+                     viewBox='0 0 24 24'
+                     fill='none'>
+                    {children}
+                </Svg>
+                {badge && <Badge color={badgeColor} />}
+            </Span>
         );
 };
 
