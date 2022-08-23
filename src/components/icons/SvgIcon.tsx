@@ -11,8 +11,7 @@ export interface SvgIconProps {
     clickable?: boolean;
     spacing?: number;
     scale?: number;
-    badge?: boolean;
-    badgeColor?: MlabColorType;
+    badge?: MlabColorType;
 }
 
 const commonPalette = {
@@ -105,8 +104,8 @@ const Badge = styled('span')<{ color: MlabColorType }>(({ theme, color }) => css
   position: absolute;
   height: 0.5rem;
   width: 0.5rem;
-  top: 0;
-  right: 0;
+  top: 2px;
+  right: 2px;
   border-radius: 50%;
   background-color: ${theme.palette[color][600]};
 `);
@@ -120,7 +119,6 @@ const SvgIcon = ({
                      scale = 0,
                      disableHoverBackground,
                      badge,
-                     badgeColor = 'pink',
                  }: PropsWithChildren<SvgIconProps>) => {
     return onClick || clickable
         ? (
@@ -133,7 +131,7 @@ const SvgIcon = ({
                      fill='none'>
                     {children}
                 </Svg>
-                {badge && <Badge color={badgeColor} />}
+                {badge && <Badge color={badge} />}
             </Button>
         ) : (
             <Span spacing={spacing}>
@@ -145,7 +143,7 @@ const SvgIcon = ({
                      fill='none'>
                     {children}
                 </Svg>
-                {badge && <Badge color={badgeColor} />}
+                {badge && <Badge color={badge} />}
             </Span>
         );
 };

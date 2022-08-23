@@ -1,4 +1,5 @@
 import AngleRightBigIcon from '@components/icons/AngleRightBigIcon';
+import NotificationIcon from '@components/icons/NotificationIcon';
 import SearchIcon from '@components/icons/SearchIcon';
 import SvgIcon from '@components/icons/SvgIcon';
 import UserIcon from '@components/icons/UserIcon';
@@ -31,6 +32,7 @@ const Template: ComponentStory<typeof SvgIcon> = (args) => (
         <IconItem icon={<AngleRightBigIcon {...args} />} />
         <IconItem icon={<SearchIcon {...args} />} />
         <IconItem icon={<UserIcon {...args} />} />
+        <IconItem icon={<NotificationIcon {...args} />} />
     </Grid>
 );
 
@@ -47,4 +49,13 @@ WithoutOnClickAction.args = {
     spacing: 0,
     onClick: undefined,
     clickable: false,
+};
+
+export const WithBadge = Template.bind({});
+WithBadge.args = {
+    color: 'black',
+    spacing: 0,
+    onClick: undefined,
+    clickable: false,
+    badge: 'pink',
 };
