@@ -1,8 +1,7 @@
 import fetch from 'node-fetch';
 import { BoardDetails, BoardsResponse } from './types/boards';
-import { Category } from './types/category';
+import {Category, PopularCategory} from './types/category';
 import HttpStatusCode from './types/HttpStatusCode';
-import { ResponseDto } from './types/ResponseDto';
 
 interface FetchError {
     code: number;
@@ -61,3 +60,6 @@ export const getBoardDetails = async (
 
 export const getCategories = async (): Promise<FetchResponse<Category[]>> =>
     await fetchSendOwlApi<Category[]>(`categories`);
+
+export const getPopularCategories = async (): Promise<FetchResponse<PopularCategory[]>> =>
+    await fetchSendOwlApi<PopularCategory[]>('categories/popular')

@@ -2,25 +2,48 @@ import { boardsMock } from '@mocks/boards';
 import { BoardCategoryList } from '@organisms/board-category-list';
 import { MainContent } from '@organisms/main';
 import { ComponentProps } from 'react';
+import {getPopularCategories} from "@api/index";
 
 interface HomePageProps {
     boards: ComponentProps<typeof BoardCategoryList>['boards'];
 }
 
-const Home = () => {
+interface DataList {
+    id: number;
+    name: string;
+    count: number;
+}
+
+interface Data {
+    data: DataList[]
+}
+
+const Home = ({data}: Data) => {
     return (
         <>
-            <MainContent />
+            <MainContent data={data}/>
         </>
     );
 };
 
-export const getStaticProps = async () => {
+// export const getStaticProps = async () => {
+//     return {
+//         props: {
+//             boards: boardsMock,
+//         },
+//     };
+// };
+
+export const getServerSideProps = async () => {
+    const res = await getPopularCategories();
+
+    const data = res.data;
+
     return {
         props: {
-            boards: boardsMock,
-        },
-    };
-};
+            data
+        }
+    }
+}
 
 export default Home;

@@ -24,11 +24,17 @@ interface BoardCategoryListProps {
     boards: Board[];
 }
 
-interface MainContentProps {
-
+interface DataList {
+    id: number;
+    name: string;
+    count: number;
 }
 
-const MainContent = ({}: MainContentProps) => {
+interface Data {
+    data: DataList[]
+}
+
+const MainContent = ({data}: Data) => {
     const theme = useTheme();
     const isMobile = useMediaQuery("(max-width: 600px)");
     const mobileWidth = 355
@@ -49,9 +55,9 @@ const MainContent = ({}: MainContentProps) => {
                     </>
                     :
                     <>
-                        <Mbti />
-                        <CategoryMenu width={70} height={70} margin={'20px 20px 20px 0'} />
-                        <Advertisement width={webWidth} height={227} />
+                        <Mbti data={data}/>
+                        <CategoryMenu width={70} height={70} margin={'20px 20px 20px 0'}/>
+                        <Advertisement width={webWidth} height={227}/>
                         <CreatePost width={webWidth} />
                         <ContentList width={webWidth} title='인기글' />
                         <ContentList width={webWidth} title='최신글' />
@@ -61,5 +67,6 @@ const MainContent = ({}: MainContentProps) => {
         </>
     );
 };
+
 
 export default MainContent;
