@@ -1,12 +1,23 @@
 import { Box, Grid, useTheme } from '@mui/material';
 import Image from 'next/image';
-import dynamic from "next/dynamic";
-import { data } from './MbtiPie';
+import dynamic from "next/dynamic"
 import * as React from "react";
+import {getPopularCategories} from "@api/index";
+import {log} from "util";
 
 const MyResponsivePie = dynamic(()=> import ('./MbtiPie'), {ssr:false})
 
-const Mbti = () => {
+interface DataList {
+    id: number;
+    name: string;
+    count: number;
+}
+
+interface Data {
+    data: DataList[]
+}
+
+const Mbti = ({data}: Data) => {
     const theme = useTheme();
 
     return (

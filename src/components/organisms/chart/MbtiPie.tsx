@@ -1,21 +1,6 @@
 import {ComputedDatum, ResponsivePie} from '@nivo/pie'
 import {MLAB_PALETTE} from "@styles/sendOwlTheme";
 
-export const data = [
-    {
-        "id": "ENTP",
-        "label": "ENTP",
-        "value": 184,
-        "color": MLAB_PALETTE.pink
-    },
-    {
-        "id": "rest",
-        "label": "rest",
-        "value": 1000,
-        "color": MLAB_PALETTE.grey9
-    },
-]
-
 interface DataList {
     id: number;
     name: string;
@@ -35,12 +20,12 @@ const MyResponsivePie = ({ data }: any) => (
             bottom: 20,
             left: 20
         }}
-        arcLabel={''}
+        arcLabel={'id'}
         innerRadius={0.5}
         padAngle={3}
         cornerRadius={3}
         enableArcLinkLabels={false}
-        colors={[`${MLAB_PALETTE.pink}`, `${MLAB_PALETTE.grey9}`]}
+        colors={{scheme: 'pastel1'}}
         sortByValue={true}
         />
 )
