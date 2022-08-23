@@ -37,12 +37,14 @@ const Template: ComponentStory<typeof SvgIcon> = (args) => (
 export const WithOnClickAction = Template.bind({});
 WithOnClickAction.args = {
     color: 'pink',
+    spacing: 0,
     onClick: () => alert('클릭'),
 };
 
 export const WithoutOnClickAction = Template.bind({});
 WithoutOnClickAction.args = {
     color: 'purple',
+    spacing: 0,
     onClick: undefined,
     clickable: false,
 };
