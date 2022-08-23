@@ -20,6 +20,7 @@ const Bar = styled('header')(({ theme }) => css`
   position: fixed;
   width: 100%;
   z-index: ${theme.zIndex.appBar};
+  border-bottom: 1px solid ${theme.palette.gray[200]};
 `);
 
 const BarPadding = styled('div')`
