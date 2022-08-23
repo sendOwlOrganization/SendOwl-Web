@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import { memo, PropsWithChildren } from 'react';
 
 const BalanceGameWidgetChoiceText = ({ children }: PropsWithChildren<{}>) =>
-    <Typography height={'3.625rem'} width={'5.5rem'}
+    <Typography height={'3.625rem'} width={'100%'}
                 display={'flex'}
                 fontWeight={'bold'}
                 variant={'body2'}
