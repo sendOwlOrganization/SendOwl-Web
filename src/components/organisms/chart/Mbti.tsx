@@ -23,11 +23,8 @@ const Mbti = ({data}: Data) => {
     return (
         <>
             <Box
-                position={'fixed'}
                 width={200}
                 height={300}
-                margin={'40px 0px 20px 800px'}
-                padding={'10px 0 10px 0'}
                 sx={{
                     borderRadius: '20px',
                     border: `1px solid ${theme.palette.grey[200]}`,

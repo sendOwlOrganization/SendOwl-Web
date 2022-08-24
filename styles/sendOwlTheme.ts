@@ -6,6 +6,7 @@ declare module '@mui/material/styles' {
     interface PaletteOptions {
         pink?: PaletteColorOptions;
         coralPink?: PaletteColorOptions;
+        lightPink?: PaletteColorOptions;
         yellow?: PaletteColorOptions;
         lightGreen?: PaletteColorOptions;
         skyBlue?: PaletteColorOptions;
@@ -33,6 +34,7 @@ declare module '@mui/material/styles' {
     interface Palette {
         pink: PaletteColor;
         coralPink: PaletteColor;
+        lightPink: PaletteColor;
         yellow: PaletteColor;
         lightGreen: PaletteColor;
         skyBlue: PaletteColor;
@@ -51,6 +53,7 @@ declare module '@mui/material/styles' {
     interface ButtonPropsColorOverrides {
         pink: true;
         coralPink: true;
+        lightPink: true;
         yellow: true;
         lightGreen: true;
         skyBlue: true;
@@ -81,6 +84,7 @@ declare module '@mui/material/Button' {
     interface ButtonPropsColorOverrides {
         pink: true;
         coralPink: true;
+        lightPink: true;
         yellow: true;
         lightGreen: true;
         skyBlue: true;
@@ -100,6 +104,7 @@ declare module '@mui/material/Button' {
 const mlabColorTypes = [
     'pink',
     'coralPink',
+    'lightPink',
     'yellow',
     'lightGreen',
     'skyBlue',
@@ -119,6 +124,7 @@ type MlabColorTypes = typeof mlabColorTypes[number];
 
 export const MLAB_PALETTE: Record<MlabColorTypes, string> = {
     pink: '#EB4869',
+    lightPink: '#f17f96',
     coralPink: '#FF9C9C',
     yellow: '#FFE269',
     lightGreen: '#91F5A6',
