@@ -1,5 +1,6 @@
 import Highlighter from '@components/highlighter/Highlighter';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { highlight } from '@tools/string';
 
 export default {
     title: 'components/highlighter/Highlighter',
@@ -12,6 +13,5 @@ const Template: ComponentStory<typeof Highlighter> = (args) => (
 
 export const Example = Template.bind({});
 Example.args = {
-    text: 'ENTJ 특징',
-    query: 'en',
+    highlights: highlight('ENTJ 특징', 'en'),
 };
