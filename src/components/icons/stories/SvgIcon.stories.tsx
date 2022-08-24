@@ -1,4 +1,5 @@
 import AngleRightBigIcon from '@components/icons/AngleRightBigIcon';
+import CloseIcon from '@components/icons/CloseIcon';
 import NotificationIcon from '@components/icons/NotificationIcon';
 import SearchIcon from '@components/icons/SearchIcon';
 import SvgIcon from '@components/icons/SvgIcon';
@@ -33,6 +34,7 @@ const Template: ComponentStory<typeof SvgIcon> = (args) => (
         <IconItem icon={<SearchIcon {...args} />} />
         <IconItem icon={<UserIcon {...args} />} />
         <IconItem icon={<NotificationIcon {...args} />} />
+        <IconItem icon={<CloseIcon {...args} />} />
     </Grid>
 );
 
