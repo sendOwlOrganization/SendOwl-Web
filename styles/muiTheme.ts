@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material';
-import { MLAB_NEUTRAL_PALETTE, MLAB_PALETTE, MLAB_SEMANTIC_PALETTE } from '@styles/mlabTheme';
+import { MLAB_NEUTRAL_PALETTE, MLAB_OPACITY_PALETTE, MLAB_PALETTE, MLAB_SEMANTIC_PALETTE } from '@styles/mlabTheme';
 import { CSSProperties } from 'react';
 
 declare module '@mui/material/styles' {
@@ -163,6 +163,14 @@ const createMlabMuiTheme = () => createTheme({
                 //     border: '1px solid',
                 //     borderImage: 'linear-gradient(239deg, rgba(40,35,206,1) 0%, rgba(125,178,255,1) 100%) 1',
                 // },
+            },
+        },
+        MuiDialog: {
+            styleOverrides: {
+                container: {
+                    backgroundColor: MLAB_OPACITY_PALETTE.black[100],
+                    backdropFilter: 'blur(5px)',
+                },
             },
         },
     },
