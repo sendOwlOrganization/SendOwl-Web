@@ -28,7 +28,7 @@ const Button = styled('button')(({ theme }) => css`
   border: none;
   outline: none;
   background-color: inherit;
-  font-size: ${theme.typography.subtitle2.fontSize};
+  font-size: ${theme.typography.subtitle3.fontSize};
 
   & > *:first-child {
     margin-left: 0.5rem;
@@ -120,8 +120,8 @@ const SearchAutocomplete = ({ query, setSearch, inputRef }: SearchAutocompletePr
         </OrderedList>
     ) : (
         <Box display={'flex'} height={MIN_HEIGHT} justifyContent={'center'} alignItems={'center'}>
-            <Typography variant={'subtitle2'} fontWeight={400} color={theme => theme.palette.gray[600]}>
-                <Typography variant={'subtitle2'} color={'inherit'} component={'span'}>
+            <Typography variant={'subtitle3'} fontWeight={400} color={theme => theme.palette.gray[600]}>
+                <Typography variant={'subtitle3'} color={'inherit'} component={'span'}>
                     {`"${query}"`}
                 </Typography>
                 에 대한 검색결과가 없습니다
