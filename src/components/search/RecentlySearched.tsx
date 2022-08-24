@@ -55,7 +55,7 @@ const RecentlySearched = ({ words = [], setSearch }: RecentlySearchedProps) => {
                                         color={theme => theme.palette.gray[600]}
                                         marginLeft={'auto'}
                                         marginRight={'auto !important'}>
-                                최근 검색된 단어가 없습니다.
+                                최근 검색된 단어가 없습니다
                             </Typography>
                         )
                 }

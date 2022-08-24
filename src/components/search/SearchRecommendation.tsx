@@ -34,7 +34,7 @@ const SearchRecommendation = (props: SearchRecommendationProps) => {
                                         color={theme => theme.palette.gray[600]}
                                         marginLeft={'auto'}
                                         marginRight={'auto !important'}>
-                                추천 검색어가 없습니다.
+                                추천 검색어가 없습니다
                             </Typography>
                         )
                 }
