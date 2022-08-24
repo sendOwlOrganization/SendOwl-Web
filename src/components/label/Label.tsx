@@ -12,18 +12,20 @@ interface LabelProps {
     href?: string;
     onClick?: () => void;
     rounded?: boolean;
+    padding?: number;
+    size?: number;
 }
 
 interface LabelContainerProps extends Required<Omit<LabelProps, 'href' | 'onClick'>> {
     isClickable: boolean;
 }
 
-const labelCss = (theme: Theme, rounded: boolean) => css`
+const labelCss = (theme: Theme, rounded: boolean, size: number, padding: number) => css`
   display: inline-flex;
-  border-radius: ${rounded ? 16 : 4}px;
-  padding: 4px 8px;
+  border-radius: ${rounded ? 4 * size * padding : 4}px;
+  padding: ${padding * 4}px ${padding * 8}px;
   font-weight: 700;
-  font-size: ${theme.typography.body2.fontSize};
+  font-size: ${12 * size}px;
   transition: all 100ms ${theme.transitions.easing.easeInOut};
 `;
 
@@ -61,8 +63,9 @@ const labelVariants = {
     filled: filledLabelCss,
 };
 
-const LabelContainer = styled('span')<LabelContainerProps>(({ theme, variant, color, isClickable, rounded }) => css`
-  ${labelCss(theme, rounded)}
+const LabelContainer = styled('span')<LabelContainerProps>
+(({ theme, variant, color, isClickable, rounded, size, padding }) => css`
+  ${labelCss(theme, rounded, size, padding)}
   ${labelVariants[variant](theme, color, isClickable)}
 `);
 
@@ -73,17 +76,22 @@ const Label = ({
                    href,
                    onClick,
                    rounded = false,
+                   padding = 1,
+                   size = 1,
                }: PropsWithChildren<LabelProps>) => {
     return href
         ? (
             <NextLink href={href} passHref>
-                <LabelContainer rounded={rounded} as={'a'} color={color} variant={variant} isClickable
+                <LabelContainer padding={padding} size={size} rounded={rounded} as={'a'} color={color} variant={variant}
+                                isClickable
                                 onClick={onClick}>
                     {children}
                 </LabelContainer>
             </NextLink>
         ) : (
-            <LabelContainer rounded={rounded} color={color} variant={variant} onClick={onClick} isClickable={!!onClick}>
+            <LabelContainer padding={padding} size={size} rounded={rounded} color={color} variant={variant}
+                            onClick={onClick}
+                            isClickable={!!onClick}>
                 {children}
             </LabelContainer>
         );
