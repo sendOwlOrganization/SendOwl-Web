@@ -30,7 +30,7 @@ const MbtiMemberCount = styled('div')<{width: string, fontWeight: string}>(({the
   color: ${theme.palette.grey["700"]};
 `);
 
-const Mbti = ({data}: PropsWithChildren<MbtiDataProps>) => {
+const Mbti = ({data}: MbtiDataProps) => {
     const theme = useTheme();
 
     return (
@@ -51,7 +51,14 @@ const Mbti = ({data}: PropsWithChildren<MbtiDataProps>) => {
                     <Box
                         width={'6.313rem'}
                         height={'6.313rem'}
-                        textAlign={'center'}>
+                        flexGrow={0}
+                    >
+                        <Box position={'absolute'} width={'6.313rem'} height={'6.313rem'} display={'flex'} flexGrow={0} flexDirection={'row'} justifyContent={'center'} alignItems={'center'} >
+                            <Box width={'3.313rem'} height={'2rem'} display={'flex'} flexDirection={'row'} justifyContent={'center'} alignItems={'flex-end'}>
+                                <Stack width={'2.688rem'} height={'2rem'} fontSize={'2rem'} fontWeight={'bold'} lineHeight={1} color={MLAB_PALETTE.lightPink} textAlign={'center'}>00</Stack>
+                                <Stack width={'0.625rem'} height={'1.25rem'} fontSize={'0.75rem'} fontWeight={'bold'} lineHeight={1.65} alignItems={'flex-end'} color={MLAB_PALETTE.grey4}>%</Stack>
+                            </Box>
+                        </Box>
                         <MbtiBanner data={data}/>
                     </Box>
                 </Box>
