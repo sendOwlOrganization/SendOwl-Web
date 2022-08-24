@@ -57,16 +57,20 @@ const Ellipse = styled('span')(({ theme }) => css`
   background-color: ${theme.palette.common.white};
 `);
 
+const Span = styled('span')`
+  height: 1.25rem;
+`;
+
 const Toggle = ({ on, onClick, color = 'pink' }: ToggleProps) => {
     const id = useId();
 
     return (
-        <span>
+        <Span>
             <Checkbox id={id} type={'checkbox'} color={color} checked={on} onClick={onClick} />
             <Label htmlFor={id}>
                 <Ellipse />
             </Label>
-        </span>
+        </Span>
     );
 };
 
