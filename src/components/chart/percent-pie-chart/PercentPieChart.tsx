@@ -32,7 +32,7 @@ const PercentContainer = styled('div')`
 `;
 
 const Container = styled('div')`
-  & > * {
+  & * {
     transition: none;
   }
 `;

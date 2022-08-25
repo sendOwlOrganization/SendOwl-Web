@@ -40,6 +40,7 @@ const MbtiWidget = ({ data, user }: MbtiDataProps) => {
                     </Box>
                 </Box>
                 <PercentPieChart data={data}
+                                 size={6.325}
                                  highlightIndex={data.findIndex(d => d.label === parseMbti(user.mbti)) || 0} />
 
             </Box>
