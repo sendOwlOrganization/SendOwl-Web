@@ -17,7 +17,7 @@ interface BalanceGameWidgetProps {
 
 
 const BalanceGameWidgetContent = styled(Stack)`
-  padding: 1rem 1rem 0.75rem 1rem;
+  padding: 1rem 1.5rem 1.5rem 1.5rem;
 `;
 
 // FIXME: change with API call later
