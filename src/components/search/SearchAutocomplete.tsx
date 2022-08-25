@@ -86,7 +86,6 @@ const SearchAutocomplete = ({ query, setSearch, inputRef }: SearchAutocompletePr
 
     useEffect(() => {
         if (isNaN(focused)) {
-            console.log(inputRef);
             inputRef?.current?.focus();
             return;
         }
