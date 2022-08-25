@@ -2,7 +2,6 @@ import fetch from 'node-fetch';
 import { BoardDetails, BoardsResponse } from './types/boards';
 import { Category, PopularCategory } from './types/category';
 import HttpStatusCode from './types/HttpStatusCode';
-import { ResponseDto } from './types/ResponseDto';
 
 interface FetchError {
     code: number;
@@ -16,7 +15,7 @@ interface FetchResponse<T> {
 
 const fetchSendOwlApi = async <T extends unknown>(
     endpoint: string,
-    init?: Parameters<typeof fetch>[1]
+    init?: Parameters<typeof fetch>[1],
 ): Promise<FetchResponse<T>> => {
     try {
         const API_URL = process.env.SENDOWL_API_URL;
@@ -48,14 +47,14 @@ const fetchSendOwlApi = async <T extends unknown>(
 
 export const getBoards = async (
     page: number,
-    pageSize: number
+    pageSize: number,
 ): Promise<FetchResponse<BoardsResponse>> =>
     await fetchSendOwlApi<BoardsResponse>(
-        `boards?page=${page}&size=${pageSize}&sort=id,DESC`
+        `boards?page=${page}&size=${pageSize}&sort=id,DESC`,
     );
 
 export const getBoardDetails = async (
-    id: number
+    id: number,
 ): Promise<FetchResponse<BoardDetails>> =>
     await fetchSendOwlApi<BoardDetails>(`boards/${id}`);
 
@@ -63,4 +62,4 @@ export const getCategories = async (): Promise<FetchResponse<Category[]>> =>
     await fetchSendOwlApi<Category[]>(`categories`);
 
 export const getPopularCategories = async (): Promise<FetchResponse<PopularCategory[]>> =>
-    await fetchSendOwlApi<PopularCategory[]>('categories/popular')
+    await fetchSendOwlApi<PopularCategory[]>('categories/popular');

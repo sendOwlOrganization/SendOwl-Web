@@ -31,13 +31,14 @@ interface DataList {
 }
 
 interface Data {
-    data: DataList[]
+    data: DataList[];
 }
-const MainContent = ({data}: Data) => {
+
+const MainContent = ({ data }: Data) => {
     const theme = useTheme();
-    const isMobile = useMediaQuery("(max-width: 600px)");
-    const mobileWidth = 355
-    const webWidth = 783
+    const isMobile = useMediaQuery('(max-width: 600px)');
+    const mobileWidth = 355;
+    const webWidth = 783;
 
     return (
         <>
@@ -54,7 +55,7 @@ const MainContent = ({data}: Data) => {
                     </>
                     :
                     <>
-                        <Mbti data={data}/>
+                        <Mbti data={data} />
                         <CategoryMenu width={70} height={70} margin={'20px 20px 20px 0'} />
                         <Advertisement width={webWidth} height={227} />
                         <CreatePost width={webWidth} />
@@ -66,5 +67,6 @@ const MainContent = ({data}: Data) => {
         </>
     );
 };
+
 
 export default MainContent;

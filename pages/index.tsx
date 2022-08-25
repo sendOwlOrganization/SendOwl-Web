@@ -1,8 +1,7 @@
-import { boardsMock } from '@mocks/boards';
+import { getPopularCategories } from '@api/index';
 import { BoardCategoryList } from '@organisms/board-category-list';
 import { MainContent } from '@organisms/main';
 import { ComponentProps } from 'react';
-import {getPopularCategories} from "@api/index";
 
 interface HomePageProps {
     boards: ComponentProps<typeof BoardCategoryList>['boards'];
@@ -15,13 +14,13 @@ interface DataList {
 }
 
 interface Data {
-    data: DataList[]
+    data: DataList[];
 }
 
-const Home = ({data}: Data) => {
+const Home = ({ data }: Data) => {
     return (
         <>
-            <MainContent data={data}/>
+            <MainContent data={data} />
         </>
     );
 };
@@ -42,7 +41,7 @@ export const getServerSideProps = async () => {
 
     return {
         props: {
-            data
+            data,
         },
     };
 };
