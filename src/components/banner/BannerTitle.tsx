@@ -8,7 +8,7 @@ interface BannerTitleProps {
 }
 
 const TitleContainer = styled('a')<{ gutterBottom?: true }>(({ theme, gutterBottom }) => css`
-  padding: ${gutterBottom ? '1rem' : '1rem 1rem 0 1rem'};
+  padding: ${gutterBottom ? '1.5rem' : '1.5rem 1.5rem 0 1.5rem'};
   display: flex;
   align-items: center;
 `);

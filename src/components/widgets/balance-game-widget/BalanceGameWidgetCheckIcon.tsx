@@ -1,14 +1,23 @@
 import Slide from '@components/animations/Slide';
 import ApproveIcon from '@components/icons/ApproveIcon';
-import { Box } from '@mui/material';
+import { styled } from '@mui/material';
 
 interface BalanceGameWidgetCheckIconProps {
     appear: boolean;
 }
 
+const Container = styled('div')`
+  height: 2rem;
+  padding-bottom: 0.25rem;
+
+  & * {
+    transition: none;
+  }
+`;
+
 const BalanceGameWidgetCheckIcon = ({ appear }: BalanceGameWidgetCheckIconProps) => {
     return (
-        <Box height={'2rem'} paddingBottom={'0.25rem'}>
+        <Container>
             <Slide direction={'up'}
                    height={'1rem'}
                    appear={appear}
@@ -18,7 +27,7 @@ const BalanceGameWidgetCheckIcon = ({ appear }: BalanceGameWidgetCheckIconProps)
                    unmountOnExit>
                 <ApproveIcon color={'white'} />
             </Slide>
-        </Box>
+        </Container>
     );
 };
 
