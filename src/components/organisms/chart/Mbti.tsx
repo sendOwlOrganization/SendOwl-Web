@@ -1,11 +1,8 @@
-import { Box, Grid, useTheme } from '@mui/material';
-import Image from 'next/image';
-import dynamic from "next/dynamic"
-import * as React from "react";
-import {getPopularCategories} from "@api/index";
-import {log} from "util";
+import { Box, useTheme } from '@mui/material';
+import dynamic from 'next/dynamic';
+import { useMemo } from 'react';
 
-const MyResponsivePie = dynamic(()=> import ('./MbtiPie'), {ssr:false})
+const MyResponsivePie = dynamic(() => import ('./MbtiPie'), { ssr: false });
 
 interface DataList {
     id: number;
@@ -14,11 +11,26 @@ interface DataList {
 }
 
 interface Data {
-    data: DataList[]
+    data: DataList[];
 }
 
-const Mbti = ({data}: Data) => {
+const Mbti = ({ data }: Data) => {
+
     const theme = useTheme();
+
+    const categoryPopularList = useMemo(
+        () =>
+            data.map((ele, idx) => {
+                if (ele.count > 0) {
+                    return {
+                        id: ele.id,
+                        label: ele.name,
+                        value: ele.count,
+                    };
+                } else {
+                    return 0;
+                }
+            }), [data]);
 
     return (
         <>
@@ -27,11 +39,11 @@ const Mbti = ({data}: Data) => {
                 height={300}
                 sx={{
                     borderRadius: '20px',
-                    border: `1px solid ${theme.palette.grey[200]}`,
+                    border: `1px solid ${theme.palette.gray[200]}`,
                 }}
                 textAlign={'center'}>
-                카테고리 별 순위
-                <MyResponsivePie data={data}/>
+                카테고리 인기 순위
+                <MyResponsivePie data={categoryPopularList} />
             </Box>
         </>
     );
