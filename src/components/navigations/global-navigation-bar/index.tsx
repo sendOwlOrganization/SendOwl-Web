@@ -9,6 +9,7 @@ import NextLink from 'next/link';
 
 interface GlobalNavigationBarProps {
     isLogged: boolean;
+    currentUrl: string;
 }
 
 const BAR_HEIGHT = '4.5rem';
@@ -35,6 +36,7 @@ const Nav = styled('nav')`
 const Container = styled('div')(({ theme }) => css`
   height: 4.5rem;
   max-width: 75rem;
+  padding: 0 1rem;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -49,22 +51,46 @@ const NavigationButtons = styled(Stack)`
   margin-left: auto;
 `;
 
-const GlobalNavigationBar = ({ isLogged }: GlobalNavigationBarProps) => {
+const navigationButtons = [
+    {
+        href: '/boards',
+        label: '전체 게시물',
+    },
+    {
+        href: '/balance-game',
+        label: '밸런스 게임',
+    },
+    {
+        href: '/insights',
+        label: '인사이트',
+    },
+    {
+        href: '/notice',
+        label: '공지/이벤트',
+    },
+    {
+        href: '/qa',
+        label: 'Q&A',
+    },
+];
+
+const GlobalNavigationBar = ({ isLogged, currentUrl }: GlobalNavigationBarProps) => {
+
     return (
         <>
             <Bar>
                 <Container>
                     <Nav>
-                        <NextLink href={'#'} passHref>
+                        <NextLink href={'/'} passHref>
                             <Anchor>
                                 <MlabLogo />
                             </Anchor>
                         </NextLink>
-                        <GlobalNavigationBarButtonLink href={'#'} label={'전체 게시물'} active />
-                        <GlobalNavigationBarButtonLink href={'#'} label={'밸런스 게임'} />
-                        <GlobalNavigationBarButtonLink href={'#'} label={'인사이트'} />
-                        <GlobalNavigationBarButtonLink href={'#'} label={'공지/이벤트'} />
-                        <GlobalNavigationBarButtonLink href={'#'} label={'Q&A'} />
+                        {
+                            navigationButtons.map(n => <GlobalNavigationBarButtonLink href={n.href} label={n.label}
+                                                                                      key={n.href}
+                                                                                      active={currentUrl.startsWith(n.href)} />)
+                        }
                     </Nav>
                     <NavigationButtons spacing={2} direction={'row'}>
                         <Search />

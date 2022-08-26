@@ -1,11 +1,17 @@
 import { css, styled } from '@mui/material';
 import NextLink from 'next/link';
 
-const Anchor = styled('a')<{ active: boolean }>(({ theme, active }) => css`
+const Span = styled('span')(({ theme }) => css`
   font-size: ${theme.typography.body1.fontSize};
-  color: ${active
-          ? theme.palette.pink[600]
-          : theme.palette.common.black};
+  color: ${theme.palette.pink[600]};
+  font-weight: 700;
+  line-height: 1.76;
+  margin: 0.625rem;
+`)
+
+const Anchor = styled('a')(({ theme }) => css`
+  font-size: ${theme.typography.body1.fontSize};
+  color: ${theme.palette.common.black};
   font-weight: 700;
   line-height: 1.76;
   margin: 0.625rem;
@@ -27,13 +33,18 @@ interface GlobalNavigationBarButtonLinkProps {
 }
 
 const GlobalNavigationBarButtonLink = ({ href, label, active }: GlobalNavigationBarButtonLinkProps) => {
-    return (
-        <NextLink href={href} passHref>
-            <Anchor active={!!active}>
+    return active
+        ? (
+            <Span>
                 {label}
-            </Anchor>
-        </NextLink>
-    );
+            </Span>
+        ) : (
+            <NextLink href={href} passHref>
+                <Anchor>
+                    {label}
+                </Anchor>
+            </NextLink>
+        );
 };
 
 export default GlobalNavigationBarButtonLink;
