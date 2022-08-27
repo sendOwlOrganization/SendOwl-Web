@@ -1,15 +1,12 @@
 import { Card, CardContent, Typography } from '@mui/material';
 
-interface HomePageProps {
-}
-
-const Home = ({}: HomePageProps) => {
+const NoticePage = () => {
     return (
         <>
             <Card elevation={0}>
                 <CardContent>
-                    <Typography align={'center'} variant={'h1'}>
-                        홈
+                    <Typography variant={'h1'} align={'center'}>
+                        공지/이벤트
                     </Typography>
                 </CardContent>
             </Card>
@@ -17,4 +14,4 @@ const Home = ({}: HomePageProps) => {
     );
 };
 
-export default Home;
+export default NoticePage;
