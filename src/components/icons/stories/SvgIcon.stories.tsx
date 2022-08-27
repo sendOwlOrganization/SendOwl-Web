@@ -1,4 +1,5 @@
-import AngleRightBigIcon from '@components/icons/AngleRightBigIcon';
+import AngleDownIcon from '@components/icons/AngleDownIcon';
+import AngleRightIcon from '@components/icons/AngleRightIcon';
 import NotificationIcon from '@components/icons/NotificationIcon';
 import SearchIcon from '@components/icons/SearchIcon';
 import SvgIcon from '@components/icons/SvgIcon';
@@ -29,7 +30,8 @@ const IconItem = ({ icon }: { icon: ReactElement }) => {
 
 const Template: ComponentStory<typeof SvgIcon> = (args) => (
     <Grid container spacing={1}>
-        <IconItem icon={<AngleRightBigIcon {...args} />} />
+        <IconItem icon={<AngleRightIcon {...args} />} />
+        <IconItem icon={<AngleDownIcon {...args} />} />
         <IconItem icon={<SearchIcon {...args} />} />
         <IconItem icon={<UserIcon {...args} />} />
         <IconItem icon={<NotificationIcon {...args} />} />

@@ -1,6 +1,6 @@
 import SvgIcon, { SvgIconProps } from '@components/icons/SvgIcon';
 
-const AngleRightBigIcon = (props: SvgIconProps) => {
+const AngleRightIcon = (props: SvgIconProps) => {
     return (
         <SvgIcon {...props}>
             <path
@@ -10,4 +10,4 @@ const AngleRightBigIcon = (props: SvgIconProps) => {
     );
 };
 
-export default AngleRightBigIcon;
+export default AngleRightIcon;
