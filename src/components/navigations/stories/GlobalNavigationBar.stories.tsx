@@ -54,14 +54,17 @@ const TemplateWithContent: ComponentStory<typeof GlobalNavigationBar> = (args) =
 export const Logged = Template.bind({});
 Logged.args = {
     isLogged: true,
+    currentUrl: '/boards',
 };
 
 export const NotLogged = Template.bind({});
 NotLogged.args = {
     isLogged: false,
+    currentUrl: '/boards',
 };
 
 export const ExampleWithContent = TemplateWithContent.bind({});
 ExampleWithContent.args = {
     isLogged: true,
+    currentUrl: '/boards',
 };
