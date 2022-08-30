@@ -1,7 +1,7 @@
 export type HighlightArray = { word: string, highlighted: boolean }[]
 
 export const highlight = (text: string, query: string): HighlightArray => {
-    const queries = query.trim().replaceAll(/[^a-zA-Z0-9ㄱ-ㅎ가-힣]/g, ' ')
+    const queries = query.trim().replaceAll(/[^a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]/g, ' ')
         .split(' ')
         .filter(q => !!q);
 
