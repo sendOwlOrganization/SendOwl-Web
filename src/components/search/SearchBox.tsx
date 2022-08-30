@@ -3,8 +3,7 @@ import SearchIcon from '@components/icons/SearchIcon';
 import SearchAutocomplete from '@components/search/SearchAutocomplete';
 import Toggle from '@components/toggle/Toggle';
 import { css, Stack, styled, Typography } from '@mui/material';
-import { ChangeEvent, useRef, useState } from 'react';
-import PopularSearch from './PopularSearch';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import RecentlySearched from './RecentlySearched';
 import SearchRecommendation from './SearchRecommendation';
 
@@ -78,6 +77,10 @@ const SearchBox = ({ recentlySearched, recommendations, populars }: SearchBoxPro
         inputRef.current?.focus();
     };
 
+    useEffect(() => {
+        inputRef.current?.focus();
+    }, [])
+
     return (
         <Container>
             <SearchArea>
@@ -89,12 +92,13 @@ const SearchBox = ({ recentlySearched, recommendations, populars }: SearchBoxPro
             <BodyArea padding={search ? '20px' : '32px'} spacing={5}>
                 {
                     search
-                        ? (<SearchAutocomplete inputRef={inputRef} setSearch={onChangeSearch} query={search} />)
+                        ? (<SearchAutocomplete words={recentlySearched}
+                                               inputRef={inputRef}
+                                               query={search} />)
                         : (
                             <>
                                 {saveHistory && <RecentlySearched words={recentlySearched} setSearch={onChangeSearch} />}
                                 <SearchRecommendation words={recommendations} setSearch={onChangeSearch} />
-                                <PopularSearch words={populars} setSearch={onChangeSearch} />
                             </>
                         )
                 }

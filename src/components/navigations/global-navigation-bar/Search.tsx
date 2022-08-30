@@ -1,7 +1,8 @@
 import SearchIcon from '@components/icons/SearchIcon';
 import SearchBox from '@components/search/SearchBox';
 import { Dialog } from '@mui/material';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 const searchBoxMocks = {
     recentlySearched: ['최근', '검색어', '아래', '토글로', '끌 수 있음'],
@@ -11,6 +12,7 @@ const searchBoxMocks = {
 
 const Search = () => {
     const [open, setOpen] = useState<boolean>(false);
+    const router = useRouter();
 
     const handleOpenDialog = () => {
         setOpen(true);
@@ -19,6 +21,10 @@ const Search = () => {
     const handleCloseDialog = () => {
         setOpen(false);
     };
+
+    useEffect(() => {
+        handleCloseDialog();
+    }, [router.pathname, router.query])
 
     return (
         <>

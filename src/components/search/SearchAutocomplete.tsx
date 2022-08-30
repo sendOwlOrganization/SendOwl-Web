@@ -1,7 +1,8 @@
 import Highlighter from '@components/highlighter/Highlighter';
 import SearchIcon from '@components/icons/SearchIcon';
-import { Box, css, styled, Typography } from '@mui/material';
+import { css, styled } from '@mui/material';
 import { highlight } from '@tools/string';
+import NextLink from 'next/link';
 import { RefObject, useEffect, useMemo, useState } from 'react';
 
 const MIN_HEIGHT = '344px';
@@ -16,7 +17,7 @@ const OrderedList = styled('ol')(({ theme }) => css`
 const ListItem = styled('li')(({ theme }) => css`
 `);
 
-const Button = styled('button')(({ theme }) => css`
+const Anchor = styled('a')(({ theme }) => css`
   display: flex;
   border-radius: 8px;
   padding: 0.5rem 0;
@@ -45,37 +46,30 @@ const Button = styled('button')(({ theme }) => css`
 `);
 
 interface SearchAutocompleteProps {
+    words?: string[];
     query: string;
-    setSearch: (value: string) => void;
     inputRef?: RefObject<HTMLInputElement>;
 }
 
-const mockWords = [
-    'ENTJ',
-    'ENTJ 특징',
-    'ENTJ 팩폭',
-    'ENTJ INFP',
-    'ENTJ 빙고',
-    'ENTJ 짤',
-    'ENTJ 밈',
-    'ENTJ 궁합',
-    'ENTJ 연예인',
-    'ENTJ 성격',
-];
-
 const id = 'autocomplete-results';
+const LINKS_SELECTOR = `#${id} > li > a`;
 
-const SearchAutocomplete = ({ query, setSearch, inputRef }: SearchAutocompleteProps) => {
+const SearchAutocomplete = ({ words = [], query, inputRef }: SearchAutocompleteProps) => {
     const [focused, setFocused] = useState<number>(NaN);
     useEffect(() => {
         const useArrow = (e: KeyboardEvent) => {
-            const buttons = document.querySelectorAll(`#${id} > li > button`);
+            const buttons = document.querySelectorAll(LINKS_SELECTOR);
             if (e.key === 'ArrowUp') {
                 e.preventDefault();
                 setFocused(f => (isNaN(f) || f <= 0) ? NaN : Math.max(0, f - 1));
             } else if (e.key === 'ArrowDown') {
                 e.preventDefault();
                 setFocused(f => isNaN(f) ? 0 : Math.min(buttons.length - 1, f + 1));
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                const index = isNaN(focused) ? 0 : focused;
+                const link = document.querySelectorAll(LINKS_SELECTOR)[index] as (HTMLAnchorElement | undefined);
+                link?.click();
             }
         };
         document.addEventListener('keydown', useArrow);
@@ -85,47 +79,42 @@ const SearchAutocomplete = ({ query, setSearch, inputRef }: SearchAutocompletePr
     }, [focused]);
 
     useEffect(() => {
+        setFocused(NaN);
+    }, [query]);
+
+    useEffect(() => {
         if (isNaN(focused)) {
             inputRef?.current?.focus();
             return;
         }
-        const button = document.querySelectorAll(`#${id} > li > button`)[focused] as (HTMLButtonElement | undefined);
+        const button = document.querySelectorAll(LINKS_SELECTOR)[focused] as (HTMLAnchorElement | undefined);
         if (button) {
             button.focus();
         }
     }, [focused, inputRef]);
 
     const elements = useMemo(() => {
-        return mockWords.map((word, i) => {
+        return [...new Set([query, ...words])].map((word, i) => {
             const highlights = highlight(word, query);
             if (highlights.every(w => !w.highlighted))
                 return null;
             return (
                 <ListItem key={`${word}-${i}`}>
-                    <Button onClick={() => {
-                        setSearch(word);
-                    }}>
-                        <SearchIcon />
-                        <Highlighter highlights={highlights} />
-                    </Button>
+                    <NextLink href={`/search?query=${encodeURI(word)}`} passHref>
+                        <Anchor>
+                            <SearchIcon />
+                            <Highlighter highlights={highlights} />
+                        </Anchor>
+                    </NextLink>
                 </ListItem>
             );
         }).filter(el => !!el);
-    }, [query, setSearch]);
+    }, [words, query]);
 
-    return elements.length ? (
+    return (
         <OrderedList id={id}>
             {elements}
         </OrderedList>
-    ) : (
-        <Box display={'flex'} height={MIN_HEIGHT} justifyContent={'center'} alignItems={'center'}>
-            <Typography variant={'subtitle3'} fontWeight={400} color={theme => theme.palette.gray[600]}>
-                <Typography variant={'subtitle3'} color={'inherit'} component={'span'}>
-                    {`"${query}"`}
-                </Typography>
-                에 대한 검색결과가 없습니다
-            </Typography>
-        </Box>
     );
 };
 
