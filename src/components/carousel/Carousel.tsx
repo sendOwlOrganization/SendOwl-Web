@@ -14,8 +14,7 @@ interface CarouselDataProps {
 
 const Carousel = ({data}: CarouselDataProps) => {
     return (
-        <Box sx={{width: '56rem', height: '21.813rem', padding: 0 }}
-             border-radius={'16px'}>
+        <Box sx={{width: '56rem', height: '22rem', borderRadius: '16px', padding: 0}}>
             <CarouselSlide
                 indicatorIconButtonProps={{
                     style: {
@@ -23,8 +22,8 @@ const Carousel = ({data}: CarouselDataProps) => {
                         position: 'relative',
                         bottom: '3rem',
                         zIndex: 1,
-                        width: '1rem',
-                    },
+                        width: '1rem'
+                    }
                 }}
                 activeIndicatorIconButtonProps={{
                     style: {
@@ -35,7 +34,7 @@ const Carousel = ({data}: CarouselDataProps) => {
             >
                 {data.map((element, index) => (
                     <div key={element.id}>
-                        <Image src={element.images} alt={element.name} width={869} height={349} unoptimized />
+                        <Image src={element.images} alt={element.name} width={869} height={349} unoptimized/>
                     </div>
                 ))}
             </CarouselSlide>
