@@ -1,10 +1,7 @@
-import {Box, Button, MobileStepper, Paper, Typography, useTheme} from "@mui/material";
-import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
-import {useState} from "react";
+import {Box} from "@mui/material";
+import CarouselSlide from "react-material-ui-carousel";
 import Image from "next/image";
-
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+import {MLAB_NEUTRAL_PALETTE, MLAB_OPACITY_PALETTE} from "@styles/mlabTheme";
 
 interface CarouselData {
     id: number;
@@ -16,39 +13,32 @@ interface CarouselDataProps {
 }
 
 const Carousel = ({data}: CarouselDataProps) => {
-    const theme = useTheme();
-    const [activeStep, setActiveStep] = useState(0);
-    const maxSteps = data.length;
-
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
-
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
-
-    const handleStepChange = (step: number) => {
-        setActiveStep(step);
-    };
-
     return (
-        <Box sx={{width: '56rem', height: '21.813rem'}}
+        <Box sx={{width: '56rem', height: '21.813rem', padding: 0 }}
              border-radius={'16px'}>
-            <AutoPlaySwipeableViews
-                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                index={activeStep}
-                onChangeIndex={handleStepChange}
-                enableMouseEvents
+            <CarouselSlide
+                indicatorIconButtonProps={{
+                    style: {
+                        color: MLAB_OPACITY_PALETTE.white[300],
+                        position: 'relative',
+                        bottom: '3rem',
+                        zIndex: 1,
+                        width: '1rem',
+                    },
+                }}
+                activeIndicatorIconButtonProps={{
+                    style: {
+                        color: MLAB_NEUTRAL_PALETTE.white,
+                    },
+                }}
+                navButtonsAlwaysInvisible
             >
-                {data.map((step, index) => (
-                    <div key={step.id}>
-                        {Math.abs(activeStep - index) <= 2 ? (
-                            <Image src={step.images} alt={step.name} width={869} height={349} unoptimized/>
-                        ) : null}
+                {data.map((element, index) => (
+                    <div key={element.id}>
+                        <Image src={element.images} alt={element.name} width={869} height={349} unoptimized />
                     </div>
                 ))}
-            </AutoPlaySwipeableViews>
+            </CarouselSlide>
         </Box>
     );
 }
