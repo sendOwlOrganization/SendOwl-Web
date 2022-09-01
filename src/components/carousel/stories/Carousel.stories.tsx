@@ -17,9 +17,13 @@ const Template: ComponentStory<typeof Carousel> = (args) => (
 );
 
 const dataMock = [
-    {id: 1, images: 'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
+    {id: 1, name: 'ad1', images: "/images/ad1.png",
     },
-    {id: 2, images: 'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
+    {id: 2, name: 'ad2', images: '/images/ad2.png',
+    },
+    {id:3, name: 'ad3', images: '/images/ad3.png',
+    },
+    {id: 4, name: 'ad4', images: '/images/ad4.png',
     }
 ];
 
