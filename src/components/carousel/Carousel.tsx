@@ -2,12 +2,13 @@ import {Box, Button, MobileStepper, Paper, Typography, useTheme} from "@mui/mate
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import {useState} from "react";
-import {StaticImageData} from "next/image";
+import Image from "next/image";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 interface CarouselData {
     id: number;
+    name: string;
     images: string;
 }
 interface CarouselDataProps {
@@ -43,17 +44,7 @@ const Carousel = ({data}: CarouselDataProps) => {
                 {data.map((step, index) => (
                     <div key={step.id}>
                         {Math.abs(activeStep - index) <= 2 ? (
-                            <Box
-                                component="img"
-                                sx={{
-                                    display: 'block',
-                                    overflow: 'hidden',
-                                    width: 896,
-                                    height: 349,
-                                    borderRadius: '16px',
-                                }}
-                                src={step.images}
-                            />
+                            <Image src={step.images} alt={step.name} width={869} height={349} unoptimized/>
                         ) : null}
                     </div>
                 ))}
