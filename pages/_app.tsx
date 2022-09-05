@@ -1,5 +1,5 @@
+import GlobalLayout from '@components/layout/GlobalLayout';
 import { CacheProvider } from '@emotion/react';
-import GlobalLayout from '@molecules/GlobalLayout';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import '@styles/globals.css';
 import createMlabMuiTheme from '@styles/muiTheme';

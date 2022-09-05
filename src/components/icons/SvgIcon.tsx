@@ -12,6 +12,7 @@ export interface SvgIconProps {
     spacing?: number;
     scale?: number;
     badge?: MlabColorType;
+    roundedBorder?: boolean;
 }
 
 const commonPalette = {
@@ -61,15 +62,17 @@ const Button = styled('button')<{
     color: MlabColorType | 'gray' | 'white' | 'black',
     spacing: number,
     disableHoverBackground: boolean,
+    rounded: boolean,
 }>(({
         theme,
         color,
         spacing,
         disableHoverBackground,
+        rounded,
     }) => css`
   border: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: ${rounded ? 16 : 4}px;
   background-color: transparent;
   height: ${24 + spacing * 2 * SPACING}px;
   width: ${24 + spacing * 2 * SPACING}px;
@@ -119,10 +122,12 @@ const SvgIcon = ({
                      scale = 0,
                      disableHoverBackground,
                      badge,
+                     roundedBorder,
                  }: PropsWithChildren<SvgIconProps>) => {
     return onClick || clickable
         ? (
-            <Button onClick={onClick} color={color} spacing={spacing} disableHoverBackground={!!disableHoverBackground}>
+            <Button rounded={!!roundedBorder} onClick={onClick} color={color} spacing={spacing}
+                    disableHoverBackground={!!disableHoverBackground}>
                 <Svg color={color}
                      spacing={spacing}
                      scale={scale}

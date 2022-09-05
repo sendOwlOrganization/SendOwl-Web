@@ -1,49 +1,27 @@
-import { getPopularCategories } from '@api/index';
-import { BoardCategoryList } from '@organisms/board-category-list';
-import { MainContent } from '@organisms/main';
-import { ComponentProps } from 'react';
+import { Card, CardContent, Typography } from '@mui/material';
+import NextLink from 'next/link';
 
 interface HomePageProps {
-    boards: ComponentProps<typeof BoardCategoryList>['boards'];
 }
 
-interface DataList {
-    id: number;
-    name: string;
-    count: number;
-}
-
-interface Data {
-    data: DataList[];
-}
-
-const Home = ({ data }: Data) => {
+const Home = ({}: HomePageProps) => {
     return (
         <>
-            <MainContent data={data} />
+            <Card elevation={0}>
+                <CardContent>
+                    <Typography align={'center'} variant={'h1'} gutterBottom>
+                        홈
+                    </Typography>
+                    <NextLink href={'/login'} passHref>
+                        <Typography component={'a'} display={'block'} color={'primary.main'} align={'center'}
+                                    variant={'h2'}>
+                            임시 로그인 페이지 링크
+                        </Typography>
+                    </NextLink>
+                </CardContent>
+            </Card>
         </>
     );
-};
-
-// export const getStaticProps = async () => {
-//     return {
-//         props: {
-//             boards: boardsMock,
-//             popularCategory: getPopularCategories,
-//         },
-//     };
-// };
-
-export const getServerSideProps = async () => {
-    const res = getPopularCategories();
-
-    const data = await res;
-
-    return {
-        props: {
-            data,
-        },
-    };
 };
 
 export default Home;

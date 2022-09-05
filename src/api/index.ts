@@ -18,7 +18,7 @@ const fetchSendOwlApi = async <T extends unknown>(
     init?: Parameters<typeof fetch>[1],
 ): Promise<FetchResponse<T>> => {
     try {
-        const API_URL = process.env.SENDOWL_API_URL;
+        const API_URL = process.env.NEXT_PUBLIC_SENDOWL_API_URL;
         const data = await fetch(`${API_URL}/api/${endpoint}`, init);
         if (data.ok) {
             const response: T = await data.json();
@@ -46,11 +46,12 @@ const fetchSendOwlApi = async <T extends unknown>(
 };
 
 export const getBoards = async (
+    categoryId: number,
     page: number,
     pageSize: number,
 ): Promise<FetchResponse<BoardsResponse>> =>
     await fetchSendOwlApi<BoardsResponse>(
-        `boards?page=${page}&size=${pageSize}&sort=id,DESC`,
+        `boards?categoryId=${categoryId}&page=${page}&size=${pageSize}&sort=id,DESC`,
     );
 
 export const getBoardDetails = async (
