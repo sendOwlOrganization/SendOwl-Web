@@ -2,6 +2,7 @@ import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import KakaoProvider from 'next-auth/providers/kakao';
 import NaverProvider from 'next-auth/providers/naver';
+import fetch from 'node-fetch';
 
 export default NextAuth({
     providers: [
@@ -26,10 +27,35 @@ export default NextAuth({
     },
     callbacks: {
         async jwt({ token, user, isNewUser, account, profile }) {
+            if (!account) {
+                return token;
+            }
+            // backend call
+            const body = {
+                transactionId: account?.provider,
+                token: account?.access_token,
+            };
+            console.log({ account, body });
+            const response = await fetch(`${process.env.NEXT_PUBLIC_SENDOWL_API_URL}/api/users/oauth2`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body),
+            });
+
+            if (!response.ok) {
+                // console.error(response);
+            }
+
+            token.accessToken = response.headers.get('accessToken');
+
+
             return token;
         },
         async session({ session, token }) {
-            session.token = token;
+            const { accessToken } = token;
+            session.token = accessToken;
             return session;
         },
     },
