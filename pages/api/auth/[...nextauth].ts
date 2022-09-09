@@ -30,26 +30,23 @@ export default NextAuth({
             if (!account) {
                 return token;
             }
-            // backend call
-            const body = {
-                transactionId: account?.provider,
-                token: account?.access_token,
-            };
-            console.log({ account, body });
             const response = await fetch(`${process.env.NEXT_PUBLIC_SENDOWL_API_URL}/api/users/oauth2`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(body),
+                body: JSON.stringify({
+                    transactionId: account?.provider,
+                    token: account?.access_token,
+                }),
             });
 
             if (!response.ok) {
                 // console.error(response);
             }
-
             token.accessToken = response.headers.get('accessToken');
 
+            // FIXME: if user need to be created, need redirect to MBTI register page
 
             return token;
         },
