@@ -92,7 +92,6 @@ const createMlabMuiTheme = (mode: PaletteMode = 'light') => createTheme({
         },
         ...MLAB_PALETTE,
         gray: MLAB_NEUTRAL_PALETTE.gray,
-        contrastThreshold: 1,
         background: {
             default: MLAB_NEUTRAL_PALETTE.gray[200],
         },
