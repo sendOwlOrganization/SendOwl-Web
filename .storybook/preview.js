@@ -51,7 +51,7 @@ export const decorators = [
         useEffect(() => {
             updateGlobals({
                 backgrounds: {
-                    value: theme.palette.mode === 'dark' ? MLAB_NEUTRAL_PALETTE.black : MLAB_NEUTRAL_PALETTE.white,
+                    value: theme.palette.mode === 'dark' ? MLAB_NEUTRAL_PALETTE.gray[1000] : MLAB_NEUTRAL_PALETTE.gray[300],
                 },
             })
         }, [theme])
