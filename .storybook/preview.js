@@ -2,7 +2,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material'
 import { useGlobals } from '@storybook/addons'
 import { ThemeProvider as Emotion10ThemeProvider } from 'emotion-theming'
 import { RouterContext } from 'next/dist/shared/lib/router-context'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDarkMode } from 'storybook-dark-mode'
 import '../styles/globals.css'
 import { MLAB_NEUTRAL_PALETTE } from '../styles/mlabTheme'
@@ -45,7 +45,12 @@ export const parameters = {
 export const decorators = [
     (Story) => {
         const isDark = useDarkMode()
-        const theme = isDark ? createMlabMuiTheme('dark') : createMlabMuiTheme('light')
+        const [theme, setTheme] = useState(isDark ? createMlabMuiTheme('dark') : createMlabMuiTheme('light'))
+
+        useEffect(() => {
+            setTheme(isDark ? createMlabMuiTheme('dark') : createMlabMuiTheme('light'))
+        }, [isDark, theme])
+
         const [globals, updateGlobals] = useGlobals()
 
         useEffect(() => {
