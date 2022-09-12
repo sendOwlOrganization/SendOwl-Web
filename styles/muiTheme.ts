@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { createTheme, PaletteMode } from '@mui/material';
 import { MLAB_NEUTRAL_PALETTE, MLAB_OPACITY_PALETTE, MLAB_PALETTE, MLAB_SEMANTIC_PALETTE } from '@styles/mlabTheme';
 import { CSSProperties } from 'react';
 
@@ -65,8 +65,9 @@ declare module '@mui/material/Typography' {
 }
 
 
-const createMlabMuiTheme = () => createTheme({
+const createMlabMuiTheme = (mode: PaletteMode = 'light') => createTheme({
     palette: {
+        mode: mode,
         primary: {
             main: MLAB_PALETTE.pink['500'],
         },

@@ -16,6 +16,7 @@ module.exports = {
         '@storybook/addon-essentials',
         '@storybook/addon-interactions',
         'storybook-addon-next-router',
+        'storybook-dark-mode',
     ],
     'framework': '@storybook/react',
     'core': {
