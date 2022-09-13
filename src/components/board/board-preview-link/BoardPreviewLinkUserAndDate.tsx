@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 import { formatDate } from '@tools/date';
+import useThemeMode from '@tools/useThemeMode';
 
 interface BoardPreviewLinkUserAndDateProps {
     id: number;
@@ -9,8 +10,10 @@ interface BoardPreviewLinkUserAndDateProps {
 }
 
 const BoardPreviewLinkUserAndDate = ({ mbti, name, id, date }: BoardPreviewLinkUserAndDateProps) => {
+    const { isDark } = useThemeMode();
     return (
-        <Typography variant={'body2'} color={theme => theme.palette.gray[800]}>
+        <Typography variant={'body2'}
+                    color={theme => theme.palette.gray[500]}>
             <Typography variant={'body2'}
                         color={theme => theme.palette.lightPink[600]}
                         fontWeight={'bold'}
@@ -19,12 +22,12 @@ const BoardPreviewLinkUserAndDate = ({ mbti, name, id, date }: BoardPreviewLinkU
             </Typography>
             {name}
             <Typography variant={'body2'}
-                        color={theme => theme.palette.gray[600]}
                         fontWeight={'bold'}
                         component={'span'}>
                 ・
             </Typography>
-            <Typography variant={'body2'} color={theme => theme.palette.gray[600]}
+            <Typography variant={'body2'}
+                        color={theme => isDark ? theme.palette.gray[700] : 'inherit'}
                         component={'span'}>
                 {formatDate(date)}
             </Typography>
