@@ -90,7 +90,7 @@ export const MLAB_NEUTRAL_PALETTE = {
         1000: '#2D2E31',
     },
     white: '#FFFFFF',
-    black: '#2A323B',
+    black: '#1A1B1E',
 } as const;
 
 export const MLAB_OPACITY_PALETTE = {
