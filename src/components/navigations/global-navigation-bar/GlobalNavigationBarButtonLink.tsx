@@ -11,17 +11,17 @@ const Span = styled('span')(({ theme }) => css`
 
 const Anchor = styled('a')(({ theme }) => css`
   font-size: ${theme.typography.body1.fontSize};
-  color: ${theme.palette.common.black};
+  color: ${theme.palette.text.primary};
   font-weight: bold;
   line-height: 1.76;
   margin: 0.625rem;
 
   :hover {
-    color: ${theme.palette.gray[900]};
+    color: ${theme.palette.mode === 'dark' ? theme.palette.gray[200] : theme.palette.gray[900]};
   }
 
   :active {
-    color: ${theme.palette.gray[1000]};
+    color: ${theme.palette.mode === 'dark' ? theme.palette.gray[100] : theme.palette.gray[1000]};
   }
 
 `);

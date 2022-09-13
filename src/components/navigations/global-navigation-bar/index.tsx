@@ -16,12 +16,12 @@ const BAR_HEIGHT = '4.5rem';
 
 const Bar = styled('header')(({ theme }) => css`
   height: ${BAR_HEIGHT};
-  background-color: ${MLAB_OPACITY_PALETTE.white[600]};
+  background-color: ${theme.palette.mode === 'dark' ? MLAB_OPACITY_PALETTE.black[600] : MLAB_OPACITY_PALETTE.white[600]};
   backdrop-filter: blur(30px);
   position: fixed;
   width: 100%;
   z-index: ${theme.zIndex.appBar};
-  border-bottom: 1px solid ${theme.palette.gray[200]};
+  border-bottom: 1px solid ${theme.palette.mode === 'dark' ? theme.palette.gray[900] : theme.palette.gray[200]};
 `);
 
 const BarPadding = styled('div')`

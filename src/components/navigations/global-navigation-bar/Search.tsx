@@ -24,11 +24,11 @@ const Search = () => {
 
     useEffect(() => {
         handleCloseDialog();
-    }, [router.pathname, router.query])
+    }, [router.pathname, router.query]);
 
     return (
         <>
-            <SearchIcon color={open ? 'pink' : 'black'}
+            <SearchIcon color={open ? 'pink' : undefined}
                         onClick={handleOpenDialog}
                         disableHoverBackground />
             <Dialog maxWidth={'xl'} open={open} onClose={handleCloseDialog}>
