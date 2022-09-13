@@ -63,7 +63,7 @@ const labelVariants = {
     filled: filledLabelCss,
 };
 
-const LabelContainer = styled('span')<LabelContainerProps>
+const LabelContainer = styled('span', { shouldForwardProp: (name) => name !== 'isClickable' && name !== 'rounded' })<LabelContainerProps>
 (({ theme, variant, color, isClickable, rounded, size, padding }) => css`
   ${labelCss(theme, rounded, size, padding)}
   ${labelVariants[variant](theme, color, isClickable)}

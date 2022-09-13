@@ -58,7 +58,9 @@ const Span = styled('span')<{ spacing: number }>(({ theme, spacing }) => css`
 `);
 
 
-const Button = styled('button')<{
+const Button = styled('button', {
+    shouldForwardProp: (name) => !['disableHoverBackground', 'rounded'].includes(name as string),
+})<{
     color: MlabColorType | 'gray' | 'white' | 'black',
     spacing: number,
     disableHoverBackground: boolean,

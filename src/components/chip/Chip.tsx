@@ -2,7 +2,9 @@ import CloseIcon from '@components/icons/CloseIcon';
 import { Box, css, styled, Typography } from '@mui/material';
 
 
-const Container = styled('div')<{ close: boolean }>(({ theme, close }) => css`
+const Container = styled('div', {
+    shouldForwardProp: (name) => name !== 'close',
+})<{ close: boolean }>(({ theme, close }) => css`
   display: inline-flex;
   align-items: center;
   border-radius: 1rem;
@@ -11,7 +13,9 @@ const Container = styled('div')<{ close: boolean }>(({ theme, close }) => css`
   ${close && 'position: relative;'}
 `);
 
-const ClickableArea = styled('button')<{ close: boolean }>(({ theme, close }) => css`
+const ClickableArea = styled('button', {
+    shouldForwardProp: (name) => name !== 'close',
+})<{ close: boolean }>(({ theme, close }) => css`
   outline: none;
   border: none;
   display: flex;

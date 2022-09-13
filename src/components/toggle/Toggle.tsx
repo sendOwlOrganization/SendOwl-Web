@@ -66,7 +66,10 @@ const Toggle = ({ on, onClick, color = 'pink' }: ToggleProps) => {
 
     return (
         <Span>
-            <Checkbox id={id} type={'checkbox'} color={color} checked={on} onClick={onClick} />
+            <Checkbox id={id} type={'checkbox'} color={color} checked={on}
+                      onChange={() => {
+                      }}
+                      onClick={onClick} />
             <Label htmlFor={id}>
                 <Ellipse />
             </Label>

@@ -7,7 +7,9 @@ interface BannerTitleProps {
     gutterBottom?: true;
 }
 
-const TitleContainer = styled('a')<{ gutterBottom?: true }>(({ theme, gutterBottom }) => css`
+const TitleContainer = styled('a',
+    { shouldForwardProp: (name) => name !== 'gutterBottom' },
+)<{ gutterBottom?: true }>(({ gutterBottom }) => css`
   padding: ${gutterBottom ? '1.5rem' : '1.5rem 1.5rem 0 1.5rem'};
   display: flex;
   align-items: center;
