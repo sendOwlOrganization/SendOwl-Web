@@ -1,7 +1,8 @@
 import Percent from '@components/chart/percent-pie-chart/Percent';
-import { Box, Fade, styled, useTheme } from '@mui/material';
+import { Box, Fade, styled } from '@mui/material';
 import { Pie } from '@nivo/pie';
 import { MlabColorType } from '@styles/mlabTheme';
+import useThemeMode from '@tools/useThemeMode';
 import * as React from 'react';
 import { useEffect, useMemo, useState } from 'react';
 
@@ -67,8 +68,8 @@ const useDebouncePieChartData = (data: PercentPieChartData[], highlightIndex: nu
     };
 };
 
-const PercentPieChart = ({ data, highlightIndex = 0, color = 'lightPink', size = 6 }: PercentPieChartProps) => {
-    const theme = useTheme();
+const PercentPieChart = ({ data, highlightIndex = 0, color = 'blue', size = 6 }: PercentPieChartProps) => {
+    const { isDark, theme } = useThemeMode();
     const { chartData, highlightedCount, totalCount } = useDebouncePieChartData(data, highlightIndex, 250);
 
     return (
@@ -90,7 +91,7 @@ const PercentPieChart = ({ data, highlightIndex = 0, color = 'lightPink', size =
                      cornerRadius={16}
                      enableArcLinkLabels={false}
                      isInteractive={false}
-                     colors={[`${theme.palette[color][600]}`, `${theme.palette.gray[200]}`]}
+                     colors={[`${theme.palette[color][600]}`, `${isDark ? theme.palette.gray[900] : theme.palette.gray[100]}`]}
                      arcLabel={''}
                 />
             </Box>
