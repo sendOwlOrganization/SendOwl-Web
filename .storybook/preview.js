@@ -49,7 +49,7 @@ export const decorators = [
 
         useEffect(() => {
             setTheme(isDark ? createMlabMuiTheme('dark') : createMlabMuiTheme('light'))
-        }, [isDark, theme])
+        }, [isDark])
 
         const [globals, updateGlobals] = useGlobals()
 
@@ -59,7 +59,7 @@ export const decorators = [
                     value: theme.palette.mode === 'dark' ? MLAB_NEUTRAL_PALETTE.gray[1000] : MLAB_NEUTRAL_PALETTE.gray[300],
                 },
             })
-        }, [theme])
+        }, [theme.palette.mode])
 
         return (
             <Emotion10ThemeProvider theme={theme}>
