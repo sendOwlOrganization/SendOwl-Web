@@ -10,7 +10,7 @@ interface BoardCategoryTitleProps {
 }
 
 const DetailsLink = styled('a')`
-  font-weight: 400;
+  font-weight: normal;
   font-size: 12px;
   text-decoration: none;
   color: inherit;

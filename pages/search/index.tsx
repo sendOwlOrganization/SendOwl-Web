@@ -16,7 +16,7 @@ const SearchPage = ({ results, query }: SearchPageProps) => {
         <>
             <Card elevation={0} sx={{ marginBottom: 2 }}>
                 <CardContent>
-                    <Typography align={'center'} fontWeight={400} variant={'h1'}>
+                    <Typography align={'center'} fontWeight={'normal'} variant={'h1'}>
                         검색 : <Typography variant={'h1'} component={'span'}>{query}</Typography>
                     </Typography>
                 </CardContent>

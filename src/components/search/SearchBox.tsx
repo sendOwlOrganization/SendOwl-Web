@@ -24,7 +24,7 @@ const SearchInput = styled('input')(({ theme }) => css`
   margin: 0 16px;
   border: none;
   font-size: ${theme.typography.subtitle3.fontSize};
-  font-weight: 400;
+  font-weight: normal;
 
   :active {
     outline: none;
@@ -79,7 +79,7 @@ const SearchBox = ({ recentlySearched, recommendations, populars }: SearchBoxPro
 
     useEffect(() => {
         inputRef.current?.focus();
-    }, [])
+    }, []);
 
     return (
         <Container>
@@ -105,7 +105,7 @@ const SearchBox = ({ recentlySearched, recommendations, populars }: SearchBoxPro
             </BodyArea>
             <FootArea>
                 <Typography variant={'subtitle4'}
-                            fontWeight={400}
+                            fontWeight={'normal'}
                             color={theme => theme.palette.gray[700]}
                             marginRight={'0.75rem'}>
                     검색어 기록
