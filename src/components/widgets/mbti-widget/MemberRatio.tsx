@@ -9,7 +9,7 @@ interface MemberRatioProps {
 const MemberRatio = ({ count, total }: MemberRatioProps) => {
     const animatedCount = useCountUp(count, 0, 500);
     return (
-        <Typography variant={'body2'} lineHeight={1.65} color={theme => theme.palette.gray[700]}>
+        <Typography variant={'body2'} lineHeight={1.65} color={theme => theme.palette.gray[500]}>
             <Typography variant={'body2'} component={'span'} fontWeight={'bold'}
                         color={'inherit'}>
                 {animatedCount.toLocaleString()}
