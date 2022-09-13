@@ -13,14 +13,14 @@ const BoardPreviewLinkUserAndDate = ({ mbti, name, id, date }: BoardPreviewLinkU
         <Typography variant={'body2'} color={theme => theme.palette.gray[800]}>
             <Typography variant={'body2'}
                         color={theme => theme.palette.lightPink[600]}
-                        fontWeight={700}
+                        fontWeight={'bold'}
                         component={'span'}>
                 {`${mbti} `}
             </Typography>
             {name}
             <Typography variant={'body2'}
                         color={theme => theme.palette.gray[600]}
-                        fontWeight={700}
+                        fontWeight={'bold'}
                         component={'span'}>
                 ・
             </Typography>

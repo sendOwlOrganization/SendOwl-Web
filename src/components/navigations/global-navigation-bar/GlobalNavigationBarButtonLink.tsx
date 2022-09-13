@@ -4,15 +4,15 @@ import NextLink from 'next/link';
 const Span = styled('span')(({ theme }) => css`
   font-size: ${theme.typography.body1.fontSize};
   color: ${theme.palette.pink[600]};
-  font-weight: 700;
+  font-weight: bold;
   line-height: 1.76;
   margin: 0.625rem;
-`)
+`);
 
 const Anchor = styled('a')(({ theme }) => css`
   font-size: ${theme.typography.body1.fontSize};
   color: ${theme.palette.common.black};
-  font-weight: 700;
+  font-weight: bold;
   line-height: 1.76;
   margin: 0.625rem;
 

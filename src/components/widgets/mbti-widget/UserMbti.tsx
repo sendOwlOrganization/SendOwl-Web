@@ -19,7 +19,7 @@ const UserMbti = ({ mbti }: UserMbtiProps) => {
             </Typography>
             <Typography variant={'subtitle2'}
                         component={'span'}
-                        fontWeight={700}
+                        fontWeight={'bold'}
                         color={theme => theme.palette.lightPink[600]}>
                 {mbti}
             </Typography>

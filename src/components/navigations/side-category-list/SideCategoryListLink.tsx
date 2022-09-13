@@ -30,7 +30,7 @@ const SideCategoryListLink = ({ label, count, href, active }: SideCategoryListLi
         <NextLink href={href} passHref>
             <Link>
                 <Typography variant={'body1'}
-                            fontWeight={active ? 700 : 400}>
+                            fontWeight={active ? 'bold' : 'normal'}>
                     {label}
                 </Typography>
                 <Label color={'lightPink'} variant={'default'}>{count.toLocaleString()}</Label>

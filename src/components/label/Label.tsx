@@ -24,7 +24,7 @@ const labelCss = (theme: Theme, rounded: boolean, size: number, padding: number)
   display: inline-flex;
   border-radius: ${rounded ? 4 * size * padding : 4}px;
   padding: ${padding * 4}px ${padding * 8}px;
-  font-weight: 700;
+  font-weight: bold;
   font-size: ${12 * size}px;
   transition: all 100ms ${theme.transitions.easing.easeInOut};
 `;

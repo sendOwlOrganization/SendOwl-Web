@@ -8,7 +8,7 @@ interface HighlighterProps {
 
 const Highlighted = styled('span')(({ theme }) => css`
   color: ${theme.palette.pink[600]};
-  font-weight: 700;
+  font-weight: bold;
 `);
 
 const Highlighter = ({ highlights }: HighlighterProps) => {
