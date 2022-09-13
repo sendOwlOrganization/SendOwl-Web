@@ -45,13 +45,13 @@ export const parameters = {
 export const decorators = [
     (Story) => {
         const isDark = useDarkMode()
-        const [theme, setTheme] = useState(isDark ? createMlabMuiTheme('dark') : createMlabMuiTheme('light'))
+        const [theme, setTheme] = useState(() => createMlabMuiTheme(isDark ? 'dark' : 'light'))
+        const [globals, updateGlobals] = useGlobals()
 
         useEffect(() => {
-            setTheme(isDark ? createMlabMuiTheme('dark') : createMlabMuiTheme('light'))
+            const mode = isDark ? 'dark' : 'light'
+            setTheme(createMlabMuiTheme(mode))
         }, [isDark])
-
-        const [globals, updateGlobals] = useGlobals()
 
         useEffect(() => {
             updateGlobals({
