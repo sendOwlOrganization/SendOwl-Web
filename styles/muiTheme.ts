@@ -1,4 +1,4 @@
-import { createTheme, PaletteMode } from '@mui/material';
+import { createTheme, PaletteMode, PaletteOptions } from '@mui/material';
 import { MLAB_NEUTRAL_PALETTE, MLAB_OPACITY_PALETTE, MLAB_PALETTE, MLAB_SEMANTIC_PALETTE } from '@styles/mlabTheme';
 import { CSSProperties } from 'react';
 
@@ -86,6 +86,31 @@ declare module '@mui/material/Typography' {
     }
 }
 
+const PALETTE_OPTIONS: Record<PaletteMode, PaletteOptions> = {
+    light: {
+        text: {
+            primary: MLAB_NEUTRAL_PALETTE.gray[1000],
+            secondary: MLAB_NEUTRAL_PALETTE.gray[500],
+            disabled: MLAB_NEUTRAL_PALETTE.gray[200],
+        },
+        background: {
+            default: MLAB_NEUTRAL_PALETTE.gray[100],
+            paper: MLAB_NEUTRAL_PALETTE.white,
+        },
+    },
+    dark: {
+        text: {
+            primary: MLAB_NEUTRAL_PALETTE.gray[100],
+            secondary: MLAB_NEUTRAL_PALETTE.gray[500],
+            disabled: MLAB_NEUTRAL_PALETTE.gray[600],
+        },
+        background: {
+            default: MLAB_NEUTRAL_PALETTE.black,
+            paper: MLAB_NEUTRAL_PALETTE.gray[1000],
+        },
+    },
+};
+
 
 const createMlabMuiTheme = (mode: PaletteMode = 'light') => createTheme({
     palette: {
@@ -114,9 +139,7 @@ const createMlabMuiTheme = (mode: PaletteMode = 'light') => createTheme({
         },
         ...MLAB_PALETTE,
         gray: MLAB_NEUTRAL_PALETTE.gray,
-        background: {
-            default: MLAB_NEUTRAL_PALETTE.gray[200],
-        },
+        ...PALETTE_OPTIONS[mode],
     },
     shape: {
         borderRadius: 20,
