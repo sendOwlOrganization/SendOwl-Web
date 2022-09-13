@@ -20,7 +20,7 @@ const IconItem = ({ icon }: { icon: ReactElement }) => {
         <Grid item>
             <Box display={'flex'} flexDirection={'column'} alignItems={'center'} justifyContent={'center'}>
                 {icon}
-                <Typography variant={'caption'} margin={1} color={theme => theme.palette.common.black}>
+                <Typography variant={'caption1'} margin={1}>
                     {displayName}
                 </Typography>
             </Box>
@@ -55,7 +55,6 @@ WithoutOnClickAction.args = {
 
 export const WithBadge = Template.bind({});
 WithBadge.args = {
-    color: 'black',
     spacing: 0,
     onClick: undefined,
     clickable: false,

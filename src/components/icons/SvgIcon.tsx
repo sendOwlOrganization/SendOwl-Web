@@ -1,4 +1,4 @@
-import { css, styled } from '@mui/material';
+import { css, styled, useTheme } from '@mui/material';
 import { MLAB_NEUTRAL_PALETTE, MLAB_OPACITY_PALETTE, MlabColorType } from '@styles/mlabTheme';
 import { PropsWithChildren } from 'react';
 
@@ -116,7 +116,7 @@ const Badge = styled('span')<{ color: MlabColorType }>(({ theme, color }) => css
 `);
 
 const SvgIcon = ({
-                     color = 'gray',
+                     color,
                      onClick,
                      clickable,
                      children,
@@ -126,11 +126,15 @@ const SvgIcon = ({
                      badge,
                      roundedBorder,
                  }: PropsWithChildren<SvgIconProps>) => {
+    const theme = useTheme();
+    const fixedColor = color || (theme.palette.mode === 'dark' ? 'white' : 'black');
+
+
     return onClick || clickable
         ? (
-            <Button rounded={!!roundedBorder} onClick={onClick} color={color} spacing={spacing}
+            <Button rounded={!!roundedBorder} onClick={onClick} color={fixedColor} spacing={spacing}
                     disableHoverBackground={!!disableHoverBackground}>
-                <Svg color={color}
+                <Svg color={fixedColor}
                      spacing={spacing}
                      scale={scale}
                      xmlns='http://www.w3.org/2000/svg'
@@ -142,7 +146,7 @@ const SvgIcon = ({
             </Button>
         ) : (
             <Span spacing={spacing}>
-                <Svg color={color}
+                <Svg color={fixedColor}
                      xmlns='http://www.w3.org/2000/svg'
                      spacing={spacing}
                      scale={scale}
