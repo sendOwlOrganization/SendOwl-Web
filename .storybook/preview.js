@@ -54,11 +54,23 @@ export const decorators = [
         }, [isDark])
 
         useEffect(() => {
-            updateGlobals({
-                backgrounds: {
-                    value: theme.palette.mode === 'dark' ? MLAB_NEUTRAL_PALETTE.gray[1000] : MLAB_NEUTRAL_PALETTE.gray[300],
-                },
-            })
+            /*
+             NOTE: need to investigate why update globals does not properly change background colors sometimes
+             seems to work when background color is updated with timeout.
+             */
+            const timeout = setTimeout(() => {
+                updateGlobals({
+                    backgrounds: {
+                        value: theme.palette.mode === 'dark'
+                            ? MLAB_NEUTRAL_PALETTE.black
+                            : MLAB_NEUTRAL_PALETTE.gray[200],
+                    },
+                })
+            }, 100)
+
+            return () => {
+                clearTimeout(timeout)
+            }
         }, [theme.palette.mode])
 
         return (
