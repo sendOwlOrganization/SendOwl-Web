@@ -127,8 +127,8 @@ const Badge = styled('span')<{ color: MlabColorType }>(({ theme, color }) => css
   position: absolute;
   height: 0.5rem;
   width: 0.5rem;
-  top: 2px;
-  right: 2px;
+  top: 1px;
+  right: 1px;
   border-radius: 50%;
   background-color: ${theme.palette[color][600]};
 `);
