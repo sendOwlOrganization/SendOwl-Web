@@ -3,7 +3,7 @@ import { MLAB_NEUTRAL_PALETTE, MLAB_OPACITY_PALETTE, MlabColorType } from '@styl
 import { PropsWithChildren } from 'react';
 
 const SPACING = 4;
-const ICON_CONTAINER_SIZE = 24;
+const ICON_CONTAINER_SIZE = 20;
 
 type SvgIconColorType = MlabColorType | 'gray' | 'white' | 'black'
 type SvgIconColorKey = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000;
@@ -46,9 +46,8 @@ const Svg = styled('svg')<{
         spacing,
         scale,
     }) => css`
-  height: ${ICON_CONTAINER_SIZE + spacing * 2 * SPACING}px;
-  width: ${ICON_CONTAINER_SIZE + spacing * 2 * SPACING}px;
-  padding: ${spacing * SPACING - (1 + scale) * spacing}px;
+  height: ${ICON_CONTAINER_SIZE * scale}px;
+  width: ${ICON_CONTAINER_SIZE * scale}px;
 
   path {
     fill: ${(color === 'white' || color === 'black')
@@ -58,12 +57,15 @@ const Svg = styled('svg')<{
 `);
 
 
-const Span = styled('span')<{ spacing: number }>(({ spacing }) => css`
+const Span = styled('span')<{ spacing: number, scale: number }>(({ spacing, theme, scale }) => css`
   background-color: transparent;
-  height: ${ICON_CONTAINER_SIZE + spacing * 2 * SPACING}px;
-  width: ${ICON_CONTAINER_SIZE + spacing * 2 * SPACING}px;
-  padding: 0;
+  height: ${ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2)}px;
+  width: ${ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2)}px;
+  padding: ${theme.spacing(spacing / 2)};
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `);
 
 
@@ -72,6 +74,7 @@ const Button = styled('button', {
 })<{
     color: SvgIconColorType,
     colorKey: SvgIconColorKey,
+    scale: number,
     spacing: number,
     disableHoverBackground: boolean,
     rounded: boolean,
@@ -80,6 +83,7 @@ const Button = styled('button', {
         color,
         colorKey,
         spacing,
+        scale,
         disableHoverBackground,
         rounded,
     }) => css`
@@ -87,9 +91,12 @@ const Button = styled('button', {
   cursor: pointer;
   border-radius: ${rounded ? 16 : 4}px;
   background-color: transparent;
-  height: ${ICON_CONTAINER_SIZE + spacing * 2 * SPACING}px;
-  width: ${ICON_CONTAINER_SIZE + spacing * 2 * SPACING}px;
-  padding: 0;
+  height: ${ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2)}px;
+  width: ${ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2)}px;
+  padding: ${theme.spacing(spacing / 2)};
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
 
   ${disableHoverBackground
@@ -133,7 +140,7 @@ const SvgIcon = ({
                      clickable,
                      children,
                      spacing = 0,
-                     scale = 0,
+                     scale = 1,
                      width = ICON_CONTAINER_SIZE,
                      height = ICON_CONTAINER_SIZE,
                      disableHoverBackground,
@@ -146,7 +153,12 @@ const SvgIcon = ({
 
     return onClick || clickable
         ? (
-            <Button rounded={!!roundedBorder} onClick={onClick} color={fixedColor} colorKey={colorKey} spacing={spacing}
+            <Button rounded={!!roundedBorder}
+                    onClick={onClick}
+                    scale={scale}
+                    color={fixedColor}
+                    colorKey={colorKey}
+                    spacing={spacing}
                     disableHoverBackground={!!disableHoverBackground}>
                 <Svg color={fixedColor}
                      colorKey={colorKey}
@@ -160,7 +172,7 @@ const SvgIcon = ({
                 {badge && <Badge color={badge} />}
             </Button>
         ) : (
-            <Span spacing={spacing}>
+            <Span spacing={spacing} scale={scale}>
                 <Svg color={fixedColor}
                      colorKey={colorKey}
                      xmlns='http://www.w3.org/2000/svg'
