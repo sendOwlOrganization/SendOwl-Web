@@ -3,9 +3,14 @@ import { MLAB_NEUTRAL_PALETTE, MLAB_OPACITY_PALETTE, MlabColorType } from '@styl
 import { PropsWithChildren } from 'react';
 
 const SPACING = 4;
+const ICON_CONTAINER_SIZE = 24;
+
+type SvgIconColorType = MlabColorType | 'gray' | 'white' | 'black'
+type SvgIconColorKey = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000;
 
 export interface SvgIconProps {
-    color?: MlabColorType | 'gray' | 'white' | 'black';
+    color?: SvgIconColorType;
+    colorKey?: SvgIconColorKey;
     onClick?: () => void;
     disableHoverBackground?: boolean;
     clickable?: boolean;
@@ -13,6 +18,8 @@ export interface SvgIconProps {
     scale?: number;
     badge?: MlabColorType;
     roundedBorder?: boolean;
+    width?: number;
+    height?: number;
 }
 
 const commonPalette = {
@@ -28,31 +35,33 @@ const commonPalette = {
     },
 };
 const Svg = styled('svg')<{
-    color: MlabColorType | 'gray' | 'white' | 'black',
+    color: SvgIconColorType,
+    colorKey: SvgIconColorKey,
     spacing: number,
     scale: number
 }>(({
         theme,
         color,
+        colorKey,
         spacing,
         scale,
     }) => css`
-  height: ${24 + spacing * 2 * SPACING}px;
-  width: ${24 + spacing * 2 * SPACING}px;
+  height: ${ICON_CONTAINER_SIZE + spacing * 2 * SPACING}px;
+  width: ${ICON_CONTAINER_SIZE + spacing * 2 * SPACING}px;
   padding: ${spacing * SPACING - (1 + scale) * spacing}px;
 
   path {
     fill: ${(color === 'white' || color === 'black')
             ? commonPalette[color].main
-            : theme.palette[color][600]};
+            : theme.palette[color][colorKey]};
   }
 `);
 
 
-const Span = styled('span')<{ spacing: number }>(({ theme, spacing }) => css`
+const Span = styled('span')<{ spacing: number }>(({ spacing }) => css`
   background-color: transparent;
-  height: ${24 + spacing * 2 * SPACING}px;
-  width: ${24 + spacing * 2 * SPACING}px;
+  height: ${ICON_CONTAINER_SIZE + spacing * 2 * SPACING}px;
+  width: ${ICON_CONTAINER_SIZE + spacing * 2 * SPACING}px;
   padding: 0;
   position: relative;
 `);
@@ -61,13 +70,15 @@ const Span = styled('span')<{ spacing: number }>(({ theme, spacing }) => css`
 const Button = styled('button', {
     shouldForwardProp: (name) => !['disableHoverBackground', 'rounded'].includes(name as string),
 })<{
-    color: MlabColorType | 'gray' | 'white' | 'black',
+    color: SvgIconColorType,
+    colorKey: SvgIconColorKey,
     spacing: number,
     disableHoverBackground: boolean,
     rounded: boolean,
 }>(({
         theme,
         color,
+        colorKey,
         spacing,
         disableHoverBackground,
         rounded,
@@ -76,8 +87,8 @@ const Button = styled('button', {
   cursor: pointer;
   border-radius: ${rounded ? 16 : 4}px;
   background-color: transparent;
-  height: ${24 + spacing * 2 * SPACING}px;
-  width: ${24 + spacing * 2 * SPACING}px;
+  height: ${ICON_CONTAINER_SIZE + spacing * 2 * SPACING}px;
+  width: ${ICON_CONTAINER_SIZE + spacing * 2 * SPACING}px;
   padding: 0;
   position: relative;
 
@@ -95,13 +106,13 @@ const Button = styled('button', {
   :hover path {
     fill: ${(color === 'white' || color === 'black')
             ? commonPalette[color].hover
-            : theme.palette[color][700]};
+            : theme.palette[color][(Math.min(colorKey + 100, 1000)) as SvgIconColorKey]};
   }
 
   :active path {
     fill: ${(color === 'white' || color === 'black')
             ? commonPalette[color].active
-            : theme.palette[color][800]};
+            : theme.palette[color][(Math.min(colorKey + 200, 1000)) as SvgIconColorKey]};
   }
 `);
 
@@ -117,11 +128,14 @@ const Badge = styled('span')<{ color: MlabColorType }>(({ theme, color }) => css
 
 const SvgIcon = ({
                      color,
+                     colorKey = 600,
                      onClick,
                      clickable,
                      children,
                      spacing = 0,
                      scale = 0,
+                     width = ICON_CONTAINER_SIZE,
+                     height = ICON_CONTAINER_SIZE,
                      disableHoverBackground,
                      badge,
                      roundedBorder,
@@ -132,13 +146,14 @@ const SvgIcon = ({
 
     return onClick || clickable
         ? (
-            <Button rounded={!!roundedBorder} onClick={onClick} color={fixedColor} spacing={spacing}
+            <Button rounded={!!roundedBorder} onClick={onClick} color={fixedColor} colorKey={colorKey} spacing={spacing}
                     disableHoverBackground={!!disableHoverBackground}>
                 <Svg color={fixedColor}
+                     colorKey={colorKey}
                      spacing={spacing}
                      scale={scale}
                      xmlns='http://www.w3.org/2000/svg'
-                     viewBox='0 0 24 24'
+                     viewBox={`0 0 ${width} ${height}`}
                      fill='none'>
                     {children}
                 </Svg>
@@ -147,10 +162,11 @@ const SvgIcon = ({
         ) : (
             <Span spacing={spacing}>
                 <Svg color={fixedColor}
+                     colorKey={colorKey}
                      xmlns='http://www.w3.org/2000/svg'
                      spacing={spacing}
                      scale={scale}
-                     viewBox='0 0 24 24'
+                     viewBox={`0 0 ${width} ${height}`}
                      fill='none'>
                     {children}
                 </Svg>
