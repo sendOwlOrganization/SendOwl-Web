@@ -2,32 +2,38 @@ import CloseIcon from '@components/icons/CloseIcon';
 import { Box, css, styled, Typography } from '@mui/material';
 
 
-const Container = styled('div')<{ close: boolean }>(({ theme, close }) => css`
+const Container = styled('div', {
+    shouldForwardProp: (name) => name !== 'close',
+})<{ close: boolean }>(({ theme, close }) => css`
   display: inline-flex;
   align-items: center;
   border-radius: 1rem;
-  background-color: ${theme.palette.gray[200]};
+  color: ${theme.palette.text.primary};
+  background-color: ${theme.palette.mode === 'dark' ? theme.palette.gray[900] : theme.palette.gray[100]};
   padding: ${close ? '4px 32px 4px 12px' : '4px 12px'};
   ${close && 'position: relative;'}
 `);
 
-const ClickableArea = styled('button')<{ close: boolean }>(({ theme, close }) => css`
+const ClickableArea = styled('button', {
+    shouldForwardProp: (name) => name !== 'close',
+})<{ close: boolean }>(({ theme, close }) => css`
   outline: none;
   border: none;
   display: flex;
   margin: ${close ? '-4px -32px -4px -12px' : '-4px -12px'};
   align-items: center;
   border-radius: 1rem;
+  color: inherit;
   background-color: transparent;
   padding: ${close ? '4px 32px 4px 12px' : '4px 12px'};
   cursor: pointer;
 
   :hover {
-    background-color: ${theme.palette.gray[300]};
+    background-color: ${theme.palette.mode === 'dark' ? theme.palette.gray[800] : theme.palette.gray[200]};
   }
 
   :active {
-    background-color: ${theme.palette.gray[400]};
+    background-color: ${theme.palette.mode === 'dark' ? theme.palette.gray[700] : theme.palette.gray[300]};
   }
 `);
 
@@ -58,8 +64,9 @@ const Chip = (props: ChipProps) => {
                 )
             }
             {
+                // FIXME: need to fix icon position and svg
                 close && (
-                    <Box position={'absolute'} right={12} bottom={8}>
+                    <Box position={'absolute'} right={8} bottom={4}>
                         <CloseIcon onClick={onClose} roundedBorder spacing={-1} />
                     </Box>
                 )

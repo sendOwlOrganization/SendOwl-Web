@@ -4,11 +4,6 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 export default {
     title: 'components/chip/Chip',
     component: Chip,
-    parameters: {
-        backgrounds: {
-            default: 'clear',
-        },
-    },
 } as ComponentMeta<typeof Chip>;
 
 const Template: ComponentStory<typeof Chip> = (args) => (

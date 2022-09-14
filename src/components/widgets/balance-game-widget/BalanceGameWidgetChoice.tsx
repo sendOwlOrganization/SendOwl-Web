@@ -3,7 +3,9 @@ import BalanceGameWidgetCheckIcon from './BalanceGameWidgetCheckIcon';
 import BalanceGameWidgetChoiceText from './BalanceGameWidgetChoiceText';
 import BalanceGameWidgetResultText from './BalanceGameWidgetResultText';
 
-const SelectButton = styled('button')<{ focused: boolean }>(({ theme, focused }) => css`
+const SelectButton = styled('button', {
+    shouldForwardProp: (name) => name !== 'focused',
+})<{ focused: boolean }>(({ theme, focused }) => css`
   background-color: ${focused ? theme.palette.purple[600] : theme.palette.gray[200]};
   color: ${focused ? theme.palette.common.white : theme.palette.gray[900]};
   font-weight: bold;

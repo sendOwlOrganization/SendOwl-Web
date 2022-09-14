@@ -37,11 +37,11 @@ const Anchor = styled('a')(({ theme }) => css`
   }
 
   :hover {
-    background-color: ${theme.palette.gray[200]};
+    background-color: ${theme.palette.mode === 'dark' ? theme.palette.gray[900] : theme.palette.gray[200]};
   }
 
   :focus {
-    background-color: ${theme.palette.gray[200]};
+    background-color: ${theme.palette.mode === 'dark' ? theme.palette.gray[900] : theme.palette.gray[200]};
   }
 `);
 

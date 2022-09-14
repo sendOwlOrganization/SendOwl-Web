@@ -5,7 +5,7 @@ const BoardPreviewLinkContent = styled(Typography)`
   text-overflow: ellipsis;
   display: -webkit-box;
   line-height: 1.6;
-  color: ${({ theme }) => theme.palette.gray[700]};
+  color: ${({ theme }) => theme.palette.text.secondary};
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 `;

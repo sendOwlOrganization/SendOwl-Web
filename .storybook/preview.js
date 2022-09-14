@@ -1,6 +1,9 @@
 import { CssBaseline, ThemeProvider } from '@mui/material'
+import { useGlobals } from '@storybook/addons'
 import { ThemeProvider as Emotion10ThemeProvider } from 'emotion-theming'
 import { RouterContext } from 'next/dist/shared/lib/router-context'
+import { useEffect, useState } from 'react'
+import { useDarkMode } from 'storybook-dark-mode'
 import '../styles/globals.css'
 import { MLAB_NEUTRAL_PALETTE } from '../styles/mlabTheme'
 import createMlabMuiTheme from '../styles/muiTheme'
@@ -16,7 +19,6 @@ export const parameters = {
         },
     },
     backgrounds: {
-        default: 'gray200',
         values: Object.entries(MLAB_NEUTRAL_PALETTE.gray).map(([name, value]) => ({
             name: `gray${name}`,
             value,
@@ -39,16 +41,45 @@ export const parameters = {
     },
 }
 
-const theme = createMlabMuiTheme()
-
 // https://mui.com/material-ui/guides/migration-v4/#storybook-emotion-with-v5
 export const decorators = [
-    (Story) => (
-        <Emotion10ThemeProvider theme={theme}>
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <Story />
-            </ThemeProvider>
-        </Emotion10ThemeProvider>
-    ),
+    (Story) => {
+        const isDark = useDarkMode()
+        const [theme, setTheme] = useState(() => createMlabMuiTheme(isDark ? 'dark' : 'light'))
+        const [globals, updateGlobals] = useGlobals()
+
+        useEffect(() => {
+            const mode = isDark ? 'dark' : 'light'
+            setTheme(createMlabMuiTheme(mode))
+        }, [isDark])
+
+        useEffect(() => {
+            /*
+             NOTE: need to investigate why update globals does not properly change background colors sometimes
+             seems to work when background color is updated with timeout.
+             */
+            const timeout = setTimeout(() => {
+                updateGlobals({
+                    backgrounds: {
+                        value: theme.palette.mode === 'dark'
+                            ? MLAB_NEUTRAL_PALETTE.black
+                            : MLAB_NEUTRAL_PALETTE.gray[200],
+                    },
+                })
+            }, 100)
+
+            return () => {
+                clearTimeout(timeout)
+            }
+        }, [theme.palette.mode])
+
+        return (
+            <Emotion10ThemeProvider theme={theme}>
+                <ThemeProvider theme={theme}>
+                    <CssBaseline />
+                    <Story />
+                </ThemeProvider>
+            </Emotion10ThemeProvider>
+        )
+    },
 ]

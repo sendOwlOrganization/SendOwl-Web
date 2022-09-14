@@ -15,7 +15,7 @@ interface SearchBoxProps {
 
 const Container = styled('div')(({ theme }) => css`
   width: 700px;
-  background-color: white;
+  background-color: ${theme.palette.background.paper};
   border-radius: 16px;
 `);
 
@@ -24,7 +24,10 @@ const SearchInput = styled('input')(({ theme }) => css`
   margin: 0 16px;
   border: none;
   font-size: ${theme.typography.subtitle3.fontSize};
-  font-weight: 400;
+  color: ${theme.palette.text.primary};
+  background-color: ${theme.palette.background.paper};
+  caret-color: ${theme.palette.text.primary};
+  font-weight: normal;
 
   :active {
     outline: none;
@@ -44,7 +47,7 @@ const SearchArea = styled('div')(({ theme }) => css`
   padding: 24px 32px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid ${theme.palette.gray[400]};
+  border-bottom: 1px solid ${theme.palette.gray[500]};
 `);
 
 const BodyArea = styled(Stack)<{ padding: string }>(({ theme, padding }) => css`
@@ -53,8 +56,8 @@ const BodyArea = styled(Stack)<{ padding: string }>(({ theme, padding }) => css`
 
 const FootArea = styled('div')(({ theme }) => css`
   border-radius: 0 0 16px 16px;
-  border-top: 1px solid ${theme.palette.gray[400]};
-  background-color: ${theme.palette.gray[200]};
+  border-top: 1px solid ${theme.palette.gray[500]};
+  background-color: ${theme.palette.mode === 'dark' ? theme.palette.gray[900] : theme.palette.gray[100]};
   padding: 16px 32px;
   display: flex;
   justify-content: right;
@@ -79,7 +82,7 @@ const SearchBox = ({ recentlySearched, recommendations, populars }: SearchBoxPro
 
     useEffect(() => {
         inputRef.current?.focus();
-    }, [])
+    }, []);
 
     return (
         <Container>
@@ -105,8 +108,7 @@ const SearchBox = ({ recentlySearched, recommendations, populars }: SearchBoxPro
             </BodyArea>
             <FootArea>
                 <Typography variant={'subtitle4'}
-                            fontWeight={400}
-                            color={theme => theme.palette.gray[700]}
+                            fontWeight={'normal'}
                             marginRight={'0.75rem'}>
                     검색어 기록
                 </Typography>

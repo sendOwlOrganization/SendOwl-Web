@@ -30,7 +30,7 @@ const GridItem = ({ index, children, onClick }: PropsWithChildren<{ index: numbe
             <Button onClick={onClick}>
                 <Typography width={'28px'}
                             marginLeft={'0.25rem'}
-                            fontWeight={700}
+                            fontWeight={'bold'}
                             color={theme => index < 3
                                 ? theme.palette.pink[600]
                                 : theme.palette.gray[800]}>
