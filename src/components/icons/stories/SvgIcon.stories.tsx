@@ -1,19 +1,28 @@
 import ArrowDownIcon from '@components/icons/ArrowDownIcon';
+import ArrowFillDownIcon from '@components/icons/ArrowFillDownIcon';
+import ArrowFillUpIcon from '@components/icons/ArrowFillUpIcon';
 import ArrowLeftIcon from '@components/icons/ArrowLeftIcon';
 import ArrowRightIcon from '@components/icons/ArrowRightIcon';
 import ArrowUpIcon from '@components/icons/ArrowUpIcon';
 import BalanceGameIcon from '@components/icons/BalanceGameIcon';
+import BookmarkIcon from '@components/icons/BookmarkIcon';
 import CloseIcon from '@components/icons/CloseIcon';
 import CommentIcon from '@components/icons/CommentIcon';
 import CommunityIcon from '@components/icons/CommunityIcon';
+import DeleteIcon from '@components/icons/DeleteIcon';
+import FacebookIcon from '@components/icons/FacebookIcon';
 import HeartIcon from '@components/icons/HeartIcon';
 import HomeIcon from '@components/icons/HomeIcon';
 import InsightIcon from '@components/icons/InsightIcon';
+import InstagramIcon from '@components/icons/InstagramIcon';
+import KakaoTalkIcon from '@components/icons/KakaoTalkIcon';
+import MeatballMenuIcon from '@components/icons/MeatballMenuIcon';
 import MenuIcon from '@components/icons/MenuIcon';
 import NotificationIcon from '@components/icons/NotificationIcon';
 import ReportIcon from '@components/icons/ReportIcon';
 import SearchIcon from '@components/icons/SearchIcon';
 import ServiceCenterIcon from '@components/icons/ServiceCenterIcon';
+import SettingIcon from '@components/icons/SettingIcon';
 import SvgIcon from '@components/icons/SvgIcon';
 import UserIcon from '@components/icons/UserIcon';
 import { Box, Grid, Typography } from '@mui/material';
@@ -59,6 +68,15 @@ const Template: ComponentStory<typeof SvgIcon> = (args) => (
         <IconItem icon={<ReportIcon {...args} />} />
         <IconItem icon={<MenuIcon {...args} />} />
         <IconItem icon={<CommentIcon {...args} />} />
+        <IconItem icon={<BookmarkIcon {...args} />} />
+        <IconItem icon={<DeleteIcon {...args} />} />
+        <IconItem icon={<MeatballMenuIcon {...args} />} />
+        <IconItem icon={<ArrowFillUpIcon {...args} />} />
+        <IconItem icon={<ArrowFillDownIcon {...args} />} />
+        <IconItem icon={<SettingIcon {...args} />} />
+        <IconItem icon={<InstagramIcon {...args} />} />
+        <IconItem icon={<FacebookIcon {...args} />} />
+        <IconItem icon={<KakaoTalkIcon {...args} />} />
     </Grid>
 );
 
