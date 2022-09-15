@@ -247,6 +247,14 @@ const createMlabMuiTheme = (mode: PaletteMode = 'light') => createTheme({
                 },
             },
         },
+        MuiBackdrop: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: MLAB_OPACITY_PALETTE.black[400],
+                    backdropFilter: 'blur(2px)',
+                },
+            },
+        },
     },
 });
 
