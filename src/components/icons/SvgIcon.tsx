@@ -34,16 +34,21 @@ const commonPalette = {
         active: MLAB_NEUTRAL_PALETTE.gray[900],
     },
 };
-const Svg = styled('svg')<{
+
+const Svg = styled('svg', {
+    shouldForwardProp: name => ![
+        'color',
+        'colorKey',
+        'scale',
+    ].includes(name as string),
+})<{
     color: SvgIconColorType,
     colorKey: SvgIconColorKey,
-    spacing: number,
     scale: number
 }>(({
         theme,
         color,
         colorKey,
-        spacing,
         scale,
     }) => css`
   height: ${ICON_CONTAINER_SIZE * scale}px;
@@ -57,7 +62,12 @@ const Svg = styled('svg')<{
 `);
 
 
-const Span = styled('span')<{ spacing: number, scale: number }>(({ spacing, theme, scale }) => css`
+const Span = styled('span', {
+    shouldForwardProp: name => ![
+        'spacing',
+        'scale',
+    ].includes(name as string),
+})<{ spacing: number, scale: number }>(({ spacing, theme, scale }) => css`
   background-color: transparent;
   height: ${ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2)}px;
   width: ${ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2)}px;
@@ -70,7 +80,14 @@ const Span = styled('span')<{ spacing: number, scale: number }>(({ spacing, them
 
 
 const Button = styled('button', {
-    shouldForwardProp: (name) => !['disableHoverBackground', 'rounded'].includes(name as string),
+    shouldForwardProp: (name) => ![
+        'disableHoverBackground',
+        'rounded',
+        'colorKey',
+        'color',
+        'scale',
+        'spacing',
+    ].includes(name as string),
 })<{
     color: SvgIconColorType,
     colorKey: SvgIconColorKey,
@@ -123,7 +140,9 @@ const Button = styled('button', {
   }
 `);
 
-const Badge = styled('span')<{ color: MlabColorType }>(({ theme, color }) => css`
+const Badge = styled('span', {
+    shouldForwardProp: name => name !== 'color',
+})<{ color: MlabColorType }>(({ theme, color }) => css`
   position: absolute;
   height: 0.5rem;
   width: 0.5rem;
@@ -162,7 +181,6 @@ const SvgIcon = ({
                     disableHoverBackground={!!disableHoverBackground}>
                 <Svg color={fixedColor}
                      colorKey={colorKey}
-                     spacing={spacing}
                      scale={scale}
                      xmlns='http://www.w3.org/2000/svg'
                      viewBox={`0 0 ${width} ${height}`}
@@ -176,7 +194,6 @@ const SvgIcon = ({
                 <Svg color={fixedColor}
                      colorKey={colorKey}
                      xmlns='http://www.w3.org/2000/svg'
-                     spacing={spacing}
                      scale={scale}
                      viewBox={`0 0 ${width} ${height}`}
                      fill='none'>
