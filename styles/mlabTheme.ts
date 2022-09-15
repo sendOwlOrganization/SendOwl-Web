@@ -131,3 +131,11 @@ export const MLAB_THEME = {
     opacity: MLAB_OPACITY_PALETTE,
     semantic: MLAB_SEMANTIC_PALETTE,
 } as const;
+
+export const MLAB_ICON_COLORS = {
+    balanceGame: 'purple',
+    community: 'pink',
+    insight: 'blue',
+    notice: 'green',
+    serviceCenter: 'yellow',
+} as const;
