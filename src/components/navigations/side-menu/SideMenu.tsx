@@ -9,6 +9,7 @@ import SideMenuBottomLink from '@components/navigations/side-menu/SideMenuBottom
 import SideMenuLink from '@components/navigations/side-menu/SideMenuLink';
 import SideMenuLoginInformation from '@components/navigations/side-menu/SideMenuLoginInformation';
 import { css, Divider, styled } from '@mui/material';
+import { BALANCE_GAMES_URL, COMMUNITY_URL, INSIGHTS_URL, NOTICES_URL, SERVICE_CENTER_URL } from '@tools/url';
 
 const MenuContainer = styled('div')(({ theme }) => css`
   max-width: 19.125rem;
@@ -26,12 +27,12 @@ const SideMenu = (props: {}) => {
             <SideMenuLoginInformation />
             <BalanceGameLink voteId={1} first={'OOOO OOO'} second={'OOOO OOO'} />
             <SideMenuLink href={'/'} icon={<HomeIcon color={'gray'} colorKey={400} />} title={'홈'} />
-            <SideMenuLink href={'/community'} icon={<CommunityIcon color={'pink'} colorKey={600} />} title={'커뮤니티'} />
-            <SideMenuLink href={'/balance-games'} icon={<BalanceGameIcon color={'purple'} colorKey={600} />}
+            <SideMenuLink href={COMMUNITY_URL} icon={<CommunityIcon color={'pink'} colorKey={600} />} title={'커뮤니티'} />
+            <SideMenuLink href={BALANCE_GAMES_URL} icon={<BalanceGameIcon color={'purple'} colorKey={600} />}
                           title={'밸런스 게임'} />
-            <SideMenuLink href={'/insights'} icon={<InsightIcon color={'blue'} colorKey={600} />} title={'인사이트'} />
-            <SideMenuLink href={'/notices'} icon={<NoticeIcon color={'green'} colorKey={600} />} title={'공지/이벤트'} />
-            <SideMenuLink href={'/service-center'} icon={<ServiceCenterIcon color={'yellow'} colorKey={700} />}
+            <SideMenuLink href={INSIGHTS_URL} icon={<InsightIcon color={'blue'} colorKey={600} />} title={'인사이트'} />
+            <SideMenuLink href={NOTICES_URL} icon={<NoticeIcon color={'green'} colorKey={600} />} title={'공지/이벤트'} />
+            <SideMenuLink href={SERVICE_CENTER_URL} icon={<ServiceCenterIcon color={'yellow'} colorKey={700} />}
                           title={'고객센터'} />
 
             <Divider sx={{ margin: '1rem 0' }} />
