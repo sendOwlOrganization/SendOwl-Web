@@ -20,8 +20,10 @@ const Menu = () => {
     return (
         <>
             <MenuIcon color={'gray'} colorKey={isDark ? 100 : 1000} onClick={handleOpen} />
-            <Drawer open={open} onClose={handleClose} anchor={'right'} PaperProps={{
-                elevation: 0,
+            <Drawer open={open} elevation={0} onClose={handleClose} anchor={'right'} PaperProps={{
+                // type information seems not present in DrawerProps
+                // @ts-ignore
+                component: 'aside',
                 sx: (theme) => ({
                     backgroundColor: isDark
                         ? theme.palette.common.black

@@ -11,8 +11,6 @@ interface SideMenuLinkProps {
 const Anchor = styled('a')`
   display: flex;
   align-items: center;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
 
   & > *:first-child {
     margin-right: 0.375rem;

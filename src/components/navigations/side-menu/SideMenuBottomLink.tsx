@@ -9,7 +9,6 @@ interface SideMenuBottomLinkProps {
 const Anchor = styled('a')(({ theme }) => ({
     ...theme.typography.subtitle3,
     fontWeight: 'bold',
-    margin: '0.625rem 0',
     color: theme.palette.gray[700],
 }));
 
