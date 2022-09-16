@@ -229,6 +229,19 @@ const createMlabMuiTheme = (mode: PaletteMode = 'light') => createTheme({
         },
     },
     components: {
+        MuiTypography: {
+            defaultProps: {
+                variantMapping: {
+                    h1: 'h1',
+                    h2: 'h2',
+                    h3: 'h3',
+                    subtitle1: 'h2',
+                    subtitle2: 'h2',
+                    subtitle3: 'h3',
+                    subtitle4: 'h3',
+                },
+            },
+        },
         MuiButton: {
             styleOverrides: {
                 // contained: {
@@ -244,6 +257,14 @@ const createMlabMuiTheme = (mode: PaletteMode = 'light') => createTheme({
                 container: {
                     backgroundColor: MLAB_OPACITY_PALETTE.black[100],
                     backdropFilter: 'blur(5px)',
+                },
+            },
+        },
+        MuiBackdrop: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: MLAB_OPACITY_PALETTE.black[400],
+                    backdropFilter: 'blur(2px)',
                 },
             },
         },
