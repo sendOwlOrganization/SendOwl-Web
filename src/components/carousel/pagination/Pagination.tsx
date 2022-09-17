@@ -36,11 +36,12 @@ const PaginationCaption = styled('div')`
 interface PaginationProps {
     page: number;
     size: number;
+    margin: string;
 }
 
-const Pagination = ({page, size}: PaginationProps) => {
+const Pagination = ({page, size, margin}: PaginationProps) => {
     return (
-        <HeroImagePagination>
+        <HeroImagePagination sx={{margin: {margin}}}>
             <PaginationCaption>
                 {page}
                 <span>/</span>
