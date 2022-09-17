@@ -4,9 +4,10 @@ interface ImageSrcProps {
     name: string;
     images: string;
 }
-const ImageResolution = ({name, images}: ImageSrcProps) => {
+const ImageOptimize = ({name, images}: ImageSrcProps) => {
     return (
         <>
+            {/* image width, height should be edited responsively */}
             <Image src={images}
                    alt={name}
                    width={360}
@@ -18,4 +19,4 @@ const ImageResolution = ({name, images}: ImageSrcProps) => {
     )
 }
 
-export default ImageResolution;
+export default ImageOptimize;
