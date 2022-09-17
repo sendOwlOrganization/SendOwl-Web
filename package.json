@@ -43,6 +43,7 @@
     "react-markdown": "^8.0.2",
     "react-material-ui-carousel": "^3.4.2",
     "react-query": "^3.34.19",
+    "react-spring-bottom-sheet": "^3.4.1",
     "recoil": "^0.7.1",
     "remark-gfm": "^3.0.1"
   },
