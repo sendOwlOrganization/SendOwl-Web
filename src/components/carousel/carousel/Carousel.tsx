@@ -1,8 +1,8 @@
 import {Box, styled} from "@mui/material";
 import CarouselSlide from "react-material-ui-carousel";
-import ImageResolution from "../../ImageResolution";
+import ImageOptimize from "../imageOptimize";
 import {MLAB_THEME} from "@styles/mlabTheme";
-import Pagination from "@components/carousel/Pagination";
+import Pagination from "@components/carousel/pagination/Pagination";
 
 interface CarouselData {
     id: number;
@@ -10,14 +10,16 @@ interface CarouselData {
     images: string;
 }
 interface CarouselDataProps {
-    data: CarouselData[]
+    data: CarouselData[];
+    check?: boolean;
 }
 
 const HeroImageProps = styled('div')`
   align-items: end;
+  display: flex;
 `
 
-const Carousel = ({data}: CarouselDataProps) => {
+const Carousel = ({data, check}: CarouselDataProps) => {
     return (
         <>
             <CarouselSlide
@@ -26,7 +28,8 @@ const Carousel = ({data}: CarouselDataProps) => {
             >
                 {data.map((element, index) => (
                     <HeroImageProps key={element.id}>
-                        <ImageResolution name={element.name} images={element.images}/>
+                        <ImageOptimize name={element.name} images={element.images}/>
+                        {check ? <Pagination page={element.id} size={data.length} margin={"0 0 0.625rem -3rem"}/> : null}
                     </HeroImageProps>
                 ))}
             </CarouselSlide>

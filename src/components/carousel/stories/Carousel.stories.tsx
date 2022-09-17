@@ -1,4 +1,4 @@
-import Carousel from '@components/carousel/Carousel';
+import Carousel from '@components/carousel/carousel/Carousel';
 
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
@@ -30,4 +30,10 @@ const dataMock = [
 export const Example = Template.bind({});
 Example.args = {
     data: dataMock,
+};
+
+export const HeroImage = Template.bind({});
+HeroImage.args = {
+    data: dataMock,
+    check: true
 };
