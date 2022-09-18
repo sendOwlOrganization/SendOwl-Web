@@ -1,19 +1,19 @@
-import Carousel from '@components/carousel/Carousel';
+import Pagination from '@components/carousel/pagination/Pagination';
 
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {
-    title: 'components/carousel/Carousel',
-    component: Carousel,
+    title: 'components/carousel/Pagination',
+    component: Pagination,
     parameters: {
         backgrounds: {
             default: 'white',
         },
     },
-} as ComponentMeta<typeof Carousel>;
+} as ComponentMeta<typeof Pagination>;
 
-const Template: ComponentStory<typeof Carousel> = (args) => (
-    <Carousel {...args} />
+const Template: ComponentStory<typeof Pagination> = (args) => (
+    <Pagination {...args} />
 );
 
 const dataMock = [
@@ -41,11 +41,6 @@ const dataMock = [
 
 export const Example = Template.bind({});
 Example.args = {
-    data: dataMock,
-};
-
-export const HeroImage = Template.bind({});
-HeroImage.args = {
-    data: dataMock,
-    showPagination: true
+    page: 1,
+    size: 4,
 };

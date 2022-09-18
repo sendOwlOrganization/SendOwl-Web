@@ -1,44 +1,38 @@
-import {Box} from "@mui/material";
+import {styled} from "@mui/material";
 import CarouselSlide from "react-material-ui-carousel";
-import Image from "next/image";
-import {MLAB_NEUTRAL_PALETTE, MLAB_OPACITY_PALETTE} from "@styles/mlabTheme";
+import ImageOptimize from "./ImageOptimize";
+import Pagination from "@components/carousel/pagination/Pagination";
 
 interface CarouselData {
     id: number;
     name: string;
-    images: string;
+    src: string;
 }
 interface CarouselDataProps {
-    data: CarouselData[]
+    data: CarouselData[];
+    showPagination?: boolean;
 }
 
-const Carousel = ({data}: CarouselDataProps) => {
+const HeroImageProps = styled('div')`
+  align-items: end;
+  display: flex;
+`
+
+const Carousel = ({data, showPagination}: CarouselDataProps) => {
     return (
-        <Box sx={{width: '56rem', height: '22rem', borderRadius: '16px', padding: 0}}>
+        <>
             <CarouselSlide
-                indicatorIconButtonProps={{
-                    style: {
-                        color: MLAB_OPACITY_PALETTE.white[300],
-                        position: 'relative',
-                        bottom: '3rem',
-                        zIndex: 1,
-                        width: '1rem'
-                    }
-                }}
-                activeIndicatorIconButtonProps={{
-                    style: {
-                        color: MLAB_NEUTRAL_PALETTE.white,
-                    },
-                }}
                 navButtonsAlwaysInvisible
+                indicators={false}
             >
-                {data.map((element, index) => (
-                    <div key={element.id}>
-                        <Image src={element.images} alt={element.name} width={869} height={349} unoptimized/>
-                    </div>
+                {data.map((element) => (
+                    <HeroImageProps key={element.id}>
+                        <ImageOptimize name={element.name} src={element.src}/>
+                        {showPagination ? <Pagination page={element.id} size={data.length} margin={"0 0 0.625rem -3rem"}/> : null}
+                    </HeroImageProps>
                 ))}
             </CarouselSlide>
-        </Box>
+        </>
     );
 }
 
