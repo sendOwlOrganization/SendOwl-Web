@@ -1,4 +1,4 @@
-import Carousel from '@components/carousel/carousel/Carousel';
+import Carousel from '@components/carousel/Carousel';
 
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 

@@ -2,13 +2,13 @@ import Image from "next/image";
 
 interface ImageSrcProps {
     name: string;
-    images: string;
+    src: string;
 }
-const ImageOptimize = ({name, images}: ImageSrcProps) => {
+const ImageOptimize = ({name, src}: ImageSrcProps) => {
     return (
         <>
             {/* image width, height should be edited responsively */}
-            <Image src={images}
+            <Image src={src}
                    alt={name}
                    width={360}
                    height={156}
