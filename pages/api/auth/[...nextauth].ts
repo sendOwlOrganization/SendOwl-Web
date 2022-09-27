@@ -1,3 +1,4 @@
+import { API_URL } from '@tools/url';
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import KakaoProvider from 'next-auth/providers/kakao';
@@ -30,7 +31,7 @@ export default NextAuth({
             if (!account) {
                 return token;
             }
-            const response = await fetch(`${process.env.NEXT_PUBLIC_SENDOWL_API_URL}/api/users/oauth2`, {
+            const response = await fetch(`${API_URL}/api/users/oauth2`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -44,9 +45,23 @@ export default NextAuth({
             if (!response.ok) {
                 // console.error(response);
             }
+            const { alreadyJoined } = await response.json();
             token.accessToken = response.headers.get('accessToken');
 
-            // FIXME: if user need to be created, need redirect to MBTI register page
+            if (!alreadyJoined) {
+                const profileResponse = await fetch(`${API_URL}/api/users/set-profile`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token.accessToken}`,
+                    },
+                    body: JSON.stringify({
+                        nickName: profile?.name,
+                        mbti: MBTI_LIST[Math.floor(Math.random() * (MBTI_LIST.length - 1))],
+                    }),
+                });
+
+            }
 
             return token;
         },
