@@ -70,7 +70,7 @@ const BoardPreviewLink = ({
 
     const href = `#?fixmeId=${id}`;
     return (
-        <Card elevation={0} sx={{ padding: '2rem' }}>
+        <Card elevation={0} sx={{ padding: {xs: '1rem', md: '1.5rem'}}}>
             <Box display={'flex'} alignItems={'center'} marginBottom={'5.5px'}>
                 <Box minHeight={90} flexGrow={1} flexBasis={0} flexShrink={0}>
                     <LabelContainer>
@@ -79,7 +79,7 @@ const BoardPreviewLink = ({
                     </LabelContainer>
                     <NextLink href={href} passHref>
                         <Anchor>
-                            <BoardPreviewLinkTitle variant={'body1'}>
+                            <BoardPreviewLinkTitle variant={'body1'} sx={{display: {xs: 'none', md: 'block'}}}>
                                 {title}
                             </BoardPreviewLinkTitle>
                             <BoardPreviewLinkContent variant={'body2'}>

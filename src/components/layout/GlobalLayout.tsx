@@ -1,7 +1,7 @@
 import GlobalNavigationBar from '@components/navigations/global-navigation-bar';
 import BalanceGameWidget from '@components/widgets/balance-game-widget';
 import MbtiWidget from '@components/widgets/mbti-widget';
-import {styled, useMediaQuery} from '@mui/material';
+import {Grid, styled, useMediaQuery} from '@mui/material';
 import { useRouter } from 'next/router';
 import {PropsWithChildren, useEffect, useState} from 'react';
 import GlobalNavigationBarSmall from "@components/navigations/global-navigation-bar-small";
@@ -45,15 +45,7 @@ const SideWidgetContainer = styled('aside')`
   }
 `;
 
-const ShortcutContainer = styled('div')`
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0.5rem;
-  
-  & > *{
-    margin: 0.5rem;
-  }
-`
+
 
 const useIsMobile = () => {
     const [isMobile, setIsMobile] = useState(false);
@@ -75,16 +67,10 @@ const GlobalLayout = ({ children }: PropsWithChildren<GlobalLayoutProps>) => {
             {isMobile ?
                 <>
                     <GlobalNavigationBarSmall isLogged={true} currentUrl={router.pathname} />
-                    <Carousel data={imageMocks}/>
-                    <ShortcutContainer>
-                        <ShortcutButton href={"#"} icon={<CommunityIcon/>} text={'커뮤니티'} color={MLAB_ICON_COLORS.community}/>
-                        <ShortcutButton href={"#"} icon={<BalanceGameIcon/>} text={'밸런스 게임'} color={MLAB_ICON_COLORS.balanceGame}/>
-                        <ShortcutButton href={"#"} icon={<InsightIcon/>} text={'인사이트'} color={MLAB_ICON_COLORS.insight}/>
-                        <ShortcutButton href={"#"} icon={<NoticeIcon/>} text={'공지/이벤트'} color={MLAB_ICON_COLORS.notice}/>
-                    </ShortcutContainer>
-                    <BannerTitle>커뮤니티</BannerTitle>
-                    <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={true} category={'커뮤니티'} likeCount={123} commentCount={21} date={'2022-08-18T17:45:22'} />
-                    </>
+                    <MainContainer>
+                        {children}
+                    </MainContainer>
+                </>
                 :
                 <>
                     <GlobalNavigationBar isLogged={true} currentUrl={router.pathname} />
