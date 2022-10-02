@@ -49,26 +49,11 @@ export default NextAuth({
             token.accessToken = response.headers.get('accessToken');
 
             if (!alreadyJoined) {
-                const profileResponse = await fetch(`${API_URL}/api/users/set-profile`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token.accessToken}`,
-                    },
-                    body: JSON.stringify({
-                        nickName: profile?.name,
-                        mbti: MBTI_LIST[Math.floor(Math.random() * (MBTI_LIST.length - 1))],
-                    }),
-                });
+
 
             }
 
             return token;
-        },
-        async session({ session, token }) {
-            const { accessToken } = token;
-            session.token = accessToken;
-            return session;
         },
     },
 });
