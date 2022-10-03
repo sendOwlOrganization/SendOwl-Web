@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { BoardDetails, BoardsResponse } from './types/boards';
+import { BoardDetails, BoardPost, BoardsResponse } from './types/boards';
 import { Category, PopularCategory } from './types/category';
 import HttpStatusCode from './types/HttpStatusCode';
 
@@ -56,11 +56,21 @@ export const getBoards = async (
 
 export const getBoardDetails = async (
     id: number,
+    init?: Parameters<typeof fetch>[1],
 ): Promise<FetchResponse<BoardDetails>> =>
-    await fetchSendOwlApi<BoardDetails>(`boards/${id}`);
+    await fetchSendOwlApi<BoardDetails>(`boards/${id}`, init);
 
 export const getCategories = async (): Promise<FetchResponse<Category[]>> =>
     await fetchSendOwlApi<Category[]>(`categories`);
 
 export const getPopularCategories = async (): Promise<FetchResponse<PopularCategory[]>> =>
     await fetchSendOwlApi<PopularCategory[]>('categories/popular');
+
+export const postBoardDetails = async (board: BoardPost, token: string) => await fetchSendOwlApi<any>(`boards`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify(board),
+});
