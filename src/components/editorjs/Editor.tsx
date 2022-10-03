@@ -1,8 +1,8 @@
+import { i18nKorean } from '@components/editorjs/i18n';
+import { EDITOR_JS_TOOLS } from '@components/editorjs/plugins';
 import EditorJS, { LogLevels, OutputData } from '@editorjs/editorjs';
 import { css, styled } from '@mui/material';
 import { useEffect, useId, useRef } from 'react';
-import { i18nKorean } from './i18n';
-import { EDITOR_JS_TOOLS } from './plugins';
 
 interface EditorProps {
     data: OutputData;
@@ -20,6 +20,15 @@ const EditorWrapper = styled('div')<EditorWrapperProps>(props => css`
     max-width: none;
   }
 
+  .ce-header {
+    font-size: ${props.theme.typography.subtitle3.fontSize};
+  }
+
+  .ce-block__content {
+    font-size: ${props.theme.typography.body2.fontSize};
+    font-weight: ${props.theme.typography.body2.fontWeight};
+  }
+
   .ce-toolbar__actions {
     padding-right: 16px;
   }
@@ -29,15 +38,7 @@ const EditorWrapper = styled('div')<EditorWrapperProps>(props => css`
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     z-index: 1;
-    padding: 0 10px;
-    ${props.mode === 'rw' && css`
-      border: solid 1px ${props.theme.palette.grey.A400};
-
-      :hover {
-        border: solid 1px ${props.theme.palette.grey.A700};
-      }
-    `}
-
+    margin: 0 1rem;
   }
 
   .codex-editor__redactor {
@@ -60,14 +61,13 @@ const Editor = ({ readOnly, data, onChange }: EditorProps) => {
             holder: holder,
             data: data,
             logLevel: 'ERROR' as LogLevels,
-            placeholder: '글을 작성 해보세요!',
+            placeholder: '새로운 소식이나 나누고 싶은 이야기를 적어주세요',
             i18n: i18nKorean,
             onChange: async (api) => {
                 let content = await api.saver.save();
                 onChange(content);
             },
             readOnly,
-            autofocus: true,
             tools: EDITOR_JS_TOOLS,
         });
 
