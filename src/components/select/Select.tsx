@@ -101,13 +101,13 @@ const Select = <T, >({ items, value, onChange, getLabel, getKey }: SelectProps<T
     const handleChange = (item: T) => () => {
         onChange(item);
         setOpen(false);
-    }
+    };
 
     return (
         <>
             <ClickAwayListener onClickAway={() => setOpen(false)}>
                 <Box position={'relative'}>
-                    <Button onClick={() => setOpen(o => !o)} open={open}>
+                    <Button type={'button'} onClick={() => setOpen(o => !o)} open={open}>
                         {getLabel(value)}
                         {open ? <ArrowUpIcon /> : <ArrowDownIcon />}
                     </Button>
