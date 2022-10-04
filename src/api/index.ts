@@ -1,3 +1,4 @@
+import { SetProfile } from '@api/types/user/SetProfile';
 import fetch from 'node-fetch';
 import { BoardDetails, BoardsResponse } from './types/boards';
 import { Category, PopularCategory } from './types/category';
@@ -64,3 +65,14 @@ export const getCategories = async (): Promise<FetchResponse<Category[]>> =>
 
 export const getPopularCategories = async (): Promise<FetchResponse<PopularCategory[]>> =>
     await fetchSendOwlApi<PopularCategory[]>('categories/popular');
+
+export const setProfile = async (
+    profile: SetProfile, token: string,
+) => await fetchSendOwlApi<{}>(`users/set-profile`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify(profile),
+});
