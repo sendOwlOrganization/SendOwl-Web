@@ -2,20 +2,23 @@ import { getToken } from 'next-auth/jwt';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
-
 export const middleware = async (request: NextRequest) => {
-    const response = NextResponse.next();
     const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
-    if (!token) {
-        return response;
+    if (request.nextUrl.pathname === '/register' && !token) {
+        const home = request.nextUrl.clone();
+        home.pathname = '/';
+        return NextResponse.redirect(home);
     }
 
-    // handle redirect to set profile
-    console.log('handle redirect to set profile');
+    if (!token || token.alreadySetted || request.nextUrl.pathname.startsWith('/register')) {
+        return NextResponse.next();
+    }
 
-    return response;
+    const registerUrl = request.nextUrl.clone();
+    registerUrl.pathname = '/register';
+    return NextResponse.redirect(registerUrl);
 };
 
 export const config = {
-    matcher: ['/:path*'],
+    matcher: ['/((?!api|_next|static).*)'],
 };
