@@ -1,9 +1,12 @@
 import Label from '@components/label/Label';
-import { Box, Card, Stack, styled, Typography } from '@mui/material';
+import { Box, Card, Stack, styled, Typography, Grid } from '@mui/material';
 import NextLink from 'next/link';
 import BoardPreviewLinkContent from './BoardPreviewLinkContent';
 import BoardPreviewLinkTitle from './BoardPreviewLinkTitle';
 import BoardPreviewLinkUserAndDate from './BoardPreviewLinkUserAndDate';
+import InsightIcon from "@components/icons/InsightIcon";
+import HeartIcon from "@components/icons/HeartIcon";
+import CommentIcon from "@components/icons/CommentIcon";
 
 interface BoardPreviewLinkProps {
     id: number;
@@ -74,8 +77,8 @@ const BoardPreviewLink = ({
             <Box display={'flex'} alignItems={'center'} marginBottom={'5.5px'}>
                 <Box minHeight={90} flexGrow={1} flexBasis={0} flexShrink={0}>
                     <LabelContainer>
-                        {isVote && <Label href={'#?fixme=투표'} variant={'filled'} color={'purple'}>투표</Label>}
-                        <Label href={`#?fixme=${category}`}>{category}</Label>
+                        {isVote && <Label href={`#fixme=${isVote}`}>{<InsightIcon color={'purple'}/>}</Label>}
+                        <Label href={`#?fixme=${category}`} color={"pink"}>#{category}</Label>
                     </LabelContainer>
                     <NextLink href={href} passHref>
                         <Anchor>
@@ -107,11 +110,17 @@ const BoardPreviewLink = ({
                                              date={date} />
 
                 <Stack spacing={1} direction={'row'}>
-                    <Typography component={'span'} variant={'body2'} color={theme => theme.palette.gray[700]}>
-                        ❤️ {likeCount}
+                    <Typography component={'span'} variant={'body2'} color={theme => theme.palette.gray[500]} display={'flex'} fontWeight={600}>
+                        <Typography display={'flex'} alignItems={'center'} padding={0.2}>
+                            <HeartIcon color={'gray'} colorKey={200}/>
+                        </Typography>
+                        {likeCount}
                     </Typography>
-                    <Typography component={'span'} variant={'body2'} color={theme => theme.palette.gray[700]}>
-                        💬 {commentCount}
+                    <Typography component={'span'} variant={'body2'} color={theme => theme.palette.gray[500]} display={'flex'} fontWeight={600}>
+                        <Typography display={'flex'} alignItems={'center'} padding={0.2}>
+                            <CommentIcon color={'gray'} colorKey={200}/>
+                        </Typography>
+                        {commentCount}
                     </Typography>
                 </Stack>
             </Box>

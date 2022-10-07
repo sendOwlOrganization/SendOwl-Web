@@ -30,8 +30,8 @@ const labelCss = (theme: Theme, rounded: boolean, size: number, padding: number)
 `;
 
 const defaultLabelCss = (theme: Theme, color: LabelColor, isClickable: boolean) => css`
-  background-color: ${color === 'default' ? theme.palette.gray[200] : theme.palette[color][200]};
-  color: ${color === 'default' ? theme.palette.gray[800] : theme.palette[color][700]};
+  background-color: ${color === 'default' ? theme.palette.gray[100] : theme.palette.gray[100]};
+  color: ${color === 'default' ? theme.palette.gray[600] : theme.palette[color][600]};
   ${isClickable && css`
     :hover {
       cursor: pointer;
