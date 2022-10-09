@@ -77,8 +77,8 @@ const BoardPreviewLink = ({
             <Box display={'flex'} alignItems={'center'} marginBottom={'5.5px'}>
                 <Box minHeight={90} flexGrow={1} flexBasis={0} flexShrink={0}>
                     <LabelContainer>
-                        {isVote && <Label href={`#fixme=${isVote}`}>{<InsightIcon color={'purple'}/>}</Label>}
                         <Label href={`#?fixme=${category}`} color={"pink"}>#{category}</Label>
+                        {isVote && <Label href={`#fixme=${isVote}`}>{<InsightIcon color={'purple'}/>}</Label>}
                     </LabelContainer>
                     <NextLink href={href} passHref>
                         <Anchor>
