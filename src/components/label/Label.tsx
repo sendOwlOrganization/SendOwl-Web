@@ -23,9 +23,9 @@ interface LabelContainerProps extends Required<Omit<LabelProps, 'href' | 'onClic
 const labelCss = (theme: Theme, rounded: boolean, size: number, padding: number) => css`
   display: inline-flex;
   border-radius: ${rounded ? 4 * size * padding : 4}px;
-  padding: ${padding * 4}px ${padding * 8}px;
+  padding: ${padding * 6}px ${padding * 8}px;
   font-weight: bold;
-  font-size: ${12 * size}px;
+  font-size: ${10 * size}px;
   transition: all 100ms ${theme.transitions.easing.easeInOut};
 `;
 

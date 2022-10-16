@@ -4,9 +4,9 @@ import NextLink from 'next/link';
 import BoardPreviewLinkContent from './BoardPreviewLinkContent';
 import BoardPreviewLinkTitle from './BoardPreviewLinkTitle';
 import BoardPreviewLinkUserAndDate from './BoardPreviewLinkUserAndDate';
-import InsightIcon from "@components/icons/InsightIcon";
 import HeartIcon from "@components/icons/HeartIcon";
 import CommentIcon from "@components/icons/CommentIcon";
+import BoardVoteTagIcon from "@components/icons/BoardVoteTagIcon";
 
 interface BoardPreviewLinkProps {
     id: number;
@@ -77,8 +77,8 @@ const BoardPreviewLink = ({
             <Box display={'flex'} alignItems={'center'} marginBottom={'5.5px'}>
                 <Box minHeight={90} flexGrow={1} flexBasis={0} flexShrink={0}>
                     <LabelContainer>
-                        <Label href={`#?fixme=${category}`} color={"pink"}>#{category}</Label>
-                        {isVote && <Label href={`#fixme=${isVote}`}>{<InsightIcon color={'purple'}/>}</Label>}
+                        <Label href={`#?fixme=${category}`} color={"pink"} >#{category}</Label>
+                        {isVote && <Label href={`#fixme=${isVote}`} >{<BoardVoteTagIcon color={'purple'} />}</Label>}
                     </LabelContainer>
                     <NextLink href={href} passHref>
                         <Anchor>
