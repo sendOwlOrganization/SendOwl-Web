@@ -6,7 +6,7 @@ import { cloneElement, ReactElement, useMemo } from 'react';
 
 interface ColorProps {
     color: MlabColorType | 'gray';
-    colorKey?: SvgIconProps['colorKey'];
+    colorkey?: SvgIconProps['colorkey'];
 }
 
 interface ShortcutButtonProps extends ColorProps {
@@ -15,7 +15,7 @@ interface ShortcutButtonProps extends ColorProps {
     text: string;
 }
 
-const Anchor = styled('a')<Required<ColorProps>>(({ theme, color, colorKey }) => css`
+const Anchor = styled('a')<Required<ColorProps>>(({ theme, color, colorkey }) => css`
   width: 9.75rem;
   height: 3.25rem;
   display: flex;
@@ -37,16 +37,16 @@ const Anchor = styled('a')<Required<ColorProps>>(({ theme, color, colorKey }) =>
   }
 
   &:active {
-    color: ${theme.palette[color][colorKey]};
+    color: ${theme.palette[color][colorkey]};
   }
 `);
 
-const ShortcutButton = ({ href = '#', color, colorKey = 600, text, icon }: ShortcutButtonProps) => {
-    const coloredIcon = useMemo(() => cloneElement(icon, { color, colorKey }), [color, colorKey, icon]);
+const ShortcutButton = ({ href = '#', color, colorkey = 600, text, icon }: ShortcutButtonProps) => {
+    const coloredIcon = useMemo(() => cloneElement(icon, { color, colorkey }), [color, colorkey, icon]);
 
     return (
         <NextLink href={href} passHref>
-            <Anchor color={color} colorKey={colorKey}>
+            <Anchor color={color} colorkey={colorkey}>
                 {coloredIcon}
                 <Typography variant={'subtitle3'} fontWeight={'bold'} color={'inherit'}>
                     {text}
