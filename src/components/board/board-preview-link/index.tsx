@@ -7,6 +7,7 @@ import BoardPreviewLinkUserAndDate from './BoardPreviewLinkUserAndDate';
 import HeartIcon from "@components/icons/HeartIcon";
 import CommentIcon from "@components/icons/CommentIcon";
 import BoardVoteTagIcon from "@components/icons/BoardVoteTagIcon";
+import muiTheme from "@styles/muiTheme";
 
 interface BoardPreviewLinkProps {
     id: number;
@@ -19,8 +20,8 @@ interface BoardPreviewLinkProps {
         nickName: string;
         mbti: string;
     };
-    isVote: boolean;
-    category: string;
+    isVote?: boolean;
+    category?: string;
     likeCount: number;
     commentCount: number;
     date: string;
@@ -44,7 +45,7 @@ const LabelContainer = styled('div')`
 const ImagePlaceHolder = styled('div')`
   width: 94px;
   height: 90px;
-  margin-left: 32px;
+  margin-right: 8px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.palette.gray[400]};
   display: flex;
@@ -72,58 +73,69 @@ const BoardPreviewLink = ({
                           }: BoardPreviewLinkProps) => {
 
     const href = `#?fixmeId=${id}`;
-    return (
-        <Card elevation={0} sx={{ padding: {xs: '1rem', md: '1.5rem'}}}>
-            <Box display={'flex'} alignItems={'center'} marginBottom={'5.5px'}>
-                <Box minHeight={90} flexGrow={1} flexBasis={0} flexShrink={0}>
-                    <LabelContainer>
-                        <Label href={`#?fixme=${category}`} color={"pink"} >#{category}</Label>
-                        {isVote && <Label href={`#fixme=${isVote}`} >{<BoardVoteTagIcon color={'purple'} />}</Label>}
-                    </LabelContainer>
-                    <NextLink href={href} passHref>
-                        <Anchor>
-                            <BoardPreviewLinkTitle variant={'body1'} sx={{display: {xs: 'none', md: 'block'}}}>
-                                {title}
-                            </BoardPreviewLinkTitle>
-                            <BoardPreviewLinkContent variant={'body2'}>
-                                {preview}
-                            </BoardPreviewLinkContent>
-                        </Anchor>
-                    </NextLink>
-                </Box>
-                {
-                    imgSrc && (
-                        <NextLink href={href} passHref>
-                            <Anchor>
-                                <ImagePlaceHolder>
-                                    {imgSrc}
-                                </ImagePlaceHolder>
-                            </Anchor>
-                        </NextLink>
-                    )
-                }
-            </Box>
-            <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
-                <BoardPreviewLinkUserAndDate id={user.id}
-                                             name={user.nickName}
-                                             mbti={user.mbti}
-                                             date={date} />
+    const theme = muiTheme();
 
-                <Stack spacing={1} direction={'row'}>
-                    <Typography component={'span'} variant={'body2'} color={theme => theme.palette.gray[500]} display={'flex'} fontWeight={600}>
-                        <Typography display={'flex'} alignItems={'center'} padding={0.2}>
-                            <HeartIcon color={'gray'} colorkey={200}/>
-                        </Typography>
-                        {likeCount}
-                    </Typography>
-                    <Typography component={'span'} variant={'body2'} color={theme => theme.palette.gray[500]} display={'flex'} fontWeight={600}>
-                        <Typography display={'flex'} alignItems={'center'} padding={0.2}>
-                            <CommentIcon color={'gray'} colorkey={200}/>
-                        </Typography>
-                        {commentCount}
-                    </Typography>
-                </Stack>
-            </Box>
+    return (
+        <Card elevation={0} sx={{ padding: {xs: '1rem', md: '1.5rem'}, borderBottom: `1px solid ${theme.palette.gray[100]}` }} >
+            <Grid display={'flex'}>
+                <Grid>
+                    {
+                        imgSrc && (
+                            <NextLink href={href} passHref>
+                                <Anchor>
+                                    <ImagePlaceHolder>
+                                        {imgSrc}
+                                    </ImagePlaceHolder>
+                                </Anchor>
+                            </NextLink>
+                        )
+                    }
+                </Grid>
+                <Grid>
+                    <Box display={'flex'} alignItems={'center'} marginBottom={'5.5px'}>
+                        <Box maxHeight={90} flexGrow={1} flexBasis={0} flexShrink={0}>
+                            <LabelContainer>
+                                {category ? <Label href={`#?fixme=${category}`} color={"pink"} >#{category}</Label> : null}
+                                {isVote && <Label href={`#fixme=${isVote}`} >{<BoardVoteTagIcon color={'purple'} />}</Label>}
+                            </LabelContainer>
+                            <NextLink href={href} passHref>
+                                <Anchor>
+                                    <BoardPreviewLinkTitle variant={'body1'} sx={{display: {xs: 'none', md: 'block'}}}>
+                                        {title}
+                                    </BoardPreviewLinkTitle>
+                                    <BoardPreviewLinkContent variant={'body2'}>
+                                        {preview}
+                                    </BoardPreviewLinkContent>
+                                </Anchor>
+                            </NextLink>
+                        </Box>
+
+                    </Box>
+                    <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
+                        <BoardPreviewLinkUserAndDate id={user.id}
+                                                     name={user.nickName}
+                                                     mbti={user.mbti}
+                                                     date={date} />
+
+                        <Stack spacing={1} direction={'row'}>
+                            <Typography component={'span'} variant={'body2'} color={theme => theme.palette.gray[500]} display={'flex'} fontWeight={600}>
+                                <Typography display={'flex'} alignItems={'center'} padding={0.2}>
+                                    <HeartIcon color={'gray'} colorkey={200}/>
+                                </Typography>
+                                {likeCount}
+                            </Typography>
+                            <Typography component={'span'} variant={'body2'} color={theme => theme.palette.gray[500]} display={'flex'} fontWeight={600}>
+                                <Typography display={'flex'} alignItems={'center'} padding={0.2}>
+                                    <CommentIcon color={'gray'} colorkey={200}/>
+                                </Typography>
+                                {commentCount}
+                            </Typography>
+                        </Stack>
+                    </Box>
+                </Grid>
+            </Grid>
+
+
         </Card>
     );
 };
