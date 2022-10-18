@@ -14,6 +14,7 @@ import css from "@emotion/css";
 import BoardBannerTitle from "@components/banner/BoardBannerTitle";
 import ServiceCenterIcon from "@components/icons/ServiceCenterIcon";
 import MbtiWidget from "@components/widgets/mbti-widget";
+import SNSButton from "@components/button/SNSButton";
 
 interface HomePageProps {
 }
@@ -91,6 +92,7 @@ const Home = ({}: HomePageProps) => {
                         <Divider />
                         <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={false} likeCount={123} commentCount={21} date={'2022-10-16T17:45:22'} />
                     </BoardContainer>
+                    <SNSButton/>
                 </Grid>
                 </> :
                 <Card elevation={0}>
