@@ -268,6 +268,13 @@ const createMlabMuiTheme = (mode: PaletteMode = 'light') => createTheme({
                 },
             },
         },
+        MuiDivider: {
+            styleOverrides: {
+                root: {
+                    margin: '0 16px 0 16px',
+                }
+            }
+        },
     },
 });
 
