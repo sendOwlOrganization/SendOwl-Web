@@ -1,5 +1,5 @@
 import Label from '@components/label/Label';
-import { Box, Card, Stack, styled, Typography, Grid } from '@mui/material';
+import {Box, Card, Stack, styled, Typography, Grid, Divider} from '@mui/material';
 import NextLink from 'next/link';
 import BoardPreviewLinkContent from './BoardPreviewLinkContent';
 import BoardPreviewLinkTitle from './BoardPreviewLinkTitle';
@@ -76,7 +76,7 @@ const BoardPreviewLink = ({
     const theme = muiTheme();
 
     return (
-        <Card elevation={0} sx={{ padding: {xs: '1rem', md: '1.5rem'}, borderBottom: `1px solid ${theme.palette.gray[100]}` }} >
+        <Card elevation={0} sx={{ padding: {xs: '1rem', md: '1.5rem'} }} >
             <Grid display={'flex'}>
                 <Grid>
                     {
@@ -134,8 +134,6 @@ const BoardPreviewLink = ({
                     </Box>
                 </Grid>
             </Grid>
-
-
         </Card>
     );
 };

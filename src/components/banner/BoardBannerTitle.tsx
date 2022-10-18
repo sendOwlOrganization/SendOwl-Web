@@ -1,11 +1,9 @@
-import {css, Grid, styled, Typography} from "@mui/material";
-import CommunityIcon from "@components/icons/CommunityIcon";
+import {Grid, styled, Typography} from "@mui/material";
 import ArrowRightIcon from "@components/icons/ArrowRightIcon";
-import {MlabColorType} from "@styles/mlabTheme";
 
 interface BoardBannerProps {
     title: string;
-    color: MlabColorType;
+    icon:  JSX.Element;
 }
 
 const BoardBannerContainer = styled('div')`
@@ -19,11 +17,11 @@ const BoardBannerContainer = styled('div')`
   }
 `
 
-const BoardBannerTitle = ({title, color}: BoardBannerProps) => {
+const BoardBannerTitle = ({title, icon}: BoardBannerProps) => {
     return (
         <BoardBannerContainer>
             <Grid>
-                <CommunityIcon color={color} />
+                {icon}
                 <Typography variant={'subtitle3'} fontWeight={'bold'} color={'inherit'} marginLeft={'0.354rem'}>{title}</Typography>
             </Grid>
             <ArrowRightIcon/>
