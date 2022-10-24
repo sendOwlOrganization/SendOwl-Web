@@ -1,12 +1,12 @@
 import { css, styled, useTheme } from '@mui/material';
-import { MLAB_NEUTRAL_PALETTE, MLAB_OPACITY_PALETTE, MlabColorType } from '@styles/mlabTheme';
+import {MLAB_NEUTRAL_PALETTE, MLAB_OPACITY_PALETTE, MLAB_SEMANTIC_PALETTE, MlabColorType} from '@styles/mlabTheme';
 import { PropsWithChildren } from 'react';
 
 const SPACING = 4;
 const ICON_CONTAINER_SIZE = 20;
 const MIN_ICON_CONTAINER_SIZE = 10;
 
-type SvgIconColorType = MlabColorType | 'gray' | 'white' | 'black'
+type SvgIconColorType = MlabColorType | 'gray' | 'white' | 'black' | 'negative';
 type SvgIconColorKey = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000;
 
 export interface SvgIconProps {
@@ -36,6 +36,9 @@ const commonPalette = {
         hover: MLAB_NEUTRAL_PALETTE.gray[1000],
         active: MLAB_NEUTRAL_PALETTE.gray[900],
     },
+    negative: {
+        main: MLAB_SEMANTIC_PALETTE.negative
+    }
 };
 
 const Svg = styled('svg', {
@@ -63,7 +66,8 @@ const Svg = styled('svg', {
   path {
     fill: ${(color === 'white' || color === 'black')
             ? commonPalette[color].main
-            : theme.palette[color][colorkey]};
+            : color === 'negative' ? commonPalette[color].main
+                    : theme.palette[color][colorkey]};
   }
 `);
 
@@ -141,13 +145,15 @@ const Button = styled('button', {
   :hover path {
     fill: ${(color === 'white' || color === 'black')
             ? commonPalette[color].hover
-            : theme.palette[color][(Math.min(colorkey + 100, 1000)) as SvgIconColorKey]};
+            : color === 'negative' ? commonPalette[color].main 
+                    : theme.palette[color][(Math.min(colorkey + 100, 1000)) as SvgIconColorKey]};
   }
 
   :active path {
     fill: ${(color === 'white' || color === 'black')
             ? commonPalette[color].active
-            : theme.palette[color][(Math.min(colorkey + 200, 1000)) as SvgIconColorKey]};
+            : color === 'negative' ? commonPalette[color].main 
+                    :theme.palette[color][(Math.min(colorkey + 200, 1000)) as SvgIconColorKey]};
   }
 `);
 
@@ -160,7 +166,7 @@ const Badge = styled('span', {
   top: 1px;
   right: 1px;
   border-radius: 50%;
-  background-color: ${theme.palette[color][600]};
+  background-color: ${color === 'negative' ? commonPalette[color].main : theme.palette[color][600]};
 `);
 
 const SvgIcon = ({
