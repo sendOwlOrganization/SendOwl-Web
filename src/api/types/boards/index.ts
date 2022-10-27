@@ -7,6 +7,12 @@ export interface BoardDetails {
     content: string;
     regDate: string;
     hit: number;
+    user: {
+        id: number;
+        nickName: string;
+        mbti: string;
+        profileImage: string;
+    };
 }
 
 export interface BoardsResponse extends PagedResponse {
