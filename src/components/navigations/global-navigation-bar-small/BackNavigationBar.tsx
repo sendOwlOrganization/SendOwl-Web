@@ -1,6 +1,6 @@
 import ArrowLeftIcon from '@components/icons/ArrowLeftIcon';
 import Bar from '@components/navigations/global-navigation-bar-small/Bar';
-import { Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import { PropsWithChildren } from 'react';
 
@@ -13,17 +13,19 @@ const BackNavigationBar = ({ title, children }: PropsWithChildren<BackNavigation
 
     const onBack = () => {
         router.back();
-    }
+    };
 
     return (
-        <Bar>
-            <ArrowLeftIcon onClick={onBack} />
-            <Typography variant={'subtitle3'} fontWeight={'bold'}>
+        <Bar sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}>
+            <Box>
+                <ArrowLeftIcon onClick={onBack} />
+            </Box>
+            <Typography textAlign={'center'} variant={'subtitle3'} fontWeight={'bold'}>
                 {title}
             </Typography>
-            <div>
+            <Stack justifyContent={'right'} alignItems={'center'} direction={'row'} spacing={2}>
                 {children}
-            </div>
+            </Stack>
         </Bar>
     );
 };
