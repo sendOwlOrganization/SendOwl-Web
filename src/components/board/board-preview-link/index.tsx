@@ -76,9 +76,9 @@ const BoardPreviewLink = ({
     const theme = muiTheme();
 
     return (
-        <Card elevation={0} sx={{ padding: {xs: '1rem', md: '1.5rem'} }} >
+        <Card elevation={0} sx={{ padding: {xs: '1rem', md: '1.5rem'} }}>
             <Grid display={'flex'}>
-                <Grid>
+                <Grid display={'flex'} alignItems={'center'}>
                     {
                         imgSrc && (
                             <NextLink href={href} passHref>
@@ -92,8 +92,8 @@ const BoardPreviewLink = ({
                     }
                 </Grid>
                 <Grid>
-                    <Box display={'flex'} alignItems={'center'} marginBottom={'5.5px'}>
-                        <Box maxHeight={90} flexGrow={1} flexBasis={0} flexShrink={0}>
+                    <Box display={'flex'} alignItems={'center'} marginBottom={'5.5px'} >
+                        <Box maxHeight={120} flexGrow={1} flexBasis={0} flexShrink={0} >
                             <LabelContainer>
                                 {category ? <Label href={`#?fixme=${category}`} color={"pink"} >#{category}</Label> : null}
                                 {isVote && <Label href={`#fixme=${isVote}`} >{<BoardVoteTagIcon color={'purple'} />}</Label>}
@@ -103,7 +103,7 @@ const BoardPreviewLink = ({
                                     <BoardPreviewLinkTitle variant={'body1'} sx={{display: {xs: 'none', md: 'block'}}}>
                                         {title}
                                     </BoardPreviewLinkTitle>
-                                    <BoardPreviewLinkContent variant={'body2'}>
+                                    <BoardPreviewLinkContent variant={'body2'} >
                                         {preview}
                                     </BoardPreviewLinkContent>
                                 </Anchor>
