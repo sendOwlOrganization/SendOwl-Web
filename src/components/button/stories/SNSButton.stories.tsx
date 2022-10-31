@@ -7,11 +7,10 @@ export default {
     component: SNSButton,
 } as ComponentMeta<typeof SNSButton>;
 
-const Template: ComponentStory<typeof SNSButton> = (args) => (
-    <SNSButton {...args} />
+const Template: ComponentStory<typeof SNSButton> = () => (
+    <SNSButton />
 );
 
 export const Default = Template.bind({});
 Default.args = {
-    icon: <InstagramIcon color={'gray'} colorkey={700}/>
 };

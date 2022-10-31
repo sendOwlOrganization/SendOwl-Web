@@ -70,6 +70,8 @@ const GlobalLayout = ({ children }: PropsWithChildren<GlobalLayoutProps>) => {
                     <MainContainer>
                         {children}
                     </MainContainer>
+                    <>
+                    </>
                 </>
                 :
                 <>

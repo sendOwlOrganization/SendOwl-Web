@@ -272,7 +272,7 @@ const createMlabMuiTheme = (mode: PaletteMode = 'light') => createTheme({
             styleOverrides: {
                 root: {
                     margin: '0 16px 0 16px',
-                }
+                },
             }
         },
     },
