@@ -7,7 +7,7 @@ import { useEffect, useId, useRef } from 'react';
 
 interface EditorProps {
     data: OutputData;
-    onChange: (data: OutputData) => void;
+    onChange?: (data: OutputData) => void;
     readOnly?: boolean;
 }
 
@@ -237,6 +237,7 @@ const Editor = ({ readOnly, data, onChange }: EditorProps) => {
             placeholder: '새로운 소식이나 나누고 싶은 이야기를 적어주세요',
             i18n: i18nKorean,
             onChange: async (api) => {
+                if (!onChange) return;
                 let content = await api.saver.save();
                 onChange(content);
             },
