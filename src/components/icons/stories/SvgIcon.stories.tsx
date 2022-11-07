@@ -22,6 +22,7 @@ import MenuIcon from '@components/icons/MenuIcon';
 import NotificationIcon from '@components/icons/NotificationIcon';
 import ReportIcon from '@components/icons/ReportIcon';
 import SearchIcon from '@components/icons/SearchIcon';
+import SendIcon from '@components/icons/SendIcon';
 import ServiceCenterIcon from '@components/icons/ServiceCenterIcon';
 import SettingIcon from '@components/icons/SettingIcon';
 import SvgIcon from '@components/icons/SvgIcon';
@@ -79,6 +80,7 @@ const Template: ComponentStory<typeof SvgIcon> = (args) => (
         <IconItem icon={<InstagramIcon {...args} />} />
         <IconItem icon={<FacebookIcon {...args} />} />
         <IconItem icon={<KakaoTalkIcon {...args} />} />
+        <IconItem icon={<SendIcon {...args} />} />
     </Grid>
 );
 
