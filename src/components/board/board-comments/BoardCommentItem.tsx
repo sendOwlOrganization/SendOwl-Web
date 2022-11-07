@@ -1,6 +1,7 @@
 import HeartIcon from '@components/icons/HeartIcon';
 import { Box, Stack, Typography } from '@mui/material';
 import { formatDate } from '@tools/date';
+import { useState } from 'react';
 import { Comment } from './Comment';
 
 interface BoardCommentItemProps {
@@ -8,6 +9,14 @@ interface BoardCommentItemProps {
 }
 
 const BoardCommentItem = ({ comment }: BoardCommentItemProps) => {
+    // TODO: comment에서 받아오기
+    const [like, setLike] = useState<boolean>(false);
+
+    const onClickLike = () => {
+        // TODO: 나중에 API 만들어지면 연결하기
+        setLike(like => !like);
+    };
+
     return (
         <div>
             <Box sx={theme => ({
@@ -30,14 +39,21 @@ const BoardCommentItem = ({ comment }: BoardCommentItemProps) => {
             <Box display={'flex'} alignItems={'center'} padding={'0.25rem'} marginBottom={'1rem'}>
                 <Typography variant={'caption2'}
                             fontWeight={'bold'}
-                            color={theme => theme.palette.gray[500]}>
+                            sx={theme => ({
+                                cursor: 'pointer',
+                                color: theme.palette.gray[500],
+                            })}>
                     답글
                 </Typography>
                 <Typography variant={'caption2'}
                             fontWeight={'bold'}
-                            color={theme => theme.palette.gray[500]}
-                            marginLeft={'0.75rem'}>
-                    좋아요
+                            sx={theme => ({
+                                marginLeft: '0.75rem',
+                                cursor: 'pointer',
+                                color: like ? theme.palette.pink[600] : theme.palette.gray[500],
+                            })}
+                            onClick={onClickLike}>
+                    {like ? '좋아요 취소' : '좋아요'}
                 </Typography>
                 <Box display={'flex'}
                      marginLeft={'auto'}
