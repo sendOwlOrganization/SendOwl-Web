@@ -26,6 +26,7 @@ const Container = styled('div')(({ theme }) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    width: '100%',
 }));
 
 const Input = ({ endAdornment, ...props }: InputProps) => {
