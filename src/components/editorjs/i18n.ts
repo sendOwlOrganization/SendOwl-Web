@@ -56,8 +56,8 @@ export const i18nKorean: I18nConfig = {
                 'Add column to left': '왼쪽에 열 삽입',
                 'Add column to right': '오른쪽에 열 삽입',
                 'Delete column': '열 삭제',
-                'Add row to left': '왼쪽에 행 삽입',
-                'Add row to right': '오른쪽에 행 삽입',
+                'Add row above': '위에 행 삽입',
+                'Add row below': '아래에 행 삽입',
                 'Delete row': '행 삭제',
             },
             'list': {

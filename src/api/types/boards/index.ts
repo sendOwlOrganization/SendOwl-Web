@@ -1,3 +1,4 @@
+import { OutputData } from '@editorjs/editorjs';
 import { PagedResponse } from '../pagination/PagedResponse';
 
 export interface BoardDetails {
@@ -10,4 +11,10 @@ export interface BoardDetails {
 
 export interface BoardsResponse extends PagedResponse {
     boards: BoardDetails[];
+}
+
+export interface BoardPost {
+    title: string;
+    editorJsContent: OutputData,
+    categoryId: number;
 }
