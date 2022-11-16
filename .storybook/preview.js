@@ -65,7 +65,7 @@ export const decorators = [
                     backgrounds: {
                         value: theme.palette.mode === 'dark'
                             ? MLAB_NEUTRAL_PALETTE.black
-                            : MLAB_NEUTRAL_PALETTE.gray[200],
+                            : MLAB_NEUTRAL_PALETTE.gray[100],
                     },
                 })
             }, 100)
