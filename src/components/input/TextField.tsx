@@ -135,11 +135,15 @@ const TextField = ({
                     </span>
                 </Fade>
             </Container>
-            <Typography variant={'caption1'}
-                        component={'span'}
-                        color={isDark ? theme.palette.gray[400] : theme.palette.gray[500]}>
-                {helperText}
-            </Typography>
+            {helperText && (
+                <Typography variant={'caption1'}
+                            component={'span'}
+                            color={isDark
+                                ? theme.palette.gray[400]
+                                : theme.palette.gray[500]}>
+                    {helperText}
+                </Typography>
+            )}
         </Box>
     );
 };
