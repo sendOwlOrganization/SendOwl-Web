@@ -21,6 +21,7 @@ const OrderedList = styled('ol')(({ theme }) => css`
 const ListItem = styled('li')(({ theme }) => css`
   padding: 1rem 1.5rem;
   cursor: pointer;
+  transition: background-color 100ms ease-in-out;
 
   &:hover {
     background-color: ${theme.palette.mode === 'dark'
