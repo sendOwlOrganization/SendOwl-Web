@@ -10,7 +10,7 @@ const LoginButton = styled('button', {
   background-color: ${backgroundColor};
   cursor: pointer;
   border: 1px solid ${border || backgroundColor};
-  border-radius: 2rem;
+  border-radius: 1rem;
   padding: 0.75rem;
   display: flex;
   align-items: center;
@@ -18,7 +18,7 @@ const LoginButton = styled('button', {
   color: ${color};
 
   & > *:first-child {
-    margin-right: 0.5rem;
+    margin-right: 18px;
   }
 
   &:hover {
