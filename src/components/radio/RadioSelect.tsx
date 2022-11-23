@@ -7,7 +7,7 @@ interface RadioSelectProps<T> {
     value?: T,
     onChange: (value: T) => void;
     items: T[];
-    render: (value: T) => ReactNode;
+    render: (value: T, isSelected: boolean) => ReactNode;
     areEqual?: (a?: T, b?: T) => boolean;
     getKey?: (value: T) => string;
 }
@@ -53,7 +53,7 @@ const RadioSelect = <T, >({
                         <RadioButtonIcon color={isSelected ? 'pink' : 'gray'}
                                          colorKey={isSelected ? 600 : isDark ? 800 : 200}
                                          sx={{ marginRight: '0.75rem' }} />
-                        {render(item)}
+                        {render(item, isSelected)}
                     </ListItem>
                 );
             })}
