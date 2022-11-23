@@ -12,10 +12,6 @@ interface MbtiProps {
 }
 
 const MbtiLink = styled('a')(({ theme }) => ({
-    position: 'absolute',
-    bottom: '1rem',
-    left: 0,
-    right: 0,
     display: 'block',
     textAlign: 'center',
     color: theme.palette.mode === 'dark'
@@ -27,8 +23,6 @@ const MbtiLink = styled('a')(({ theme }) => ({
 }));
 
 const Container = styled('section')`
-  position: relative;
-  height: 100%;
 `;
 
 const Mbti = ({ mbti, setMbti }: MbtiProps) => {
