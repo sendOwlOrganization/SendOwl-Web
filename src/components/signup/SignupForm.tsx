@@ -1,3 +1,4 @@
+import Age from '@components/signup/Age';
 import Mbti from '@components/signup/Mbti';
 import { useState } from 'react';
 
@@ -16,6 +17,7 @@ const SignupForm = (props: SignupFormProps) => {
     return (
         <>
             <Mbti mbti={mbti} setMbti={setMbti} />
+            <Age age={age} setAge={setAge} />
         </>
     );
 };
