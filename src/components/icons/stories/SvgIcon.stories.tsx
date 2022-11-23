@@ -12,6 +12,7 @@ import CommunityIcon from '@components/icons/CommunityIcon';
 import DeleteIcon from '@components/icons/DeleteIcon';
 import FacebookIcon from '@components/icons/FacebookIcon';
 import HeartIcon from '@components/icons/HeartIcon';
+import HeartOutlinedIcon from '@components/icons/HeartOutlinedIcon';
 import HomeIcon from '@components/icons/HomeIcon';
 import InsightIcon from '@components/icons/InsightIcon';
 import InstagramIcon from '@components/icons/InstagramIcon';
@@ -22,6 +23,7 @@ import NotificationIcon from '@components/icons/NotificationIcon';
 import RadioButtonIcon from '@components/icons/RadioButtonIcon';
 import ReportIcon from '@components/icons/ReportIcon';
 import SearchIcon from '@components/icons/SearchIcon';
+import SendIcon from '@components/icons/SendIcon';
 import ServiceCenterIcon from '@components/icons/ServiceCenterIcon';
 import SettingIcon from '@components/icons/SettingIcon';
 import SvgIcon from '@components/icons/SvgIcon';
@@ -61,6 +63,7 @@ const Template: ComponentStory<typeof SvgIcon> = (args) => (
         <IconItem icon={<NotificationIcon {...args} />} />
         <IconItem icon={<CloseIcon {...args} />} />
         <IconItem icon={<HeartIcon {...args} />} />
+        <IconItem icon={<HeartOutlinedIcon {...args} />} />
         <IconItem icon={<CommunityIcon {...args} />} />
         <IconItem icon={<InsightIcon {...args} />} />
         <IconItem icon={<BalanceGameIcon {...args} />} />
@@ -79,6 +82,7 @@ const Template: ComponentStory<typeof SvgIcon> = (args) => (
         <IconItem icon={<FacebookIcon {...args} />} />
         <IconItem icon={<KakaoTalkIcon {...args} />} />
         <IconItem icon={<RadioButtonIcon {...args} />} />
+        <IconItem icon={<SendIcon {...args} />} />
     </Grid>
 );
 

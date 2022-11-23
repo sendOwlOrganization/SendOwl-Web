@@ -9,7 +9,7 @@ const getDayDiff = (date1: Date, date2: Date): number => {
     return diff / TimeConstants.MILLISECONDS_IN_DAY;
 };
 
-export const formatDate = (datetime: string): string => {
+export const formatDate = (datetime: string | Date): string => {
     const date = new Date(datetime);
     const now = new Date();
     const dayDiff = getDayDiff(now, date);
