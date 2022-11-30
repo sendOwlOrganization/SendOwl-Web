@@ -6,6 +6,8 @@ interface AgeProps {
     setAge: (age: number) => void;
 }
 
+const POSSIBLE_AGES: number[] = [10, 20, 30, 40, 50, 60];
+
 const Age = ({ age, setAge }: AgeProps) => {
     return (
         <section>
@@ -23,7 +25,7 @@ const Age = ({ age, setAge }: AgeProps) => {
             </Fade>
             <RadioSelect value={age}
                          onChange={setAge}
-                         items={[10, 20, 30, 40, 50, 60]}
+                         items={POSSIBLE_AGES}
                          render={(v, isSelected) => <Typography
                              variant={'body2'}
                              fontWeight={'bold'}
