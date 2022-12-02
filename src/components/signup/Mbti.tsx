@@ -20,9 +20,14 @@ const MbtiLink = styled('a')(({ theme }) => ({
     textDecoration: 'underline',
     fontSize: '0.75rem',
     lineHeight: 1.5,
+    position: 'fixed',
+    bottom: '60px',
+    left: 0,
+    right: 0,
 }));
 
 const Container = styled('section')`
+  padding: 1rem;
 `;
 
 const Mbti = ({ mbti, setMbti }: MbtiProps) => {
