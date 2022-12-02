@@ -5,6 +5,9 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 export default {
     title: 'components/signup/SignupForm',
     component: SignupForm,
+    parameters: {
+        layout: 'fullscreen',
+    },
 } as ComponentMeta<typeof SignupForm>;
 
 const Template: ComponentStory<typeof SignupForm> = (args) => (
