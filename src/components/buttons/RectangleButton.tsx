@@ -15,6 +15,7 @@ const RectangleButton = styled('button')(({ theme, disabled }) => ({
     padding: '1rem',
     outline: 'none',
     border: 'none',
+    cursor: disabled ? undefined : 'pointer',
     ...theme.typography.subtitle3,
     fontWeight: 'bold',
 }));
