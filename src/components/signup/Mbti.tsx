@@ -51,6 +51,7 @@ const Mbti = ({ mbti, setMbti }: MbtiProps) => {
                     </Typography>
                 </Fade>
                 <TextField value={mbti}
+                           autoFocus
                            onChange={onChangeMbti}
                            onClear={() => setMbti('')}
                            placeholder={'MBTI를 입력해 주세요'} />
