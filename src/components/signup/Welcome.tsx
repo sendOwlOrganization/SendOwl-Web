@@ -2,6 +2,7 @@ import RectangleButton from '@components/buttons/RectangleButton';
 import MlabLogo from '@components/logo/MlabLogo';
 import { Player } from '@lottiefiles/react-lottie-player';
 import { Box, styled, Typography } from '@mui/material';
+import NextLink from 'next/link';
 import { useRef } from 'react';
 
 interface WelcomeProps {
@@ -58,9 +59,11 @@ const Welcome = ({ nickname }: WelcomeProps) => {
                     </Typography>
                 </Container>
             </Box>
-            <RectangleButton sx={{ position: 'fixed', bottom: '0' }}>
-                시작하기
-            </RectangleButton>
+            <NextLink href={'/'} passHref>
+                <RectangleButton as={'a'} sx={{ textAlign: 'center', position: 'fixed', bottom: '0' }}>
+                    시작하기
+                </RectangleButton>
+            </NextLink>
         </section>
     );
 };
