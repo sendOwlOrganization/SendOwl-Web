@@ -1,3 +1,4 @@
+import { LoginDetail } from '@api/types/LoginDetail';
 import fetch from 'node-fetch';
 import { BoardDetails, BoardPost, BoardsResponse } from './types/boards';
 import { Category, PopularCategory } from './types/category';
@@ -73,4 +74,15 @@ export const postBoardDetails = async (board: BoardPost, token: string) => await
         'Authorization': `Bearer ${token}`,
     },
     body: JSON.stringify(board),
+});
+
+export const getGoogleLoginDetails = async (accessToken: string) => await fetchSendOwlApi<LoginDetail>(`users/oauth2`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        transactionId: 'google',
+        token: accessToken,
+    }),
 });
