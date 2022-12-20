@@ -17,7 +17,7 @@ const POSSIBLE_GENDERS: string[] = Object.keys(GENDERS);
 const Gender = ({ gender, setGender }: GenderProps) => {
     return (
         <>
-            <Box>
+            <Box sx={{ padding: '1rem 1rem 0 1rem' }}>
                 <Fade timeout={{ appear: 1500, enter: 500, exit: 500 }}
                       in mountOnEnter unmountOnExit>
                     <Typography variant={'title1'} fontWeight={'bold'} component={'h2'} marginBottom={'0.25rem'}>
