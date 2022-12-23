@@ -11,6 +11,7 @@ interface FetchError {
 
 interface FetchResponse<T> {
     data: T | null;
+    headers: Record<string, string> | null;
     error: FetchError | null;
 }
 
@@ -23,14 +24,17 @@ const fetchSendOwlApi = async <T extends unknown>(
         const data = await fetch(`${API_URL}/api/${endpoint}`, init);
         if (data.ok) {
             const response: T = await data.json();
+            const headers: Record<string, string> = Object.fromEntries(data.headers.entries());
 
             return {
                 data: response,
+                headers,
                 error: null,
             };
         } else {
             return {
                 data: null,
+                headers: null,
                 error: {
                     code: data.status,
                 },
@@ -39,6 +43,7 @@ const fetchSendOwlApi = async <T extends unknown>(
     } catch (e: unknown) {
         return {
             data: null,
+            headers: null,
             error: {
                 code: HttpStatusCode.INTERNAL_SERVER_ERROR,
             },
@@ -86,3 +91,14 @@ export const getGoogleLoginDetails = async (accessToken: string) => await fetchS
         token: accessToken,
     }),
 });
+
+
+export const postSetProfile = async (profile: { mbti: string, gender: string, age: number, nickName: string }, token: string) =>
+    await fetchSendOwlApi(`users/set-profile`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(profile),
+    });
