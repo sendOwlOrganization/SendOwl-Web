@@ -12,11 +12,14 @@ const GenderPage = ({}: GenderPageProps) => {
 
     const setGender = (gender: string) => setState(prev => ({ ...prev, gender }));
 
+    const isValid = Boolean(state.gender);
+
     return (
         <>
             <Gender gender={state.gender} setGender={setGender} />
 
             <RectangleButtonLink href={'/register/age'}
+                                 disabled={!isValid}
                                  sx={{ position: 'fixed', bottom: '0', textAlign: 'center' }}>
                 다음
             </RectangleButtonLink>
