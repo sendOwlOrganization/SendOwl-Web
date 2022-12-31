@@ -1,5 +1,7 @@
 import MlabLogo from '@components/logo/MlabLogo';
-import { styled, Typography } from '@mui/material';
+import {styled, Typography} from '@mui/material';
+import {MBTI_LIST} from "@mocks/mbti";
+import MbtiScroll from '@components/scroll/MbtiScroll';
 
 const Container = styled('div')`
   display: flex;
@@ -24,11 +26,12 @@ const MovingText = styled('span')`
     }
   }
 `;
-
 interface WelcomeProps {
 }
 
 const Welcome = (props: WelcomeProps) => {
+    const mbti_list = MBTI_LIST;
+
     return (
         <Container>
             <MovingText>👋</MovingText>
@@ -45,6 +48,7 @@ const Welcome = (props: WelcomeProps) => {
                         lineHeight={1}>
                 우리가 아는 MBTI의 모든 것
             </Typography>
+            <MbtiScroll/>
         </Container>
     );
 };
