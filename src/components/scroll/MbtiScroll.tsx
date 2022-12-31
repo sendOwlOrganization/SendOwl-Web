@@ -35,11 +35,7 @@ const MbtiScroll = (props: MbtiScrollProps) => {
         <Container>
             <Scroll>
                 {
-                    mbti_list.map((mbti) =>{
-                        let mbtiLower = mbti.toLowerCase();
-                        const str = "/character/"+mbtiLower+".svg";
-                        return <img key={mbti} src={str}></img>
-                    })
+                    mbti_list.map((mbti) => <img key={mbti} src={`/character/${mbti.toLowerCase()}.svg`} />)
                 }
             </Scroll>
         </Container>
