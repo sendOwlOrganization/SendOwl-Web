@@ -1,14 +1,13 @@
 import MlabLogo from '@components/logo/MlabLogo';
-import {ImageList, ImageListItem, styled, Typography} from '@mui/material';
-import Image from 'next/image';
+import {styled, Typography} from '@mui/material';
 import {MBTI_LIST} from "@mocks/mbti";
-import {useEffect, useRef} from 'react';
 
 const Container = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 `;
 
 const MovingText = styled('span')`
@@ -31,31 +30,21 @@ const MbtiScroll= styled('div')`
   display: flex;
   flex-direction: row;
   align-items: end;
-  width: 100%;
-  overflow-x: auto;
-  &::-webkit-scrollbar{
-    display: none;
-  }
+  animation: bannerScroll 15s linear infinite;
+  @keyframes bannerScroll {
+    0% {
+      transform: translateX(45%);
+    }
+    100% {
+      transform: translateX(-45%);
+    }
+  };
 `;
 interface WelcomeProps {
 }
 
 const Welcome = (props: WelcomeProps) => {
     const mbti_list = MBTI_LIST;
-    const scrollRef = useRef(null);
-
-    useEffect(()=>{
-        setInterval(()=>{
-            // @ts-ignore
-            if(scrollRef.current.scrollLeft >= scrollRef.current.scrollWidth - scrollRef.current.offsetWidth){
-                // @ts-ignore
-                scrollRef.current.scrollLeft = 0;
-                return;
-            }
-            // @ts-ignore
-            scrollRef.current.scrollLeft += 1;
-        }, 100)
-    })
 
     return (
         <Container>
@@ -73,14 +62,14 @@ const Welcome = (props: WelcomeProps) => {
                         lineHeight={1}>
                 우리가 아는 MBTI의 모든 것
             </Typography>
-            <MbtiScroll ref={scrollRef}>
-                    {
-                        mbti_list.map((mbti) =>{
-                            let mbtiLower = mbti.toLowerCase();
-                            const str = "/character/"+mbtiLower+".svg";
-                            return <img key={mbti} src={str}></img>
-                        })
-                    }
+            <MbtiScroll>
+                {
+                    mbti_list.map((mbti) =>{
+                        let mbtiLower = mbti.toLowerCase();
+                        const str = "/character/"+mbtiLower+".svg";
+                        return <img key={mbti} src={str}></img>
+                    })
+                }
             </MbtiScroll>
         </Container>
     );
