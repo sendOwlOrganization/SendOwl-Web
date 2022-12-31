@@ -75,10 +75,10 @@ const Welcome = (props: WelcomeProps) => {
             </Typography>
             <MbtiScroll ref={scrollRef}>
                     {
-                        mbti_list.map((mbti, index) =>{
+                        mbti_list.map((mbti) =>{
                             let mbtiLower = mbti.toLowerCase();
                             const str = "/character/"+mbtiLower+".svg";
-                            return <img key={index} src={str}></img>
+                            return <img key={mbti} src={str}></img>
                         })
                     }
             </MbtiScroll>
