@@ -1,13 +1,13 @@
 import MlabLogo from '@components/logo/MlabLogo';
 import {styled, Typography} from '@mui/material';
 import {MBTI_LIST} from "@mocks/mbti";
+import MbtiScroll from '@components/scroll/MbtiScroll';
 
 const Container = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 `;
 
 const MovingText = styled('span')`
@@ -25,20 +25,6 @@ const MovingText = styled('span')`
       transform: rotate(-10deg) translateX(-5px);
     }
   }
-`;
-const MbtiScroll= styled('div')`
-  display: flex;
-  flex-direction: row;
-  align-items: end;
-  animation: bannerScroll 15s linear infinite;
-  @keyframes bannerScroll {
-    0% {
-      transform: translateX(45%);
-    }
-    100% {
-      transform: translateX(-45%);
-    }
-  };
 `;
 interface WelcomeProps {
 }
@@ -62,15 +48,7 @@ const Welcome = (props: WelcomeProps) => {
                         lineHeight={1}>
                 우리가 아는 MBTI의 모든 것
             </Typography>
-            <MbtiScroll>
-                {
-                    mbti_list.map((mbti) =>{
-                        let mbtiLower = mbti.toLowerCase();
-                        const str = "/character/"+mbtiLower+".svg";
-                        return <img key={mbti} src={str}></img>
-                    })
-                }
-            </MbtiScroll>
+            <MbtiScroll/>
         </Container>
     );
 };
