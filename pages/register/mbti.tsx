@@ -5,7 +5,6 @@ import Mbti from '@components/signup/Mbti';
 import { MBTI_LIST } from '@mocks/mbti';
 import { styled } from '@mui/material';
 import { signOut } from 'next-auth/react';
-import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { registerStore } from '../../src/store/registerStore';
 
@@ -21,7 +20,6 @@ const Header = styled('header')(({ theme }) => ({
 
 const MbtiPage = ({}: MbtiPageProps) => {
     const [state, setState] = useRecoilState(registerStore);
-    const router = useRouter();
     const isValid = ([...MBTI_LIST] as string[]).includes(state.mbti);
 
     const setMbti = (mbti: string) => {
