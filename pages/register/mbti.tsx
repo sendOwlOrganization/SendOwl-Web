@@ -1,22 +1,15 @@
 import ArrowLeftIcon from '@components/icons/ArrowLeftIcon';
 import EmptyLayout from '@components/layout/EmptyLayout';
 import RectangleButtonLink from '@components/links/RectangleButtonLink';
+import Header from '@components/signup/Header';
 import Mbti from '@components/signup/Mbti';
 import { MBTI_LIST } from '@mocks/mbti';
-import { styled } from '@mui/material';
 import { signOut } from 'next-auth/react';
 import { useRecoilState } from 'recoil';
 import { registerStore } from '../../src/store/registerStore';
 
 interface MbtiPageProps {
 }
-
-
-const Header = styled('header')(({ theme }) => ({
-    padding: '1rem 0.25rem',
-    display: 'flex',
-    alignItems: 'center',
-}));
 
 const MbtiPage = ({}: MbtiPageProps) => {
     const [state, setState] = useRecoilState(registerStore);
