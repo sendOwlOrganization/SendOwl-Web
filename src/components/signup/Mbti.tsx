@@ -1,6 +1,6 @@
 import Autocomplete from '@components/autocomplete/Autocomplete';
 import TextField from '@components/input/TextField';
-import { MBTI_DESCRIPTION, MBTI_LIST } from '@mocks/mbti';
+import { MBTI_DESCRIPTION, MBTI_LIST, MBTI_LIST_STRING } from '@mocks/mbti';
 import { Box, Fade, styled, Typography } from '@mui/material';
 import { ChangeEvent } from 'react';
 
@@ -27,6 +27,22 @@ const MbtiLink = styled('a')(({ theme }) => ({
 }));
 
 const Container = styled('section')`
+`;
+
+const CharacterImage = styled('img')`
+  object-fit: scale-down;
+  animation: grow 500ms ease;
+
+  @keyframes grow {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 `;
 
 const Mbti = ({ mbti, setMbti }: MbtiProps) => {
@@ -75,6 +91,23 @@ const Mbti = ({ mbti, setMbti }: MbtiProps) => {
                               </Typography>
                           )}
                           notFoundMessage={'올바른 MBTI를 입력해 주세요🙏'} />
+            {
+                MBTI_LIST_STRING.includes(mbti) && (
+                    <Box sx={{
+                        position: 'fixed',
+                        bottom: '90px',
+                        height: '180px',
+                        width: '100%',
+                        display: 'flex',
+                        alignItems: 'end',
+                        justifyContent: 'center',
+                    }}>
+                        <CharacterImage
+                            src={`/character/${mbti.toLowerCase()}.svg`}
+                        />
+                    </Box>
+                )
+            }
             <MbtiLink href={MBTI_TEST_LINK} rel={'noreferrer nofollow'}>
                 MBTI 검사 받으러가기
             </MbtiLink>
