@@ -39,7 +39,7 @@ const WelcomePage = ({}: WelcomePageProps) => {
 
     return (
         <>
-            <Welcome nickname={state.nickname} />
+            <Welcome nickname={state.nickname} mbti={state.mbti} />
             <RectangleButtonLink href={'/'}
                                  sx={{ position: 'fixed', bottom: '0', textAlign: 'center' }}>
                 시작하기
