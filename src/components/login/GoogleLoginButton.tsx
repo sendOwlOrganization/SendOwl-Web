@@ -1,5 +1,6 @@
 import LoginButton from '@components/login/LoginButton';
 import { SvgIcon, Typography, useTheme } from '@mui/material';
+import { signIn } from 'next-auth/react';
 
 const GOOGLE_COLOR = '#FFFFFF';
 
@@ -7,6 +8,7 @@ const GoogleLoginButton = () => {
     const theme = useTheme();
     return (
         <LoginButton backgroundColor={GOOGLE_COLOR}
+                     onClick={() => signIn('google')}
                      color={theme.palette.gray[1000]}
                      border={theme.palette.gray[200]}>
             <SvgIcon fontSize={'small'} width={24} height={24}>
