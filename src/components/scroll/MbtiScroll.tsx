@@ -1,42 +1,58 @@
-import {styled} from '@mui/material';
-import {MBTI_LIST} from "@mocks/mbti";
+import { Box, styled } from '@mui/material';
+import { MBTI_LIST } from '@mocks/mbti';
 
 const Container = styled('div')`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 `;
 
+const mbtiList = [...MBTI_LIST, ...MBTI_LIST, ...MBTI_LIST.slice(0, 4)];
 
-const Scroll= styled('div')`
-  display: flex;
-  flex-direction: row;
-  align-items: end;
-  animation: bannerScroll 20s linear infinite;
-  @keyframes bannerScroll {
-    0% {
-      transform: translateX(45%);
-    }
-    100% {
-      transform: translateX(-45%);
-    }
-  };
+const MBTI_IMG_SIZE = '180px';
+
+const Scroll = styled('div')`
+    display: flex;
+    flex-direction: row;
+    animation: banner-scroll 20s linear infinite;
+    @keyframes banner-scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-${MBTI_IMG_SIZE} * 16));
+        }
+    } ;
 `;
-interface MbtiScrollProps {
-}
+interface MbtiScrollProps {}
+
+const CharacterImage = styled('img')`
+    object-fit: scale-down;
+`;
 
 const MbtiScroll = (props: MbtiScrollProps) => {
-    const mbti_list = MBTI_LIST;
-
     return (
         <Container>
             <Scroll>
-                {
-                    mbti_list.map((mbti) => <img key={mbti} src={`/character/${mbti.toLowerCase()}.svg`} />)
-                }
+                {mbtiList.map((mbti, i) => (
+                    <Box
+                        key={`${mbti}-${i}`}
+                        sx={{
+                            position: 'relative',
+                            height: MBTI_IMG_SIZE,
+                            width: MBTI_IMG_SIZE,
+                            display: 'flex',
+                            alignItems: 'end',
+                            justifyContent: 'center',
+                        }}>
+                        <CharacterImage
+                            src={`/character/${mbti.toLowerCase()}.svg`}
+                        />
+                    </Box>
+                ))}
             </Scroll>
         </Container>
     );
