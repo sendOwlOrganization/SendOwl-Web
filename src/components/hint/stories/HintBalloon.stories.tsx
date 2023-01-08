@@ -15,5 +15,5 @@ Default.args = {
     label: '🎉 3초만에 시작하기',
     open: true,
     align: 'left',
-    justify: 'down'
+    location: 'up',
 };

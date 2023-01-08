@@ -1,15 +1,11 @@
 import {Box, css, Grow, styled, Typography} from '@mui/material';
 
-interface TootipProps {
-    left?: boolean;
-    center?: boolean;
-    right?: boolean;
-    up?: boolean;
-    down?: boolean;
+interface TooltipProps {
+    align?: 'left' | 'center' | 'right';
+    location?: 'up' | 'down';
 }
 
-
-const Tooltip = styled(Typography)(({theme}) => css`
+const Tooltip = styled(Typography)<TooltipProps>(({theme, align, location}) => css`
   border-radius: 1rem;
   padding: 0.25rem 0.625rem;
   border-top-color: ${theme.palette.mode === 'dark'
@@ -23,30 +19,44 @@ const Tooltip = styled(Typography)(({theme}) => css`
   margin-bottom: 1rem;
   position: relative;
 
-  // bottom
   &:after {
     content: "";
     position: absolute;
-    bottom: -0.625rem;
-    border-top: 10px solid black;
-    border-top-color: inherit;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
+    color: ${theme.palette.lightPink[600]};
 
-    left: ${(props) => (props.left === true ? '10%' : '90%')};
+    ${location === "up" ? ({
+      borderBottom: '10px solid black',
+      borderBottomColor: 'inherit',
+      borderLeft: '10px solid transparent',
+      borderRight: '10px solid transparent',
+      top: '-0.625rem',
+    }) : ({
+      borderTop: '10px solid black',
+      borderTopColor: 'inherit',
+      borderLeft: '10px solid transparent',
+      borderRight: '10px solid transparent',
+      bottom: '-0.625rem',
+    })};
+
+    ${align === "left" ? ({
+      left: '15%',
+    }) : align === "center" ? ({
+      left: '45%',
+    }) : ({
+      right: '15%',
+    })};
   }
 `);
 
 interface HintBalloonProps {
     label: string;
-    location: string;
     open: boolean;
-    align: string;
-    justify: string;
+    align: 'left' | 'center' | 'right';
+    location: 'up' | 'down';
 }
 
 const HintBalloon = (props: HintBalloonProps) => {
-    const {label, open, align, justify} = props;
+    const {label, open, align, location} = props;
     return (
         <Grow in={open}
               style={{
@@ -56,7 +66,7 @@ const HintBalloon = (props: HintBalloonProps) => {
               timeout={1000}
               unmountOnExit>
             <Box display={'flex'} justifyContent={'center'}>
-                <Tooltip variant={'body2'}>
+                <Tooltip variant={'body2'} align={align} location={location}>
                     {label}
                 </Tooltip>
             </Box>
