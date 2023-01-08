@@ -14,7 +14,7 @@ const mbtiList = [...MBTI_LIST, ...MBTI_LIST, ...MBTI_LIST.slice(0, 4)];
 
 const MBTI_IMG_SIZE = '180px';
 
-const Scroll = styled('div')`
+const Scroll = styled('ul')`
     display: flex;
     flex-direction: row;
     animation: banner-scroll 20s linear infinite;
@@ -39,6 +39,7 @@ const MbtiScroll = (props: MbtiScrollProps) => {
             <Scroll>
                 {mbtiList.map((mbti, i) => (
                     <Box
+                        component={'li'}
                         key={`${mbti}-${i}`}
                         sx={{
                             position: 'relative',
