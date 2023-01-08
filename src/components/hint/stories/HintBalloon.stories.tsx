@@ -1,4 +1,4 @@
-import HintBalloon from '@components/hint/HIntBalloon';
+import HintBalloon from '@components/hint/HintBalloon';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 
 export default {
