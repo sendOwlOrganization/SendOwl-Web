@@ -10,7 +10,8 @@ const Container = styled('div')`
     overflow: hidden;
 `;
 
-const mbtiList = [...MBTI_LIST, ...MBTI_LIST, ...MBTI_LIST.slice(0, 4)];
+// 화면이 클 때 마지막 요소들이 안보일 수 있어서 3번 복제
+const mbtiList = [...MBTI_LIST, ...MBTI_LIST, ...MBTI_LIST];
 
 const MBTI_IMG_SIZE = '180px';
 
