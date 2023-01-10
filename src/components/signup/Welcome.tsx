@@ -45,6 +45,21 @@ const MbtiImage = styled('img')(({ theme }) => css`
   }
 `);
 
+const WelcomeText = styled(Typography)`
+  animation: grow 500ms ease;
+
+  @keyframes grow {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+`;
+
 const Welcome = ({ nickname, mbti = '' }: WelcomeProps) => {
     const lottieRef = useRef<Player>(null);
     return (
@@ -91,13 +106,13 @@ const Welcome = ({ nickname, mbti = '' }: WelcomeProps) => {
                         </Box>
                     )}
                 </Box>
-                <Typography align={'center'} variant={'h3'} fontWeight={'bold'}>
+                <WelcomeText align={'center'} variant={'h3'} fontWeight={'bold'}>
                     <Typography color={theme => theme.palette.pink[600]}
                                 variant={'h3'} fontWeight={'bold'}
                                 component={'span'}>{nickname}</Typography>님,
                     <br />
                     가입을 진심으로 축하드려요🎉
-                </Typography>
+                </WelcomeText>
             </Box>
         </section>
     );
