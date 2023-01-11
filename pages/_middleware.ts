@@ -10,6 +10,8 @@ export default withAuth(
             if (!loginDetail.data?.alreadySetted) {
                 return NextResponse.redirect(new URL('/register/mbti', request.url));
             }
+        } else if (!accessToken && request.page.name?.startsWith('/register')) {
+            return NextResponse.redirect(new URL('/login', request.url));
         }
 
         return NextResponse.next();

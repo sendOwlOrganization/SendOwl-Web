@@ -17,6 +17,8 @@ export const MBTI_LIST = [
     'ISTP',
 ] as const;
 
+export const MBTI_LIST_STRING: string[] = [...MBTI_LIST];
+
 export const MBTI_DESCRIPTION: Record<typeof MBTI_LIST[number], string> = {
     'ENFJ': '선도자',
     'ENFP': '재기발랄한 활동가',

@@ -1,25 +1,15 @@
-import RectangleButton from '@components/buttons/RectangleButton';
 import MlabLogo from '@components/logo/MlabLogo';
 import { Player } from '@lottiefiles/react-lottie-player';
-import { Box, styled, Typography } from '@mui/material';
-import NextLink from 'next/link';
+import { Box, css, styled, Typography } from '@mui/material';
 import { useRef } from 'react';
 
 interface WelcomeProps {
     nickname: string;
+    mbti: string;
 }
 
 const confettiLottie = 'https://assets3.lottiefiles.com/packages/lf20_lmggs7gq.json';
-
-const Container = styled('div')(({ theme }) => ({
-    padding: '1rem',
-    position: 'relative',
-    maxWidth: '500px',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    maxHeight: '500px',
-}));
+const SQUARE_SIZE = '320px';
 
 const Header = styled('header')(({ theme }) => ({
     height: '4.375rem',
@@ -28,20 +18,67 @@ const Header = styled('header')(({ theme }) => ({
     justifyContent: 'center',
 }));
 
-const Welcome = ({ nickname }: WelcomeProps) => {
+const MbtiImage = styled('img')(({ theme }) => css`
+  animation: hello 1000ms ease-in-out infinite, grow 500ms ease;
+
+  @keyframes grow {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes hello {
+    0% {
+      transform: rotate(-10deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+    100% {
+      transform: rotate(-10deg);
+    }
+  }
+`);
+
+const WelcomeText = styled(Typography)`
+  animation: grow 500ms ease;
+
+  @keyframes grow {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+`;
+
+const Welcome = ({ nickname, mbti = '' }: WelcomeProps) => {
     const lottieRef = useRef<Player>(null);
     return (
         <section>
             <Header>
                 <MlabLogo width={66} />
             </Header>
-            <Box sx={{ maxHeight: '500px', position: 'relative', height: lottieRef.current?.container?.clientHeight }}>
-                <Container style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    height: '100%',
+            <Box sx={{
+                height: 'calc(100vh - 200px)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+            }}>
+                <Box sx={{
+                    maxWidth: SQUARE_SIZE,
+                    width: '100%',
+                    paddingTop: `min(${SQUARE_SIZE}, 100%)`,
+                    position: 'relative',
                 }}>
                     <Player autoplay
                             keepLastFrame
@@ -49,21 +86,34 @@ const Welcome = ({ nickname }: WelcomeProps) => {
                             speed={1}
                             ref={lottieRef}
                             src={confettiLottie}
-                            style={{}} />
-                    <Typography align={'center'} variant={'title3'} fontWeight={'bold'}>
-                        <Typography color={theme => theme.palette.pink[600]}
-                                    variant={'title3'} fontWeight={'bold'}
-                                    component={'span'}>{nickname}</Typography>님,
-                        <br />
-                        환영해요!
-                    </Typography>
-                </Container>
+                            style={{
+                                position: 'absolute',
+                                bottom: 0,
+                                left: '50%',
+                                width: '100%',
+                                height: '100%',
+                                transform: 'translate(-50%)',
+                            }} />
+                    {mbti && (
+                        <Box sx={{
+                            position: 'absolute',
+                            bottom: '30px',
+                            left: '50%',
+                            transform: 'translate(-50%)',
+                            display: 'block',
+                        }}>
+                            <MbtiImage src={`/character/${mbti.toLowerCase()}.svg`} />
+                        </Box>
+                    )}
+                </Box>
+                <WelcomeText align={'center'} variant={'h3'} fontWeight={'bold'}>
+                    <Typography color={theme => theme.palette.pink[600]}
+                                variant={'h3'} fontWeight={'bold'}
+                                component={'span'}>{nickname}</Typography>님,
+                    <br />
+                    가입을 진심으로 축하드려요🎉
+                </WelcomeText>
             </Box>
-            <NextLink href={'/'} passHref>
-                <RectangleButton as={'a'} sx={{ textAlign: 'center', position: 'fixed', bottom: '0' }}>
-                    시작하기
-                </RectangleButton>
-            </NextLink>
         </section>
     );
 };
