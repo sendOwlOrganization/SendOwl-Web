@@ -112,6 +112,9 @@ const Welcome = ({ nickname, mbti = '' }: WelcomeProps) => {
                                 component={'span'}>{nickname}</Typography>님,
                     <br />
                     가입을 진심으로 축하드려요🎉
+                    <Typography variant={'body2'} color={theme => theme.palette.gray[500]} marginTop={'6px'}>
+                        닉네임은 마이페이지에서 수정할 수 있어요
+                    </Typography>
                 </WelcomeText>
             </Box>
         </section>
