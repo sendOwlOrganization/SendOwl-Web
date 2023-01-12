@@ -17,6 +17,7 @@ import MbtiWidget from "@components/widgets/mbti-widget";
 import SNSButton from "@components/button/SNSButton";
 import InstagramIcon from "@components/icons/InstagramIcon";
 import Footer from "@UI/Footer";
+import {communityList} from "@mocks/category";
 
 interface HomePageProps {
 }
@@ -64,35 +65,34 @@ const Home = ({}: HomePageProps) => {
                         <ShortcutButton href={"#"} icon={<NoticeIcon/>} text={'공지/이벤트'} color={MLAB_ICON_COLORS.notice}/>
                     </ShortcutContainer>
                     <BoardContainer>
-                        <BoardBannerTitle title={'커뮤니티'} icon={<CommunityIcon color={'pink'}/>} />
-                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={true} category={'커뮤니티'} likeCount={123} commentCount={21} date={'2022-08-18T17:45:22'} />
+                        <BoardBannerTitle title={communityList.community.name} icon={<communityList.community.icon color={communityList.community.color}/>} />
+                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={true} category={'커뮤니티'} likeCount={123} commentCount={21} date={'2023-01-12T17:45:22'} />
                         <Divider />
-                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={true} category={'커뮤니티'} likeCount={123} commentCount={21} date={'2022-08-18T17:45:22'} />
+                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={true} category={'커뮤니티'} likeCount={123} commentCount={21} date={'2023-01-12T17:45:22'} />
                         <Divider/>
-                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={true} category={'커뮤니티'} likeCount={123} commentCount={21} date={'2022-08-18T17:45:22'} />
+                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={true} category={'커뮤니티'} likeCount={123} commentCount={21} date={'2023-01-12T17:45:22'} />
                     </BoardContainer>
                     <BoardContainer>
-                        <BoardBannerTitle title={'밸런스게임'} icon={<BalanceGameIcon color={'purple'}/>} />
-                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={false} likeCount={123} commentCount={21} date={'2022-10-16T17:45:22'} imgSrc={'img'} />
+                        <BoardBannerTitle title={communityList.balanceGame.name} icon={<communityList.balanceGame.icon color={communityList.balanceGame.color}/>} />
+                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={false} likeCount={123} commentCount={21} date={'2023-01-12T17:45:22'} imgSrc={'img'} />
                         <Divider />
-                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={false} likeCount={123} commentCount={21} date={'2022-10-16T17:45:22'} imgSrc={'img'} />
+                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={false} likeCount={123} commentCount={21} date={'2023-01-12T17:45:22'} imgSrc={'img'} />
                         <Divider />
-                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={false} likeCount={123} commentCount={21} date={'2022-10-16T17:45:22'} imgSrc={'img'} />
+                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={false} likeCount={123} commentCount={21} date={'2023-01-12T17:45:22'} imgSrc={'img'} />
                     </BoardContainer>
                     <BoardContainer>
-                        <BoardBannerTitle title={'인사이트'} icon={<InsightIcon color={'blue'}/>} />
+                        <BoardBannerTitle title={communityList.insight.name} icon={<communityList.insight.icon color={communityList.insight.color}/>} />
                         <Grid>
                             <MbtiWidget user={{ mbti: 'ENTP' }} data={[{ id: 'ENTP', value: 1000, label: 'ENTP' }]} />
                         </Grid>
-
                     </BoardContainer>
                     <BoardContainer>
-                        <BoardBannerTitle title={'고객센터'} icon={<ServiceCenterIcon color={'yellow'}/>}/>
-                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={false} likeCount={123} commentCount={21} date={'2022-10-16T17:45:22'} />
+                        <BoardBannerTitle title={communityList.serviceCenter.name} icon={<communityList.serviceCenter.icon color={communityList.serviceCenter.color}/>} />
+                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={false} likeCount={123} commentCount={21} date={'2023-01-12T17:45:22'} />
                         <Divider />
-                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={false} likeCount={123} commentCount={21} date={'2022-10-16T17:45:22'} />
+                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={false} likeCount={123} commentCount={21} date={'2023-01-12T17:45:22'} />
                         <Divider />
-                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={false} likeCount={123} commentCount={21} date={'2022-10-16T17:45:22'} />
+                        <BoardPreviewLink id={1} title={'게시글 제목'} preview={'Lorem Ipsum 은 단순히 인쇄 및 조판 산업의 더미 텍스트입니다.'} user={{id: 1,nickName: '유저', mbti: 'ENTJ'}} isVote={false} likeCount={123} commentCount={21} date={'2023-01-12T17:45:22'} />
                     </BoardContainer>
                     <SNSButton />
                     <Footer/>

@@ -45,7 +45,7 @@ const LabelContainer = styled('div')`
 const ImagePlaceHolder = styled('div')`
   width: 94px;
   height: 90px;
-  margin-right: 8px;
+  margin-left: 8px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.palette.gray[400]};
   display: flex;
@@ -78,19 +78,6 @@ const BoardPreviewLink = ({
     return (
         <Card elevation={0} sx={{ padding: {xs: '1rem', md: '1.5rem'} }}>
             <Grid display={'flex'}>
-                <Grid display={'flex'} alignItems={'center'}>
-                    {
-                        imgSrc && (
-                            <NextLink href={href} passHref>
-                                <Anchor>
-                                    <ImagePlaceHolder>
-                                        {imgSrc}
-                                    </ImagePlaceHolder>
-                                </Anchor>
-                            </NextLink>
-                        )
-                    }
-                </Grid>
                 <Grid>
                     <Box display={'flex'} alignItems={'center'} marginBottom={'5.5px'} >
                         <Box maxHeight={120} flexGrow={1} flexBasis={0} flexShrink={0} >
@@ -133,7 +120,21 @@ const BoardPreviewLink = ({
                         </Stack>
                     </Box>
                 </Grid>
+                <Grid display={'flex'} alignItems={'center'}>
+                    {
+                        imgSrc && (
+                            <NextLink href={href} passHref>
+                                <Anchor>
+                                    <ImagePlaceHolder>
+                                        {imgSrc}
+                                    </ImagePlaceHolder>
+                                </Anchor>
+                            </NextLink>
+                        )
+                    }
+                </Grid>
             </Grid>
+
         </Card>
     );
 };

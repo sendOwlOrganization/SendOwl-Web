@@ -47,13 +47,12 @@ const fetchSendOwlApi = async <T extends unknown>(
 
 export const getBoards = async (
     categoryId: number,
-    page: number,
+    textLength: number,
     pageSize: number,
 ): Promise<FetchResponse<BoardsResponse>> =>
     await fetchSendOwlApi<BoardsResponse>(
-        `boards?categoryId=${categoryId}&page=${page}&size=${pageSize}&sort=id,DESC`,
+        `boards?categoryId=${categoryId}&textLength=${textLength}&size=${pageSize}&sort=id`,
     );
-
 export const getBoardDetails = async (
     id: number,
 ): Promise<FetchResponse<BoardDetails>> =>
