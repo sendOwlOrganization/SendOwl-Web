@@ -4,10 +4,12 @@ import { Divider } from '@mui/material';
 
 interface Board {
     id: number;
-    category: string;
     title: string;
-    likeCount: number;
-    commentCount: number;
+    content: string;
+    nickname: string;
+    regDate: Date;
+    hit: number;
+    boardLikeCount: number;
 }
 
 interface BoardCategoryListProps {

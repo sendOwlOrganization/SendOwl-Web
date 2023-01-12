@@ -1,9 +1,10 @@
 import {Grid, styled, Typography} from "@mui/material";
 import ArrowRightIcon from "@components/icons/ArrowRightIcon";
+import {SvgIconProps} from "@components/icons/SvgIcon";
 
 interface BoardBannerProps {
     title: string;
-    icon:  JSX.Element;
+    icon: React.ReactElement<SvgIconProps>
 }
 
 const BoardBannerContainer = styled('div')`
