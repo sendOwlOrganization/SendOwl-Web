@@ -12,5 +12,36 @@ a {
 * {
     font-family: Pretendard, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    transition: all 100ms;
+}
+
+
+/* ReactSpring BottomSheet */
+:root {
+    --rsbs-header-bar-bg: #C5C5C6;
+    --rsbs-handle-bg: hsla(0, 0%, 0%, 0.14);
+    --rsbs-max-w: 22.5rem;
+    --rsbs-ml: auto;
+    --rsbs-mr: auto;
+    --rsbs-overlay-rounded: 1rem;
+}
+
+[data-rsbs-backdrop] {
+    backdrop-filter: blur(2px);
+}
+
+[data-rsbs-header] {
+    padding-top: calc(24px + env(safe-area-inset-top));
+    box-shadow: none;
+}
+
+[data-rsbs-header]:before {
+    width: 66px;
+    height: 5px;
+    border-radius: 100px;
+    background-color: var(--rsbs-header-bar-bg);
+}
+
+[data-rsbs-footer] {
+    padding-top: 0;
+    box-shadow: none;
 }

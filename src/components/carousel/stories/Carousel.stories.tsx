@@ -1,4 +1,4 @@
-import Carousel from '@components/carousel/carousel/Carousel';
+import Carousel from '@components/carousel/Carousel';
 
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
@@ -17,13 +17,25 @@ const Template: ComponentStory<typeof Carousel> = (args) => (
 );
 
 const dataMock = [
-    {id: 1, name: 'ad1', images: "/images/ad1.png",
+    {
+        id: 1,
+        name: 'ad1',
+        src: "/images/ad1.png",
     },
-    {id: 2, name: 'ad2', images: '/images/ad2.png',
+    {
+        id: 2,
+        name: 'ad2',
+        src: '/images/ad2.png',
     },
-    {id:3, name: 'ad3', images: '/images/ad3.png',
+    {
+        id:3,
+        name: 'ad3',
+        src: '/images/ad3.png',
     },
-    {id: 4, name: 'ad4', images: '/images/ad4.png',
+    {
+        id: 4,
+        name: 'ad4',
+        src: '/images/ad4.png',
     }
 ];
 
@@ -35,5 +47,5 @@ Example.args = {
 export const HeroImage = Template.bind({});
 HeroImage.args = {
     data: dataMock,
-    check: true
+    showPagination: true
 };

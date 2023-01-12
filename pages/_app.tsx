@@ -8,6 +8,7 @@ import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { PropsWithChildren, useState } from 'react';
+import 'react-spring-bottom-sheet/dist/style.css';
 import { RecoilRoot } from 'recoil';
 import createEmotionCache from '../src/mui/createEmotionCache';
 

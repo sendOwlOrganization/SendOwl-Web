@@ -3,7 +3,9 @@ import { useGlobals } from '@storybook/addons'
 import { ThemeProvider as Emotion10ThemeProvider } from 'emotion-theming'
 import { RouterContext } from 'next/dist/shared/lib/router-context'
 import { useEffect, useState } from 'react'
+import 'react-spring-bottom-sheet/dist/style.css'
 import { useDarkMode } from 'storybook-dark-mode'
+import { updateReactSpringBottomSheetTheme } from '../src/tools/updateReactSpringBottomSheetTheme'
 import '../styles/globals.css'
 import { MLAB_NEUTRAL_PALETTE } from '../styles/mlabTheme'
 import createMlabMuiTheme from '../styles/muiTheme'
@@ -63,10 +65,11 @@ export const decorators = [
                     backgrounds: {
                         value: theme.palette.mode === 'dark'
                             ? MLAB_NEUTRAL_PALETTE.black
-                            : MLAB_NEUTRAL_PALETTE.gray[200],
+                            : MLAB_NEUTRAL_PALETTE.gray[100],
                     },
                 })
             }, 100)
+            updateReactSpringBottomSheetTheme(theme)
 
             return () => {
                 clearTimeout(timeout)

@@ -1,5 +1,6 @@
-import { css, styled, useTheme } from '@mui/material';
+
 import {MLAB_NEUTRAL_PALETTE, MLAB_OPACITY_PALETTE, MLAB_SEMANTIC_PALETTE, MlabColorType} from '@styles/mlabTheme';
+import { css, styled, SxProps, Theme, useTheme } from '@mui/material';
 import { PropsWithChildren } from 'react';
 
 const SPACING = 4;
@@ -23,6 +24,7 @@ export interface SvgIconProps {
     height?: number;
     alignItems?: string;
     minimum?: boolean;
+    sx?: SxProps<Theme>;
 }
 
 const commonPalette = {
@@ -183,6 +185,7 @@ const SvgIcon = ({
                      height,
                      roundedBorder,
                      minimum,
+                     sx,
                  }: PropsWithChildren<SvgIconProps>) => {
     const theme = useTheme();
     const fixedColor = color || (theme.palette.mode === 'dark' ? 'white' : 'black');
@@ -195,9 +198,9 @@ const SvgIcon = ({
                     color={fixedColor}
                     colorkey={colorkey}
                     spacing={spacing}
-                    disableHoverBackground={!!disableHoverBackground}
                     minimum={minimum}
-            >
+                    sx={sx}
+                    disableHoverBackground={!!disableHoverBackground}>
                 <Svg color={fixedColor}
                      colorkey={colorkey}
                      scale={scale}
