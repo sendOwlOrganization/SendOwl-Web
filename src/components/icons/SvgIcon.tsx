@@ -1,6 +1,5 @@
-
-import {MLAB_NEUTRAL_PALETTE, MLAB_OPACITY_PALETTE, MLAB_SEMANTIC_PALETTE, MlabColorType} from '@styles/mlabTheme';
 import { css, styled, SxProps, Theme, useTheme } from '@mui/material';
+import { MLAB_NEUTRAL_PALETTE, MLAB_OPACITY_PALETTE, MLAB_SEMANTIC_PALETTE, MlabColorType } from '@styles/mlabTheme';
 import { PropsWithChildren } from 'react';
 
 const SPACING = 4;
@@ -12,7 +11,7 @@ type SvgIconColorKey = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 100
 
 export interface SvgIconProps {
     color?: SvgIconColorType;
-    colorkey?: SvgIconColorKey;
+    colorKey?: SvgIconColorKey;
     onClick?: () => void;
     disableHoverBackground?: boolean;
     clickable?: boolean;
@@ -39,8 +38,8 @@ const commonPalette = {
         active: MLAB_NEUTRAL_PALETTE.gray[900],
     },
     negative: {
-        main: MLAB_SEMANTIC_PALETTE.negative
-    }
+        main: MLAB_SEMANTIC_PALETTE.negative,
+    },
 };
 
 const Svg = styled('svg', {
@@ -62,8 +61,8 @@ const Svg = styled('svg', {
         scale,
         minimum,
     }) => css`
-  height: ${minimum ? ICON_CONTAINER_SIZE*scale : MIN_ICON_CONTAINER_SIZE*scale } px;
-  width:  ${minimum ? ICON_CONTAINER_SIZE*scale : MIN_ICON_CONTAINER_SIZE*scale } px;
+  height: ${minimum ? ICON_CONTAINER_SIZE * scale : MIN_ICON_CONTAINER_SIZE * scale} px;
+  width: ${minimum ? ICON_CONTAINER_SIZE * scale : MIN_ICON_CONTAINER_SIZE * scale} px;
 
   path {
     fill: ${(color === 'white' || color === 'black')
@@ -147,15 +146,15 @@ const Button = styled('button', {
   :hover path {
     fill: ${(color === 'white' || color === 'black')
             ? commonPalette[color].hover
-            : color === 'negative' ? commonPalette[color].main 
+            : color === 'negative' ? commonPalette[color].main
                     : theme.palette[color][(Math.min(colorkey + 100, 1000)) as SvgIconColorKey]};
   }
 
   :active path {
     fill: ${(color === 'white' || color === 'black')
             ? commonPalette[color].active
-            : color === 'negative' ? commonPalette[color].main 
-                    :theme.palette[color][(Math.min(colorkey + 200, 1000)) as SvgIconColorKey]};
+            : color === 'negative' ? commonPalette[color].main
+                    : theme.palette[color][(Math.min(colorkey + 200, 1000)) as SvgIconColorKey]};
   }
 `);
 
@@ -173,7 +172,7 @@ const Badge = styled('span', {
 
 const SvgIcon = ({
                      color,
-                     colorkey = 600,
+                     colorKey = 600,
                      onClick,
                      clickable,
                      children,
@@ -196,13 +195,13 @@ const SvgIcon = ({
                     onClick={onClick}
                     scale={scale}
                     color={fixedColor}
-                    colorkey={colorkey}
+                    colorkey={colorKey}
                     spacing={spacing}
                     minimum={minimum}
                     sx={sx}
                     disableHoverBackground={!!disableHoverBackground}>
                 <Svg color={fixedColor}
-                     colorkey={colorkey}
+                     colorkey={colorKey}
                      scale={scale}
                      xmlns='http://www.w3.org/2000/svg'
                      viewBox={`0 0 ${minimum ? MIN_ICON_CONTAINER_SIZE : ICON_CONTAINER_SIZE} ${minimum ? MIN_ICON_CONTAINER_SIZE : ICON_CONTAINER_SIZE}`}
@@ -216,7 +215,7 @@ const SvgIcon = ({
         ) : (
             <Span spacing={spacing} scale={scale} minimum={minimum}>
                 <Svg color={fixedColor}
-                     colorkey={colorkey}
+                     colorkey={colorKey}
                      xmlns='http://www.w3.org/2000/svg'
                      scale={scale}
                      viewBox={`0 0 ${minimum ? MIN_ICON_CONTAINER_SIZE : ICON_CONTAINER_SIZE} ${minimum ? MIN_ICON_CONTAINER_SIZE : ICON_CONTAINER_SIZE}`}

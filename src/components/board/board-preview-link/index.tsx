@@ -119,14 +119,14 @@ const BoardPreviewLink = ({
                             <Typography component={'span'} variant={'body2'} color={theme => theme.palette.gray[500]}
                                         display={'flex'} fontWeight={600}>
                                 <Typography display={'flex'} alignItems={'center'} padding={0.2}>
-                                    <HeartIcon color={'gray'} colorkey={200} />
+                                    <HeartIcon color={'gray'} colorKey={200} />
                                 </Typography>
                                 {likeCount}
                             </Typography>
                             <Typography component={'span'} variant={'body2'} color={theme => theme.palette.gray[500]}
                                         display={'flex'} fontWeight={600}>
                                 <Typography display={'flex'} alignItems={'center'} padding={0.2}>
-                                    <CommentIcon color={'gray'} colorkey={200} />
+                                    <CommentIcon color={'gray'} colorKey={200} />
                                 </Typography>
                                 {commentCount}
                             </Typography>

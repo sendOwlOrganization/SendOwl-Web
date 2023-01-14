@@ -6,7 +6,7 @@ import { cloneElement, ReactElement, useMemo } from 'react';
 
 interface ColorProps {
     color: MlabColorType | 'gray';
-    colorkey?: SvgIconProps['colorkey'];
+    colorKey?: SvgIconProps['colorKey'];
 }
 
 interface ShortcutButtonProps extends ColorProps {
@@ -41,12 +41,11 @@ const Anchor = styled('a')<Required<ColorProps>>(({ theme, color, colorkey }) =>
   }
 `);
 
-const ShortcutButton = ({ href = '#', color, colorkey = 600, text, icon }: ShortcutButtonProps) => {
-    const coloredIcon = useMemo(() => cloneElement(icon, { color, colorkey }), [color, colorkey, icon]);
-
+const ShortcutButton = ({ href = '#', color, colorKey = 600, text, icon }: ShortcutButtonProps) => {
+    const coloredIcon = useMemo(() => cloneElement(icon, { color, colorKey: colorkey }), [color, colorKey, icon]);
     return (
         <NextLink href={href} passHref>
-            <Anchor color={color} colorkey={colorkey}>
+            <Anchor color={color} colorKey={colorKey}>
                 {coloredIcon}
                 <Typography variant={'subtitle3'} fontWeight={'bold'} color={'inherit'}>
                     {text}
