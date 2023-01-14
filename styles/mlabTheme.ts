@@ -1,4 +1,4 @@
-const mlabColors = ['pink', 'blue', 'green', 'lightPink', 'purple', 'yellow', 'gray', 'negative'] as const;
+const mlabColors = ['pink', 'blue', 'green', 'lightPink', 'purple', 'yellow', 'gray'] as const;
 export type MlabColorType = typeof mlabColors[number];
 
 export const MLAB_PALETTE = {

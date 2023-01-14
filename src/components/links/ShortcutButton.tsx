@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 import { cloneElement, ReactElement, useMemo } from 'react';
 
 interface ColorProps {
-    color: MlabColorType | 'gray';
+    color: MlabColorType;
     colorKey?: SvgIconProps['colorKey'];
 }
 
@@ -15,8 +15,8 @@ interface ShortcutButtonProps extends ColorProps {
     text: string;
 }
 
-const Anchor = styled('a')<Required<ColorProps>>(({ theme, color, colorkey }) => css`
-  width: 9.75rem;
+const Anchor = styled('a')<Required<ColorProps>>(({ theme, color, colorKey }) => css`
+  width: 100%;
   height: 3.25rem;
   display: flex;
   justify-content: center;
@@ -37,12 +37,12 @@ const Anchor = styled('a')<Required<ColorProps>>(({ theme, color, colorkey }) =>
   }
 
   &:active {
-    color: ${theme.palette[color][colorkey]};
+    color: ${theme.palette[color][colorKey]};
   }
 `);
 
 const ShortcutButton = ({ href = '#', color, colorKey = 600, text, icon }: ShortcutButtonProps) => {
-    const coloredIcon = useMemo(() => cloneElement(icon, { color, colorKey: colorkey }), [color, colorKey, icon]);
+    const coloredIcon = useMemo(() => cloneElement(icon, { color, colorKey }), [color, colorKey, icon]);
     return (
         <NextLink href={href} passHref>
             <Anchor color={color} colorKey={colorKey}>
