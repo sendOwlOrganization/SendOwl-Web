@@ -23,15 +23,15 @@ interface LabelContainerProps extends Required<Omit<LabelProps, 'href' | 'onClic
 const labelCss = (theme: Theme, rounded: boolean, size: number, padding: number) => css`
   display: inline-flex;
   border-radius: ${rounded ? 4 * size * padding : 4}px;
-  padding: ${padding * 4}px ${padding * 8}px;
+  padding: ${padding * 6}px ${padding * 8}px;
   font-weight: bold;
-  font-size: ${12 * size}px;
+  font-size: ${10 * size}px;
   transition: all 100ms ${theme.transitions.easing.easeInOut};
 `;
 
 const defaultLabelCss = (theme: Theme, color: LabelColor, isClickable: boolean) => css`
-  background-color: ${color === 'default' ? theme.palette.gray[200] : theme.palette[color][200]};
-  color: ${color === 'default' ? theme.palette.gray[800] : theme.palette[color][700]};
+  background-color: ${color === 'default' ? theme.palette.gray[100] : theme.palette.gray[100]};
+  color: ${color === 'default' ? theme.palette.gray[600] : theme.palette[color][600]};
   ${isClickable && css`
     :hover {
       cursor: pointer;

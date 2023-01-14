@@ -13,9 +13,11 @@ const BoardPreviewLinkUserAndDate = ({ mbti, name, id, date }: BoardPreviewLinkU
     const { isDark } = useThemeMode();
     return (
         <Typography variant={'body2'}
-                    color={theme => theme.palette.gray[500]}>
+                    color={theme => theme.palette.gray[500]}
+                    fontWeight={'bold'}
+        >
             <Typography variant={'body2'}
-                        color={theme => theme.palette.lightPink[600]}
+                        color={theme => theme.palette.gray[500]}
                         fontWeight={'bold'}
                         component={'span'}>
                 {`${mbti} `}

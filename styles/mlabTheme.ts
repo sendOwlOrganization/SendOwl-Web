@@ -1,4 +1,4 @@
-const mlabColors = ['pink', 'blue', 'green', 'lightPink', 'purple', 'yellow'] as const;
+const mlabColors = ['pink', 'blue', 'green', 'lightPink', 'purple', 'yellow', 'gray'] as const;
 export type MlabColorType = typeof mlabColors[number];
 
 export const MLAB_PALETTE = {
@@ -123,7 +123,7 @@ export const MLAB_SEMANTIC_PALETTE = {
     notice: '#E78A3E',
     positive: '#3E8C61',
     accent: '#5092EC',
-};
+} as const;
 
 export const MLAB_THEME = {
     ...MLAB_PALETTE,

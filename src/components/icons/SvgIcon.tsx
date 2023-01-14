@@ -1,11 +1,12 @@
 import { css, styled, SxProps, Theme, useTheme } from '@mui/material';
-import { MLAB_NEUTRAL_PALETTE, MLAB_OPACITY_PALETTE, MlabColorType } from '@styles/mlabTheme';
+import { MLAB_NEUTRAL_PALETTE, MLAB_OPACITY_PALETTE, MLAB_SEMANTIC_PALETTE, MlabColorType } from '@styles/mlabTheme';
 import { PropsWithChildren } from 'react';
 
 const SPACING = 4;
 const ICON_CONTAINER_SIZE = 20;
+const MIN_ICON_CONTAINER_SIZE = 10;
 
-type SvgIconColorType = MlabColorType | 'gray' | 'white' | 'black'
+type SvgIconColorType = MlabColorType | 'gray' | 'white' | 'black' | 'negative';
 type SvgIconColorKey = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000;
 
 export interface SvgIconProps {
@@ -20,6 +21,8 @@ export interface SvgIconProps {
     roundedBorder?: boolean;
     width?: number;
     height?: number;
+    alignItems?: string;
+    minimum?: boolean;
     sx?: SxProps<Theme>;
 }
 
@@ -34,31 +37,38 @@ const commonPalette = {
         hover: MLAB_NEUTRAL_PALETTE.gray[1000],
         active: MLAB_NEUTRAL_PALETTE.gray[900],
     },
+    negative: {
+        main: MLAB_SEMANTIC_PALETTE.negative,
+    },
 };
 
 const Svg = styled('svg', {
     shouldForwardProp: name => ![
         'color',
-        'colorKey',
+        'colorkey',
         'scale',
+        'minimum',
     ].includes(name as string),
 })<{
     color: SvgIconColorType,
-    colorKey: SvgIconColorKey,
-    scale: number
+    colorkey: SvgIconColorKey,
+    scale: number,
+    minimum?: boolean,
 }>(({
         theme,
         color,
-        colorKey,
+        colorkey,
         scale,
+        minimum,
     }) => css`
-  height: ${ICON_CONTAINER_SIZE * scale}px;
-  width: ${ICON_CONTAINER_SIZE * scale}px;
+  height: ${minimum ? ICON_CONTAINER_SIZE * scale : MIN_ICON_CONTAINER_SIZE * scale} px;
+  width: ${minimum ? ICON_CONTAINER_SIZE * scale : MIN_ICON_CONTAINER_SIZE * scale} px;
 
   path {
     fill: ${(color === 'white' || color === 'black')
             ? commonPalette[color].main
-            : theme.palette[color][colorKey]};
+            : color === 'negative' ? commonPalette[color].main
+                    : theme.palette[color][colorkey]};
   }
 `);
 
@@ -67,11 +77,12 @@ const Span = styled('span', {
     shouldForwardProp: name => ![
         'spacing',
         'scale',
+        'minimum',
     ].includes(name as string),
-})<{ spacing: number, scale: number }>(({ spacing, theme, scale }) => css`
+})<{ spacing: number, scale: number, minimum?: boolean }>(({ spacing, theme, scale, minimum }) => css`
   background-color: transparent;
-  height: ${ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2)}px;
-  width: ${ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2)}px;
+  height: ${minimum ? MIN_ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2) : ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2)}px;
+  width: ${minimum ? MIN_ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2) : ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2)}px;
   padding: ${theme.spacing(spacing / 2)};
   position: relative;
   display: flex;
@@ -84,33 +95,37 @@ const Button = styled('button', {
     shouldForwardProp: (name) => ![
         'disableHoverBackground',
         'rounded',
-        'colorKey',
+        'colorkey',
         'color',
         'scale',
         'spacing',
+        'alignItems',
+        'minimum',
     ].includes(name as string),
 })<{
     color: SvgIconColorType,
-    colorKey: SvgIconColorKey,
+    colorkey: SvgIconColorKey,
     scale: number,
     spacing: number,
     disableHoverBackground: boolean,
     rounded: boolean,
+    minimum?: boolean,
 }>(({
         theme,
         color,
-        colorKey,
+        colorkey,
         spacing,
         scale,
         disableHoverBackground,
         rounded,
+        minimum,
     }) => css`
   border: none;
   cursor: pointer;
   border-radius: ${rounded ? 16 : 4}px;
   background-color: transparent;
-  height: ${ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2)}px;
-  width: ${ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2)}px;
+  height: ${minimum ? MIN_ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2) : ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2)}px;
+  width: ${minimum ? MIN_ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2) : ICON_CONTAINER_SIZE * scale + (SPACING * spacing * 2)}px;
   padding: ${theme.spacing(spacing / 2)};
   display: flex;
   align-items: center;
@@ -131,13 +146,15 @@ const Button = styled('button', {
   :hover path {
     fill: ${(color === 'white' || color === 'black')
             ? commonPalette[color].hover
-            : theme.palette[color][(Math.min(colorKey + 100, 1000)) as SvgIconColorKey]};
+            : color === 'negative' ? commonPalette[color].main
+                    : theme.palette[color][(Math.min(colorkey + 100, 1000)) as SvgIconColorKey]};
   }
 
   :active path {
     fill: ${(color === 'white' || color === 'black')
             ? commonPalette[color].active
-            : theme.palette[color][(Math.min(colorKey + 200, 1000)) as SvgIconColorKey]};
+            : color === 'negative' ? commonPalette[color].main
+                    : theme.palette[color][(Math.min(colorkey + 200, 1000)) as SvgIconColorKey]};
   }
 `);
 
@@ -150,7 +167,7 @@ const Badge = styled('span', {
   top: 1px;
   right: 1px;
   border-radius: 50%;
-  background-color: ${theme.palette[color][600]};
+  background-color: ${color === 'negative' ? commonPalette[color].main : theme.palette[color][600]};
 `);
 
 const SvgIcon = ({
@@ -161,16 +178,16 @@ const SvgIcon = ({
                      children,
                      spacing = 0,
                      scale = 1,
-                     width = ICON_CONTAINER_SIZE,
-                     height = ICON_CONTAINER_SIZE,
                      disableHoverBackground,
                      badge,
+                     width,
+                     height,
                      roundedBorder,
+                     minimum,
                      sx,
                  }: PropsWithChildren<SvgIconProps>) => {
     const theme = useTheme();
     const fixedColor = color || (theme.palette.mode === 'dark' ? 'white' : 'black');
-
 
     return onClick || clickable
         ? (
@@ -178,28 +195,33 @@ const SvgIcon = ({
                     onClick={onClick}
                     scale={scale}
                     color={fixedColor}
-                    colorKey={colorKey}
+                    colorkey={colorKey}
                     spacing={spacing}
+                    minimum={minimum}
                     sx={sx}
                     disableHoverBackground={!!disableHoverBackground}>
                 <Svg color={fixedColor}
-                     colorKey={colorKey}
+                     colorkey={colorKey}
                      scale={scale}
                      xmlns='http://www.w3.org/2000/svg'
-                     viewBox={`0 0 ${width} ${height}`}
-                     fill='none'>
+                     viewBox={`0 0 ${minimum ? MIN_ICON_CONTAINER_SIZE : ICON_CONTAINER_SIZE} ${minimum ? MIN_ICON_CONTAINER_SIZE : ICON_CONTAINER_SIZE}`}
+                     fill='none'
+                     minimum={minimum}
+                >
                     {children}
                 </Svg>
                 {badge && <Badge color={badge} />}
             </Button>
         ) : (
-            <Span sx={sx} spacing={spacing} scale={scale}>
+            <Span spacing={spacing} scale={scale} minimum={minimum}>
                 <Svg color={fixedColor}
-                     colorKey={colorKey}
+                     colorkey={colorKey}
                      xmlns='http://www.w3.org/2000/svg'
                      scale={scale}
-                     viewBox={`0 0 ${width} ${height}`}
-                     fill='none'>
+                     viewBox={`0 0 ${minimum ? MIN_ICON_CONTAINER_SIZE : ICON_CONTAINER_SIZE} ${minimum ? MIN_ICON_CONTAINER_SIZE : ICON_CONTAINER_SIZE}`}
+                     fill='none'
+                     minimum={minimum}
+                >
                     {children}
                 </Svg>
                 {badge && <Badge color={badge} />}

@@ -6,10 +6,12 @@ import Link from 'next/link';
 
 interface Board {
     id: number;
-    category: string;
     title: string;
-    likeCount: number;
-    commentCount: number;
+    content: string;
+    nickname: string;
+    regDate: Date;
+    hit: number;
+    boardLikeCount: number;
 }
 
 interface BoardCategoryPostListProps {
@@ -28,7 +30,7 @@ const BoardLink = ({ board }: { board: Board }) => {
     return (
         <Grid container spacing={1} marginBottom={'5px'} marginTop={'5px'}>
             <Grid item lg={1} xs={12} paddingTop={0}>
-                <Item sx={{ border: '1px solid gray' }}>{board.category}</Item>
+                <Item sx={{ border: '1px solid gray' }}>{board.title}</Item>
             </Grid>
             <Grid item lg={9.6} xs={12}>
                 <Link href={`/boards/${board.id}`} passHref>
@@ -47,7 +49,7 @@ const BoardLink = ({ board }: { board: Board }) => {
                 flexWrap={'wrap'}>
                 <ThumbUpAltOutlinedIcon sx={{ fontSize: 13, color: 'gray' }} />
                 <Item sx={{ fontSize: 12, color: 'gray' }}>
-                    {board.likeCount}
+                    {board.boardLikeCount}
                 </Item>
             </Grid>
             <Grid
@@ -62,7 +64,7 @@ const BoardLink = ({ board }: { board: Board }) => {
                     sx={{ fontSize: 13, color: 'gray' }}
                 />
                 <Item sx={{ fontSize: 12, color: 'gray' }}>
-                    {board.commentCount}
+                    {board.hit}
                 </Item>
             </Grid>
         </Grid>
