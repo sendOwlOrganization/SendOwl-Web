@@ -9,6 +9,7 @@ const BoardPreviewLinkContent = styled(Typography)`
   color: ${({ theme }) => theme.palette.text.primary};
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  margin: 0.5rem 0;
 `;
 
 export default BoardPreviewLinkContent;

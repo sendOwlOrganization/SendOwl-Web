@@ -32,7 +32,7 @@ const SearchPage = ({ results, query }: SearchPageProps) => {
                                                         nickName: 'test',
                                                         id: r.id,
                                                     }}
-                                                    isVote={false}
+                                                    hasVote={false}
                                                     category={'category'}
                                                     likeCount={0}
                                                     commentCount={0}
