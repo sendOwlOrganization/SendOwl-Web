@@ -45,7 +45,7 @@ const SearchPage = ({results, query}: SearchPageProps) => {
 export const getServerSideProps: GetServerSideProps<SearchPageProps> = async ({req, res, query}) => {
     const q = query['query'] ? query['query'].toString() : '';
     // FIXME: search boards with query
-    const t = await getBoards(1, 0, 20, 10, "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhMUBuYXZlci5jb20vZ29vZ2xlIiwicm9sZXMiOiJBRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE2NzM4NjQwMzksImV4cCI6MTk4OTIyNDAzOX0.3K6_S2q8SyFP9zrsJ_yhreDRIAr1Xu5MuRwKtI2DbsI");
+    const t = await getBoards(1, 0, 20, 10);
     return {
         props: {
             results: t.data?.boards || [],

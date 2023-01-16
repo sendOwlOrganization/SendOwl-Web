@@ -56,16 +56,11 @@ export const getBoards = async (
     textLength: number,
     page: number,
     size: number,
-    token: string
 ): Promise<FetchResponse<BoardsResponse>> =>
     await fetchSendOwlApi<BoardsResponse>(
         `boards?categoryId=${categoryId}&textLength=${textLength}&page=${page}&size=${size}&sort=id,desc`,
         {
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            }
         },
     );
 export const getBoardDetails = async (

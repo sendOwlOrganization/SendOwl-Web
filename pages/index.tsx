@@ -105,7 +105,7 @@ interface BoardWritePageProps {
 
 export const getServerSideProps = async () => {
     // FIXME: 백엔드 호출
-    const {data} = await getBoards(1, 10, 0, 5, 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhMUBuYXZlci5jb20vZ29vZ2xlIiwicm9sZXMiOiJBRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE2NzM4NjQwMzksImV4cCI6MTk4OTIyNDAzOX0.3K6_S2q8SyFP9zrsJ_yhreDRIAr1Xu5MuRwKtI2DbsI');
+    const {data} = await getBoards(1, 10, 0, 5);
 
     if (!data) {
         console.log("error!!");
