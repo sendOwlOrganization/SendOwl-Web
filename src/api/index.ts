@@ -1,7 +1,7 @@
-import { LoginDetail } from '@api/types/LoginDetail';
+import {LoginDetail} from '@api/types/LoginDetail';
 import fetch from 'node-fetch';
-import { BoardDetails, BoardPost, BoardsResponse } from './types/boards';
-import { Category, PopularCategory } from './types/category';
+import {BoardDetails, BoardPost, BoardsResponse} from './types/boards';
+import {Category, PopularCategory} from './types/category';
 import HttpStatusCode from './types/HttpStatusCode';
 
 interface FetchError {
@@ -54,10 +54,19 @@ const fetchSendOwlApi = async <T extends unknown>(
 export const getBoards = async (
     categoryId: number,
     textLength: number,
-    pageSize: number,
+    page: number,
+    size: number,
+    token: string
 ): Promise<FetchResponse<BoardsResponse>> =>
     await fetchSendOwlApi<BoardsResponse>(
-        `boards?categoryId=${categoryId}&textLength=${textLength}&size=${pageSize}&sort=id`,
+        `boards?categoryId=${categoryId}&textLength=${textLength}&page=${page}&size=${size}&sort=id,desc`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            }
+        },
     );
 export const getBoardDetails = async (
     id: number,

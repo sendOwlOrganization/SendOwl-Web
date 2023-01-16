@@ -1,20 +1,20 @@
-import { getBoards } from '@api/index';
-import { BoardDetails } from '@api/types/boards';
+import {getBoards} from '@api/index';
+import {BoardDetails} from '@api/types/boards';
 import BoardPreviewLink from '@components/board/board-preview-link';
-import { MBTI_LIST } from '@mocks/mbti';
-import { Card, CardContent, Stack, Typography } from '@mui/material';
-import { GetServerSideProps } from 'next';
+import {MBTI_LIST} from '@mocks/mbti';
+import {Card, CardContent, Stack, Typography} from '@mui/material';
+import {GetServerSideProps} from 'next';
 
 interface SearchPageProps {
     query: string;
     results: BoardDetails[];
 }
 
-const SearchPage = ({ results, query }: SearchPageProps) => {
+const SearchPage = ({results, query}: SearchPageProps) => {
 
     return (
         <>
-            <Card elevation={0} sx={{ marginBottom: 2 }}>
+            <Card elevation={0} sx={{marginBottom: 2}}>
                 <CardContent>
                     <Typography align={'center'} fontWeight={'normal'} variant={'h1'}>
                         검색 : <Typography variant={'h1'} component={'span'}>{query}</Typography>
@@ -36,16 +36,16 @@ const SearchPage = ({ results, query }: SearchPageProps) => {
                                                     category={'category'}
                                                     likeCount={0}
                                                     commentCount={0}
-                                                    date={r.regDate} />)}
+                                                    date={r.regDate}/>)}
             </Stack>
         </>
     );
 };
 
-export const getServerSideProps: GetServerSideProps<SearchPageProps> = async ({ req, res, query }) => {
+export const getServerSideProps: GetServerSideProps<SearchPageProps> = async ({req, res, query}) => {
     const q = query['query'] ? query['query'].toString() : '';
     // FIXME: search boards with query
-    const t = await getBoards(1, 0, 20);
+    const t = await getBoards(1, 0, 20, 10, "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhMUBuYXZlci5jb20vZ29vZ2xlIiwicm9sZXMiOiJBRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE2NzM4NjQwMzksImV4cCI6MTk4OTIyNDAzOX0.3K6_S2q8SyFP9zrsJ_yhreDRIAr1Xu5MuRwKtI2DbsI");
     return {
         props: {
             results: t.data?.boards || [],

@@ -2,15 +2,15 @@ import BoardVoteTagIcon from '@components/icons/BoardVoteTagIcon';
 import CommentIcon from '@components/icons/CommentIcon';
 import HeartIcon from '@components/icons/HeartIcon';
 import Label from '@components/label/Label';
-import { Box, Card, Stack, styled, Typography } from '@mui/material';
+import {Box, Card, Stack, styled, Typography} from '@mui/material';
 import NextLink from 'next/link';
 import BoardPreviewLinkContent from './BoardPreviewLinkContent';
-import BoardPreviewLinkTitle from './BoardPreviewLinkTitle';
 import BoardPreviewLinkUserAndDate from './BoardPreviewLinkUserAndDate';
 
 interface BoardPreviewLinkProps {
     id: number;
     title: string;
+    nickname: string;
     preview: string;
     imgSrc?: string;
     // FIXME: create type with backend's
@@ -26,7 +26,7 @@ interface BoardPreviewLinkProps {
     category?: string;
     likeCount: number;
     commentCount: number;
-    date: string;
+    regDate: Date;
 }
 
 
@@ -49,7 +49,7 @@ const ImagePlaceHolder = styled('div')`
   height: 90px;
   margin-left: 8px;
   border-radius: 8px;
-  background-color: ${({ theme }) => theme.palette.gray[400]};
+  background-color: ${({theme}) => theme.palette.gray[400]};
   display: flex;
   align-items: center;
   color: white;
@@ -74,59 +74,57 @@ const Body = styled('section')`
 const BoardPreviewLink = ({
                               id,
                               title,
+                              nickname,
                               preview,
                               imgSrc,
                               user,
                               commentCount,
                               likeCount,
-                              date,
+                              regDate,
                               hasVote,
                               category,
                           }: BoardPreviewLinkProps) => {
 
     const href = `#?fixmeId=${id}`;
 
+    console.log(title)
+
     return (
         <Card elevation={0} sx={{
-            padding: { xs: '1rem', md: '1.5rem' },
+            padding: {xs: '1rem', md: '1.5rem'},
             display: 'flex',
             alignItems: 'center',
             flexDirection: 'column',
         }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+            <Box sx={{display: 'flex', alignItems: 'center', width: '100%'}}>
                 <Body>
                     <LabelContainer>
                         {category && <Label href={`#?fixme=${category}`} color={'pink'}>#{category}</Label>}
-                        {hasVote && <Label href={`#fixme=${hasVote}`}><BoardVoteTagIcon color={'purple'} /></Label>}
+                        {hasVote && <Label href={`#fixme=${hasVote}`}><BoardVoteTagIcon color={'purple'}/></Label>}
                     </LabelContainer>
                     <NextLink href={href} passHref>
                         <Anchor>
-                            <BoardPreviewLinkTitle variant={'body1'}
-                                                   sx={{ display: { xs: 'none', md: 'block' } }}>
-                                {title}
-                            </BoardPreviewLinkTitle>
                             <BoardPreviewLinkContent variant={'body2'}>
                                 {preview}
                             </BoardPreviewLinkContent>
                         </Anchor>
                     </NextLink>
                     <LinkFooter>
-                        <BoardPreviewLinkUserAndDate id={user.id}
-                                                     name={user.nickName}
-                                                     mbti={user.mbti}
-                                                     date={date} />
+                        <BoardPreviewLinkUserAndDate id={user?.id}
+                                                     name={nickname}
+                                                     date={regDate}/>
                         <Stack spacing={1} direction={'row'}>
                             <Typography component={'span'} variant={'body2'} color={theme => theme.palette.gray[500]}
                                         display={'flex'} fontWeight={600}>
                                 <Typography display={'flex'} alignItems={'center'} padding={0.2}>
-                                    <HeartIcon color={'gray'} colorKey={200} />
+                                    <HeartIcon color={'gray'} colorKey={200}/>
                                 </Typography>
                                 {likeCount}
                             </Typography>
                             <Typography component={'span'} variant={'body2'} color={theme => theme.palette.gray[500]}
                                         display={'flex'} fontWeight={600}>
                                 <Typography display={'flex'} alignItems={'center'} padding={0.2}>
-                                    <CommentIcon color={'gray'} colorKey={200} />
+                                    <CommentIcon color={'gray'} colorKey={200}/>
                                 </Typography>
                                 {commentCount}
                             </Typography>

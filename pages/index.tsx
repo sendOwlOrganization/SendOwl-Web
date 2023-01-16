@@ -9,12 +9,15 @@ import NoticeIcon from '@components/icons/NoticeIcon';
 import ShortcutButton from '@components/links/ShortcutButton';
 import MbtiWidget from '@components/widgets/mbti-widget';
 import css from '@emotion/css';
-import { communityList } from '@mocks/category';
-import { imageMocks } from '@mocks/images';
-import { Box, Divider, Grid, styled } from '@mui/material';
-import { MLAB_ICON_COLORS, MLAB_OPACITY_PALETTE } from '@styles/mlabTheme';
+import {communityList} from '@mocks/category';
+import {imageMocks} from '@mocks/images';
+import {Box, Divider, Grid, styled} from '@mui/material';
+import {MLAB_ICON_COLORS, MLAB_OPACITY_PALETTE} from '@styles/mlabTheme';
 import Footer from '@UI/Footer';
-import { ComponentProps, Fragment } from 'react';
+import {ComponentProps, Fragment} from 'react';
+import {getBoards} from "@api/index";
+import {JWT} from "next-auth/jwt";
+import {Category} from "@api/types/category";
 
 interface HomePageProps {
     // FIXME: 타입 백엔드와 정의 필요
@@ -31,75 +34,88 @@ const ShortcutContainer = styled('section')`
   grid-template-columns: 1fr 1fr;
 `;
 
-const BoardContainer = styled('div')(({ theme }) => css`
+const BoardContainer = styled('div')(({theme}) => css`
   background-color: ${theme.palette.mode === 'dark' ? MLAB_OPACITY_PALETTE.black[600] : MLAB_OPACITY_PALETTE.white[900]};
   margin-bottom: 1rem;
 `);
 
-const Home = ({ communityBoards, balanceGameBoards, serviceCenterBoards }: HomePageProps) => {
+const Home = ({communityBoards, balanceGameBoards, serviceCenterBoards}: HomePageProps) => {
     return (
         <Box>
-            <Carousel data={imageMocks} showPagination />
+            <Carousel data={imageMocks} showPagination/>
             <ShortcutContainer>
-                <ShortcutButton href={'#'} icon={<CommunityIcon />} text={'커뮤니티'}
-                                color={MLAB_ICON_COLORS.community} />
-                <ShortcutButton href={'#'} icon={<BalanceGameIcon />} text={'밸런스 게임'}
-                                color={MLAB_ICON_COLORS.balanceGame} />
-                <ShortcutButton href={'#'} icon={<InsightIcon />} text={'인사이트'}
-                                color={MLAB_ICON_COLORS.insight} />
-                <ShortcutButton href={'#'} icon={<NoticeIcon />} text={'공지/이벤트'}
-                                color={MLAB_ICON_COLORS.notice} />
+                <ShortcutButton href={'#'} icon={<CommunityIcon/>} text={'커뮤니티'}
+                                color={MLAB_ICON_COLORS.community}/>
+                <ShortcutButton href={'#'} icon={<BalanceGameIcon/>} text={'밸런스 게임'}
+                                color={MLAB_ICON_COLORS.balanceGame}/>
+                <ShortcutButton href={'#'} icon={<InsightIcon/>} text={'인사이트'}
+                                color={MLAB_ICON_COLORS.insight}/>
+                <ShortcutButton href={'#'} icon={<NoticeIcon/>} text={'공지/이벤트'}
+                                color={MLAB_ICON_COLORS.notice}/>
             </ShortcutContainer>
             <BoardContainer>
                 <BoardBannerTitle title={communityList.community.name}
-                                  icon={<communityList.community.icon color={communityList.community.color} />} />
+                                  icon={<communityList.community.icon color={communityList.community.color}/>}/>
                 {
-                    communityBoards?.map(b => <Fragment key={b.id}>
+                    communityBoards.map(b => <Fragment key={b.id}>
                         <BoardPreviewLink {...b} />
-                        <Divider />
+                        <Divider/>
                     </Fragment>)
                 }
             </BoardContainer>
             <BoardContainer>
                 <BoardBannerTitle title={communityList.balanceGame.name}
-                                  icon={<communityList.balanceGame.icon color={communityList.balanceGame.color} />} />
+                                  icon={<communityList.balanceGame.icon color={communityList.balanceGame.color}/>}/>
                 {
                     balanceGameBoards?.map(b => <Fragment key={b.id}>
                         <BoardPreviewLink {...b} />
-                        <Divider />
+                        <Divider/>
                     </Fragment>)
                 }
             </BoardContainer>
             <BoardContainer>
                 <BoardBannerTitle title={communityList.insight.name}
-                                  icon={<communityList.insight.icon color={communityList.insight.color} />} />
+                                  icon={<communityList.insight.icon color={communityList.insight.color}/>}/>
                 <Grid>
-                    <MbtiWidget user={{ mbti: 'ENTP' }}
-                                data={[{ id: 'ENTP', value: 1000, label: 'ENTP' }]} />
+                    <MbtiWidget user={{mbti: 'ENTP'}}
+                                data={[{id: 'ENTP', value: 1000, label: 'ENTP'}]}/>
                 </Grid>
             </BoardContainer>
             <BoardContainer>
                 <BoardBannerTitle title={communityList.serviceCenter.name}
                                   icon={<communityList.serviceCenter.icon
-                                      color={communityList.serviceCenter.color} />} />
+                                      color={communityList.serviceCenter.color}/>}/>
                 {
                     serviceCenterBoards?.map(b => <Fragment key={b.id}>
                         <BoardPreviewLink {...b} />
-                        <Divider />
+                        <Divider/>
                     </Fragment>)
                 }
             </BoardContainer>
-            <SNSButton />
-            <Footer />
+            <SNSButton/>
+            <Footer/>
         </Box>
     );
 };
 
+interface BoardWritePageProps {
+    token: JWT | null;
+    categories: Category[];
+}
+
 export const getServerSideProps = async () => {
     // FIXME: 백엔드 호출
-    const mockUser = { id: 1, nickName: '공격적인 ENTP', mbti: 'ENTP' };
+    const {data} = await getBoards(1, 10, 0, 5, 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhMUBuYXZlci5jb20vZ29vZ2xlIiwicm9sZXMiOiJBRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE2NzM4NjQwMzksImV4cCI6MTk4OTIyNDAzOX0.3K6_S2q8SyFP9zrsJ_yhreDRIAr1Xu5MuRwKtI2DbsI');
 
-    const communityBoards = [
+    if (!data) {
+        console.log("error!!");
+        return {}
+        // ERROR: 에러가 발생
+    }
+    const mockUser = {id: 1, nickName: '공격적인 ENTP', mbti: 'ENTP'};
+
+    const communityBoards = data!.boards;
+    const communityBoards2 = [
         {
             id: 1,
             title: 'Sunt caculaes vitare albus, clemens brabeutaes.',
@@ -140,8 +156,8 @@ export const getServerSideProps = async () => {
 
     return {
         props: {
-            communityBoards,
-            balanceGameBoards: communityBoards,
+            communityBoards: communityBoards,
+            balanceGameBoards: communityBoards2,
             serviceCenterBoards: communityBoards,
         },
     };
