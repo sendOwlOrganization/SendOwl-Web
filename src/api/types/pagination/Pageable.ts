@@ -1,3 +1,1 @@
-export interface Pageable {
-
-}
+export interface Pageable {}

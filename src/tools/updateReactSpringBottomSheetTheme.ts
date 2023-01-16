@@ -6,8 +6,7 @@ const REACT_SPRING_BOTTOM_SHEET_BACKDROP_BACKGROUND = '--rsbs-backdrop-bg';
 const REACT_SPRING_BOTTOM_SHEET_HEADER_BAR_BACKGROUND = '--rsbs-header-bar-bg';
 
 export const updateReactSpringBottomSheetTheme = (theme: Theme) => {
-    if (!document)
-        return;
+    if (!document) return;
     const style = document.documentElement.style;
     style.setProperty(REACT_SPRING_BOTTOM_SHEET_BACKDROP_BACKGROUND, MLAB_OPACITY_PALETTE.black[400]);
     if (theme.palette.mode === 'dark') {

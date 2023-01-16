@@ -28,5 +28,4 @@ export const formatDate = (datetime: string | Date): string => {
     }
     const minuteDiff = hourDiff * TimeConstants.MINUTES_IN_HOUR;
     return `${Math.floor(minuteDiff)}분 전`;
-
 };

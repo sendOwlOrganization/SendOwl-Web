@@ -15,14 +15,14 @@ export default withAuth(
         }
 
         return NextResponse.next();
-    }, {
+    },
+    {
         callbacks: {
             authorized: ({}) => true,
         },
-    });
+    }
+);
 
 export const config = {
-    matcher: [
-        '*',
-    ],
+    matcher: ['*'],
 };

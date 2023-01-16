@@ -19,22 +19,19 @@ const CommentLikeButton = ({ like }: LikeButtonProps) => {
     };
 
     return (
-        <Button sx={{ display: 'flex', color: 'text.disabled', fontSize: '0.75rem' }}
-                disableRipple
-                disableFocusRipple
-                disableTouchRipple
-                size={'small'}
-                onClick={handleLike}>
-            {
-                hasLiked
-                    ? <ThumbUp sx={iconSx} fontSize={'inherit'} />
-                    : <ThumbUpOutlined sx={iconSx} fontSize={'inherit'} />
-            }
-            {
-                nbLike === 0
-                    ? '좋아요'
-                    : nbLike.toString()
-            }
+        <Button
+            sx={{ display: 'flex', color: 'text.disabled', fontSize: '0.75rem' }}
+            disableRipple
+            disableFocusRipple
+            disableTouchRipple
+            size={'small'}
+            onClick={handleLike}>
+            {hasLiked ? (
+                <ThumbUp sx={iconSx} fontSize={'inherit'} />
+            ) : (
+                <ThumbUpOutlined sx={iconSx} fontSize={'inherit'} />
+            )}
+            {nbLike === 0 ? '좋아요' : nbLike.toString()}
         </Button>
     );
 };

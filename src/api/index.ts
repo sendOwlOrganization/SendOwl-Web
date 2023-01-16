@@ -17,7 +17,7 @@ interface FetchResponse<T> {
 
 const fetchSendOwlApi = async <T extends unknown>(
     endpoint: string,
-    init?: Parameters<typeof fetch>[1],
+    init?: Parameters<typeof fetch>[1]
 ): Promise<FetchResponse<T>> => {
     try {
         const API_URL = process.env.NEXT_PUBLIC_SENDOWL_API_URL;
@@ -54,16 +54,16 @@ const fetchSendOwlApi = async <T extends unknown>(
 export const getBoards = async (
     categoryId: number,
     textLength: number,
-    pageSize: number,
+    page: number,
+    pageSize: number
 ): Promise<FetchResponse<BoardsResponse>> =>
     await fetchSendOwlApi<BoardsResponse>(
-        `boards?categoryId=${categoryId}&textLength=${textLength}&size=${pageSize}&sort=id`,
+        `boards?categoryId=${categoryId}&page=${page}&textLength=${textLength}&size=${pageSize}&sort=id,DESC`
     );
 export const getBoardDetails = async (
     id: number,
-    init?: Parameters<typeof fetch>[1],
-): Promise<FetchResponse<BoardDetails>> =>
-    await fetchSendOwlApi<BoardDetails>(`boards/${id}`, init);
+    init?: Parameters<typeof fetch>[1]
+): Promise<FetchResponse<BoardDetails>> => await fetchSendOwlApi<BoardDetails>(`boards/${id}`, init);
 
 export const getCategories = async (): Promise<FetchResponse<Category[]>> =>
     await fetchSendOwlApi<Category[]>(`categories`);
@@ -71,28 +71,32 @@ export const getCategories = async (): Promise<FetchResponse<Category[]>> =>
 export const getPopularCategories = async (): Promise<FetchResponse<PopularCategory[]>> =>
     await fetchSendOwlApi<PopularCategory[]>('categories/popular');
 
-export const postBoardDetails = async (board: BoardPost, token: string) => await fetchSendOwlApi<any>(`boards`, {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-    },
-    body: JSON.stringify(board),
-});
+export const postBoardDetails = async (board: BoardPost, token: string) =>
+    await fetchSendOwlApi<any>(`boards`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(board),
+    });
 
-export const getGoogleLoginDetails = async (accessToken: string) => await fetchSendOwlApi<LoginDetail>(`users/oauth2`, {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-        transactionId: 'google',
-        token: accessToken,
-    }),
-});
+export const getGoogleLoginDetails = async (accessToken: string) =>
+    await fetchSendOwlApi<LoginDetail>(`users/oauth2`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            transactionId: 'google',
+            token: accessToken,
+        }),
+    });
 
-
-export const postSetProfile = async (profile: { mbti: string, gender: string, age: number, nickName: string }, token: string) =>
+export const postSetProfile = async (
+    profile: { mbti: string; gender: string; age: number; nickName: string },
+    token: string
+) =>
     await fetchSendOwlApi(`users/set-profile`, {
         method: 'POST',
         headers: {

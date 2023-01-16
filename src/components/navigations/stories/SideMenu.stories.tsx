@@ -6,9 +6,7 @@ export default {
     component: SideMenu,
 } as ComponentMeta<typeof SideMenu>;
 
-const Template: ComponentStory<typeof SideMenu> = (args) => (
-    <SideMenu {...args} />
-);
+const Template: ComponentStory<typeof SideMenu> = (args) => <SideMenu {...args} />;
 
 export const Example = Template.bind({});
 Example.args = {};

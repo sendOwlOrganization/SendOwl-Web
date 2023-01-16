@@ -18,46 +18,48 @@ const Header = styled('header')(({ theme }) => ({
     justifyContent: 'center',
 }));
 
-const MbtiImage = styled('img')(({ theme }) => css`
-  animation: hello 1000ms ease-in-out infinite, grow 500ms ease;
+const MbtiImage = styled('img')(
+    ({ theme }) => css`
+        animation: hello 1000ms ease-in-out infinite, grow 500ms ease;
 
-  @keyframes grow {
-    0% {
-      transform: scale(0);
-      opacity: 0;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
+        @keyframes grow {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
 
-  @keyframes hello {
-    0% {
-      transform: rotate(-10deg);
-    }
-    50% {
-      transform: rotate(10deg);
-    }
-    100% {
-      transform: rotate(-10deg);
-    }
-  }
-`);
+        @keyframes hello {
+            0% {
+                transform: rotate(-10deg);
+            }
+            50% {
+                transform: rotate(10deg);
+            }
+            100% {
+                transform: rotate(-10deg);
+            }
+        }
+    `
+);
 
 const WelcomeText = styled(Typography)`
-  animation: grow 500ms ease;
+    animation: grow 500ms ease;
 
-  @keyframes grow {
-    0% {
-      transform: scale(0);
-      opacity: 0;
+    @keyframes grow {
+        0% {
+            transform: scale(0);
+            opacity: 0;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
     }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
 `;
 
 const Welcome = ({ nickname, mbti = '' }: WelcomeProps) => {
@@ -67,52 +69,62 @@ const Welcome = ({ nickname, mbti = '' }: WelcomeProps) => {
             <Header>
                 <MlabLogo width={66} />
             </Header>
-            <Box sx={{
-                height: 'calc(100vh - 200px)',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}>
-                <Box sx={{
-                    maxWidth: SQUARE_SIZE,
-                    width: '100%',
-                    paddingTop: `min(${SQUARE_SIZE}, 100%)`,
-                    position: 'relative',
+            <Box
+                sx={{
+                    height: 'calc(100vh - 200px)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                 }}>
-                    <Player autoplay
-                            keepLastFrame
-                            loop
-                            speed={1}
-                            ref={lottieRef}
-                            src={confettiLottie}
-                            style={{
-                                position: 'absolute',
-                                bottom: 0,
-                                left: '50%',
-                                width: '100%',
-                                height: '100%',
-                                transform: 'translate(-50%)',
-                            }} />
-                    {mbti && (
-                        <Box sx={{
+                <Box
+                    sx={{
+                        maxWidth: SQUARE_SIZE,
+                        width: '100%',
+                        paddingTop: `min(${SQUARE_SIZE}, 100%)`,
+                        position: 'relative',
+                    }}>
+                    <Player
+                        autoplay
+                        keepLastFrame
+                        loop
+                        speed={1}
+                        ref={lottieRef}
+                        src={confettiLottie}
+                        style={{
                             position: 'absolute',
-                            bottom: '30px',
+                            bottom: 0,
                             left: '50%',
+                            width: '100%',
+                            height: '100%',
                             transform: 'translate(-50%)',
-                            display: 'block',
-                        }}>
+                        }}
+                    />
+                    {mbti && (
+                        <Box
+                            sx={{
+                                position: 'absolute',
+                                bottom: '30px',
+                                left: '50%',
+                                transform: 'translate(-50%)',
+                                display: 'block',
+                            }}>
                             <MbtiImage src={`/character/${mbti.toLowerCase()}.svg`} />
                         </Box>
                     )}
                 </Box>
                 <WelcomeText align={'center'} variant={'h3'} fontWeight={'bold'}>
-                    <Typography color={theme => theme.palette.pink[600]}
-                                variant={'h3'} fontWeight={'bold'}
-                                component={'span'}>{nickname}</Typography>님,
+                    <Typography
+                        color={(theme) => theme.palette.pink[600]}
+                        variant={'h3'}
+                        fontWeight={'bold'}
+                        component={'span'}>
+                        {nickname}
+                    </Typography>
+                    님,
                     <br />
                     가입을 진심으로 축하드려요🎉
-                    <Typography variant={'body2'} color={theme => theme.palette.gray[500]} marginTop={'6px'}>
+                    <Typography variant={'body2'} color={(theme) => theme.palette.gray[500]} marginTop={'6px'}>
                         닉네임은 마이페이지에서 수정할 수 있어요
                     </Typography>
                 </WelcomeText>

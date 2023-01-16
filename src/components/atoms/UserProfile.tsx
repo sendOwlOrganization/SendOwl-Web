@@ -11,16 +11,12 @@ const UserProfile = ({ size, textView }: ProfileSize) => {
 
     return (
         <>
-            <Grid
-                sx={{ display: 'flex', borderRadius: '100%' }}
-                justifyContent={'space-between'}
-                alignItems={'center'}>
+            <Grid sx={{ display: 'flex', borderRadius: '100%' }} justifyContent={'space-between'} alignItems={'center'}>
                 <Box
                     borderRadius={'50%'}
                     border='transparent'
                     sx={{
-                        backgroundImage:
-                            'linear-gradient(#B488F8, #83D9A6, #3FC4EA, #FDBD5F)',
+                        backgroundImage: 'linear-gradient(#B488F8, #83D9A6, #3FC4EA, #FDBD5F)',
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
@@ -45,13 +41,8 @@ const UserProfile = ({ size, textView }: ProfileSize) => {
                         />
                     </Box>
                 </Box>
-                <Grid sx={{display: { lg: 'block', xs: 'none'}}}>
-                    <Grid
-                        margin={'0 50px 0 20px'}
-                        display={'inline-grid'}
-                        fontSize={'12px'}
-
-                    >
+                <Grid sx={{ display: { lg: 'block', xs: 'none' } }}>
+                    <Grid margin={'0 50px 0 20px'} display={'inline-grid'} fontSize={'12px'}>
                         {/* {user.name} + {user.mbti} */}
                         <Grid color={'red'} fontSize={'10px'}>
                             welcome
@@ -60,7 +51,6 @@ const UserProfile = ({ size, textView }: ProfileSize) => {
                         <span>ENFJ</span>
                     </Grid>
                 </Grid>
-
             </Grid>
         </>
     );

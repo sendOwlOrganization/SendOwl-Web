@@ -15,21 +15,33 @@ const BoardComments = ({ comments }: BoardCommentsProps) => {
     return (
         <>
             <Box component={'section'} sx={{ padding: '0 1rem' }}>
-                {comments.map(c => <BoardCommentItem key={c.id} comment={c} />)}
+                {comments.map((c) => (
+                    <BoardCommentItem key={c.id} comment={c} />
+                ))}
             </Box>
-            <Stack spacing={1} direction={'row'} alignItems={'center'} sx={theme => ({
-                position: 'fixed',
-                bottom: 0,
-                width: '100%',
-                top: 'auto',
-                border: `1px solid ${theme.palette.mode === 'light' ? theme.palette.gray[100] : theme.palette.gray[900]}`,
-                padding: '0.5rem 1rem 0.5rem 1.125rem',
-                backgroundColor: theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.gray[900],
-            })}>
+            <Stack
+                spacing={1}
+                direction={'row'}
+                alignItems={'center'}
+                sx={(theme) => ({
+                    position: 'fixed',
+                    bottom: 0,
+                    width: '100%',
+                    top: 'auto',
+                    border: `1px solid ${
+                        theme.palette.mode === 'light' ? theme.palette.gray[100] : theme.palette.gray[900]
+                    }`,
+                    padding: '0.5rem 1rem 0.5rem 1.125rem',
+                    backgroundColor:
+                        theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.gray[900],
+                })}>
                 <HeartOutlinedIcon color={'gray'} colorKey={mode === 'light' ? 200 : 600} />
-                <Input placeholder={'test'} endAdornment={<SendIcon disableHoverBackground
-                                                                    color={'gray'}
-                                                                    colorKey={mode === 'light' ? 300 : 600} />} />
+                <Input
+                    placeholder={'test'}
+                    endAdornment={
+                        <SendIcon disableHoverBackground color={'gray'} colorKey={mode === 'light' ? 300 : 600} />
+                    }
+                />
             </Stack>
         </>
     );

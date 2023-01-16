@@ -1,7 +1,6 @@
 import SideCategoryList from '@components/navigations/side-category-list';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-
 export default {
     title: 'components/navigations/SideCategoryList',
     component: SideCategoryList,

@@ -15,23 +15,13 @@ const ListItem = styled(Grid)<GridProps>(({ theme }) => ({
 }));
 
 const SideBar = () => {
-
     return (
         <>
-            <Grid
-                width={200}
-                marginLeft={'25px'}
-                position={'fixed'}
-                marginTop={'15px'}>
+            <Grid width={200} marginLeft={'25px'} position={'fixed'} marginTop={'15px'}>
                 <Grid marginLeft={'10px'}>
                     <Link href={'/'}>
                         <a>
-                            <Image
-                                src='/images/logo.png'
-                                alt='logo'
-                                width={140}
-                                height={70}
-                            />
+                            <Image src='/images/logo.png' alt='logo' width={140} height={70} />
                         </a>
                     </Link>
                 </Grid>

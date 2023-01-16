@@ -3,12 +3,7 @@ import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutline
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 
 // TODO: need to move from this file + fix types to match with api
-function createData(
-    category: string,
-    name: string,
-    like: number,
-    comment: number
-) {
+function createData(category: string, name: string, like: number, comment: number) {
     return { category, name, like, comment };
 }
 // TODO: delete
@@ -36,11 +31,7 @@ const ContentPostList = () => {
             <Box sx={{ flexGrow: 1 }} marginBottom={'2rem'} fontSize={'16px'}>
                 {rows.map((row) => (
                     <>
-                        <Grid
-                            key={row.name}
-                            container
-                            spacing={1}
-                            padding={'0px 0px 10px 20px'}>
+                        <Grid key={row.name} container spacing={1} padding={'0px 0px 10px 20px'}>
                             <Grid item lg={1} xs={10} paddingTop={0}>
                                 <Item>{row.category}</Item>
                             </Grid>
@@ -56,12 +47,8 @@ const ContentPostList = () => {
                                 textAlign={'center'}
                                 alignItems={'center'}
                                 flexWrap={'wrap'}>
-                                <ThumbUpAltOutlinedIcon
-                                    sx={{ fontSize: 16, color: 'gray' }}
-                                />
-                                <Item sx={{ fontSize: 15, color: 'gray' }}>
-                                    {row.like}
-                                </Item>
+                                <ThumbUpAltOutlinedIcon sx={{ fontSize: 16, color: 'gray' }} />
+                                <Item sx={{ fontSize: 15, color: 'gray' }}>{row.like}</Item>
                             </Grid>
                             <Grid
                                 item
@@ -71,12 +58,8 @@ const ContentPostList = () => {
                                 textAlign={'center'}
                                 alignItems={'center'}
                                 flexWrap={'wrap'}>
-                                <ChatBubbleOutlineOutlinedIcon
-                                    sx={{ fontSize: 16, color: 'gray' }}
-                                />
-                                <Item sx={{ fontSize: 15, color: 'gray' }}>
-                                    {row.comment}
-                                </Item>
+                                <ChatBubbleOutlineOutlinedIcon sx={{ fontSize: 16, color: 'gray' }} />
+                                <Item sx={{ fontSize: 15, color: 'gray' }}>{row.comment}</Item>
                             </Grid>
                         </Grid>
                     </>

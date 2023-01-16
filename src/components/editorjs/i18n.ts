@@ -61,7 +61,6 @@ export const i18nKorean: I18nConfig = {
                 'Delete row': '행 삭제',
             },
             'list': {
-
                 'Unordered': '기호 목록',
                 'Ordered': '번호 목록',
             },

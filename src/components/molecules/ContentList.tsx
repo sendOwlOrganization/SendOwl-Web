@@ -22,8 +22,7 @@ const ContentList = ({ title, width }: ContentInfo) => {
                 marginBottom='20px'
                 height={'auto'}
                 fontSize={'12px'}
-                width={width}
-            >
+                width={width}>
                 <ContentListTitle title={title} />
                 <ContentPostList />
             </Box>

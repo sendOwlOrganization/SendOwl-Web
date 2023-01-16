@@ -23,11 +23,7 @@ interface MyAppProps extends AppProps {
     Component: NextPage & { getLayout?: ({ children }: PropsWithChildren<{}>) => JSX.Element };
 }
 
-function MyApp({
-                   Component,
-                   pageProps: { session, ...pageProps },
-                   emotionCache = clientSideEmotionCache,
-               }: MyAppProps) {
+function MyApp({ Component, pageProps: { session, ...pageProps }, emotionCache = clientSideEmotionCache }: MyAppProps) {
     const [theme, setTheme] = useState(createMlabMuiTheme());
 
     const Layout = Component.getLayout ?? GlobalLayout;
@@ -36,10 +32,7 @@ function MyApp({
         <SessionProvider session={session}>
             <CacheProvider value={emotionCache}>
                 <Head>
-                    <meta
-                        name='viewport'
-                        content='initial-scale=1, width=device-width'
-                    />
+                    <meta name='viewport' content='initial-scale=1, width=device-width' />
                 </Head>
                 <RecoilRoot>
                     <ThemeProvider theme={theme}>

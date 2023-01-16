@@ -9,8 +9,6 @@ export default {
     },
 } as ComponentMeta<typeof Welcome>;
 
-const Template: ComponentStory<typeof Welcome> = (args) => (
-    <Welcome {...args} />
-);
+const Template: ComponentStory<typeof Welcome> = (args) => <Welcome {...args} />;
 
 export const Example = Template.bind({});

@@ -12,22 +12,22 @@ interface GlobalNavigationBarSmallProps {
     isLogged: boolean;
 }
 
+const NavigationButtons = styled('div')(
+    ({ theme }) => css`
+        display: flex;
+        align-items: center;
 
-const NavigationButtons = styled('div')(({ theme }) => css`
-  display: flex;
-  align-items: center;
+        & > * {
+            margin-right: 1.25rem;
+        }
 
-  & > * {
-    margin-right: 1.25rem;
-  }
-
-  & > *:last-child {
-    margin-right: 0;
-  }
-`);
+        & > *:last-child {
+            margin-right: 0;
+        }
+    `
+);
 
 const GlobalNavigationBarSmall = ({ currentUrl, isLogged }: GlobalNavigationBarSmallProps) => {
-
     return (
         <>
             <Bar>

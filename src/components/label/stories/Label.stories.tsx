@@ -6,9 +6,7 @@ export default {
     component: Label,
 } as ComponentMeta<typeof Label>;
 
-const Template: ComponentStory<typeof Label> = (args) => (
-    <Label {...args} />
-);
+const Template: ComponentStory<typeof Label> = (args) => <Label {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
@@ -48,7 +46,6 @@ PurpleFilled.args = {
     onClick: undefined,
 };
 
-
 export const Clickable = Template.bind({});
 Clickable.args = {
     color: 'lightPink',
@@ -56,4 +53,3 @@ Clickable.args = {
     children: 'Light Pink 라벨 클릭',
     onClick: () => alert('안녕'),
 };
-

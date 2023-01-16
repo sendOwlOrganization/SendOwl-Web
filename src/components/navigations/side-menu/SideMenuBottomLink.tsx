@@ -15,14 +15,10 @@ const Anchor = styled('a')(({ theme }) => ({
 const SideMenuBottomLink = ({ href, children }: PropsWithChildren<SideMenuBottomLinkProps>) => {
     return href.startsWith('/') ? (
         <NextLink href={href} passHref>
-            <Anchor>
-                {children}
-            </Anchor>
+            <Anchor>{children}</Anchor>
         </NextLink>
     ) : (
-        <Anchor>
-            {children}
-        </Anchor>
+        <Anchor>{children}</Anchor>
     );
 };
 

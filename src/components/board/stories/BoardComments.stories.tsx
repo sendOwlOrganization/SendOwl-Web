@@ -6,9 +6,7 @@ export default {
     component: BoardComments,
 } as ComponentMeta<typeof BoardComments>;
 
-const Template: ComponentStory<typeof BoardComments> = (args) => (
-    <BoardComments {...args} />
-);
+const Template: ComponentStory<typeof BoardComments> = (args) => <BoardComments {...args} />;
 
 const commentMock = [
     {
