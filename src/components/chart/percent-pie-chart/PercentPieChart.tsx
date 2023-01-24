@@ -20,32 +20,32 @@ interface PercentPieChartProps {
 }
 
 const mergeDataExcept = (exceptIndex: number, data: PercentPieChartData[]): PercentPieChartData => {
-    return data.filter((_, i) => exceptIndex !== i)
-        .reduce((acc, d) => ({ ...acc, value: acc.value + d.value }),
-            { id: 'rest', label: 'rest', value: 0 });
+    return data
+        .filter((_, i) => exceptIndex !== i)
+        .reduce((acc, d) => ({ ...acc, value: acc.value + d.value }), { id: 'rest', label: 'rest', value: 0 });
 };
 
 const PercentContainer = styled('div')`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `;
 
 const Container = styled('div')`
-  & * {
-    transition: none;
-  }
+    & * {
+        transition: none;
+    }
 `;
 
 const useDebouncePieChartData = (data: PercentPieChartData[], highlightIndex: number, debounce: number = 325) => {
-    const mergedData = useMemo((): [PercentPieChartData, PercentPieChartData] => [data[highlightIndex], mergeDataExcept(highlightIndex, data)], [data, highlightIndex]);
+    const mergedData = useMemo(
+        (): [PercentPieChartData, PercentPieChartData] => [data[highlightIndex], mergeDataExcept(highlightIndex, data)],
+        [data, highlightIndex]
+    );
     const [highlighted, rest] = mergedData;
 
-    const [chartData, setChartData] = useState<PercentPieChartData[]>([
-        { ...highlighted, value: 0 },
-        { ...rest },
-    ]);
+    const [chartData, setChartData] = useState<PercentPieChartData[]>([{ ...highlighted, value: 0 }, { ...rest }]);
 
     useEffect(() => {
         setChartData([
@@ -82,17 +82,22 @@ const PercentPieChart = ({ data, highlightIndex = 0, color = 'blue', size = 6 }:
                         </div>
                     </Fade>
                 </PercentContainer>
-                <Pie width={16 * size} height={16 * size}
-                     data={chartData}
-                     innerRadius={0.72}
-                     padAngle={2}
-                     animate={true}
-                     motionConfig={'stiff'}
-                     cornerRadius={16}
-                     enableArcLinkLabels={false}
-                     isInteractive={false}
-                     colors={[`${theme.palette[color][600]}`, `${isDark ? theme.palette.gray[900] : theme.palette.gray[100]}`]}
-                     arcLabel={''}
+                <Pie
+                    width={16 * size}
+                    height={16 * size}
+                    data={chartData}
+                    innerRadius={0.72}
+                    padAngle={2}
+                    animate={true}
+                    motionConfig={'stiff'}
+                    cornerRadius={16}
+                    enableArcLinkLabels={false}
+                    isInteractive={false}
+                    colors={[
+                        `${theme.palette[color][600]}`,
+                        `${isDark ? theme.palette.gray[900] : theme.palette.gray[100]}`,
+                    ]}
+                    arcLabel={''}
                 />
             </Box>
         </Container>

@@ -50,9 +50,7 @@ const MbtiScroll = (props: MbtiScrollProps) => {
                             alignItems: 'end',
                             justifyContent: 'center',
                         }}>
-                        <CharacterImage
-                            src={`/character/${mbti.toLowerCase()}.svg`}
-                        />
+                        <CharacterImage src={`/character/${mbti.toLowerCase()}.svg`} />
                     </Box>
                 ))}
             </Scroll>

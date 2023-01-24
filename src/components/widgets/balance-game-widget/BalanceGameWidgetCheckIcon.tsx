@@ -7,24 +7,25 @@ interface BalanceGameWidgetCheckIconProps {
 }
 
 const Container = styled('div')`
-  height: 2rem;
-  padding-bottom: 0.25rem;
+    height: 2rem;
+    padding-bottom: 0.25rem;
 
-  & * {
-    transition: none;
-  }
+    & * {
+        transition: none;
+    }
 `;
 
 const BalanceGameWidgetCheckIcon = ({ appear }: BalanceGameWidgetCheckIconProps) => {
     return (
         <Container>
-            <Slide direction={'up'}
-                   height={'1rem'}
-                   appear={appear}
-                   in={appear}
-                   mountOnEnter
-                   timeout={100}
-                   unmountOnExit>
+            <Slide
+                direction={'up'}
+                height={'1rem'}
+                appear={appear}
+                in={appear}
+                mountOnEnter
+                timeout={100}
+                unmountOnExit>
                 <ApproveIcon color={'white'} />
             </Slide>
         </Container>

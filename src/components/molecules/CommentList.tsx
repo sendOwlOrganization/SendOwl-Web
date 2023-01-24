@@ -24,7 +24,9 @@ interface CommentListProps {
 const CommentList = ({ comments }: CommentListProps) => {
     return (
         <List>
-            {comments.map(comment => (<CommentListItem key={comment.id} {...comment} />))}
+            {comments.map((comment) => (
+                <CommentListItem key={comment.id} {...comment} />
+            ))}
         </List>
     );
 };

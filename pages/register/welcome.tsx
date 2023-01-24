@@ -7,8 +7,7 @@ import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { registerStore } from '../../src/store/registerStore';
 
-interface WelcomePageProps {
-}
+interface WelcomePageProps {}
 
 const WelcomePage = ({}: WelcomePageProps) => {
     const state = useRecoilValue(registerStore);
@@ -20,28 +19,27 @@ const WelcomePage = ({}: WelcomePageProps) => {
             return;
         }
         // @ts-ignore
-        getGoogleLoginDetails(session.data.token.accessToken)
-            .then(({ data, headers, error }) => {
-                if (data && !data.alreadySetted && headers && headers['accessToken']) {
-                    postSetProfile({
+        getGoogleLoginDetails(session.data.token.accessToken).then(({ data, headers, error }) => {
+            if (data && !data.alreadySetted && headers && headers['accessToken']) {
+                postSetProfile(
+                    {
                         gender: state.gender,
                         nickName: state.nickname,
                         age: state.age,
                         mbti: state.mbti,
-                    }, headers['accessToken'])
-                        .then(console.log)
-                        .catch(console.error);
-                }
-            });
-
+                    },
+                    headers['accessToken']
+                )
+                    .then(console.log)
+                    .catch(console.error);
+            }
+        });
     }, [session.status]);
-
 
     return (
         <>
             <Welcome nickname={state.nickname} mbti={state.mbti} />
-            <RectangleButtonLink href={'/'}
-                                 sx={{ position: 'fixed', bottom: '0', textAlign: 'center' }}>
+            <RectangleButtonLink href={'/'} sx={{ position: 'fixed', bottom: '0', textAlign: 'center' }}>
                 시작하기
             </RectangleButtonLink>
         </>

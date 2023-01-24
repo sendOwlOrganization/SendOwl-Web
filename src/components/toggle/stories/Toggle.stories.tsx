@@ -10,22 +10,17 @@ export default {
 
 const Controlled = ({ color }: { color?: MlabColorType }) => {
     const [on, setOn] = useState<boolean>(true);
-    return <Toggle on={on} color={color} onClick={() => setOn(on => !on)} />;
+    return <Toggle on={on} color={color} onClick={() => setOn((on) => !on)} />;
 };
 
-const Template: ComponentStory<typeof Toggle> = (args) => (
-    <Toggle {...args} />
-);
+const Template: ComponentStory<typeof Toggle> = (args) => <Toggle {...args} />;
 
-const ControlledTemplate: ComponentStory<typeof Toggle> = (args) => (
-    <Controlled {...args} />
-);
+const ControlledTemplate: ComponentStory<typeof Toggle> = (args) => <Controlled {...args} />;
 
 export const Example = Template.bind({});
 Example.args = {
     on: true,
 };
-
 
 export const ControlledExample = ControlledTemplate.bind({});
 ControlledExample.args = {

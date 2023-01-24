@@ -10,10 +10,10 @@ interface BoardCategoryTitleProps {
 }
 
 const DetailsLink = styled('a')`
-  font-weight: normal;
-  font-size: 12px;
-  text-decoration: none;
-  color: inherit;
+    font-weight: normal;
+    font-size: 12px;
+    text-decoration: none;
+    color: inherit;
 `;
 
 const categoryIconMapping: Record<string, ReactNode> = {

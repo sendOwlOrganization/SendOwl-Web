@@ -7,7 +7,6 @@ export default {
     component: LoginBottomSheet,
 } as ComponentMeta<typeof LoginBottomSheet>;
 
-
 const Template: ComponentStory<typeof LoginBottomSheet> = (args) => {
     const [{ open }, updateArgs] = useArgs();
 
@@ -21,7 +20,9 @@ const Template: ComponentStory<typeof LoginBottomSheet> = (args) => {
 
     return (
         <>
-            <button style={{ cursor: 'pointer' }} onClick={handleOpen}>open</button>
+            <button style={{ cursor: 'pointer' }} onClick={handleOpen}>
+                open
+            </button>
             <LoginBottomSheet open={open} onClose={handleClose} />
         </>
     );

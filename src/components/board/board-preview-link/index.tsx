@@ -29,102 +29,112 @@ interface BoardPreviewLinkProps {
     date: string;
 }
 
-
 const LabelContainer = styled('section')`
-  display: flex;
-  align-items: center;
-  width: 100%;
+    display: flex;
+    align-items: center;
+    width: 100%;
 
-  & > * {
-    margin-right: 8px;
-  }
+    & > * {
+        margin-right: 8px;
+    }
 
-  & > *:last-child {
-    margin-right: 0;
-  }
+    & > *:last-child {
+        margin-right: 0;
+    }
 `;
 
 const ImagePlaceHolder = styled('div')`
-  width: 94px;
-  height: 90px;
-  margin-left: 8px;
-  border-radius: 8px;
-  background-color: ${({ theme }) => theme.palette.gray[400]};
-  display: flex;
-  align-items: center;
-  color: white;
-  font-size: 14px;
-  justify-content: center;
+    width: 94px;
+    height: 90px;
+    margin-left: 8px;
+    border-radius: 8px;
+    background-color: ${({ theme }) => theme.palette.gray[400]};
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    justify-content: center;
 `;
 
 const Anchor = styled('a')`
-  display: flex;
+    display: flex;
 `;
 
 const LinkFooter = styled('section')`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 `;
 
 const Body = styled('section')`
-  width: 100%;
+    width: 100%;
 `;
 
 const BoardPreviewLink = ({
-                              id,
-                              title,
-                              preview,
-                              imgSrc,
-                              user,
-                              commentCount,
-                              likeCount,
-                              date,
-                              hasVote,
-                              category,
-                          }: BoardPreviewLinkProps) => {
-
+    id,
+    title,
+    preview,
+    imgSrc,
+    user,
+    commentCount,
+    likeCount,
+    date,
+    hasVote,
+    category,
+}: BoardPreviewLinkProps) => {
     const href = `#?fixmeId=${id}`;
 
     return (
-        <Card elevation={0} sx={{
-            padding: { xs: '1rem', md: '1.5rem' },
-            display: 'flex',
-            alignItems: 'center',
-            flexDirection: 'column',
-        }}>
+        <Card
+            elevation={0}
+            sx={{
+                padding: { xs: '1rem', md: '1.5rem' },
+                display: 'flex',
+                alignItems: 'center',
+                flexDirection: 'column',
+            }}>
             <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
                 <Body>
                     <LabelContainer>
-                        {category && <Label href={`#?fixme=${category}`} color={'pink'}>#{category}</Label>}
-                        {hasVote && <Label href={`#fixme=${hasVote}`}><BoardVoteTagIcon color={'purple'} /></Label>}
+                        {category && (
+                            <Label href={`#?fixme=${category}`} color={'pink'}>
+                                #{category}
+                            </Label>
+                        )}
+                        {hasVote && (
+                            <Label href={`#fixme=${hasVote}`}>
+                                <BoardVoteTagIcon color={'purple'} />
+                            </Label>
+                        )}
                     </LabelContainer>
                     <NextLink href={href} passHref>
                         <Anchor>
-                            <BoardPreviewLinkTitle variant={'body1'}
-                                                   sx={{ display: { xs: 'none', md: 'block' } }}>
+                            <BoardPreviewLinkTitle variant={'body1'} sx={{ display: { xs: 'none', md: 'block' } }}>
                                 {title}
                             </BoardPreviewLinkTitle>
-                            <BoardPreviewLinkContent variant={'body2'}>
-                                {preview}
-                            </BoardPreviewLinkContent>
+                            <BoardPreviewLinkContent variant={'body2'}>{preview}</BoardPreviewLinkContent>
                         </Anchor>
                     </NextLink>
                     <LinkFooter>
-                        <BoardPreviewLinkUserAndDate id={user.id}
-                                                     name={user.nickName}
-                                                     mbti={user.mbti}
-                                                     date={date} />
+                        <BoardPreviewLinkUserAndDate id={user.id} name={user.nickName} mbti={user.mbti} date={date} />
                         <Stack spacing={1} direction={'row'}>
-                            <Typography component={'span'} variant={'body2'} color={theme => theme.palette.gray[500]}
-                                        display={'flex'} fontWeight={600}>
+                            <Typography
+                                component={'span'}
+                                variant={'body2'}
+                                color={(theme) => theme.palette.gray[500]}
+                                display={'flex'}
+                                fontWeight={600}>
                                 <Typography display={'flex'} alignItems={'center'} padding={0.2}>
                                     <HeartIcon color={'gray'} colorKey={200} />
                                 </Typography>
                                 {likeCount}
                             </Typography>
-                            <Typography component={'span'} variant={'body2'} color={theme => theme.palette.gray[500]}
-                                        display={'flex'} fontWeight={600}>
+                            <Typography
+                                component={'span'}
+                                variant={'body2'}
+                                color={(theme) => theme.palette.gray[500]}
+                                display={'flex'}
+                                fontWeight={600}>
                                 <Typography display={'flex'} alignItems={'center'} padding={0.2}>
                                     <CommentIcon color={'gray'} colorKey={200} />
                                 </Typography>
@@ -133,17 +143,13 @@ const BoardPreviewLink = ({
                         </Stack>
                     </LinkFooter>
                 </Body>
-                {
-                    imgSrc && (
-                        <NextLink href={href} passHref>
-                            <Anchor>
-                                <ImagePlaceHolder>
-                                    {imgSrc}
-                                </ImagePlaceHolder>
-                            </Anchor>
-                        </NextLink>
-                    )
-                }
+                {imgSrc && (
+                    <NextLink href={href} passHref>
+                        <Anchor>
+                            <ImagePlaceHolder>{imgSrc}</ImagePlaceHolder>
+                        </Anchor>
+                    </NextLink>
+                )}
             </Box>
         </Card>
     );

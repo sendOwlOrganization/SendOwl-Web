@@ -34,38 +34,16 @@ const BoardLink = ({ board }: { board: Board }) => {
             </Grid>
             <Grid item lg={9.6} xs={12}>
                 <Link href={`/boards/${board.id}`} passHref>
-                    <a style={{ textDecoration: 'none', color: '#000' }}>
-                        {board.title}
-                    </a>
+                    <a style={{ textDecoration: 'none', color: '#000' }}>{board.title}</a>
                 </Link>
             </Grid>
-            <Grid
-                item
-                lg={0.7}
-                xs={2}
-                display={'flex'}
-                textAlign={'center'}
-                alignItems={'center'}
-                flexWrap={'wrap'}>
+            <Grid item lg={0.7} xs={2} display={'flex'} textAlign={'center'} alignItems={'center'} flexWrap={'wrap'}>
                 <ThumbUpAltOutlinedIcon sx={{ fontSize: 13, color: 'gray' }} />
-                <Item sx={{ fontSize: 12, color: 'gray' }}>
-                    {board.boardLikeCount}
-                </Item>
+                <Item sx={{ fontSize: 12, color: 'gray' }}>{board.boardLikeCount}</Item>
             </Grid>
-            <Grid
-                item
-                lg={0.7}
-                xs={2}
-                display={'flex'}
-                textAlign={'center'}
-                alignItems={'center'}
-                flexWrap={'wrap'}>
-                <ChatBubbleOutlineOutlinedIcon
-                    sx={{ fontSize: 13, color: 'gray' }}
-                />
-                <Item sx={{ fontSize: 12, color: 'gray' }}>
-                    {board.hit}
-                </Item>
+            <Grid item lg={0.7} xs={2} display={'flex'} textAlign={'center'} alignItems={'center'} flexWrap={'wrap'}>
+                <ChatBubbleOutlineOutlinedIcon sx={{ fontSize: 13, color: 'gray' }} />
+                <Item sx={{ fontSize: 12, color: 'gray' }}>{board.hit}</Item>
             </Grid>
         </Grid>
     );

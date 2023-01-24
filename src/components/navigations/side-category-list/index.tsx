@@ -12,26 +12,19 @@ interface SideCategoryListProps {
 }
 
 const Container = styled(Card)`
-  padding: 16px 32px;
+    padding: 16px 32px;
 `;
 
-
-const SideCategoryList = ({
-                              all,
-                              mine,
-                              saved,
-                              mbti,
-                              vote,
-                              meme,
-                          }: SideCategoryListProps) => {
-
+const SideCategoryList = ({ all, mine, saved, mbti, vote, meme }: SideCategoryListProps) => {
     // FIXME based on current url with useRouter()
     const [active, setActive] = useState<string>('전체');
     return (
-        <Container elevation={0} onClick={(e) => {
-            // FIXME
-            setActive((e.target as any).innerText);
-        }}>
+        <Container
+            elevation={0}
+            onClick={(e) => {
+                // FIXME
+                setActive((e.target as any).innerText);
+            }}>
             <SideCategoryListLink label={'전체 게시판'} count={all} href={'#'} active={active.includes('전체')} />
             <Divider sx={{ margin: '8px 0' }} />
             <SideCategoryListLink label={'내가 쓴 게시물'} count={mine} href={'#'} active={active.includes('내가')} />

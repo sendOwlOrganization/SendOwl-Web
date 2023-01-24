@@ -7,9 +7,12 @@ interface RectangleButtonLinkProps extends ComponentProps<typeof RectangleButton
 }
 
 const RectangleButtonLink = ({ href, disabled, ...props }: RectangleButtonLinkProps) => {
-    return (
-        disabled ? <RectangleButton disabled {...props} />
-            : <NextLink href={href} passHref><RectangleButton as={'a'} {...props} /></NextLink>
+    return disabled ? (
+        <RectangleButton disabled {...props} />
+    ) : (
+        <NextLink href={href} passHref>
+            <RectangleButton as={'a'} {...props} />
+        </NextLink>
     );
 };
 

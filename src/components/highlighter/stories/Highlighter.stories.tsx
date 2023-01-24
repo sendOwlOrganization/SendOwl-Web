@@ -7,9 +7,7 @@ export default {
     component: Highlighter,
 } as ComponentMeta<typeof Highlighter>;
 
-const Template: ComponentStory<typeof Highlighter> = (args) => (
-    <Highlighter {...args} />
-);
+const Template: ComponentStory<typeof Highlighter> = (args) => <Highlighter {...args} />;
 
 export const Example = Template.bind({});
 Example.args = {

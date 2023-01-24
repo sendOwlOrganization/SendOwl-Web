@@ -12,15 +12,13 @@ export default {
     },
 } as ComponentMeta<typeof Carousel>;
 
-const Template: ComponentStory<typeof Carousel> = (args) => (
-    <Carousel {...args} />
-);
+const Template: ComponentStory<typeof Carousel> = (args) => <Carousel {...args} />;
 
 const dataMock = [
     {
         id: 1,
         name: 'ad1',
-        src: "/images/ad1.png",
+        src: '/images/ad1.png',
     },
     {
         id: 2,
@@ -28,7 +26,7 @@ const dataMock = [
         src: '/images/ad2.png',
     },
     {
-        id:3,
+        id: 3,
         name: 'ad3',
         src: '/images/ad3.png',
     },
@@ -36,7 +34,7 @@ const dataMock = [
         id: 4,
         name: 'ad4',
         src: '/images/ad4.png',
-    }
+    },
 ];
 
 export const Example = Template.bind({});
@@ -47,5 +45,5 @@ Example.args = {
 export const HeroImage = Template.bind({});
 HeroImage.args = {
     data: dataMock,
-    showPagination: true
+    showPagination: true,
 };

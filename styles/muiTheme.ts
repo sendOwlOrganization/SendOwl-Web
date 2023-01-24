@@ -111,171 +111,169 @@ const PALETTE_OPTIONS: Record<PaletteMode, PaletteOptions> = {
     },
 };
 
-
-const createMlabMuiTheme = (mode: PaletteMode = 'light') => createTheme({
-    palette: {
-        mode: mode,
-        primary: {
-            main: MLAB_PALETTE.pink['500'],
+const createMlabMuiTheme = (mode: PaletteMode = 'light') =>
+    createTheme({
+        palette: {
+            mode: mode,
+            primary: {
+                main: MLAB_PALETTE.pink['500'],
+            },
+            secondary: {
+                main: MLAB_PALETTE.purple['500'],
+            },
+            common: {
+                white: MLAB_NEUTRAL_PALETTE.white,
+                black: MLAB_NEUTRAL_PALETTE.black,
+            },
+            success: {
+                main: MLAB_SEMANTIC_PALETTE.positive,
+            },
+            error: {
+                main: MLAB_SEMANTIC_PALETTE.negative,
+            },
+            info: {
+                main: MLAB_SEMANTIC_PALETTE.accent,
+            },
+            warning: {
+                main: MLAB_SEMANTIC_PALETTE.notice,
+            },
+            ...MLAB_PALETTE,
+            gray: MLAB_NEUTRAL_PALETTE.gray,
+            ...PALETTE_OPTIONS[mode],
         },
-        secondary: {
-            main: MLAB_PALETTE.purple['500'],
+        shape: {
+            borderRadius: 20,
         },
-        common: {
-            white: MLAB_NEUTRAL_PALETTE.white,
-            black: MLAB_NEUTRAL_PALETTE.black,
+        typography: {
+            fontWeightBold: 600,
+            fontWeightRegular: 300,
+            fontFamily: ['Pretendard'].join(','),
+            h1: {
+                fontWeight: 'bold',
+                fontSize: '2.625rem',
+                lineHeight: 1.5,
+            },
+            h2: {
+                fontWeight: 'bold',
+                fontSize: '1.75rem',
+                lineHeight: 1.29,
+            },
+            h3: {
+                fontWeight: 'bold',
+                fontSize: '1.5rem',
+                lineHeight: 1.33,
+            },
+            h4: undefined,
+            h5: undefined,
+            h6: undefined,
+            title1: {
+                fontSize: '1.125rem',
+                fontWeight: 'bold',
+                lineHeight: 1.33,
+            },
+            title2: {
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                lineHeight: 1.33,
+            },
+            title3: {
+                fontSize: '0.875rem',
+                fontWeight: 'bold',
+                lineHeight: 1.43,
+            },
+            subtitle1: {
+                fontWeight: 'bold',
+                fontSize: '1.125rem',
+                lineHeight: 1.33,
+            },
+            subtitle2: {
+                fontWeight: 'bold',
+                fontSize: '1rem',
+                lineHeight: 1.5,
+            },
+            subtitle3: {
+                fontWeight: 'bold',
+                fontSize: '0.875rem',
+                lineHeight: 1.43,
+            },
+            subtitle4: {
+                fontWeight: 'bold',
+                fontSize: '0.75rem',
+                lineHeight: 1.5,
+            },
+            body1: {
+                fontSize: '1rem',
+                lineHeight: 1.5,
+            },
+            body2: {
+                fontSize: '0.875rem',
+                lineHeight: 1.43,
+            },
+            body3: {
+                fontSize: '0.75rem',
+                lineHeight: 1.5,
+            },
+            caption1: {
+                fontSize: '0.75rem',
+                lineHeight: 1.5,
+            },
+            caption2: {
+                fontSize: '0.625rem',
+                lineHeight: 1.2,
+            },
+            caption3: {
+                fontSize: '0.5rem',
+                lineHeight: 1.25,
+            },
         },
-        success: {
-            main: MLAB_SEMANTIC_PALETTE.positive,
-        },
-        error: {
-            main: MLAB_SEMANTIC_PALETTE.negative,
-        },
-        info: {
-            main: MLAB_SEMANTIC_PALETTE.accent,
-        },
-        warning: {
-            main: MLAB_SEMANTIC_PALETTE.notice,
-        },
-        ...MLAB_PALETTE,
-        gray: MLAB_NEUTRAL_PALETTE.gray,
-        ...PALETTE_OPTIONS[mode],
-    },
-    shape: {
-        borderRadius: 20,
-    },
-    typography: {
-        fontWeightBold: 600,
-        fontWeightRegular: 300,
-        fontFamily: [
-            'Pretendard',
-        ].join(','),
-        h1: {
-            fontWeight: 'bold',
-            fontSize: '2.625rem',
-            lineHeight: 1.5,
-        },
-        h2: {
-            fontWeight: 'bold',
-            fontSize: '1.75rem',
-            lineHeight: 1.29,
-        },
-        h3: {
-            fontWeight: 'bold',
-            fontSize: '1.5rem',
-            lineHeight: 1.33,
-        },
-        h4: undefined,
-        h5: undefined,
-        h6: undefined,
-        title1: {
-            fontSize: '1.125rem',
-            fontWeight: 'bold',
-            lineHeight: 1.33,
-        },
-        title2: {
-            fontSize: '1rem',
-            fontWeight: 'bold',
-            lineHeight: 1.33,
-        },
-        title3: {
-            fontSize: '0.875rem',
-            fontWeight: 'bold',
-            lineHeight: 1.43,
-        },
-        subtitle1: {
-            fontWeight: 'bold',
-            fontSize: '1.125rem',
-            lineHeight: 1.33,
-        },
-        subtitle2: {
-            fontWeight: 'bold',
-            fontSize: '1rem',
-            lineHeight: 1.5,
-        },
-        subtitle3: {
-            fontWeight: 'bold',
-            fontSize: '0.875rem',
-            lineHeight: 1.43,
-        },
-        subtitle4: {
-            fontWeight: 'bold',
-            fontSize: '0.75rem',
-            lineHeight: 1.5,
-        },
-        body1: {
-            fontSize: '1rem',
-            lineHeight: 1.5,
-        },
-        body2: {
-            fontSize: '0.875rem',
-            lineHeight: 1.43,
-        },
-        body3: {
-            fontSize: '0.75rem',
-            lineHeight: 1.5,
-        },
-        caption1: {
-            fontSize: '0.75rem',
-            lineHeight: 1.5,
-        },
-        caption2: {
-            fontSize: '0.625rem',
-            lineHeight: 1.2,
-        },
-        caption3: {
-            fontSize: '0.5rem',
-            lineHeight: 1.25,
-        },
-    },
-    components: {
-        MuiTypography: {
-            defaultProps: {
-                variantMapping: {
-                    h1: 'h1',
-                    h2: 'h2',
-                    h3: 'h3',
-                    subtitle1: 'h2',
-                    subtitle2: 'h2',
-                    subtitle3: 'h3',
-                    subtitle4: 'h3',
+        components: {
+            MuiTypography: {
+                defaultProps: {
+                    variantMapping: {
+                        h1: 'h1',
+                        h2: 'h2',
+                        h3: 'h3',
+                        subtitle1: 'h2',
+                        subtitle2: 'h2',
+                        subtitle3: 'h3',
+                        subtitle4: 'h3',
+                    },
+                },
+            },
+            MuiButton: {
+                styleOverrides: {
+                    // contained: {
+                    //     color: 'white',
+                    //     background: 'linear-gradient(239deg, rgba(40,35,206,1) 0%, rgba(125,178,255,1) 100%)',
+                    //     border: '1px solid',
+                    //     borderImage: 'linear-gradient(239deg, rgba(40,35,206,1) 0%, rgba(125,178,255,1) 100%) 1',
+                    // },
+                },
+            },
+            MuiDialog: {
+                styleOverrides: {
+                    container: {
+                        backgroundColor: MLAB_OPACITY_PALETTE.black[100],
+                        backdropFilter: 'blur(5px)',
+                    },
+                },
+            },
+            MuiBackdrop: {
+                styleOverrides: {
+                    root: {
+                        backgroundColor: MLAB_OPACITY_PALETTE.black[400],
+                        backdropFilter: 'blur(2px)',
+                    },
+                },
+            },
+            MuiDivider: {
+                styleOverrides: {
+                    root: {
+                        margin: '0 16px 0 16px',
+                    },
                 },
             },
         },
-        MuiButton: {
-            styleOverrides: {
-                // contained: {
-                //     color: 'white',
-                //     background: 'linear-gradient(239deg, rgba(40,35,206,1) 0%, rgba(125,178,255,1) 100%)',
-                //     border: '1px solid',
-                //     borderImage: 'linear-gradient(239deg, rgba(40,35,206,1) 0%, rgba(125,178,255,1) 100%) 1',
-                // },
-            },
-        },
-        MuiDialog: {
-            styleOverrides: {
-                container: {
-                    backgroundColor: MLAB_OPACITY_PALETTE.black[100],
-                    backdropFilter: 'blur(5px)',
-                },
-            },
-        },
-        MuiBackdrop: {
-            styleOverrides: {
-                root: {
-                    backgroundColor: MLAB_OPACITY_PALETTE.black[400],
-                    backdropFilter: 'blur(2px)',
-                },
-            },
-        },
-        MuiDivider: {
-            styleOverrides: {
-                root: {
-                    margin: '0 16px 0 16px',
-                },
-            }
-        },
-    },
-});
+    });
 
 export default createMlabMuiTheme;

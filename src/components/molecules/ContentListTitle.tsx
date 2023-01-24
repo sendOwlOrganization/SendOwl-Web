@@ -8,11 +8,7 @@ interface CategoryListTitleInfo {
 const ContentListTitle = ({ title }: CategoryListTitleInfo) => {
     return (
         <>
-            <Grid
-                display={'flex'}
-                alignItems={'center'}
-                padding={'10px 20px 10px 20px'}
-            >
+            <Grid display={'flex'} alignItems={'center'} padding={'10px 20px 10px 20px'}>
                 <Grid
                     container
                     display={'flex'}

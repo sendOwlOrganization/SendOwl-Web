@@ -11,32 +11,38 @@ interface SearchPageProps {
 }
 
 const SearchPage = ({ results, query }: SearchPageProps) => {
-
     return (
         <>
             <Card elevation={0} sx={{ marginBottom: 2 }}>
                 <CardContent>
                     <Typography align={'center'} fontWeight={'normal'} variant={'h1'}>
-                        검색 : <Typography variant={'h1'} component={'span'}>{query}</Typography>
+                        검색 :{' '}
+                        <Typography variant={'h1'} component={'span'}>
+                            {query}
+                        </Typography>
                     </Typography>
                 </CardContent>
             </Card>
 
             <Stack spacing={2}>
-                {results.map(r => <BoardPreviewLink key={r.id}
-                                                    id={r.id}
-                                                    title={r.title}
-                                                    preview={r.content}
-                                                    user={{
-                                                        mbti: MBTI_LIST[r.id % MBTI_LIST.length],
-                                                        nickName: 'test',
-                                                        id: r.id,
-                                                    }}
-                                                    hasVote={false}
-                                                    category={'category'}
-                                                    likeCount={0}
-                                                    commentCount={0}
-                                                    date={r.regDate} />)}
+                {results.map((r) => (
+                    <BoardPreviewLink
+                        key={r.id}
+                        id={r.id}
+                        title={r.title}
+                        preview={r.content}
+                        user={{
+                            mbti: MBTI_LIST[r.id % MBTI_LIST.length],
+                            nickName: 'test',
+                            id: r.id,
+                        }}
+                        hasVote={false}
+                        category={'category'}
+                        likeCount={0}
+                        commentCount={0}
+                        date={r.regDate}
+                    />
+                ))}
             </Stack>
         </>
     );

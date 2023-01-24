@@ -11,7 +11,7 @@ afterAll(() => {
     jest.useRealTimers();
 });
 
-const testCasesMapping: { name: string, testCases: TestCase<typeof formatDate>[] }[] = [
+const testCasesMapping: { name: string; testCases: TestCase<typeof formatDate>[] }[] = [
     {
         name: 'when difference is more than 7 days',
         testCases: [

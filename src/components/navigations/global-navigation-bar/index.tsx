@@ -14,41 +14,47 @@ interface GlobalNavigationBarProps {
 
 const BAR_HEIGHT = '4.5rem';
 
-const Bar = styled('header')(({ theme }) => css`
-  height: ${BAR_HEIGHT};
-  background-color: ${theme.palette.mode === 'dark' ? MLAB_OPACITY_PALETTE.black[600] : MLAB_OPACITY_PALETTE.white[600]};
-  backdrop-filter: blur(30px);
-  position: fixed;
-  width: 100%;
-  z-index: ${theme.zIndex.appBar};
-  border-bottom: 1px solid ${theme.palette.mode === 'dark' ? theme.palette.gray[900] : theme.palette.gray[200]};
-`);
+const Bar = styled('header')(
+    ({ theme }) => css`
+        height: ${BAR_HEIGHT};
+        background-color: ${theme.palette.mode === 'dark'
+            ? MLAB_OPACITY_PALETTE.black[600]
+            : MLAB_OPACITY_PALETTE.white[600]};
+        backdrop-filter: blur(30px);
+        position: fixed;
+        width: 100%;
+        z-index: ${theme.zIndex.appBar};
+        border-bottom: 1px solid ${theme.palette.mode === 'dark' ? theme.palette.gray[900] : theme.palette.gray[200]};
+    `
+);
 
 const BarPadding = styled('div')`
-  height: ${BAR_HEIGHT};
+    height: ${BAR_HEIGHT};
 `;
 
 const Nav = styled('nav')`
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 `;
 
-const Container = styled('div')(({ theme }) => css`
-  height: 4.5rem;
-  max-width: 75rem;
-  padding: 0 1rem;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  align-items: center;
-`);
+const Container = styled('div')(
+    ({ theme }) => css`
+        height: 4.5rem;
+        max-width: 75rem;
+        padding: 0 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        align-items: center;
+    `
+);
 
 const Anchor = styled('a')`
-  margin-right: 1.5rem;
+    margin-right: 1.5rem;
 `;
 
 const NavigationButtons = styled(Stack)`
-  margin-left: auto;
+    margin-left: auto;
 `;
 
 const navigationButtons = [
@@ -75,7 +81,6 @@ const navigationButtons = [
 ];
 
 const GlobalNavigationBar = ({ isLogged, currentUrl }: GlobalNavigationBarProps) => {
-
     return (
         <>
             <Bar>
@@ -86,23 +91,27 @@ const GlobalNavigationBar = ({ isLogged, currentUrl }: GlobalNavigationBarProps)
                                 <MlabLogo />
                             </Anchor>
                         </NextLink>
-                        {
-                            navigationButtons.map(n => <GlobalNavigationBarButtonLink href={n.href} label={n.label}
-                                                                                      key={n.href}
-                                                                                      active={currentUrl.startsWith(n.href)} />)
-                        }
+                        {navigationButtons.map((n) => (
+                            <GlobalNavigationBarButtonLink
+                                href={n.href}
+                                label={n.label}
+                                key={n.href}
+                                active={currentUrl.startsWith(n.href)}
+                            />
+                        ))}
                     </Nav>
                     <NavigationButtons spacing={2} direction={'row'}>
                         <Search />
-                        {
-                            isLogged
-                                ? <>
-                                    <Notification />
-                                    <User />
-                                </> : <>
-                                    <User />
-                                </>
-                        }
+                        {isLogged ? (
+                            <>
+                                <Notification />
+                                <User />
+                            </>
+                        ) : (
+                            <>
+                                <User />
+                            </>
+                        )}
                     </NavigationButtons>
                 </Container>
             </Bar>

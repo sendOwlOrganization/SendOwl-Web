@@ -17,6 +17,6 @@ export interface BoardsResponse extends PagedResponse {
 
 export interface BoardPost {
     title: string;
-    editorJsContent: OutputData,
+    editorJsContent: OutputData;
     categoryId: number;
 }

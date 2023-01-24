@@ -18,7 +18,6 @@ interface BoardCategoryListProps {
 }
 
 const BoardCategory = ({ title, boards }: BoardCategoryListProps) => {
-
     return (
         <>
             <BoardCategoryTitle title={title} />

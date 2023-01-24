@@ -6,8 +6,6 @@ export default {
     component: SocialLoginButtons,
 } as ComponentMeta<typeof SocialLoginButtons>;
 
-const Template: ComponentStory<typeof SocialLoginButtons> = (args) => (
-    <SocialLoginButtons {...args} />
-);
+const Template: ComponentStory<typeof SocialLoginButtons> = (args) => <SocialLoginButtons {...args} />;
 
 export const Example = Template.bind({});

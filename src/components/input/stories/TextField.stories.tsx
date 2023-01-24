@@ -15,7 +15,9 @@ export default {
 const Template: ComponentStory<typeof TextField> = (args) => {
     const { defaultValue, ...rest } = args;
     const [value, setValue] = useState<string>(defaultValue?.toString() || '');
-    return <TextField {...rest} value={value} onChange={e => setValue(e.target.value)} onClear={() => setValue('')} />;
+    return (
+        <TextField {...rest} value={value} onChange={(e) => setValue(e.target.value)} onClear={() => setValue('')} />
+    );
 };
 
 export const Example = Template.bind({});

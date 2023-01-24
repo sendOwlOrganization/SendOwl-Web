@@ -13,7 +13,7 @@ const BackNavigationBar = ({ title, children }: PropsWithChildren<BackNavigation
 
     const onBack = () => {
         router.back();
-    }
+    };
 
     return (
         <Bar>
@@ -21,9 +21,7 @@ const BackNavigationBar = ({ title, children }: PropsWithChildren<BackNavigation
             <Typography variant={'subtitle3'} fontWeight={'bold'}>
                 {title}
             </Typography>
-            <div>
-                {children}
-            </div>
+            <div>{children}</div>
         </Bar>
     );
 };

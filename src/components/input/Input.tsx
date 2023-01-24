@@ -11,16 +11,12 @@ const StyledInput = styled('input')(({ theme }) => ({
     flexGrow: 2,
     border: 'none',
     ['&::placeholder']: {
-        color: theme.palette.mode === 'light'
-            ? theme.palette.gray[400]
-            : theme.palette.gray[500],
+        color: theme.palette.mode === 'light' ? theme.palette.gray[400] : theme.palette.gray[500],
     },
 }));
 
 const Container = styled('div')(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'light'
-        ? theme.palette.gray[100]
-        : theme.palette.gray[800],
+    backgroundColor: theme.palette.mode === 'light' ? theme.palette.gray[100] : theme.palette.gray[800],
     borderRadius: '8px',
     padding: '0.5rem 0.625rem',
     display: 'flex',

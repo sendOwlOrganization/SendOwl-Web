@@ -1,4 +1,4 @@
-import {Box, createStyles, makeStyles, Theme, useMediaQuery, useTheme} from '@mui/material';
+import { Box, createStyles, makeStyles, Theme, useMediaQuery, useTheme } from '@mui/material';
 import Image from 'next/image';
 import ad from '../../../public/images/ad.png';
 
@@ -8,7 +8,7 @@ interface Display {
     margin?: string;
 }
 
-const Advertisement = ({width, height, margin}: Display) => {
+const Advertisement = ({ width, height, margin }: Display) => {
     const theme = useTheme();
 
     return (
@@ -18,12 +18,11 @@ const Advertisement = ({width, height, margin}: Display) => {
                     margin: margin,
                     border: `1px solid ${theme.palette.grey[200]}`,
                     width: width,
-                    height: height
+                    height: height,
                 }}
                 borderRadius={'50%'}>
-                <Image src={ad} alt={'ad'} width={width} height={height}/>
+                <Image src={ad} alt={'ad'} width={width} height={height} />
             </Box>
-
         </>
     );
 };

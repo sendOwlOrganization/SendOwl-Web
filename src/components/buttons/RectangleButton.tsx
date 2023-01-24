@@ -9,9 +9,7 @@ const RectangleButton = styled('button')(({ theme, disabled }) => ({
             ? rgba(theme.palette.pink[600]!, 0.3)
             : theme.palette.pink[200]
         : theme.palette.pink[600],
-    color: disabled && theme.palette.mode === 'dark'
-        ? MLAB_OPACITY_PALETTE.white[200]
-        : theme.palette.common.white,
+    color: disabled && theme.palette.mode === 'dark' ? MLAB_OPACITY_PALETTE.white[200] : theme.palette.common.white,
     padding: '1rem',
     outline: 'none',
     border: 'none',
