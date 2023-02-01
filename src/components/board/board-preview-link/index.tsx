@@ -115,28 +115,34 @@ const BoardPreviewLink = ({
                     <LinkFooter>
                         <BoardPreviewLinkUserAndDate userId={userId} name={nickName} mbti={mbti} regDate={regDate}/>
                         <Stack spacing={1} direction={'row'}>
-                            <Typography
-                                component={'span'}
-                                variant={'body2'}
-                                color={(theme) => theme.palette.gray[500]}
-                                display={'flex'}
-                                fontWeight={600}>
-                                <Typography display={'flex'} alignItems={'center'} padding={0.2}>
-                                    <HeartIcon color={'gray'} colorKey={200}/>
+                            {
+                                likeCount > 0 &&
+                                <Typography
+                                    component={'span'}
+                                    variant={'body2'}
+                                    color={(theme) => theme.palette.gray[500]}
+                                    display={'flex'}
+                                    fontWeight={600}>
+                                    <Typography display={'flex'} alignItems={'center'} padding={0.2}>
+                                        <HeartIcon color={'gray'} colorKey={200}/>
+                                    </Typography>
+                                    {likeCount}
                                 </Typography>
-                                {likeCount}
-                            </Typography>
-                            <Typography
-                                component={'span'}
-                                variant={'body2'}
-                                color={(theme) => theme.palette.gray[500]}
-                                display={'flex'}
-                                fontWeight={600}>
-                                <Typography display={'flex'} alignItems={'center'} padding={0.2}>
-                                    <CommentIcon color={'gray'} colorKey={200}/>
+                            }
+                            {
+                                commentCount > 0 &&
+                                <Typography
+                                    component={'span'}
+                                    variant={'body2'}
+                                    color={(theme) => theme.palette.gray[500]}
+                                    display={'flex'}
+                                    fontWeight={600}>
+                                    <Typography display={'flex'} alignItems={'center'} padding={0.2}>
+                                        <CommentIcon color={'gray'} colorKey={200}/>
+                                    </Typography>
+                                    {commentCount}
                                 </Typography>
-                                {commentCount}
-                            </Typography>
+                            }
                         </Stack>
                     </LinkFooter>
                 </Body>
