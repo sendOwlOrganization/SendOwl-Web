@@ -1,7 +1,7 @@
-import { LoginDetail } from '@api/types/LoginDetail';
+import {LoginDetail} from '@api/types/LoginDetail';
 import fetch from 'node-fetch';
-import { BoardDetails, BoardPost, BoardsResponse } from './types/boards';
-import { Category, PopularCategory } from './types/category';
+import {BoardDetails, BoardPost, BoardsResponse} from './types/boards';
+import {Category, PopularCategory} from './types/category';
 import HttpStatusCode from './types/HttpStatusCode';
 
 interface FetchError {
@@ -50,6 +50,16 @@ const fetchSendOwlApi = async <T extends unknown>(
         };
     }
 };
+export const getPreviewBoards = async (
+    categoryId: number,
+    textLength: number,
+    page: number,
+    pageSize: number
+): Promise<FetchResponse<BoardsResponse>> =>
+    await fetchSendOwlApi<BoardsResponse>(
+        `boards/preview?categoryId=${categoryId}&titleLength=${textLength}&page=${page}&size=${pageSize}&sort=reg_date,DESC`
+    );
+
 
 export const getBoards = async (
     categoryId: number,
