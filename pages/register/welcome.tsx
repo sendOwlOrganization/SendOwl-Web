@@ -14,26 +14,23 @@ const WelcomePage = ({}: WelcomePageProps) => {
     const session = useSession();
 
     useEffect(() => {
-        console.log(session);
         if (session.status !== 'authenticated') {
             return;
         }
-        // @ts-ignore
-        getGoogleLoginDetails(session.data.token.accessToken).then(({ data, headers, error }) => {
-            if (data && !data.alreadySetted && headers && headers['accessToken']) {
-                postSetProfile(
+        (async () => {
+            const { data, headers, error } = await getGoogleLoginDetails(session.data.token.accessToken);
+            if (data && !data.alreadySetted && headers && headers['access-token']) {
+                await postSetProfile(
                     {
                         gender: state.gender,
                         nickName: state.nickname,
                         age: state.age,
                         mbti: state.mbti,
                     },
-                    headers['accessToken']
-                )
-                    .then(console.log)
-                    .catch(console.error);
+                    headers['access-token']
+                );
             }
-        });
+        })();
     }, [session.status]);
 
     return (
