@@ -35,7 +35,7 @@ const SNSButton = () => {
                 <ButtonCSS>{<InstagramIcon color={'gray'} colorKey={700} />}</ButtonCSS>
                 <ButtonCSS>{<FacebookIcon color={'gray'} colorKey={700} />}</ButtonCSS>
                 <ButtonCSS>{<KakaoTalkIcon color={'gray'} colorKey={700} />}</ButtonCSS>
-                <ButtonCSS>{<ReportIcon color={'negative'} />}</ButtonCSS>
+                <ButtonCSS>{<ReportIcon color={'gray'} />}</ButtonCSS>
             </ButtonContainer>
         </>
     );
