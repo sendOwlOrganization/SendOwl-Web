@@ -44,6 +44,8 @@ const WelcomePage = ({}: WelcomePageProps) => {
                 user: {
                     ...s.user,
                     ...user,
+                    // @ts-ignore
+                    email: session.data.user.email,
                 },
             }));
         })();
