@@ -1,7 +1,8 @@
-import {LoginDetail} from '@api/types/LoginDetail';
+import { LoginDetail } from '@api/types/LoginDetail';
+import { UsersSetProfileResponse } from '@api/types/users';
 import fetch from 'node-fetch';
-import {BoardDetails, BoardPost, BoardsResponse} from './types/boards';
-import {Category, PopularCategory} from './types/category';
+import { BoardDetails, BoardPost, BoardsResponse } from './types/boards';
+import { Category, PopularCategory } from './types/category';
 import HttpStatusCode from './types/HttpStatusCode';
 
 interface FetchError {
@@ -60,7 +61,6 @@ export const getPreviewBoards = async (
         `boards/preview?categoryId=${categoryId}&titleLength=${textLength}&page=${page}&size=${pageSize}&sort=reg_date,DESC`
     );
 
-
 export const getBoards = async (
     categoryId: number,
     textLength: number,
@@ -107,7 +107,7 @@ export const postSetProfile = async (
     profile: { mbti: string; gender: string; age: number; nickName: string },
     token: string
 ) =>
-    await fetchSendOwlApi(`users/set-profile`, {
+    await fetchSendOwlApi<UsersSetProfileResponse>(`users/set-profile`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
