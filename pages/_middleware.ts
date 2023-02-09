@@ -9,6 +9,8 @@ export default withAuth(
             const loginDetail = await getGoogleLoginDetails(accessToken);
             if (!loginDetail.data?.alreadySetted) {
                 return NextResponse.redirect(new URL('/register/mbti', request.url));
+            } else {
+                return NextResponse.redirect(new URL('/', request.url));
             }
         } else if (!accessToken && request.page.name?.startsWith('/register')) {
             return NextResponse.redirect(new URL('/login', request.url));
