@@ -26,9 +26,7 @@ const LoginPage = ({}: LoginPageProps) => {
         <Container>
             <Header sx={{ padding: '1.5rem' }}>
                 <NextLink href={'/'}>
-                    <a>
-                        <CloseIcon scale={0.75} color={'gray'} colorKey={200} disableHoverBackground clickable />
-                    </a>
+                    <CloseIcon scale={0.75} color={'gray'} colorKey={200} disableHoverBackground clickable />
                 </NextLink>
             </Header>
             <Welcome />
