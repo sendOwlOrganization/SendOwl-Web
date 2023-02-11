@@ -14,7 +14,7 @@ const Anchor = styled('a')(({ theme }) => ({
 
 const SideMenuBottomLink = ({ href, children }: PropsWithChildren<SideMenuBottomLinkProps>) => {
     return href.startsWith('/') ? (
-        <NextLink href={href} passHref>
+        <NextLink href={href} passHref legacyBehavior>
             <Anchor>{children}</Anchor>
         </NextLink>
     ) : (

@@ -28,7 +28,7 @@ const Link = styled('a')(
 
 const SideCategoryListLink = ({ label, count, href, active }: SideCategoryListLinkProps) => {
     return (
-        <NextLink href={href} passHref>
+        <NextLink href={href} passHref legacyBehavior>
             <Link>
                 <Typography variant={'body1'} fontWeight={active ? 'bold' : 'normal'}>
                     {label}

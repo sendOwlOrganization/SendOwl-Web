@@ -19,7 +19,7 @@ const Anchor = styled('a')`
 
 const SideMenuLink = ({ href, title, icon }: SideMenuLinkProps) => {
     return (
-        <NextLink href={href} passHref>
+        <NextLink href={href} passHref legacyBehavior>
             <Anchor>
                 {icon}
                 <Typography variant={'subtitle3'} fontWeight={'bold'}>

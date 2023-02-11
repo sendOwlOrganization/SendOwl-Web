@@ -22,7 +22,7 @@ const Anchor = styled('a')(
 
 const BalanceGameLink = ({ voteId, first, second }: BalanceGameLinkProps) => {
     return (
-        <NextLink href={`/balance-games/${voteId}`} passHref>
+        <NextLink href={`/balance-games/${voteId}`} passHref legacyBehavior>
             <Anchor>
                 <Typography variant={'caption2'} fontWeight={'bold'} color={(theme) => theme.palette.purple[400]}>
                     밸런스 게임 바로가기

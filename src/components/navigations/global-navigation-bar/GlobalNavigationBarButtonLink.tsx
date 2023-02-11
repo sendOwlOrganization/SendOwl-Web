@@ -39,7 +39,7 @@ const GlobalNavigationBarButtonLink = ({ href, label, active }: GlobalNavigation
     return active ? (
         <Span>{label}</Span>
     ) : (
-        <NextLink href={href} passHref>
+        <NextLink href={href} passHref legacyBehavior>
             <Anchor>{label}</Anchor>
         </NextLink>
     );

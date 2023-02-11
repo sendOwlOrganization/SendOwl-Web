@@ -33,7 +33,7 @@ const BoardLink = ({ board }: { board: Board }) => {
                 <Item sx={{ border: '1px solid gray' }}>{board.title}</Item>
             </Grid>
             <Grid item lg={9.6} xs={12}>
-                <Link href={`/boards/${board.id}`} passHref>
+                <Link href={`/boards/${board.id}`} passHref legacyBehavior>
                     <a style={{ textDecoration: 'none', color: '#000' }}>{board.title}</a>
                 </Link>
             </Grid>

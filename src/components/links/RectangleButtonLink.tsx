@@ -10,7 +10,7 @@ const RectangleButtonLink = ({ href, disabled, ...props }: RectangleButtonLinkPr
     return disabled ? (
         <RectangleButton disabled {...props} />
     ) : (
-        <NextLink href={href} passHref>
+        <NextLink href={href} passHref legacyBehavior>
             <RectangleButton as={'a'} {...props} />
         </NextLink>
     );
