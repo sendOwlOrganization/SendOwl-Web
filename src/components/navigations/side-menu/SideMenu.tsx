@@ -11,6 +11,9 @@ import SideMenuLoginInformation from '@components/navigations/side-menu/SideMenu
 import { css, Divider, styled } from '@mui/material';
 import { MLAB_ICON_COLORS } from '@styles/mlabTheme';
 import { BALANCE_GAMES_URL, COMMUNITY_URL, INSIGHTS_URL, NOTICES_URL, SERVICE_CENTER_URL } from '@tools/url';
+import { signOut } from 'next-auth/react';
+import { useRecoilValue } from 'recoil';
+import { sessionStore } from '../../../store/sessionStore';
 
 const MenuContainer = styled('div')`
     max-width: 19.125rem;
@@ -38,6 +41,7 @@ const Nav = styled('nav', {
 );
 
 const SideMenu = (props: {}) => {
+    const { isAuthenticated } = useRecoilValue(sessionStore);
     return (
         <MenuContainer>
             <SideMenuLoginInformation />
@@ -102,10 +106,24 @@ const SideMenu = (props: {}) => {
                     <li>
                         <SideMenuBottomLink href={'/fixme'}>오류 신고</SideMenuBottomLink>
                     </li>
+                    {isAuthenticated && (
+                        <li>
+                            <SignOutButton onClick={() => signOut()}>로그아웃</SignOutButton>
+                        </li>
+                    )}
                 </ul>
             </Nav>
         </MenuContainer>
     );
 };
+
+const SignOutButton = styled('button')(({ theme }) => ({
+    ...theme.typography.subtitle3,
+    fontWeight: 'bold',
+    color: theme.palette.gray[700],
+    backgroundColor: 'transparent',
+    border: 'none',
+    padding: 0,
+}));
 
 export default SideMenu;

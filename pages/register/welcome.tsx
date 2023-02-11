@@ -1,40 +1,47 @@
-import { getGoogleLoginDetails, postSetProfile } from '@api/index';
+import { postSetProfile } from '@api/index';
 import EmptyLayout from '@components/layout/EmptyLayout';
 import RectangleButtonLink from '@components/links/RectangleButtonLink';
 import Welcome from '@components/signup/Welcome';
-import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { registerStore } from '../../src/store/registerStore';
+import { sessionStore } from '../../src/store/sessionStore';
 
 interface WelcomePageProps {}
 
 const WelcomePage = ({}: WelcomePageProps) => {
     const state = useRecoilValue(registerStore);
-    const session = useSession();
+    const [session, setSession] = useRecoilState(sessionStore);
 
     useEffect(() => {
-        console.log(session);
-        if (session.status !== 'authenticated') {
+        if (!session.isAuthenticated) {
             return;
         }
-        // @ts-ignore
-        getGoogleLoginDetails(session.data.token.accessToken).then(({ data, headers, error }) => {
-            if (data && !data.alreadySetted && headers && headers['accessToken']) {
-                postSetProfile(
-                    {
-                        gender: state.gender,
-                        nickName: state.nickname,
-                        age: state.age,
-                        mbti: state.mbti,
-                    },
-                    headers['accessToken']
-                )
-                    .then(console.log)
-                    .catch(console.error);
+        (async () => {
+            const profile = await postSetProfile(
+                {
+                    gender: state.gender,
+                    nickName: state.nickname,
+                    age: state.age,
+                    mbti: state.mbti,
+                },
+                session.token
+            );
+            if (!profile.data || profile.error) {
+                console.error('fixme');
+                return;
             }
-        });
-    }, [session.status]);
+            const user = profile.data;
+            setSession({
+                ...session,
+                isAuthenticated: true,
+                user: {
+                    ...session.user,
+                    ...user,
+                },
+            });
+        })();
+    }, [session]);
 
     return (
         <>

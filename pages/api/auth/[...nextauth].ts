@@ -28,11 +28,13 @@ export default NextAuth({
         async jwt({ token, user, isNewUser, account, profile }) {
             if (account && account.access_token) {
                 token.accessToken = account.access_token;
+                token.provider = account.provider;
             }
             return token;
         },
         async session({ session, token }) {
-            session.token = token;
+            session.accessToken = token.accessToken;
+            session.provider = token.provider;
             return session;
         },
     },

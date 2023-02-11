@@ -1,7 +1,8 @@
-import {LoginDetail} from '@api/types/LoginDetail';
+import { LoginDetail } from '@api/types/LoginDetail';
+import { UserMeResponse, UsersSetProfileResponse } from '@api/types/users';
 import fetch from 'node-fetch';
-import {BoardDetails, BoardPost, BoardsResponse} from './types/boards';
-import {Category, PopularCategory} from './types/category';
+import { BoardDetails, BoardPost, BoardsResponse } from './types/boards';
+import { Category, PopularCategory } from './types/category';
 import HttpStatusCode from './types/HttpStatusCode';
 
 interface FetchError {
@@ -60,7 +61,6 @@ export const getPreviewBoards = async (
         `boards/preview?categoryId=${categoryId}&titleLength=${textLength}&page=${page}&size=${pageSize}&sort=reg_date,DESC`
     );
 
-
 export const getBoards = async (
     categoryId: number,
     textLength: number,
@@ -91,14 +91,14 @@ export const postBoardDetails = async (board: BoardPost, token: string) =>
         body: JSON.stringify(board),
     });
 
-export const getGoogleLoginDetails = async (accessToken: string) =>
+export const postOauth2 = async (accessToken: string, provider: string) =>
     await fetchSendOwlApi<LoginDetail>(`users/oauth2`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            transactionId: 'google',
+            transactionId: provider,
             token: accessToken,
         }),
     });
@@ -107,11 +107,19 @@ export const postSetProfile = async (
     profile: { mbti: string; gender: string; age: number; nickName: string },
     token: string
 ) =>
-    await fetchSendOwlApi(`users/set-profile`, {
+    await fetchSendOwlApi<UsersSetProfileResponse>(`users/set-profile`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(profile),
+    });
+
+export const getMe = async (token: string) =>
+    await fetchSendOwlApi<UserMeResponse>(`users/me`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        },
     });
