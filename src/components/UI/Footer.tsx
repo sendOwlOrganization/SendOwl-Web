@@ -1,5 +1,5 @@
-import { List, ListItemButton, styled, useTheme } from '@mui/material';
 import css from '@emotion/css';
+import { List, styled, useTheme } from '@mui/material';
 import Link from 'next/link';
 
 const ListCss = styled('div')(
@@ -48,7 +48,7 @@ const Footer = () => {
         <>
             <List sx={{ display: 'flex', padding: '16px 0 38px 8px' }}>
                 {corporationList.map(({ name, href }, index) => (
-                    <Link href={href} key={index}>
+                    <Link href={href} key={index} legacyBehavior>
                         <ListCss>{name}</ListCss>
                     </Link>
                 ))}

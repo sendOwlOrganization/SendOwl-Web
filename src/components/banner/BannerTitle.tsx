@@ -17,7 +17,7 @@ const TitleContainer = styled('a', { shouldForwardProp: (name) => name !== 'gutt
 
 const BannerTitle = ({ href, gutterBottom, children }: PropsWithChildren<BannerTitleProps>) => {
     return href ? (
-        <NextLink href={href} passHref>
+        <NextLink href={href} passHref legacyBehavior>
             <TitleContainer gutterBottom={gutterBottom}>{children}</TitleContainer>
         </NextLink>
     ) : (

@@ -86,7 +86,7 @@ const GlobalNavigationBar = ({ isLogged, currentUrl }: GlobalNavigationBarProps)
             <Bar>
                 <Container>
                     <Nav>
-                        <NextLink href={'/'} passHref>
+                        <NextLink href={'/'} passHref legacyBehavior>
                             <Anchor>
                                 <MlabLogo />
                             </Anchor>

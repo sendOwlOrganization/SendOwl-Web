@@ -19,7 +19,7 @@ const SideBar = () => {
         <>
             <Grid width={200} marginLeft={'25px'} position={'fixed'} marginTop={'15px'}>
                 <Grid marginLeft={'10px'}>
-                    <Link href={'/'}>
+                    <Link href={'/'} legacyBehavior>
                         <a>
                             <Image src='/images/logo.png' alt='logo' width={140} height={70} />
                         </a>
@@ -27,12 +27,12 @@ const SideBar = () => {
                 </Grid>
 
                 <Stack direction='row' spacing={1}>
-                    <Link href={'/login'}>
+                    <Link href={'/login'} legacyBehavior>
                         <a>
                             <OutlinedButton>로그인</OutlinedButton>
                         </a>
                     </Link>
-                    <Link href={'/signup'}>
+                    <Link href={'/signup'} legacyBehavior>
                         <a>
                             <OutlinedButton>회원가입</OutlinedButton>
                         </a>
@@ -40,7 +40,7 @@ const SideBar = () => {
                 </Stack>
                 <br />
                 <ListItem>
-                    <Link href={'/total-board'}>
+                    <Link href={'/total-board'} legacyBehavior>
                         <a>
                             <span>전체글</span>
                         </a>
@@ -48,7 +48,7 @@ const SideBar = () => {
                 </ListItem>
 
                 <ListItem>
-                    <Link href={'/best-board'}>
+                    <Link href={'/best-board'} legacyBehavior>
                         <a>
                             <span>베스트글</span>
                         </a>
@@ -56,21 +56,21 @@ const SideBar = () => {
                 </ListItem>
                 <br />
                 <ListItem>
-                    <Link href={'/mbti-info'}>
+                    <Link href={'/mbti-info'} legacyBehavior>
                         <a>
                             <span>mbti 정보</span>
                         </a>
                     </Link>
                 </ListItem>
                 <ListItem>
-                    <Link href={'/mbti-test'}>
+                    <Link href={'/mbti-test'} legacyBehavior>
                         <a>
                             <span>mbti 테스트</span>
                         </a>
                     </Link>
                 </ListItem>
                 <ListItem>
-                    <Link href={'/mbti-result'}>
+                    <Link href={'/mbti-result'} legacyBehavior>
                         <a>
                             <span>mbti 결과</span>
                         </a>
@@ -78,7 +78,7 @@ const SideBar = () => {
                 </ListItem>
                 <br />
                 <ListItem>
-                    <Link href={'/mbti-result'}>
+                    <Link href={'/mbti-result'} legacyBehavior>
                         <a>
                             <span>mbti 게시판</span>
                         </a>

@@ -69,11 +69,11 @@ const SocialLoginButtons = (props: SocialLoginButtonsProps) => {
                 }}
                 color={(theme) => (theme.palette.mode === 'dark' ? theme.palette.gray[700] : theme.palette.gray[400])}>
                 {'로그인은 '}
-                <NextLink href={'#fixme'} passHref>
+                <NextLink href={'#fixme'} passHref legacyBehavior>
                     <Anchor>개인 정보 보호 정책</Anchor>
                 </NextLink>
                 {' 및 '}
-                <NextLink href={'#fixme'} passHref>
+                <NextLink href={'#fixme'} passHref legacyBehavior>
                     <Anchor>서비스 약관</Anchor>
                 </NextLink>
                 에 동의하는 것을 의미하며,

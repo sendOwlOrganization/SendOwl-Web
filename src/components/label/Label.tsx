@@ -81,7 +81,7 @@ const Label = ({
     size = 1,
 }: PropsWithChildren<LabelProps>) => {
     return href ? (
-        <NextLink href={href} passHref>
+        <NextLink href={href} passHref legacyBehavior>
             <LabelContainer
                 padding={padding}
                 size={size}

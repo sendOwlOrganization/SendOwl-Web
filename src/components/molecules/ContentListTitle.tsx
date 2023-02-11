@@ -1,10 +1,11 @@
-import { Box, Divider, Grid, useTheme } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Grid } from '@mui/material';
 import Link from 'next/link';
 
 interface CategoryListTitleInfo {
     title: string;
 }
+
 const ContentListTitle = ({ title }: CategoryListTitleInfo) => {
     return (
         <>
@@ -19,7 +20,7 @@ const ContentListTitle = ({ title }: CategoryListTitleInfo) => {
                     fontWeight={'800'}>
                     {title}
                     <Grid fontSize={'12px'} fontWeight={'500'}>
-                        <Link href='/category' passHref>
+                        <Link href='/category' passHref legacyBehavior>
                             <a>
                                 더보기
                                 <ArrowForwardIosIcon style={{ fontSize: '10px' }} />
