@@ -25,6 +25,7 @@ const Template: ComponentStory<typeof RadioSelect> = (args) => {
                     {v.id}, {v.content}
                 </div>
             )}
+            getKey={(item) => item.id.toString()}
         />
     );
 };
