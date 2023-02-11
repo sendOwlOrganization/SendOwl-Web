@@ -1,5 +1,5 @@
 import { LoginDetail } from '@api/types/LoginDetail';
-import { UsersSetProfileResponse } from '@api/types/users';
+import { UserMeResponse, UsersSetProfileResponse } from '@api/types/users';
 import fetch from 'node-fetch';
 import { BoardDetails, BoardPost, BoardsResponse } from './types/boards';
 import { Category, PopularCategory } from './types/category';
@@ -114,4 +114,12 @@ export const postSetProfile = async (
             'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(profile),
+    });
+
+export const getMe = async (token: string) =>
+    await fetchSendOwlApi<UserMeResponse>(`users/me`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        },
     });
