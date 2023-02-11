@@ -91,14 +91,14 @@ export const postBoardDetails = async (board: BoardPost, token: string) =>
         body: JSON.stringify(board),
     });
 
-export const getGoogleLoginDetails = async (accessToken: string) =>
+export const postOauth2 = async (accessToken: string, provider: string) =>
     await fetchSendOwlApi<LoginDetail>(`users/oauth2`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            transactionId: 'google',
+            transactionId: provider,
             token: accessToken,
         }),
     });

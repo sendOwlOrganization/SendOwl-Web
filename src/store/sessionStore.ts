@@ -3,6 +3,7 @@ import { atom } from 'recoil';
 
 interface Authenticated {
     isAuthenticated: true;
+    token: string;
     user: {
         id: number;
         nickName: string;
@@ -15,7 +16,6 @@ interface Authenticated {
 
 interface NotAuthenticated {
     isAuthenticated: false;
-    user: null;
 }
 
 type SessionState = Authenticated | NotAuthenticated;
@@ -24,6 +24,5 @@ export const sessionStore = atom<SessionState>({
     key: 'session',
     default: {
         isAuthenticated: false,
-        user: null,
     },
 });

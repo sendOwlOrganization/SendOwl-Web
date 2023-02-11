@@ -9,7 +9,7 @@ const GoogleLoginButton = () => {
     return (
         <LoginButton
             backgroundColor={GOOGLE_COLOR}
-            onClick={() => signIn('google')}
+            onClick={() => signIn('google', { callbackUrl: '/login/verify' })}
             color={theme.palette.gray[1000]}
             border={theme.palette.gray[200]}>
             <SvgIcon fontSize={'small'} width={24} height={24}>
