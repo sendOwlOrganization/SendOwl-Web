@@ -46,7 +46,7 @@ const Anchor = styled('a')<Required<ColorProps>>(
 const ShortcutButton = ({ href = '#', color, colorKey = 600, text, icon }: ShortcutButtonProps) => {
     const coloredIcon = useMemo(() => cloneElement(icon, { color, colorKey }), [color, colorKey, icon]);
     return (
-        <NextLink href={href} passHref>
+        <NextLink href={href} passHref legacyBehavior>
             <Anchor color={color} colorKey={colorKey}>
                 {coloredIcon}
                 <Typography variant={'subtitle3'} fontWeight={'bold'} color={'inherit'}>

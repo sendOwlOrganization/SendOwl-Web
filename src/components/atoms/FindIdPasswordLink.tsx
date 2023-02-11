@@ -13,7 +13,7 @@ const StyledAnchor = styled('a')`
 
 const FindIdPasswordLink = () => {
     return (
-        <NextLink href={''} passHref>
+        <NextLink href={''} passHref legacyBehavior>
             <StyledAnchor>아이디/비밀번호 찾기</StyledAnchor>
         </NextLink>
     );

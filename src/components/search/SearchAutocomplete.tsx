@@ -103,7 +103,7 @@ const SearchAutocomplete = ({ words = [], query, inputRef }: SearchAutocompleteP
                 if (highlights.every((w) => !w.highlighted)) return null;
                 return (
                     <ListItem key={`${word}-${i}`}>
-                        <NextLink href={`/search?query=${encodeURI(word)}`} passHref>
+                        <NextLink href={`/search?query=${encodeURI(word)}`} passHref legacyBehavior>
                             <Anchor>
                                 <SearchIcon />
                                 <Highlighter highlights={highlights} />

@@ -37,7 +37,7 @@ const BoardCategoryTitle = ({ title, id }: BoardCategoryTitleProps) => {
                 fontSize={'18px'}
                 fontWeight={'800'}>
                 {title}
-                <Link href={`/categories/${id}`} passHref>
+                <Link href={`/categories/${id}`} passHref legacyBehavior>
                     <DetailsLink>
                         더보기
                         <ArrowForwardIosIcon sx={{ fontSize: '10px' }} />

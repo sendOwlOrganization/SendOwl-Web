@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 
 const Search = () => {
     return (
-        <NextLink href={'/search'}>
+        <NextLink href={'/search'} legacyBehavior>
             <a>
                 <SearchIcon />
             </a>

@@ -6,7 +6,7 @@ interface LoginButtonProps {}
 const LoginButton = ({}: LoginButtonProps) => {
     return (
         <>
-            <Link href='/login'>
+            <Link href='/login' legacyBehavior>
                 <a>
                     <OutlinedButton>로그인</OutlinedButton>
                 </a>

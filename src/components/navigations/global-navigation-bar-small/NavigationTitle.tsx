@@ -67,7 +67,7 @@ const NavigationTitle = ({ currentUrl }: NavigationTitleProps) => {
     return (
         <>
             {link || (
-                <NextLink href={'/'} passHref>
+                <NextLink href={'/'} passHref legacyBehavior>
                     <Anchor>
                         <MlabLogo />
                     </Anchor>
