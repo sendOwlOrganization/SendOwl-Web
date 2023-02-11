@@ -21,7 +21,7 @@ const SideMenuLoginInformation = () => {
     return (
         <Container>
             {session.isAuthenticated ? (
-                <NextLink href={'/profile'} passHref>
+                <NextLink href={'/profile'} passHref legacyBehavior>
                     <UserInformation>
                         <Typography variant={'subtitle2'}>
                             <Typography
@@ -38,7 +38,7 @@ const SideMenuLoginInformation = () => {
                     </UserInformation>
                 </NextLink>
             ) : (
-                <NextLink href={'/login'} passHref>
+                <NextLink href={'/login'} passHref legacyBehavior>
                     <UserInformation>
                         <Typography variant={'subtitle2'}>로그인</Typography>
                         <Typography component={'div'} variant={'caption2'} color={(theme) => theme.palette.gray[400]}>
