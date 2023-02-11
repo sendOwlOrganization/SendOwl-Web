@@ -12,7 +12,7 @@ const Anchor = styled('a')`
     display: flex;
     align-items: center;
 
-    & > *:first-child {
+    & > *:first-of-type {
         margin-right: 0.375rem;
     }
 `;

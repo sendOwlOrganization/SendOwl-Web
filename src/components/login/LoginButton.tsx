@@ -18,7 +18,7 @@ const LoginButton = styled('button', {
         justify-content: center;
         color: ${color};
 
-        & > *:first-child {
+        & > *:first-of-type {
             margin-right: 18px;
         }
 

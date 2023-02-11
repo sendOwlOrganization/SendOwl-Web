@@ -33,7 +33,7 @@ const Anchor = styled('a')(
         background-color: inherit;
         font-size: ${theme.typography.subtitle3.fontSize};
 
-        & > *:first-child {
+        & > *:first-of-type {
             margin-left: 0.5rem;
             margin-right: 0.5rem;
         }
