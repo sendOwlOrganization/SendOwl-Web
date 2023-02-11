@@ -15,7 +15,9 @@ interface ShortcutButtonProps extends ColorProps {
     text: string;
 }
 
-const Anchor = styled('a')<Required<ColorProps>>(
+const Anchor = styled('a', {
+    shouldForwardProp: (propName) => !['color', 'colorKey'].includes(propName as string),
+})<Required<ColorProps>>(
     ({ theme, color, colorKey }) => css`
         width: 100%;
         height: 3.25rem;
