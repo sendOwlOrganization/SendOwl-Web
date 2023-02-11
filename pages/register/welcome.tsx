@@ -1,8 +1,7 @@
-import { getGoogleLoginDetails, postSetProfile } from '@api/index';
+import { postSetProfile } from '@api/index';
 import EmptyLayout from '@components/layout/EmptyLayout';
 import RectangleButtonLink from '@components/links/RectangleButtonLink';
 import Welcome from '@components/signup/Welcome';
-import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { registerStore } from '../../src/store/registerStore';
@@ -12,19 +11,13 @@ interface WelcomePageProps {}
 
 const WelcomePage = ({}: WelcomePageProps) => {
     const state = useRecoilValue(registerStore);
-    const [sessionState, setSessionState] = useRecoilState(sessionStore);
-    const session = useSession();
+    const [session, setSession] = useRecoilState(sessionStore);
 
     useEffect(() => {
-        if (session.status !== 'authenticated') {
+        if (!session.isAuthenticated) {
             return;
         }
         (async () => {
-            const { data, headers, error } = await getGoogleLoginDetails(session.data.token.accessToken);
-            if (!(data && !data.alreadySetted && headers && headers['access-token'])) {
-                console.error('fixme');
-                return;
-            }
             const profile = await postSetProfile(
                 {
                     gender: state.gender,
@@ -32,24 +25,23 @@ const WelcomePage = ({}: WelcomePageProps) => {
                     age: state.age,
                     mbti: state.mbti,
                 },
-                headers['access-token']
+                session.token
             );
             if (!profile.data || profile.error) {
                 console.error('fixme');
                 return;
             }
             const user = profile.data;
-            setSessionState((s) => ({
+            setSession({
+                ...session,
                 isAuthenticated: true,
                 user: {
-                    ...s.user,
+                    ...session.user,
                     ...user,
-                    // @ts-ignore
-                    email: session.data.user.email,
                 },
-            }));
+            });
         })();
-    }, [session.status]);
+    }, [session]);
 
     return (
         <>
