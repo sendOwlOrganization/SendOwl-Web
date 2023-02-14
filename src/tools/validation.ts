@@ -1,6 +1,6 @@
 import { ValidationRule } from 'react-hook-form';
 
-type ValidationField = 'email' | 'name' | 'password'
+type ValidationField = 'email' | 'name' | 'password';
 export const validationRegex: Record<ValidationField, ValidationRule<RegExp>> = {
     email: {
         // source: https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address

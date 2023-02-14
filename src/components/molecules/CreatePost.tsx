@@ -5,7 +5,7 @@ interface Display {
     width: number;
 }
 
-const CreatePost = ({width}: Display) => {
+const CreatePost = ({ width }: Display) => {
     const theme = useTheme();
 
     return (
@@ -15,8 +15,7 @@ const CreatePost = ({width}: Display) => {
                 border='transparent'
                 margin={'20px 20px 20px 0'}
                 sx={{
-                    backgroundImage:
-                        'linear-gradient(#B488F8, #83D9A6, #3FC4EA, #FDBD5F)',
+                    backgroundImage: 'linear-gradient(#B488F8, #83D9A6, #3FC4EA, #FDBD5F)',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -31,7 +30,7 @@ const CreatePost = ({width}: Display) => {
                         alignItems: 'center',
                     }}
                     borderRadius={'20px'}
-                    width={width-1}
+                    width={width - 1}
                     height={64}
                     fontSize={'12px'}>
                     <Box

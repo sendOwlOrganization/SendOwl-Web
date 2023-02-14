@@ -1,6 +1,6 @@
 import ArrowLeftIcon from '@components/icons/ArrowLeftIcon';
 import Bar from '@components/navigations/global-navigation-bar-small/Bar';
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import { PropsWithChildren } from 'react';
 
@@ -23,9 +23,7 @@ const BackNavigationBar = ({ title, children }: PropsWithChildren<BackNavigation
             <Typography textAlign={'center'} variant={'subtitle3'} fontWeight={'bold'}>
                 {title}
             </Typography>
-            <Stack justifyContent={'right'} alignItems={'center'} direction={'row'} spacing={2}>
-                {children}
-            </Stack>
+            <div>{children}</div>
         </Bar>
     );
 };

@@ -15,9 +15,8 @@ interface BalanceGameWidgetProps {
     choices: [Choice, Choice];
 }
 
-
 const BalanceGameWidgetContent = styled(Stack)`
-  padding: 1rem 1.5rem 1.5rem 1.5rem;
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
 `;
 
 // FIXME: change with API call later
@@ -26,7 +25,6 @@ const wait = (timeToDelay: number) => new Promise((resolve) => setTimeout(resolv
 const fakeApiCall = async () => {
     await wait(100);
 };
-
 
 const BalanceGameWidget = ({ voteId, title, choices }: BalanceGameWidgetProps) => {
     const [focused, setFocused] = useState<number>(0);
@@ -50,18 +48,22 @@ const BalanceGameWidget = ({ voteId, title, choices }: BalanceGameWidgetProps) =
         <Card elevation={0}>
             <BalanceGameWidgetTitle title={title} id={voteId} />
             <BalanceGameWidgetContent direction={'row'} spacing={1}>
-                <BalanceGameWidgetChoice selected={isFirst}
-                                         showResult={showResult}
-                                         onClick={onClick(1)}
-                                         vote={firstVote}
-                                         totalVote={totalVote}
-                                         text={first.text} />
-                <BalanceGameWidgetChoice selected={isSecond}
-                                         showResult={showResult}
-                                         onClick={onClick(2)}
-                                         vote={secondVote}
-                                         totalVote={totalVote}
-                                         text={second.text} />
+                <BalanceGameWidgetChoice
+                    selected={isFirst}
+                    showResult={showResult}
+                    onClick={onClick(1)}
+                    vote={firstVote}
+                    totalVote={totalVote}
+                    text={first.text}
+                />
+                <BalanceGameWidgetChoice
+                    selected={isSecond}
+                    showResult={showResult}
+                    onClick={onClick(2)}
+                    vote={secondVote}
+                    totalVote={totalVote}
+                    text={second.text}
+                />
             </BalanceGameWidgetContent>
         </Card>
     );

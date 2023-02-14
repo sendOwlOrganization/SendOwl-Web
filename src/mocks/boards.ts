@@ -52,12 +52,11 @@ console.log('hello, world!');
     },
 ];
 
-
 function createData(
     category: string,
     name: string,
     like: number,
-    comment: number,
+    comment: number
 ): ComponentProps<typeof BoardCategoryPostList>['boards'][number] {
     return {
         id: Math.ceil(Math.random() * 100000),
@@ -67,7 +66,6 @@ function createData(
         commentCount: comment,
     };
 }
-
 
 export const boardsMock = [
     createData('이직.커리어', '경찰준비중입니다..', 10, 2),

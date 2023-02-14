@@ -6,10 +6,12 @@ import Link from 'next/link';
 
 interface Board {
     id: number;
-    category: string;
     title: string;
-    likeCount: number;
-    commentCount: number;
+    content: string;
+    nickname: string;
+    regDate: Date;
+    hit: number;
+    boardLikeCount: number;
 }
 
 interface BoardCategoryPostListProps {
@@ -28,42 +30,20 @@ const BoardLink = ({ board }: { board: Board }) => {
     return (
         <Grid container spacing={1} marginBottom={'5px'} marginTop={'5px'}>
             <Grid item lg={1} xs={12} paddingTop={0}>
-                <Item sx={{ border: '1px solid gray' }}>{board.category}</Item>
+                <Item sx={{ border: '1px solid gray' }}>{board.title}</Item>
             </Grid>
             <Grid item lg={9.6} xs={12}>
-                <Link href={`/boards/${board.id}`} passHref>
-                    <a style={{ textDecoration: 'none', color: '#000' }}>
-                        {board.title}
-                    </a>
+                <Link href={`/boards/${board.id}`} passHref legacyBehavior>
+                    <a style={{ textDecoration: 'none', color: '#000' }}>{board.title}</a>
                 </Link>
             </Grid>
-            <Grid
-                item
-                lg={0.7}
-                xs={2}
-                display={'flex'}
-                textAlign={'center'}
-                alignItems={'center'}
-                flexWrap={'wrap'}>
+            <Grid item lg={0.7} xs={2} display={'flex'} textAlign={'center'} alignItems={'center'} flexWrap={'wrap'}>
                 <ThumbUpAltOutlinedIcon sx={{ fontSize: 13, color: 'gray' }} />
-                <Item sx={{ fontSize: 12, color: 'gray' }}>
-                    {board.likeCount}
-                </Item>
+                <Item sx={{ fontSize: 12, color: 'gray' }}>{board.boardLikeCount}</Item>
             </Grid>
-            <Grid
-                item
-                lg={0.7}
-                xs={2}
-                display={'flex'}
-                textAlign={'center'}
-                alignItems={'center'}
-                flexWrap={'wrap'}>
-                <ChatBubbleOutlineOutlinedIcon
-                    sx={{ fontSize: 13, color: 'gray' }}
-                />
-                <Item sx={{ fontSize: 12, color: 'gray' }}>
-                    {board.commentCount}
-                </Item>
+            <Grid item lg={0.7} xs={2} display={'flex'} textAlign={'center'} alignItems={'center'} flexWrap={'wrap'}>
+                <ChatBubbleOutlineOutlinedIcon sx={{ fontSize: 13, color: 'gray' }} />
+                <Item sx={{ fontSize: 12, color: 'gray' }}>{board.hit}</Item>
             </Grid>
         </Grid>
     );

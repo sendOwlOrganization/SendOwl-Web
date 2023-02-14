@@ -6,9 +6,7 @@ export default {
     component: BannerTitle,
 } as ComponentMeta<typeof BannerTitle>;
 
-const Template: ComponentStory<typeof BannerTitle> = (args) => (
-    <BannerTitle {...args} />
-);
+const Template: ComponentStory<typeof BannerTitle> = (args) => <BannerTitle {...args} />;
 
 export const 기본 = Template.bind({});
 기본.args = {

@@ -3,7 +3,7 @@ export const commentsMock = [
         id: 1,
         user: {
             id: 1,
-            nickName: '테스트'
+            nickName: '테스트',
         },
         content: '테스트가 좋아',
         regDate: '2022-04-01T13:52:00',
@@ -15,7 +15,7 @@ export const commentsMock = [
                 id: 11,
                 user: {
                     id: 1,
-                    nickName: '테스트'
+                    nickName: '테스트',
                 },
                 content: '대댓글 테스트',
                 regDate: '2022-04-03T13:52:00',
@@ -27,7 +27,7 @@ export const commentsMock = [
                 id: 12,
                 user: {
                     id: 1,
-                    nickName: '테스트'
+                    nickName: '테스트',
                 },
                 content: '',
                 regDate: '2022-04-08T13:52:00',

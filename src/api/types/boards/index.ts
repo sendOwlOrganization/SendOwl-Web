@@ -5,7 +5,8 @@ export interface BoardDetails {
     id: number;
     title: string;
     content: string;
-    regDate: string;
+    nickname: string;
+    regDate: Date;
     hit: number;
     user: {
         id: number;
@@ -13,6 +14,7 @@ export interface BoardDetails {
         mbti: string;
         profileImage: string;
     };
+    boardLikeCount: number;
 }
 
 export interface BoardsResponse extends PagedResponse {
@@ -21,6 +23,6 @@ export interface BoardsResponse extends PagedResponse {
 
 export interface BoardPost {
     title: string;
-    editorJsContent: OutputData,
+    editorJsContent: OutputData;
     categoryId: number;
 }

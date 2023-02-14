@@ -1,11 +1,14 @@
 import SvgIcon, { SvgIconProps } from '@components/icons/SvgIcon';
 
 const HeartIcon = (props: SvgIconProps) => {
-    return <SvgIcon {...props} width={18} height={16}>
-        <path xmlns='http://www.w3.org/2000/svg'
-              d='M12.7498 0.5C 15.2815 0.5 17.3332 2.58333 17.3332 5.5C 17.3332 11.3333 11.0832 14.6667 8.99984 15.9167C 6.9165 14.6667 0.666504 11.3333 0.666504 5.5C 0.666504 2.58333 2.74984 0.5 5.24984 0.5C 6.79984 0.5 8.1665 1.33333 8.99984 2.16667C 9.83317 1.33333 11.1998 0.5 12.7498 0.5z'
-        />
-    </SvgIcon>;
+    return (
+        <SvgIcon {...props} width={16} height={16}>
+            <path
+                xmlns='http://www.w3.org/2000/svg'
+                d='M11 2C13.0253 2 14.6667 3.66667 14.6667 6C14.6667 10.6667 9.66667 13.3333 8 14.3333C6.33334 13.3333 1.33334 10.6667 1.33334 6C1.33334 3.66667 3 2 5 2C6.24 2 7.33334 2.66667 8 3.33333C8.66667 2.66667 9.76 2 11 2Z'
+            />
+        </SvgIcon>
+    );
 };
 
 export default HeartIcon;

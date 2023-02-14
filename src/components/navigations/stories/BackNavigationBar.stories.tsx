@@ -1,7 +1,6 @@
 import BackNavigationBar from '@components/navigations/global-navigation-bar-small/BackNavigationBar';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-
 export default {
     title: 'components/navigations/BackNavigationBar',
     component: BackNavigationBar,

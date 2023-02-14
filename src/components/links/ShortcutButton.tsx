@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 import { cloneElement, ReactElement, useMemo } from 'react';
 
 interface ColorProps {
-    color: MlabColorType | 'gray';
+    color: MlabColorType;
     colorKey?: SvgIconProps['colorKey'];
 }
 
@@ -15,37 +15,40 @@ interface ShortcutButtonProps extends ColorProps {
     text: string;
 }
 
-const Anchor = styled('a')<Required<ColorProps>>(({ theme, color, colorKey }) => css`
-  width: 9.75rem;
-  height: 3.25rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: ${theme.shape.borderRadius}px;
-  background-color: ${theme.palette.background.paper};
+const Anchor = styled('a', {
+    shouldForwardProp: (propName) => !['color', 'colorKey'].includes(propName as string),
+})<Required<ColorProps>>(
+    ({ theme, color, colorKey }) => css`
+        width: 100%;
+        height: 3.25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: ${theme.shape.borderRadius}px;
+        background-color: ${theme.palette.background.paper};
 
-  & > * {
-    margin-right: 0.354rem;
-  }
+        & > * {
+            margin-right: 0.354rem;
+        }
 
-  & > *:last-child {
-    margin-right: 0;
-  }
+        & > *:last-child {
+            margin-right: 0;
+        }
 
-  &:hover {
-    color: ${theme.palette.text.secondary};
-  }
+        &:hover {
+            color: ${theme.palette.text.secondary};
+        }
 
-  &:active {
-    color: ${theme.palette[color][colorKey]};
-  }
-`);
+        &:active {
+            color: ${theme.palette[color][colorKey]};
+        }
+    `
+);
 
 const ShortcutButton = ({ href = '#', color, colorKey = 600, text, icon }: ShortcutButtonProps) => {
     const coloredIcon = useMemo(() => cloneElement(icon, { color, colorKey }), [color, colorKey, icon]);
-
     return (
-        <NextLink href={href} passHref>
+        <NextLink href={href} passHref legacyBehavior>
             <Anchor color={color} colorKey={colorKey}>
                 {coloredIcon}
                 <Typography variant={'subtitle3'} fontWeight={'bold'} color={'inherit'}>

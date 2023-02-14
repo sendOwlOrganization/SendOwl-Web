@@ -9,8 +9,8 @@ export default {
 
 const Template: ComponentStory<typeof Editor> = (args) => {
     const { data, onChangeData } = useEditorData();
-    return <Editor {...args} data={data} onChange={onChangeData} />
-}
+    return <Editor {...args} data={data} onChange={onChangeData} />;
+};
 
-export const Example = Template.bind({})
-Example.args = {}
+export const Example = Template.bind({});
+Example.args = {};

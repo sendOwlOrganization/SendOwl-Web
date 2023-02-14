@@ -7,7 +7,7 @@ interface BoardFooterProps {
 }
 
 const Footer = styled('footer')`
-  margin: ${({ theme }) => theme.spacing(2)};
+    margin: ${({ theme }) => theme.spacing(2)};
 `;
 
 const BoardFooter = ({ like }: BoardFooterProps) => {
@@ -25,9 +25,7 @@ const BoardFooter = ({ like }: BoardFooterProps) => {
         <Footer>
             <Button
                 sx={{ color: theme.palette.text.disabled }}
-                startIcon={hasLiked
-                    ? <ThumbUp/>
-                    : <ThumbUpOutlined/>}
+                startIcon={hasLiked ? <ThumbUp /> : <ThumbUpOutlined />}
                 onClick={handleLike}>
                 {nbLike}
             </Button>

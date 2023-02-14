@@ -9,22 +9,22 @@ interface SideMenuLinkProps {
 }
 
 const Anchor = styled('a')`
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 
-  & > *:first-child {
-    margin-right: 0.375rem;
-  }
+    & > *:first-of-type {
+        margin-right: 0.375rem;
+    }
 `;
 
-
 const SideMenuLink = ({ href, title, icon }: SideMenuLinkProps) => {
-
     return (
-        <NextLink href={href} passHref>
+        <NextLink href={href} passHref legacyBehavior>
             <Anchor>
                 {icon}
-                <Typography variant={'subtitle3'} fontWeight={'bold'}>{title}</Typography>
+                <Typography variant={'subtitle3'} fontWeight={'bold'}>
+                    {title}
+                </Typography>
             </Anchor>
         </NextLink>
     );

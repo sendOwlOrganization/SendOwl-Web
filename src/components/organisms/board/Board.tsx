@@ -29,11 +29,13 @@ interface BoardProps {
 const Board = ({ post }: BoardProps) => {
     return (
         <Box component={'article'}>
-            <BoardHeader title={post.title}
-                         date={post.date}
-                         author={post.user.nickname}
-                         commentCount={post.comments}
-                         pageView={post.view} />
+            <BoardHeader
+                title={post.title}
+                date={post.date}
+                author={post.user.nickname}
+                commentCount={post.comments}
+                pageView={post.view}
+            />
             <Divider />
             {/*<BoardContent content={post.content}/>*/}
             <Divider />

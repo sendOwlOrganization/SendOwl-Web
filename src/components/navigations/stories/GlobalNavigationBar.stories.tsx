@@ -21,31 +21,27 @@ const TemplateWithContent: ComponentStory<typeof GlobalNavigationBar> = (args) =
         <ResetStorybookBodyStyle />
         <AnimatedGradientBackground>
             <GlobalNavigationBar {...args} />
-            <Grid marginTop={2}
-                  marginLeft={'auto'}
-                  marginRight={'auto'}
-                  maxWidth={'1000px'}
-                  container
-                  spacing={2}>
-                {
-                    [1, 2, 3, 6, 5, 4, 8, 9, 7, 11, 10, 12, 14, 15, 13].map(i => (
-                        <Grid item xs={3 + i % 3} key={i}>
-                            <BalanceGameWidget voteId={1} title={'test content'}
-                                               choices={[
-                                                   {
-                                                       id: 1,
-                                                       text: 'test content',
-                                                       voteCount: 1,
-                                                   },
-                                                   {
-                                                       id: 2,
-                                                       text: 'test content',
-                                                       voteCount: 2,
-                                                   },
-                                               ]} />
-                        </Grid>
-                    ))
-                }
+            <Grid marginTop={2} marginLeft={'auto'} marginRight={'auto'} maxWidth={'1000px'} container spacing={2}>
+                {[1, 2, 3, 6, 5, 4, 8, 9, 7, 11, 10, 12, 14, 15, 13].map((i) => (
+                    <Grid item xs={3 + (i % 3)} key={i}>
+                        <BalanceGameWidget
+                            voteId={1}
+                            title={'test content'}
+                            choices={[
+                                {
+                                    id: 1,
+                                    text: 'test content',
+                                    voteCount: 1,
+                                },
+                                {
+                                    id: 2,
+                                    text: 'test content',
+                                    voteCount: 2,
+                                },
+                            ]}
+                        />
+                    </Grid>
+                ))}
             </Grid>
         </AnimatedGradientBackground>
     </>

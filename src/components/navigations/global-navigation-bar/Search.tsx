@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 const searchBoxMocks = {
     recentlySearched: ['최근', '검색어', '아래', '토글로', '끌 수 있음'],
     recommendations: ['유저와 같은', 'MBTI가', '많이 검색', '검색어(키워드)', '추천'],
-    populars: [...Array(10).keys()].map(i => `인기 검색어 ${i + 1}`),
+    populars: [...Array(10).keys()].map((i) => `인기 검색어 ${i + 1}`),
 };
 
 const Search = () => {
@@ -28,9 +28,7 @@ const Search = () => {
 
     return (
         <>
-            <SearchIcon color={open ? 'pink' : undefined}
-                        onClick={handleOpenDialog}
-                        disableHoverBackground />
+            <SearchIcon color={open ? 'pink' : undefined} onClick={handleOpenDialog} disableHoverBackground />
             <Dialog maxWidth={'xl'} open={open} onClose={handleCloseDialog}>
                 <SearchBox {...searchBoxMocks} />
             </Dialog>

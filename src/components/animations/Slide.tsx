@@ -10,9 +10,7 @@ const Slide = ({ height, children, ...props }: CustomSlideProps) => {
     return (
         <Box height={height} ref={ref}>
             <MuiSlide {...props} container={ref.current}>
-                <div>
-                    {children}
-                </div>
+                <div>{children}</div>
             </MuiSlide>
         </Box>
     );

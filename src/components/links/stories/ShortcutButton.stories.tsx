@@ -12,9 +12,7 @@ export default {
     component: ShortcutButton,
 } as ComponentMeta<typeof ShortcutButton>;
 
-const Template: ComponentStory<typeof ShortcutButton> = (args) => (
-    <ShortcutButton {...args} />
-);
+const Template: ComponentStory<typeof ShortcutButton> = (args) => <ShortcutButton {...args} />;
 
 export const 밸런스_게임 = Template.bind({});
 밸런스_게임.args = {
