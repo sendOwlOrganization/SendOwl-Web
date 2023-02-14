@@ -5,8 +5,7 @@ export interface BoardDetails {
     id: number;
     title: string;
     content: string;
-    nickname: string;
-    regDate: Date;
+    regDate: string;
     hit: number;
     user: {
         id: number;
@@ -14,7 +13,8 @@ export interface BoardDetails {
         mbti: string;
         profileImage: string;
     };
-    boardLikeCount: number;
+    likeCount: number;
+    commentCount: number;
 }
 
 export interface BoardsResponse extends PagedResponse {
