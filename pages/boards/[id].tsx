@@ -20,7 +20,7 @@ interface BoardPageProps {
             nickName: string;
             mbti: string;
             profileImage: string;
-        }
+        };
     };
 }
 
@@ -36,34 +36,39 @@ const BoardPage = ({ board }: BoardPageProps) => {
     return (
         <>
             <BackNavigationBar title={'MBTI'}>
-                {isBookmarked
-                    ? <BookmarkIcon scale={0.875} onClick={() => setIsBookmarked(false)} />
-                    : <BookmarkIconOutlined color={'gray'} colorKey={600} scale={0.875}
-                                            onClick={() => setIsBookmarked(true)} />}
+                {isBookmarked ? (
+                    <BookmarkIcon scale={0.875} onClick={() => setIsBookmarked(false)} />
+                ) : (
+                    <BookmarkIconOutlined
+                        color={'gray'}
+                        colorKey={600}
+                        scale={0.875}
+                        onClick={() => setIsBookmarked(true)}
+                    />
+                )}
                 <MoreIcon scale={0.875} />
             </BackNavigationBar>
             <article>
-                <Box component={'header'} sx={{
-                    margin: '2.75rem 0',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexDirection: 'column',
-                }}>
-                    <Typography component={'h1'}
-                                marginBottom={'0.75rem'}
-                                variant={'subtitle2'}
-                                fontWeight={'bold'}>
+                <Box
+                    component={'header'}
+                    sx={{
+                        margin: '2.75rem 0',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexDirection: 'column',
+                    }}>
+                    <Typography component={'h1'} marginBottom={'0.75rem'} variant={'subtitle2'} fontWeight={'bold'}>
                         {board.title}
                     </Typography>
-                    <Typography marginBottom={'0.75rem'}
-                                variant={'caption2'}
-                                color={theme => theme.palette.gray[500]}
-                                fontWeight={'bold'}>
+                    <Typography
+                        marginBottom={'0.75rem'}
+                        variant={'caption2'}
+                        color={(theme) => theme.palette.gray[500]}
+                        fontWeight={'bold'}>
                         {board.user.mbti.toUpperCase()} {board.user.nickName}
                     </Typography>
-                    <Typography variant={'caption2'}
-                                color={theme => theme.palette.gray[700]}>
+                    <Typography variant={'caption2'} color={(theme) => theme.palette.gray[700]}>
                         {date.toLocaleDateString('ko-KR')}
                     </Typography>
                 </Box>
@@ -90,7 +95,7 @@ export const getServerSideProps: GetServerSideProps<BoardPageProps> = async (con
             board: {
                 title: data!.title,
                 content: JSON.parse(data!.content) as OutputData,
-                regDate: data!.regDate,
+                regDate: data!.regDate.toString(),
                 user: data!.user,
             },
         },

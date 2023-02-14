@@ -69,7 +69,6 @@ const Body = styled('section')`
 const BoardPreviewLink = ({
     boardId,
     title,
-    preview,
     imgSrc,
     userId,
     mbti,
@@ -80,7 +79,7 @@ const BoardPreviewLink = ({
     hasVote,
     category,
 }: BoardPreviewLinkProps) => {
-    const href = `#?fixmeId=${boardId}`;
+    const href = `/boards/${boardId}`;
 
     return (
         <Card
