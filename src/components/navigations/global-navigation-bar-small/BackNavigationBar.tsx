@@ -23,7 +23,9 @@ const BackNavigationBar = ({ title, children }: PropsWithChildren<BackNavigation
             <Typography textAlign={'center'} variant={'subtitle3'} fontWeight={'bold'}>
                 {title}
             </Typography>
-            <div>{children}</div>
+            <Box display={'flex'} justifyContent={'right'}>
+                {children}
+            </Box>
         </Bar>
     );
 };
