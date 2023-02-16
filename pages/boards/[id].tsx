@@ -1,17 +1,20 @@
-import { getBoardDetails } from '@api/index';
+import { getBoardDetails, getComments } from '@api/index';
+import { ParentComment } from '@api/types/comments';
+import Comments from '@components/comments/Comments';
 import BookmarkIcon from '@components/icons/BookmarkIcon';
 import BookmarkIconOutlined from '@components/icons/BookmarkIconOutlined';
 import MoreIcon from '@components/icons/MoreIcon';
 import EmptyLayout from '@components/layout/EmptyLayout';
 import BackNavigationBar from '@components/navigations/global-navigation-bar-small/BackNavigationBar';
 import { OutputData } from '@editorjs/editorjs';
-import { Box, Typography } from '@mui/material';
+import { Box, styled, Typography } from '@mui/material';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
 import { Suspense, useState } from 'react';
 
 interface BoardPageProps {
     board: {
+        id: number;
         title: string;
         content: OutputData;
         regDate: string;
@@ -22,6 +25,7 @@ interface BoardPageProps {
             profileImage: string;
         };
     };
+    comments: ParentComment[];
 }
 
 const Editor = dynamic(() => import('@components/editorjs/Editor'), {
@@ -29,12 +33,12 @@ const Editor = dynamic(() => import('@components/editorjs/Editor'), {
     suspense: true,
 });
 
-const BoardPage = ({ board }: BoardPageProps) => {
+const BoardPage = ({ board, comments }: BoardPageProps) => {
     const date = new Date(board.regDate);
     const [isBookmarked, setIsBookmarked] = useState(false);
 
     return (
-        <>
+        <Box sx={(theme) => ({ backgroundColor: theme.palette.background.paper })}>
             <BackNavigationBar title={'MBTI'}>
                 {isBookmarked ? (
                     <BookmarkIcon scale={0.875} onClick={() => setIsBookmarked(false)} />
@@ -48,7 +52,7 @@ const BoardPage = ({ board }: BoardPageProps) => {
                 )}
                 <MoreIcon scale={0.875} />
             </BackNavigationBar>
-            <article>
+            <Article>
                 <Box
                     component={'header'}
                     sx={{
@@ -75,10 +79,30 @@ const BoardPage = ({ board }: BoardPageProps) => {
                 <Suspense fallback={''}>
                     <Editor data={board.content} readOnly />
                 </Suspense>
-            </article>
-        </>
+            </Article>
+            <CommentsSection boardId={board.id} comments={comments} />
+        </Box>
     );
 };
+
+const Article = styled('article')``;
+
+interface CommentsProps {
+    boardId: number;
+    comments: ParentComment[];
+}
+
+const CommentsSection = ({ boardId, comments }: CommentsProps) => {
+    return (
+        <CommentsSectionContainer>
+            <Comments comments={comments} />
+        </CommentsSectionContainer>
+    );
+};
+
+const CommentsSectionContainer = styled('section')`
+    padding: 0 1rem;
+`;
 
 BoardPage.getLayout = EmptyLayout;
 
@@ -89,15 +113,18 @@ export const getServerSideProps: GetServerSideProps<BoardPageProps> = async (con
         id = parseInt(queryId) || 0;
     }
     const { data, error } = await getBoardDetails(id);
+    const comments = await getComments(id);
 
     return {
         props: {
             board: {
+                id: id,
                 title: data!.title,
                 content: JSON.parse(data!.content) as OutputData,
-                regDate: data!.regDate.toString(),
+                regDate: data!.regDate,
                 user: data!.user,
             },
+            comments: comments.data?.content || [],
         },
     };
 };

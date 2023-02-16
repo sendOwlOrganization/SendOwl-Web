@@ -17,6 +17,8 @@ interface EditorWrapperProps {
 
 const EditorWrapper = styled('div')<EditorWrapperProps>(
     ({ theme }) => css`
+        padding-bottom: 2.5rem;
+
         .ce-header {
             font-size: ${theme.typography.subtitle3.fontSize};
         }
