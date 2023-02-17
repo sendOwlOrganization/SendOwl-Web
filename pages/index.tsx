@@ -1,3 +1,4 @@
+import { getPreviewBoards } from '@api/index';
 import BoardBannerTitle from '@components/banner/BoardBannerTitle';
 import BoardPreviewLink from '@components/board/board-preview-link';
 import SNSButton from '@components/button/SNSButton';
@@ -9,13 +10,13 @@ import NoticeIcon from '@components/icons/NoticeIcon';
 import ShortcutButton from '@components/links/ShortcutButton';
 import MbtiWidget from '@components/widgets/mbti-widget';
 import css from '@emotion/css';
-import {communityList} from '@mocks/category';
-import {imageMocks} from '@mocks/images';
-import {Box, Divider, Grid, styled} from '@mui/material';
-import {MLAB_ICON_COLORS, MLAB_OPACITY_PALETTE} from '@styles/mlabTheme';
+import { communityList } from '@mocks/category';
+import { imageMocks } from '@mocks/images';
+import { Box, Divider, Grid, styled } from '@mui/material';
+import { MLAB_ICON_COLORS, MLAB_OPACITY_PALETTE } from '@styles/mlabTheme';
 import Footer from '@UI/Footer';
-import {ComponentProps, Fragment} from 'react';
-import {getPreviewBoards} from "@api/index";
+import NextLink from 'next/link';
+import { ComponentProps, Fragment } from 'react';
 
 interface HomePageProps {
     // FIXME: 타입 백엔드와 정의 필요
@@ -25,103 +26,103 @@ interface HomePageProps {
 }
 
 const ShortcutContainer = styled('section')`
-  display: grid;
-  padding: 0.5rem;
-  gap: 0.5rem;
+    display: grid;
+    padding: 0.5rem;
+    gap: 0.5rem;
 
-  grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 `;
 
 const BoardContainer = styled('div')(
-    ({theme}) => css`
-      background-color: ${theme.palette.mode === 'dark'
-              ? MLAB_OPACITY_PALETTE.black[600]
-              : MLAB_OPACITY_PALETTE.white[900]};
-      margin-bottom: 1rem;
+    ({ theme }) => css`
+        background-color: ${theme.palette.mode === 'dark'
+            ? MLAB_OPACITY_PALETTE.black[600]
+            : MLAB_OPACITY_PALETTE.white[900]};
+        margin-bottom: 1rem;
     `
 );
 
-const Home = ({communityBoards, balanceGameBoards, serviceCenterBoards}: HomePageProps) => {
+const Home = ({ communityBoards, balanceGameBoards, serviceCenterBoards }: HomePageProps) => {
     return (
         <Box>
-            <Carousel data={imageMocks} showPagination/>
+            <NextLink href={'/boards/write'}>글쓰기</NextLink>
+            <Carousel data={imageMocks} showPagination />
             <ShortcutContainer>
                 <ShortcutButton
                     href={'#'}
-                    icon={<CommunityIcon/>}
+                    icon={<CommunityIcon />}
                     text={'커뮤니티'}
                     color={MLAB_ICON_COLORS.community}
                 />
                 <ShortcutButton
                     href={'#'}
-                    icon={<BalanceGameIcon/>}
+                    icon={<BalanceGameIcon />}
                     text={'밸런스 게임'}
                     color={MLAB_ICON_COLORS.balanceGame}
                 />
-                <ShortcutButton href={'#'} icon={<InsightIcon/>} text={'인사이트'} color={MLAB_ICON_COLORS.insight}/>
-                <ShortcutButton href={'#'} icon={<NoticeIcon/>} text={'공지/이벤트'} color={MLAB_ICON_COLORS.notice}/>
+                <ShortcutButton href={'#'} icon={<InsightIcon />} text={'인사이트'} color={MLAB_ICON_COLORS.insight} />
+                <ShortcutButton href={'#'} icon={<NoticeIcon />} text={'공지/이벤트'} color={MLAB_ICON_COLORS.notice} />
             </ShortcutContainer>
             <BoardContainer>
                 <BoardBannerTitle
                     title={communityList.community.name}
-                    icon={<communityList.community.icon color={communityList.community.color}/>}
+                    icon={<communityList.community.icon color={communityList.community.color} />}
                 />
                 {communityBoards?.map((b) => (
                     <Fragment key={b.boardId}>
                         <BoardPreviewLink {...b} />
-                        <Divider/>
+                        <Divider />
                     </Fragment>
                 ))}
             </BoardContainer>
             <BoardContainer>
                 <BoardBannerTitle
                     title={communityList.balanceGame.name}
-                    icon={<communityList.balanceGame.icon color={communityList.balanceGame.color}/>}
+                    icon={<communityList.balanceGame.icon color={communityList.balanceGame.color} />}
                 />
                 {balanceGameBoards?.map((b) => (
                     <Fragment key={b.boardId}>
                         <BoardPreviewLink {...b} />
-                        <Divider/>
+                        <Divider />
                     </Fragment>
                 ))}
             </BoardContainer>
             <BoardContainer>
                 <BoardBannerTitle
                     title={communityList.insight.name}
-                    icon={<communityList.insight.icon color={communityList.insight.color}/>}
+                    icon={<communityList.insight.icon color={communityList.insight.color} />}
                 />
                 <Grid>
-                    <MbtiWidget user={{mbti: 'ENTP'}} data={[{id: 'ENTP', value: 1000, label: 'ENTP'}]}/>
+                    <MbtiWidget user={{ mbti: 'ENTP' }} data={[{ id: 'ENTP', value: 1000, label: 'ENTP' }]} />
                 </Grid>
             </BoardContainer>
             <BoardContainer>
                 <BoardBannerTitle
                     title={communityList.serviceCenter.name}
-                    icon={<communityList.serviceCenter.icon color={communityList.serviceCenter.color}/>}
+                    icon={<communityList.serviceCenter.icon color={communityList.serviceCenter.color} />}
                 />
                 {serviceCenterBoards?.map((b) => (
                     <Fragment key={b.boardId}>
                         <BoardPreviewLink {...b} />
-                        <Divider/>
+                        <Divider />
                     </Fragment>
                 ))}
             </BoardContainer>
-            <SNSButton/>
-            <Footer/>
+            <SNSButton />
+            <Footer />
         </Box>
     );
 };
 
 export const getServerSideProps = async () => {
-
-    const {data} = await getPreviewBoards(1, 20, 0, 10);
+    const { data } = await getPreviewBoards(1, 20, 0, 10);
 
     if (!data) {
-        console.log("error!");
-        return {}
+        console.log('error!');
+        return {};
     }
 
-    const communityBoards = data
+    const communityBoards = data;
     // const communityBoards = [
     //     {
     //         id: 1,
