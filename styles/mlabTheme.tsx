@@ -1,6 +1,6 @@
 import { Global, ThemeProvider } from '@emotion/react';
 import { ObjectUtil } from '@tools/objectUtil';
-import { PropsWithChildren } from 'react';
+import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 const mlabColors = ['pink', 'blue', 'green', 'lightPink', 'purple', 'yellow', 'gray'] as const;
 export type MlabColorType = typeof mlabColors[number];
@@ -311,6 +311,10 @@ const toCssVariable = (obj: object): string =>
         .join('\n');
 
 export const mlabGlobalCss = `
+    body {
+        color: ${mlabTheme.palette.text.primary};
+        background-color: ${mlabTheme.palette.background.default};
+    }
     .dark {
         ${toCssVariable(mlabDarkTheme)}
     }
@@ -319,13 +323,31 @@ export const mlabGlobalCss = `
     }
 `;
 
-console.log(mlabTheme);
+const ThemeModeContext = createContext<{
+    mode: 'light' | 'dark';
+    setMode: (mode: 'light' | 'dark') => void;
+    toggleMode: () => void;
+}>({
+    mode: 'light',
+    setMode: (mode) => {},
+    toggleMode: () => {},
+});
 
 export const MlabThemeProvider = ({ children }: PropsWithChildren<{}>) => {
+    const [mode, setMode] = useState<'light' | 'dark'>('light');
+
+    useEffect(() => {
+        document.body.classList.toggle('light', mode === 'light');
+        document.body.classList.toggle('dark', mode === 'dark');
+    }, [mode]);
+
     return (
-        <>
+        <ThemeModeContext.Provider
+            value={{ mode, setMode, toggleMode: () => setMode(mode === 'dark' ? 'light' : 'dark') }}>
             <Global styles={mlabGlobalCss} />
             <ThemeProvider theme={mlabTheme}>{children}</ThemeProvider>
-        </>
+        </ThemeModeContext.Provider>
     );
 };
+
+export const useMlabThemeMode = () => useContext(ThemeModeContext);
