@@ -26,6 +26,7 @@ interface MyAppProps extends AppProps {
 function MyApp({ Component, pageProps: { session, ...pageProps }, emotionCache = clientSideEmotionCache }: MyAppProps) {
     const [theme, setTheme] = useState(createMlabMuiTheme());
 
+    // TODO: 레이아웃 시스템 삭제하고 next13 app 폴더로 전환?
     const Layout = Component.getLayout ?? GlobalLayout;
 
     return (
