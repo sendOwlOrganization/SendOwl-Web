@@ -27,16 +27,16 @@ export namespace ObjectUtil {
         return flatten;
     };
 
-    export const assignFlattenKey = ({
+    export const assignFlattenKey = <T extends object>({
         obj,
         separator = '_',
         transformer = (v) => v.toString(),
     }: {
-        obj: object;
+        obj: T;
         separator?: string;
         transformer?: (value: string | number) => string;
-    }): object => {
-        const assignFlatten = (obj: object, prefix: string) => {
+    }): T => {
+        const assignFlatten = (obj: T, prefix: string) => {
             Object.entries(obj).forEach(([k, v]) => {
                 const key = prefix ? `${prefix}${separator}${k}` : k;
                 if (typeof v === 'object') {
