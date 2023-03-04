@@ -1,20 +1,10 @@
 import GlobalNavigationBar from '@components/navigations/global-navigation-bar';
+import GlobalNavigationBarSmall from '@components/navigations/global-navigation-bar-small';
 import BalanceGameWidget from '@components/widgets/balance-game-widget';
 import MbtiWidget from '@components/widgets/mbti-widget';
-import { Grid, styled, useMediaQuery } from '@mui/material';
+import { styled, useMediaQuery } from '@mui/material';
 import { useRouter } from 'next/router';
 import { PropsWithChildren, useEffect, useState } from 'react';
-import GlobalNavigationBarSmall from '@components/navigations/global-navigation-bar-small';
-import Carousel from '@components/carousel/carousel/Carousel';
-import { imageMocks } from '@mocks/images';
-import ShortcutButton from '@components/links/ShortcutButton';
-import { MLAB_ICON_COLORS } from '@styles/mlabTheme';
-import CommunityIcon from '@components/icons/CommunityIcon';
-import NoticeIcon from '@components/icons/NoticeIcon';
-import BalanceGameIcon from '@components/icons/BalanceGameIcon';
-import InsightIcon from '@components/icons/InsightIcon';
-import BannerTitle from '@components/banner/BannerTitle';
-import BoardPreviewLink from '@components/board/board-preview-link';
 
 interface GlobalLayoutProps {}
 
