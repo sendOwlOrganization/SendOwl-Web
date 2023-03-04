@@ -1,9 +1,9 @@
-import Typography from '@components/typography/Typography';
+import Typography from '@components/mlab-ds/Typography';
 import styled from '@emotion/styled';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {
-    title: 'components/typography/Typography',
+    title: 'components/mlab-ds/Typography',
     component: Typography,
     argTypes: {
         fontWeight: {

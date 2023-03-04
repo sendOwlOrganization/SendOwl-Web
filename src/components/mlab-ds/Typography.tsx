@@ -1,4 +1,3 @@
-import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { MlabTheme, TypographyVariant } from '@styles/mlabTheme';
 import { ComponentProps, ElementType, PropsWithChildren } from 'react';
@@ -34,7 +33,6 @@ const Typography = ({
     color,
     ...pProps
 }: PropsWithChildren<TypographyProps>) => {
-    const theme = useTheme();
     return (
         <Paragraph as={as} variant={variant} fontWeight={fontWeight} colorOverride={color} {...pProps}>
             {children}
