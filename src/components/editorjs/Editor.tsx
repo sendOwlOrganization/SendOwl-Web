@@ -237,11 +237,9 @@ const Editor = ({ readOnly, data, onChange }: EditorProps) => {
         });
 
         return () => {
-            if (editor.current?.destroy) {
-                editor.current?.destroy();
-            }
+            editor.current?.destroy?.();
         };
-    }, []);
+    }, [data, holder, onChange, readOnly]);
 
     return <EditorWrapper id={holder} mode={readOnly ? 'ro' : 'rw'} />;
 };
