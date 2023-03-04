@@ -47,11 +47,9 @@ const Template: ComponentStory<typeof Typography> = ({ children, ...args }) => (
                 'caption3',
             ] as const
         ).map((variant) => (
-            <Container key={variant}>
-                <Typography variant={variant} {...args}>
-                    {variant} {children}
-                </Typography>
-            </Container>
+            <Typography key={variant} variant={variant} color={'secondary'} {...args}>
+                {variant} {children}
+            </Typography>
         ))}
     </>
 );

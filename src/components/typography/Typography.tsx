@@ -1,5 +1,6 @@
+import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import { TypographyVariant } from '@styles/mlabTheme';
+import { MlabTheme, TypographyVariant } from '@styles/mlabTheme';
 import { ComponentProps, ElementType, PropsWithChildren } from 'react';
 
 const VariantMapping: Partial<Record<TypographyVariant, ElementType>> = {
@@ -18,9 +19,10 @@ const VariantMapping: Partial<Record<TypographyVariant, ElementType>> = {
     caption3: 'span',
 };
 
-interface TypographyProps extends ComponentProps<'p'> {
+interface TypographyProps extends Omit<ComponentProps<'p'>, 'color'> {
     as?: ElementType;
     variant?: TypographyVariant;
+    color?: 'primary' | 'secondary' | 'disabled' | ((color: MlabTheme['color']) => string) | string;
     fontWeight?: 'normal' | 'bold' | string | number;
 }
 
@@ -29,10 +31,12 @@ const Typography = ({
     as = VariantMapping[variant] || 'p',
     fontWeight,
     children,
+    color,
     ...pProps
 }: PropsWithChildren<TypographyProps>) => {
+    const theme = useTheme();
     return (
-        <Paragraph as={as} variant={variant} fontWeight={fontWeight} {...pProps}>
+        <Paragraph as={as} variant={variant} fontWeight={fontWeight} colorOverride={color} {...pProps}>
             {children}
         </Paragraph>
     );
@@ -41,9 +45,17 @@ const Typography = ({
 const Paragraph = styled.p<{
     variant: NonNullable<TypographyProps['variant']>;
     fontWeight: TypographyProps['fontWeight'];
-}>(({ theme, variant, fontWeight }) => ({
+    colorOverride?: ((color: MlabTheme['color']) => string) | string;
+}>(({ theme, variant, fontWeight, colorOverride }) => ({
     ...theme.typography[variant],
     fontWeight,
+    color: colorOverride
+        ? typeof colorOverride === 'string'
+            ? colorOverride === 'primary' || colorOverride === 'secondary' || colorOverride === 'disabled'
+                ? theme.palette.text[colorOverride]
+                : colorOverride
+            : colorOverride(theme.color)
+        : theme.palette.text.primary,
 }));
 
 export default Typography;
