@@ -139,3 +139,104 @@ export const MLAB_ICON_COLORS = {
     notice: 'green',
     serviceCenter: 'yellow',
 } as const;
+
+export type TypographyVariant =
+    | 'header'
+    | 'header2'
+    | 'header3'
+    | 'title'
+    | 'title2'
+    | 'title3'
+    | 'subtitle'
+    | 'subtitle2'
+    | 'subtitle3'
+    | 'subtitle4'
+    | 'body'
+    | 'body2'
+    | 'body3'
+    | 'caption'
+    | 'caption2'
+    | 'caption3';
+
+export interface MlabTheme {
+    typography: Record<TypographyVariant, { fontSize?: string; lineHeight?: number; fontWeight?: string }>;
+}
+
+export const mlabTheme: MlabTheme = {
+    typography: {
+        header: {
+            fontSize: '2.625rem',
+            lineHeight: 1.5,
+            fontWeight: 'bold',
+        },
+        header2: {
+            fontSize: '1.75rem',
+            lineHeight: 1.29,
+            fontWeight: 'bold',
+        },
+        header3: {
+            fontSize: '1.5rem',
+            lineHeight: 1.33,
+            fontWeight: 'bold',
+        },
+        title: {
+            fontSize: '1.125rem',
+            lineHeight: 1.33,
+            fontWeight: 'bold',
+        },
+        title2: {
+            fontSize: '1rem',
+            lineHeight: 1.33,
+            fontWeight: 'bold',
+        },
+        title3: {
+            fontSize: '0.875rem',
+            lineHeight: 1.43,
+            fontWeight: 'bold',
+        },
+        subtitle: {
+            fontSize: '1.125rem',
+            lineHeight: 1.33,
+            fontWeight: 'bold',
+        },
+        subtitle2: {
+            fontSize: '1rem',
+            lineHeight: 1.5,
+            fontWeight: 'bold',
+        },
+        subtitle3: {
+            fontSize: '0.875rem',
+            lineHeight: 1.43,
+            fontWeight: 'bold',
+        },
+        subtitle4: {
+            fontSize: '0.75rem',
+            lineHeight: 1.5,
+            fontWeight: 'bold',
+        },
+        body: {
+            fontSize: '1rem',
+            lineHeight: 1.5,
+        },
+        body2: {
+            fontSize: '0.875rem',
+            lineHeight: 1.43,
+        },
+        body3: {
+            fontSize: '0.75rem',
+            lineHeight: 1.5,
+        },
+        caption: {
+            fontSize: '0.75rem',
+            lineHeight: 1.5,
+        },
+        caption2: {
+            fontSize: '0.625rem',
+            lineHeight: 1.2,
+        },
+        caption3: {
+            fontSize: '0.5rem',
+            lineHeight: 1.25,
+        },
+    },
+};

@@ -1,3 +1,4 @@
+import { ThemeProvider as EmotionThemeProvider } from '@emotion/react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { useGlobals } from '@storybook/addons';
 import { ThemeProvider as Emotion10ThemeProvider } from 'emotion-theming';
@@ -8,7 +9,7 @@ import { RecoilRoot } from 'recoil';
 import { useDarkMode } from 'storybook-dark-mode';
 import { updateReactSpringBottomSheetTheme } from '../src/tools/updateReactSpringBottomSheetTheme';
 import '../styles/globals.css';
-import { MLAB_NEUTRAL_PALETTE } from '../styles/mlabTheme';
+import { MLAB_NEUTRAL_PALETTE, mlabTheme } from '../styles/mlabTheme';
 import createMlabMuiTheme from '../styles/muiTheme';
 
 export const parameters = {
@@ -81,8 +82,10 @@ export const decorators = [
             <RecoilRoot>
                 <Emotion10ThemeProvider theme={theme}>
                     <ThemeProvider theme={theme}>
-                        <CssBaseline />
-                        <Story />
+                        <EmotionThemeProvider theme={mlabTheme}>
+                            <CssBaseline />
+                            <Story />
+                        </EmotionThemeProvider>
                     </ThemeProvider>
                 </Emotion10ThemeProvider>
             </RecoilRoot>
