@@ -14,6 +14,7 @@ const Header = styled('header')`
     margin: ${({ theme }) => theme.spacing(2)};
 `;
 
+// TODO: 위치 옮기기
 const BoardHeader = ({ title, author, date, pageView, commentCount }: BoardHeaderProps) => {
     const theme = useTheme();
     const datetime = useMemo(() => new Date(date).toLocaleDateString('ko-KR'), [date]);

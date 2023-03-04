@@ -8,6 +8,12 @@ interface CommentFieldProps {
     parentId?: number;
 }
 
+/**
+ * @deprecated TODO: 사용 ㄴㄴ 새로 만들어야함
+ * @param boardId
+ * @param parentId
+ * @constructor
+ */
 const CommentField = ({ boardId, parentId }: CommentFieldProps) => {
     const [showButtons, setShowButtons] = useState<boolean>(false);
     const { register, handleSubmit, watch, resetField } = useForm<CommentDto>({

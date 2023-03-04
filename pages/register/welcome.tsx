@@ -41,7 +41,7 @@ const WelcomePage = ({}: WelcomePageProps) => {
                 },
             });
         })();
-    }, [session]);
+    }, [session, state.gender, state.mbti, state.age, state.nickname, setSession]);
 
     return (
         <>
