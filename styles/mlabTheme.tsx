@@ -1,7 +1,12 @@
+import { Global, ThemeProvider } from '@emotion/react';
+import { ObjectUtil } from '@tools/objectUtil';
+import { PropsWithChildren } from 'react';
+
 const mlabColors = ['pink', 'blue', 'green', 'lightPink', 'purple', 'yellow', 'gray'] as const;
 export type MlabColorType = typeof mlabColors[number];
+type ColorMap = Record<100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000, string>;
 
-export const MLAB_PALETTE = {
+export const MLAB_PALETTE: Record<Exclude<MlabColorType, 'gray'>, ColorMap> = {
     pink: {
         100: '#FDECEF',
         200: '#F9C6D0',
@@ -93,7 +98,7 @@ export const MLAB_NEUTRAL_PALETTE = {
     black: '#1A1B1E',
 } as const;
 
-export const MLAB_OPACITY_PALETTE = {
+export const MLAB_OPACITY_PALETTE: Record<'black' | 'white', ColorMap> = {
     black: {
         100: 'rgba(42, 50, 59, 0.1)',
         200: 'rgba(42, 50, 59, 0.2)',
@@ -104,6 +109,7 @@ export const MLAB_OPACITY_PALETTE = {
         700: 'rgba(42, 50, 59, 0.7)',
         800: 'rgba(42, 50, 59, 0.8)',
         900: 'rgba(42, 50, 59, 0.9)',
+        1000: '#1A1B1E',
     },
     white: {
         100: 'rgba(255, 255, 255, 0.1)',
@@ -115,6 +121,7 @@ export const MLAB_OPACITY_PALETTE = {
         700: 'rgba(255, 255, 255, 0.7)',
         800: 'rgba(255, 255, 255, 0.8)',
         900: 'rgba(255, 255, 255, 0.9)',
+        1000: '#FFFFFF',
     },
 } as const;
 
@@ -158,11 +165,68 @@ export type TypographyVariant =
     | 'caption2'
     | 'caption3';
 
-export interface MlabTheme {
+export interface MlabTheme extends MlabCommonTheme, MlabModeTheme {}
+
+export interface MlabCommonTheme {
+    color: Record<MlabColorType | 'white' | 'black', ColorMap>;
     typography: Record<TypographyVariant, { fontSize?: string; lineHeight?: number; fontWeight?: string }>;
 }
 
+export interface MlabModeTheme {
+    palette: {
+        primary: string;
+        text: {
+            primary: string;
+            secondary: string;
+            disabled: string;
+        };
+        background: {
+            default: string;
+            paper: string;
+        };
+    };
+}
+
+const mlabLightTheme: MlabModeTheme = {
+    palette: {
+        primary: MLAB_PALETTE.pink[600],
+        text: {
+            primary: MLAB_NEUTRAL_PALETTE.black,
+            secondary: MLAB_NEUTRAL_PALETTE.gray[1000],
+            disabled: MLAB_NEUTRAL_PALETTE.gray[700],
+        },
+        background: {
+            default: MLAB_NEUTRAL_PALETTE.gray[200],
+            paper: MLAB_NEUTRAL_PALETTE.white,
+        },
+    },
+};
+
+const mlabDarkTheme: MlabModeTheme = {
+    palette: {
+        primary: MLAB_PALETTE.pink[400],
+        text: {
+            primary: MLAB_NEUTRAL_PALETTE.white,
+            secondary: MLAB_NEUTRAL_PALETTE.gray[200],
+            disabled: MLAB_NEUTRAL_PALETTE.gray[600],
+        },
+        background: {
+            default: MLAB_NEUTRAL_PALETTE.gray[900],
+            paper: MLAB_NEUTRAL_PALETTE.black,
+        },
+    },
+};
+
 export const mlabTheme: MlabTheme = {
+    palette: ObjectUtil.assignFlattenKey({
+        obj: Object.assign({}, mlabLightTheme),
+        transformer: (v) => `var(--${v})`,
+    }).palette,
+    color: {
+        ...MLAB_PALETTE,
+        ...MLAB_NEUTRAL_PALETTE,
+        ...MLAB_OPACITY_PALETTE,
+    },
     typography: {
         header: {
             fontSize: '2.625rem',
@@ -239,4 +303,29 @@ export const mlabTheme: MlabTheme = {
             lineHeight: 1.25,
         },
     },
+};
+
+const toCssVariable = (obj: object): string =>
+    Object.entries(ObjectUtil.flattenObject({ obj }))
+        .map(([key, value]) => `--${key}: ${value};`)
+        .join('\n');
+
+export const mlabGlobalCss = `
+    .dark {
+        ${toCssVariable(mlabDarkTheme)}
+    }
+    .light {
+        ${toCssVariable(mlabLightTheme)}
+    }
+`;
+
+console.log(mlabTheme);
+
+export const MlabThemeProvider = ({ children }: PropsWithChildren<{}>) => {
+    return (
+        <>
+            <Global styles={mlabGlobalCss} />
+            <ThemeProvider theme={mlabTheme}>{children}</ThemeProvider>
+        </>
+    );
 };
