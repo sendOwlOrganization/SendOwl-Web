@@ -8,6 +8,11 @@ interface BoardCommentItemProps {
     comment: Comment;
 }
 
+/**
+ * @deprecated 예전 ui
+ * @param comment
+ * @constructor
+ */
 const BoardCommentItem = ({ comment }: BoardCommentItemProps) => {
     // TODO: comment에서 받아오기
     const [like, setLike] = useState<boolean>(false);

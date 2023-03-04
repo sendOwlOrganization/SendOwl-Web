@@ -9,6 +9,11 @@ interface LikeButtonProps {
 
 const iconSx: SxProps<Theme> = { marginBottom: '1px', marginRight: '4px' };
 
+/**
+ * @deprecated TODO: 사용 ㄴㄴ 새로 만들어야함
+ * @param like
+ * @constructor
+ */
 const CommentLikeButton = ({ like }: LikeButtonProps) => {
     const [hasLiked, setHasLiked] = useState<boolean>(false);
     const [nbLike, setNbLike] = useState<number>(like);

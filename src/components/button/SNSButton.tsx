@@ -28,6 +28,10 @@ const ButtonCSS = styled('div')(
     `
 );
 
+/**
+ * TODO: 적절한 곳으로 옮기기
+ * @constructor
+ */
 const SNSButton = () => {
     return (
         <>

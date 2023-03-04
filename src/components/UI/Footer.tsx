@@ -41,6 +41,7 @@ const corporationList = [
     { name: '고객 센터', href: '/?' },
 ];
 
+// TODO: 적절한곳으로 옮기기
 const Footer = () => {
     const theme = useTheme();
 

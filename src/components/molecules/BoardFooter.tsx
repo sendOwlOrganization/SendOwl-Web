@@ -10,6 +10,7 @@ const Footer = styled('footer')`
     margin: ${({ theme }) => theme.spacing(2)};
 `;
 
+// TODO: 위치 옮기기
 const BoardFooter = ({ like }: BoardFooterProps) => {
     const [hasLiked, setHasLiked] = useState<boolean>(false);
     const [nbLike, setNbLike] = useState<number>(like);
