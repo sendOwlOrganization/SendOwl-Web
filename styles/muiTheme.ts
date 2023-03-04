@@ -111,6 +111,10 @@ const PALETTE_OPTIONS: Record<PaletteMode, PaletteOptions> = {
     },
 };
 
+/**
+ * TODO: mui 버리고 그냥 emotion/styled-component으로 migration 하는게 좋을 듯.
+ * @param mode
+ */
 const createMlabMuiTheme = (mode: PaletteMode = 'light') =>
     createTheme({
         palette: {
