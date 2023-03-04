@@ -1,5 +1,5 @@
 import css from '@emotion/css';
-import { List, styled, useTheme } from '@mui/material';
+import { List, styled } from '@mui/material';
 import Link from 'next/link';
 
 const ListCss = styled('div')(
@@ -43,8 +43,6 @@ const corporationList = [
 
 // TODO: 적절한곳으로 옮기기
 const Footer = () => {
-    const theme = useTheme();
-
     return (
         <>
             <List sx={{ display: 'flex', padding: '16px 0 38px 8px' }}>
@@ -70,7 +68,7 @@ const Footer = () => {
                 </FotterTitleCss>
                 <FotterTitleCss>
                     고객 문의
-                    <FooterContentCss>카카오 플러스 친구에 'MBTI Lab'을 검색하세요 </FooterContentCss>
+                    <FooterContentCss>{`카카오 플러스 친구에 'MBTI Lab'을 검색하세요`}</FooterContentCss>
                 </FotterTitleCss>
                 <FooterContentCss sx={{ padding: '8px' }}>ⓒ 2022 MBTI Lab. ALL RIGHTS RESERVED.</FooterContentCss>
             </List>
