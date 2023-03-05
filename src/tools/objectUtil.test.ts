@@ -13,7 +13,7 @@ describe('ObjectUtil', () => {
             const result = ObjectUtil.flattenObject({ obj: given });
 
             const expected = {
-                test: '1',
+                test: 1,
                 foo: 'bar',
             };
             expect(result).toEqual(expected);
@@ -37,9 +37,9 @@ describe('ObjectUtil', () => {
             const result = ObjectUtil.flattenObject({ obj: given });
 
             const expected = {
-                hello: '1',
-                my_test: '2',
-                my_is: '3',
+                hello: 1,
+                my_test: 2,
+                my_is: 3,
                 foo_bar: '42',
                 foo_hey_test: 'go',
             };
@@ -77,7 +77,7 @@ describe('ObjectUtil', () => {
             const given = {
                 test: '',
             };
-            const transformer = (v: string | number) => `hello(${v})`;
+            const transformer = (key: string) => `hello(${key})`;
 
             const result = ObjectUtil.assignFlattenKey({ obj: given, transformer });
 
