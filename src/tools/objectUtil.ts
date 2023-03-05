@@ -1,4 +1,17 @@
 export namespace ObjectUtil {
+    /**
+     * 객체를 플랫하게 만드는 함수
+     * @example
+     * {
+     *      foo: { bar: { baz: 42 } },
+     *      hello: 'world'
+     * }
+     * =>
+     * { foo_bar_baz: 42, hello: 'world' }
+     * @param obj 플랫 할 객체
+     * @param separator 새로운 키에 쓰일 separator
+     * @param transformer
+     */
     export const flattenObject = ({
         obj,
         separator = '_',
@@ -27,6 +40,14 @@ export namespace ObjectUtil {
         return flatten;
     };
 
+    /**
+     * 객체에 플랫된 필드이름을 assign 하는 함수
+     * @example
+     * { foo: { bar: 'test' }, baz: 'hello' } => { foo: { bar: 'foo_bar' }, baz: 'baz' }
+     * @param obj
+     * @param separator
+     * @param transformer
+     */
     export const assignFlattenKey = <T extends object>({
         obj,
         separator = '_',
