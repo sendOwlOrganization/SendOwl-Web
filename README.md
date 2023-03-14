@@ -1,5 +1,7 @@
 # MBTI Lab 웹
 
+Deprecated, 리부트: https://github.com/sendOwlOrganization/mlab-web
+
 ## About
 
 `MBTI lab - 우리가 아는 MBTI의 모든 것` MBTI 커뮤니티 웹 사이트 프로젝트입니다.
