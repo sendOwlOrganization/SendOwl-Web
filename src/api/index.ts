@@ -1,3 +1,4 @@
+import { CommentsResponse } from '@api/types/comments';
 import { LoginDetail } from '@api/types/LoginDetail';
 import { UserMeResponse, UsersSetProfileResponse } from '@api/types/users';
 import fetch from 'node-fetch';
@@ -74,6 +75,17 @@ export const getBoardDetails = async (
     id: number,
     init?: Parameters<typeof fetch>[1]
 ): Promise<FetchResponse<BoardDetails>> => await fetchSendOwlApi<BoardDetails>(`boards/${id}`, init);
+
+/**
+ * @param id boardId
+ * @param page 0 based page
+ * @param size pageSize
+ */
+export const getComments = async (id: number, page: number = 0, size: number = 20) =>
+    // FIXME: {boardId}???
+    await fetchSendOwlApi<CommentsResponse>(
+        `comments/{boardId}?board-id=${id}&page=${page}&size=${size}&sort=regDate,DESC`
+    );
 
 export const getCategories = async (): Promise<FetchResponse<Category[]>> =>
     await fetchSendOwlApi<Category[]>(`categories`);

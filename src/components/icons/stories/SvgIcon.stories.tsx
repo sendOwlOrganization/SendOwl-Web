@@ -6,6 +6,7 @@ import ArrowRightIcon from '@components/icons/ArrowRightIcon';
 import ArrowUpIcon from '@components/icons/ArrowUpIcon';
 import BalanceGameIcon from '@components/icons/BalanceGameIcon';
 import BookmarkIcon from '@components/icons/BookmarkIcon';
+import BookmarkIconOutlined from '@components/icons/BookmarkIconOutlined';
 import CloseIcon from '@components/icons/CloseIcon';
 import CommentIcon from '@components/icons/CommentIcon';
 import CommunityIcon from '@components/icons/CommunityIcon';
@@ -19,6 +20,7 @@ import InstagramIcon from '@components/icons/InstagramIcon';
 import KakaoTalkIcon from '@components/icons/KakaoTalkIcon';
 import MeatballMenuIcon from '@components/icons/MeatballMenuIcon';
 import MenuIcon from '@components/icons/MenuIcon';
+import MoreIcon from '@components/icons/MoreIcon';
 import NotificationIcon from '@components/icons/NotificationIcon';
 import RadioButtonIcon from '@components/icons/RadioButtonIcon';
 import ReportIcon from '@components/icons/ReportIcon';
@@ -71,8 +73,10 @@ const Template: ComponentStory<typeof SvgIcon> = (args) => (
         <IconItem icon={<HomeIcon {...args} />} />
         <IconItem icon={<ReportIcon {...args} />} />
         <IconItem icon={<MenuIcon {...args} />} />
+        <IconItem icon={<MoreIcon {...args} />} />
         <IconItem icon={<CommentIcon {...args} />} />
         <IconItem icon={<BookmarkIcon {...args} />} />
+        <IconItem icon={<BookmarkIconOutlined {...args} />} />
         <IconItem icon={<DeleteIcon {...args} />} />
         <IconItem icon={<MeatballMenuIcon {...args} />} />
         <IconItem icon={<ArrowFillUpIcon {...args} />} />

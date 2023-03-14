@@ -7,14 +7,15 @@ import Select from '@components/select/Select';
 import css from '@emotion/css';
 import { styled, Typography } from '@mui/material';
 import { GetServerSideProps } from 'next';
-import { getToken, JWT } from 'next-auth/jwt';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import { FormEventHandler, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { sessionStore } from '../../src/store/sessionStore';
 
 const Editor = dynamic(() => import('@components/editorjs/Editor'), { ssr: false });
 
 interface BoardWritePageProps {
-    token: JWT | null;
     categories: Category[];
 }
 
@@ -61,14 +62,15 @@ const CategorySelectContainer = styled('div')(
     `
 );
 
-const BoardWritePage = ({ token, categories }: BoardWritePageProps) => {
+const BoardWritePage = ({ categories }: BoardWritePageProps) => {
     const [title, setTitle] = useState<string>('');
     const [category, setCategory] = useState<Category>(categories[0]);
     const { data, onChangeData } = useEditorData();
+    const session = useRecoilValue(sessionStore);
+    const router = useRouter();
 
     const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
-        console.log('test');
         try {
             await postBoardDetails(
                 {
@@ -76,8 +78,9 @@ const BoardWritePage = ({ token, categories }: BoardWritePageProps) => {
                     editorJsContent: data,
                     categoryId: category.id,
                 },
-                'FIXME WITH TOKEN'
+                (session.isAuthenticated && session.token) || ''
             );
+            // TODO post id로 리디렉션
         } catch (e) {
             console.error(e);
         }
@@ -118,12 +121,10 @@ const BoardWritePage = ({ token, categories }: BoardWritePageProps) => {
 };
 
 export const getServerSideProps: GetServerSideProps<BoardWritePageProps> = async (context) => {
-    const token = await getToken({ req: context.req, secret: process.env.NEXTAUTH_SECRET });
     const { data } = await getCategories();
 
     return {
         props: {
-            token,
             categories: data!,
         },
     };

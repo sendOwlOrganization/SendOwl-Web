@@ -15,6 +15,7 @@ import { communityList } from '@mocks/category';
 import { imageMocks } from '@mocks/images';
 import { Box, Divider, Grid, styled } from '@mui/material';
 import { MLAB_ICON_COLORS, MLAB_OPACITY_PALETTE } from '@styles/mlabTheme';
+import NextLink from 'next/link';
 import { ComponentProps, Fragment } from 'react';
 
 interface HomePageProps {
@@ -44,6 +45,7 @@ const BoardContainer = styled('div')(
 const Home = ({ communityBoards, balanceGameBoards, serviceCenterBoards }: HomePageProps) => {
     return (
         <Box>
+            <NextLink href={'/boards/write'}>글쓰기</NextLink>
             <TextField label={'tetses'} helperText={'fdsnjkfndsk'} required variant={'error'} />
             <Carousel data={imageMocks} showPagination />
             <ShortcutContainer>

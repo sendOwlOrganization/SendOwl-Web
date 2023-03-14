@@ -1,21 +1,21 @@
 import { MbtiType } from '@mocks/mbti';
 
-export interface UsersSetProfileResponse {
-    id: number;
-    nickName: string;
+export interface UsersSetProfileResponse extends BaseUser {
     age: number;
-    mbti: MbtiType;
     gender: 'MALE' | 'FEMALE';
     email: string;
 }
 
-export interface UserMeResponse {
-    id: number;
-    nickName: string;
+export interface UserMeResponse extends BaseUser {
     age: number;
-    mbti: MbtiType;
     gender: 'MALE' | 'FEMALE';
     email: string;
     introduction: string;
-    profileImage: string;
+}
+
+export interface BaseUser {
+    id: number;
+    nickName: string;
+    mbti: MbtiType;
+    profileImage?: string;
 }
