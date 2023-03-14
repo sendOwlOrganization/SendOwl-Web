@@ -1,5 +1,6 @@
-import CloseIcon from '@components/icons/CloseIcon';
-import { Box, css, styled, Typography } from '@mui/material';
+import { Typography } from '@components/mlab-ds';
+import css from '@emotion/css';
+import styled from '@emotion/styled';
 
 const Container = styled('div', {
     shouldForwardProp: (name) => name !== 'close',
@@ -9,7 +10,7 @@ const Container = styled('div', {
         align-items: center;
         border-radius: 1rem;
         color: ${theme.palette.text.primary};
-        background-color: ${theme.palette.mode === 'dark' ? theme.palette.gray[900] : theme.palette.gray[100]};
+        background-color: ${theme.mode === 'dark' ? theme.color.gray[900] : theme.color.gray[100]};
         padding: ${close ? '4px 32px 4px 12px' : '4px 12px'};
         ${close && 'position: relative;'}
     `
@@ -31,11 +32,11 @@ const ClickableArea = styled('button', {
         cursor: pointer;
 
         :hover {
-            background-color: ${theme.palette.mode === 'dark' ? theme.palette.gray[800] : theme.palette.gray[200]};
+            background-color: ${theme.mode === 'dark' ? theme.color.gray[800] : theme.color.gray[200]};
         }
 
         :active {
-            background-color: ${theme.palette.mode === 'dark' ? theme.palette.gray[700] : theme.palette.gray[300]};
+            background-color: ${theme.mode === 'dark' ? theme.color.gray[700] : theme.color.gray[300]};
         }
     `
 );
@@ -55,23 +56,15 @@ const Chip = (props: ChipProps) => {
         <Container close={close}>
             {!!onClick ? (
                 <ClickableArea onClick={onClick} close={close}>
-                    <Typography component={'span'} lineHeight={1.76} variant={'body1'}>
+                    <Typography as={'span'} variant={'body'}>
                         {label}
                     </Typography>
                 </ClickableArea>
             ) : (
-                <Typography component={'span'} lineHeight={1.76} variant={'body1'}>
+                <Typography as={'span'} variant={'body'}>
                     {label}
                 </Typography>
             )}
-            {
-                // FIXME: need to fix icon position and svg
-                close && (
-                    <Box position={'absolute'} right={8} bottom={4}>
-                        <CloseIcon onClick={onClose} roundedBorder spacing={-1} />
-                    </Box>
-                )
-            }
         </Container>
     );
 };

@@ -4,6 +4,13 @@ body {
     margin: 0;
 }
 
+h1, h2, h3, h4, h5, h6,
+div, span, p {
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+}
+
 a {
     color: inherit;
     text-decoration: none;

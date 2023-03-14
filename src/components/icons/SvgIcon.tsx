@@ -1,5 +1,6 @@
-import { css, styled, SxProps, Theme, useTheme } from '@mui/material';
-import { MLAB_NEUTRAL_PALETTE, MLAB_OPACITY_PALETTE, MlabColorType } from '@styles/mlabTheme';
+import css from '@emotion/css';
+import styled from '@emotion/styled';
+import { MLAB_NEUTRAL_PALETTE, MLAB_OPACITY_PALETTE, MlabColorType, useMlabThemeMode } from '@styles/mlabTheme';
 import { PropsWithChildren } from 'react';
 
 const SPACING = 4;
@@ -20,7 +21,6 @@ export interface SvgIconProps {
     roundedBorder?: boolean;
     width?: number;
     height?: number;
-    sx?: SxProps<Theme>;
 }
 
 const commonPalette = {
@@ -48,9 +48,7 @@ const Svg = styled('svg', {
         width: ${ICON_CONTAINER_SIZE * scale}px;
 
         path {
-            fill: ${color === 'white' || color === 'black'
-                ? commonPalette[color].main
-                : theme.palette[color][colorKey]};
+            fill: ${theme.color[color][colorKey]};
         }
     `
 );
@@ -58,11 +56,11 @@ const Svg = styled('svg', {
 const Span = styled('span', {
     shouldForwardProp: (name) => !['spacing', 'scale'].includes(name as string),
 })<{ spacing: number; scale: number }>(
-    ({ spacing, theme, scale }) => css`
+    ({ spacing, scale }) => css`
         background-color: transparent;
         height: ${ICON_CONTAINER_SIZE * scale + SPACING * spacing * 2}px;
         width: ${ICON_CONTAINER_SIZE * scale + SPACING * spacing * 2}px;
-        padding: ${theme.spacing(spacing / 2)};
+        padding: ${spacing * 4}px;
         position: relative;
         display: flex;
         align-items: center;
@@ -88,7 +86,7 @@ const Button = styled('button', {
         background-color: transparent;
         height: ${ICON_CONTAINER_SIZE * scale + SPACING * spacing * 2}px;
         width: ${ICON_CONTAINER_SIZE * scale + SPACING * spacing * 2}px;
-        padding: ${theme.spacing(spacing / 2)};
+        padding: ${spacing * 4}px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -106,15 +104,11 @@ const Button = styled('button', {
                   }
               `}
         :hover path {
-            fill: ${color === 'white' || color === 'black'
-                ? commonPalette[color].hover
-                : theme.palette[color][Math.min(colorKey + 100, 1000) as SvgIconColorKey]};
+            fill: ${theme.color[color][Math.min(colorKey + 100, 1000) as SvgIconColorKey]};
         }
 
         :active path {
-            fill: ${color === 'white' || color === 'black'
-                ? commonPalette[color].active
-                : theme.palette[color][Math.min(colorKey + 200, 1000) as SvgIconColorKey]};
+            fill: ${theme.color[color][Math.min(colorKey + 200, 1000) as SvgIconColorKey]};
         }
     `
 );
@@ -129,7 +123,7 @@ const Badge = styled('span', {
         top: 1px;
         right: 1px;
         border-radius: 50%;
-        background-color: ${theme.palette[color][600]};
+        background-color: ${theme.color[color][600]};
     `
 );
 
@@ -146,10 +140,9 @@ const SvgIcon = ({
     disableHoverBackground,
     badge,
     roundedBorder,
-    sx,
 }: PropsWithChildren<SvgIconProps>) => {
-    const theme = useTheme();
-    const fixedColor = color || (theme.palette.mode === 'dark' ? 'white' : 'black');
+    const { mode } = useMlabThemeMode();
+    const fixedColor = color || (mode === 'dark' ? 'white' : 'black');
 
     return onClick || clickable ? (
         <Button
@@ -159,7 +152,6 @@ const SvgIcon = ({
             color={fixedColor}
             colorKey={colorKey}
             spacing={spacing}
-            sx={sx}
             disableHoverBackground={!!disableHoverBackground}>
             <Svg
                 color={fixedColor}
@@ -173,7 +165,7 @@ const SvgIcon = ({
             {badge && <Badge color={badge} />}
         </Button>
     ) : (
-        <Span sx={sx} spacing={spacing} scale={scale}>
+        <Span spacing={spacing} scale={scale}>
             <Svg
                 color={fixedColor}
                 colorKey={colorKey}

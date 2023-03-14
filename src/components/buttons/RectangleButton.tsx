@@ -1,15 +1,13 @@
-import { styled } from '@mui/material';
-import { MLAB_OPACITY_PALETTE } from '@styles/mlabTheme';
-import { rgba } from 'polished';
+import styled from '@emotion/styled';
 
 const RectangleButton = styled('button')(({ theme, disabled }) => ({
     width: '100%',
     backgroundColor: disabled
-        ? theme.palette.mode === 'dark'
-            ? rgba(theme.palette.pink[600]!, 0.3)
-            : theme.palette.pink[200]
-        : theme.palette.pink[600],
-    color: disabled && theme.palette.mode === 'dark' ? MLAB_OPACITY_PALETTE.white[200] : theme.palette.common.white,
+        ? theme.mode === 'dark'
+            ? `rgba(${theme.color.pink[600]}, 0.3)`
+            : theme.color.pink[200]
+        : theme.color.pink[600],
+    color: disabled && theme.mode === 'dark' ? theme.color.white[200] : theme.color.white[1000],
     padding: '1rem',
     outline: 'none',
     border: 'none',

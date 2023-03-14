@@ -2,6 +2,7 @@ import GlobalLayout from '@components/layout/GlobalLayout';
 import { CacheProvider } from '@emotion/react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import '@styles/globals.css';
+import { MlabThemeProvider } from '@styles/mlabTheme';
 import createMlabMuiTheme from '@styles/muiTheme';
 import { NextPage } from 'next';
 import { SessionProvider } from 'next-auth/react';
@@ -37,10 +38,13 @@ function MyApp({ Component, pageProps: { session, ...pageProps }, emotionCache =
                 </Head>
                 <RecoilRoot>
                     <ThemeProvider theme={theme}>
-                        <CssBaseline />
-                        <Layout>
-                            <Component {...pageProps} />
-                        </Layout>
+                        <MlabThemeProvider>
+
+                            <CssBaseline />
+                            <Layout>
+                                <Component {...pageProps} />
+                            </Layout>
+                        </MlabThemeProvider>
                     </ThemeProvider>
                 </RecoilRoot>
             </CacheProvider>

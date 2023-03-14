@@ -1,15 +1,10 @@
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import { useGlobals } from '@storybook/addons';
-import { ThemeProvider as Emotion10ThemeProvider } from 'emotion-theming';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import 'react-spring-bottom-sheet/dist/style.css';
 import { RecoilRoot } from 'recoil';
 import { useDarkMode } from 'storybook-dark-mode';
-import { updateReactSpringBottomSheetTheme } from '../src/tools/updateReactSpringBottomSheetTheme';
 import '../styles/globals.css';
-import { MLAB_NEUTRAL_PALETTE } from '../styles/mlabTheme';
-import createMlabMuiTheme from '../styles/muiTheme';
+import { MLAB_NEUTRAL_PALETTE, MlabThemeProvider, useMlabThemeMode } from '../styles/mlabTheme';
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -45,46 +40,28 @@ export const parameters = {
     },
 };
 
-// https://mui.com/material-ui/guides/migration-v4/#storybook-emotion-with-v5
 export const decorators = [
     (Story) => {
         const isDark = useDarkMode();
-        const [theme, setTheme] = useState(() => createMlabMuiTheme(isDark ? 'dark' : 'light'));
-        const [globals, updateGlobals] = useGlobals();
 
-        useEffect(() => {
-            const mode = isDark ? 'dark' : 'light';
-            setTheme(createMlabMuiTheme(mode));
-        }, [isDark]);
-
-        useEffect(() => {
-            /*
-             NOTE: need to investigate why update globals does not properly change background colors sometimes
-             seems to work when background color is updated with timeout.
-             */
-            const timeout = setTimeout(() => {
-                updateGlobals({
-                    backgrounds: {
-                        value:
-                            theme.palette.mode === 'dark' ? MLAB_NEUTRAL_PALETTE.black : MLAB_NEUTRAL_PALETTE.gray[100],
-                    },
-                });
-            }, 100);
-            updateReactSpringBottomSheetTheme(theme);
-
-            return () => {
-                clearTimeout(timeout);
-            };
-        }, [theme.palette.mode]);
+        const ThemeToggler = useCallback(
+            ({ children }) => {
+                const { setMode } = useMlabThemeMode();
+                useEffect(() => {
+                    setMode(isDark ? 'dark' : 'light');
+                }, [isDark]);
+                return children;
+            },
+            [isDark]
+        );
 
         return (
             <RecoilRoot>
-                <Emotion10ThemeProvider theme={theme}>
-                    <ThemeProvider theme={theme}>
-                        <CssBaseline />
+                <MlabThemeProvider>
+                    <ThemeToggler>
                         <Story />
-                    </ThemeProvider>
-                </Emotion10ThemeProvider>
+                    </ThemeToggler>
+                </MlabThemeProvider>
             </RecoilRoot>
         );
     },
