@@ -1,22 +1,24 @@
 import DeleteIcon from '@components/icons/DeleteIcon';
-import { Box, Fade, styled, Theme, Typography } from '@mui/material';
-import useThemeMode from '@tools/useThemeMode';
+import { Typography } from '@components/mlab-ds';
+import { Theme, useTheme } from '@emotion/react';
+import styled from '@emotion/styled';
+import { useMlabThemeMode } from '@styles/mlabTheme';
 import { FocusEventHandler, InputHTMLAttributes, useRef, useState } from 'react';
 
 type TextFieldVariant = 'default' | 'error' | 'warning';
 
 const LABEL_VARIANT_COLOR_MAPPING: Record<TextFieldVariant | 'disabled', (theme: Theme) => string> = {
-    ['default']: (theme) => (theme.palette.mode === 'dark' ? theme.palette.gray[500]! : theme.palette.gray[700]!),
-    ['error']: (theme) => theme.palette.error.main,
-    ['warning']: (theme) => theme.palette.warning.main,
-    ['disabled']: (theme) => (theme.palette.mode === 'dark' ? theme.palette.gray[700]! : theme.palette.gray[400]!),
+    ['default']: (theme) => (theme.mode === 'dark' ? theme.color.gray[500] : theme.color.gray[700]),
+    ['error']: (theme) => theme.palette.semantic.negative,
+    ['warning']: (theme) => theme.palette.semantic.notice,
+    ['disabled']: (theme) => (theme.mode === 'dark' ? theme.color.gray[700] : theme.color.gray[400]),
 };
 
 const CONTAINER_VARIANT_COLOR_MAPPING: Record<TextFieldVariant | 'disabled', (theme: Theme) => string> = {
-    ['default']: (theme) => theme.palette.pink[600]!,
-    ['error']: (theme) => theme.palette.error.main,
-    ['warning']: (theme) => theme.palette.warning.main,
-    ['disabled']: (theme) => (theme.palette.mode === 'dark' ? theme.palette.gray[300]! : theme.palette.gray[700]!),
+    ['default']: (theme) => theme.color.pink[600],
+    ['error']: (theme) => theme.palette.semantic.negative,
+    ['warning']: (theme) => theme.palette.semantic.notice,
+    ['disabled']: (theme) => (theme.mode === 'dark' ? theme.color.gray[300] : theme.color.gray[700]),
 };
 
 const Container = styled('div')<{ variant: TextFieldVariant | 'disabled' }>(({ theme, variant }) => ({
@@ -26,9 +28,9 @@ const Container = styled('div')<{ variant: TextFieldVariant | 'disabled' }>(({ t
     marginBottom: '8px',
     paddingBottom: '0.5px',
     borderBottom: `1px solid ${
-        theme.palette.mode === 'dark'
-            ? theme.palette.gray[variant === 'disabled' ? 900 : 300]
-            : theme.palette.gray[variant === 'disabled' ? 300 : 700]
+        theme.mode === 'dark'
+            ? theme.color.gray[variant === 'disabled' ? 900 : 300]
+            : theme.color.gray[variant === 'disabled' ? 300 : 700]
     }`,
     ['&:focus-within']: {
         paddingBottom: '0px',
@@ -41,15 +43,12 @@ const StyledTextField = styled('input')(({ theme, disabled }) => ({
     border: 'none',
     padding: '0.625rem',
     width: '100%',
-    color:
-        theme.palette.mode === 'dark'
-            ? theme.palette.gray[disabled ? 900 : 100]
-            : theme.palette.gray[disabled ? 300 : 1000],
+    color: theme.mode === 'dark' ? theme.color.gray[disabled ? 900 : 100] : theme.color.gray[disabled ? 300 : 1000],
     outline: 'none',
     ...theme.typography.body2,
     fontWeight: 'bold',
     ['&::placeholder']: {
-        color: theme.palette.mode === 'dark' ? theme.palette.gray[700] : theme.palette.gray[300],
+        color: theme.mode === 'dark' ? theme.color.gray[700] : theme.color.gray[300],
         fontWeight: 'normal',
     },
 }));
@@ -73,7 +72,9 @@ const TextField = ({
     ...inputProps
 }: TextFieldProps) => {
     const variant = disabled ? 'disabled' : givenVariant;
-    const { theme, isDark } = useThemeMode();
+    const theme = useTheme();
+    const { mode } = useMlabThemeMode();
+    const isDark = mode === 'dark';
     const [isFocused, setIsFocused] = useState<boolean>(false);
     const ref = useRef<HTMLInputElement>(null);
 
@@ -100,19 +101,10 @@ const TextField = ({
     };
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography
-                sx={(theme) => ({
-                    color: LABEL_VARIANT_COLOR_MAPPING[variant](theme),
-                    fontWeight: 'bold',
-                    ['&:after']: {
-                        content: required ? '"*"' : '""',
-                        color: theme.palette.error.main,
-                    },
-                })}
-                variant={'subtitle3'}>
+        <Wrapper>
+            <Label $variant={variant} required={!!required} variant={'subtitle3'}>
                 {label}
-            </Typography>
+            </Label>
             <Container variant={variant}>
                 <StyledTextField
                     ref={ref}
@@ -122,28 +114,42 @@ const TextField = ({
                     onFocus={onFocus}
                     onBlur={onBlur}
                 />
-                <Fade in={isFocused} unmountOnExit>
-                    <span>
-                        <DeleteIcon
-                            onClick={onClear || onClearDefault}
-                            clickable
-                            disableHoverBackground
-                            colorKey={isDark ? 700 : 200}
-                            color={'gray'}
-                        />
-                    </span>
-                </Fade>
+                <span>
+                    <DeleteIcon
+                        onClick={onClear || onClearDefault}
+                        clickable
+                        disableHoverBackground
+                        colorKey={isDark ? 700 : 200}
+                        color={'gray'}
+                    />
+                </span>
             </Container>
             {helperText && (
                 <Typography
-                    variant={'caption1'}
-                    component={'span'}
-                    color={isDark ? theme.palette.gray[400] : theme.palette.gray[500]}>
+                    variant={'caption'}
+                    as={'span'}
+                    color={isDark ? theme.color.gray[400] : theme.color.gray[500]}>
                     {helperText}
                 </Typography>
             )}
-        </Box>
+        </Wrapper>
     );
 };
+
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const Label = styled(Typography)<{ required: boolean; $variant: TextFieldVariant | 'disabled' }>(
+    ({ $variant, theme, required }) => ({
+        color: LABEL_VARIANT_COLOR_MAPPING[$variant](theme),
+        fontWeight: 'bold',
+        ['&:after']: {
+            content: required ? '"*"' : '""',
+            color: theme.palette.semantic.negative,
+        },
+    })
+);
 
 export default TextField;

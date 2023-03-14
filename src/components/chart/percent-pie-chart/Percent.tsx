@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Typography } from '@components/mlab-ds';
 import { MlabColorType } from '@styles/mlabTheme';
 import useCountUp from '@tools/useCountUp';
 import * as React from 'react';
@@ -12,18 +12,9 @@ interface PercentProps {
 const Percent = ({ value, total, color = 'lightPink' }: PercentProps) => {
     const percent = useCountUp(Math.round((value / total) * 100), 0, 1500);
     return (
-        <Typography
-            variant={'h3'}
-            display={'inline-flex'}
-            alignItems={'end'}
-            fontWeight={'bold'}
-            color={(theme) => theme.palette[color][600]}>
+        <Typography variant={'header3'} color={(palette) => palette[color][600]}>
             {percent.toString().padStart(2, '0')}
-            <Typography
-                variant={'body2'}
-                component={'span'}
-                color={(theme) => theme.palette.gray[600]}
-                lineHeight={1.65}>
+            <Typography variant={'body2'} as={'span'} color={(palette) => palette.gray[600]}>
                 %
             </Typography>
         </Typography>

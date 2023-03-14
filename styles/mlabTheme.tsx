@@ -173,6 +173,7 @@ export interface MlabCommonTheme {
 }
 
 export interface MlabModeTheme {
+    mode: 'light' | 'dark';
     palette: {
         primary: string;
         text: {
@@ -183,11 +184,19 @@ export interface MlabModeTheme {
         background: {
             default: string;
             paper: string;
+            button: string;
+        };
+        semantic: {
+            negative: string;
+            notice: string;
+            positive: string;
+            accent: string;
         };
     };
 }
 
-const mlabLightTheme: MlabModeTheme = {
+const mlabLightTheme: Readonly<MlabModeTheme> = {
+    mode: 'light',
     palette: {
         primary: MLAB_PALETTE.pink[600],
         text: {
@@ -198,11 +207,14 @@ const mlabLightTheme: MlabModeTheme = {
         background: {
             default: MLAB_NEUTRAL_PALETTE.gray[200],
             paper: MLAB_NEUTRAL_PALETTE.white,
+            button: MLAB_OPACITY_PALETTE.white[900],
         },
+        semantic: { ...MLAB_SEMANTIC_PALETTE },
     },
-};
+} as const;
 
 const mlabDarkTheme: MlabModeTheme = {
+    mode: 'dark',
     palette: {
         primary: MLAB_PALETTE.pink[400],
         text: {
@@ -213,13 +225,16 @@ const mlabDarkTheme: MlabModeTheme = {
         background: {
             default: MLAB_NEUTRAL_PALETTE.gray[900],
             paper: MLAB_NEUTRAL_PALETTE.black,
+            button: MLAB_OPACITY_PALETTE.black[600],
         },
+        semantic: { ...MLAB_SEMANTIC_PALETTE },
     },
 };
 
 export const mlabTheme: MlabTheme = {
+    mode: 'light',
     palette: ObjectUtil.assignFlattenKey({
-        obj: Object.assign({}, mlabLightTheme),
+        obj: Object.assign({}, { ...mlabLightTheme }),
         transformer: (v) => `var(--${v})`,
     }).palette,
     color: {
@@ -316,12 +331,14 @@ export const mlabGlobalCss = `
         background-color: ${mlabTheme.palette.background.default};
     }
     .dark {
-        ${toCssVariable(mlabDarkTheme)}
+        ${toCssVariable({ ...mlabDarkTheme })}
     }
     .light {
-        ${toCssVariable(mlabLightTheme)}
+        ${toCssVariable({ ...mlabLightTheme })}
     }
 `;
+
+console.log(mlabGlobalCss);
 
 const ThemeModeContext = createContext<{
     mode: 'light' | 'dark';
@@ -345,7 +362,7 @@ export const MlabThemeProvider = ({ children }: PropsWithChildren<{}>) => {
         <ThemeModeContext.Provider
             value={{ mode, setMode, toggleMode: () => setMode(mode === 'dark' ? 'light' : 'dark') }}>
             <Global styles={mlabGlobalCss} />
-            <ThemeProvider theme={mlabTheme}>{children}</ThemeProvider>
+            <ThemeProvider theme={{ ...mlabTheme, mode }}>{children}</ThemeProvider>
         </ThemeModeContext.Provider>
     );
 };

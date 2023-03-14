@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "es5",
     "types": [
-      "jest"
+      "jest",
+      "@emotion-types"
     ],
     "lib": [
       "dom",
@@ -21,6 +22,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "jsxImportSource": "@emotion/react",
     "incremental": true,
     "baseUrl": ".",
     "paths": {
@@ -44,18 +46,6 @@
       ],
       "@_types/*": [
         "src/types/*"
-      ],
-      "@molecules/*": [
-        "src/components/molecules/*"
-      ],
-      "@atoms/*": [
-        "src/components/atoms/*"
-      ],
-      "@organisms/*": [
-        "src/components/organisms/*"
-      ],
-      "@UI/*": [
-        "src/components/UI/*"
       ]
     }
   },
