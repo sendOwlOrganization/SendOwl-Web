@@ -3,8 +3,7 @@ import InstagramIcon from '@components/icons/InstagramIcon';
 import KakaoTalkIcon from '@components/icons/KakaoTalkIcon';
 import ReportIcon from '@components/icons/ReportIcon';
 import css from '@emotion/css';
-import { styled } from '@mui/material';
-import { MLAB_OPACITY_PALETTE } from '@styles/mlabTheme';
+import styled from '@emotion/styled';
 
 const ButtonContainer = styled('div')`
     display: flex;
@@ -16,9 +15,7 @@ const ButtonCSS = styled('div')(
         width: 70px;
         height: 54px;
         margin-left: 1rem;
-        background-color: ${theme.palette.mode === 'dark'
-            ? MLAB_OPACITY_PALETTE.black[600]
-            : MLAB_OPACITY_PALETTE.white[900]};
+        background-color: ${theme.palette.background.button};
         border-radius: 16px;
         left: 8.33%;
         right: 8.33%;
@@ -28,6 +25,10 @@ const ButtonCSS = styled('div')(
     `
 );
 
+/**
+ * TODO: 적절한 곳으로 옮기기
+ * @constructor
+ */
 const SNSButton = () => {
     return (
         <>

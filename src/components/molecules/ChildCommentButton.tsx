@@ -6,6 +6,11 @@ interface ChildCommentButtonProps {
     childCommentCount: number;
 }
 
+/**
+ * @deprecated TODO: 사용 ㄴㄴ 새로 만들어야함
+ * @param childCommentCount
+ * @constructor
+ */
 const ChildCommentButton = ({ childCommentCount }: ChildCommentButtonProps) => {
     return (
         <Button

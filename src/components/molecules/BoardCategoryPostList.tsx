@@ -49,6 +49,7 @@ const BoardLink = ({ board }: { board: Board }) => {
     );
 };
 
+// TODO: 위치 옮기기
 const BoardCategoryPostList = ({ boards }: BoardCategoryPostListProps) => {
     return (
         <>

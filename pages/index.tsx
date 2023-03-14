@@ -7,6 +7,7 @@ import BalanceGameIcon from '@components/icons/BalanceGameIcon';
 import CommunityIcon from '@components/icons/CommunityIcon';
 import InsightIcon from '@components/icons/InsightIcon';
 import NoticeIcon from '@components/icons/NoticeIcon';
+import TextField from '@components/input/TextField';
 import ShortcutButton from '@components/links/ShortcutButton';
 import MbtiWidget from '@components/widgets/mbti-widget';
 import css from '@emotion/css';
@@ -14,7 +15,6 @@ import { communityList } from '@mocks/category';
 import { imageMocks } from '@mocks/images';
 import { Box, Divider, Grid, styled } from '@mui/material';
 import { MLAB_ICON_COLORS, MLAB_OPACITY_PALETTE } from '@styles/mlabTheme';
-import Footer from '@UI/Footer';
 import NextLink from 'next/link';
 import { ComponentProps, Fragment } from 'react';
 
@@ -46,6 +46,7 @@ const Home = ({ communityBoards, balanceGameBoards, serviceCenterBoards }: HomeP
     return (
         <Box>
             <NextLink href={'/boards/write'}>글쓰기</NextLink>
+            <TextField label={'tetses'} helperText={'fdsnjkfndsk'} required variant={'error'} />
             <Carousel data={imageMocks} showPagination />
             <ShortcutContainer>
                 <ShortcutButton
@@ -109,7 +110,7 @@ const Home = ({ communityBoards, balanceGameBoards, serviceCenterBoards }: HomeP
                 ))}
             </BoardContainer>
             <SNSButton />
-            <Footer />
+            {/*<Footer />*/}
         </Box>
     );
 };

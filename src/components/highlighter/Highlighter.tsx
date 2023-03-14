@@ -1,4 +1,5 @@
-import { css, styled } from '@mui/material';
+import css from '@emotion/css';
+import styled from '@emotion/styled';
 import { HighlightArray } from '@tools/string';
 import { Fragment } from 'react';
 
@@ -8,7 +9,7 @@ interface HighlighterProps {
 
 const Highlighted = styled('span')(
     ({ theme }) => css`
-        color: ${theme.palette.pink[600]};
+        color: ${theme.color.pink[600]};
         font-weight: bold;
     `
 );

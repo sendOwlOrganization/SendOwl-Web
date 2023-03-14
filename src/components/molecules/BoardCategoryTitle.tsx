@@ -22,6 +22,7 @@ const categoryIconMapping: Record<string, ReactNode> = {
     ['익명 게시판']: <Face />,
 };
 
+// TODO: 위치 옮기기
 const BoardCategoryTitle = ({ title, id }: BoardCategoryTitleProps) => {
     return (
         <Grid display={'flex'} alignItems={'center'}>

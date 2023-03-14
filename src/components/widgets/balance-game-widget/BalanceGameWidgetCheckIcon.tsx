@@ -1,4 +1,3 @@
-import Slide from '@components/animations/Slide';
 import ApproveIcon from '@components/icons/ApproveIcon';
 import { styled } from '@mui/material';
 
@@ -18,16 +17,7 @@ const Container = styled('div')`
 const BalanceGameWidgetCheckIcon = ({ appear }: BalanceGameWidgetCheckIconProps) => {
     return (
         <Container>
-            <Slide
-                direction={'up'}
-                height={'1rem'}
-                appear={appear}
-                in={appear}
-                mountOnEnter
-                timeout={100}
-                unmountOnExit>
-                <ApproveIcon color={'white'} />
-            </Slide>
+            <ApproveIcon color={'white'} />
         </Container>
     );
 };

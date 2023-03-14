@@ -2,6 +2,7 @@ import GlobalLayout from '@components/layout/GlobalLayout';
 import { CacheProvider } from '@emotion/react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import '@styles/globals.css';
+import { MlabThemeProvider } from '@styles/mlabTheme';
 import createMlabMuiTheme from '@styles/muiTheme';
 import { NextPage } from 'next';
 import { SessionProvider } from 'next-auth/react';
@@ -26,6 +27,7 @@ interface MyAppProps extends AppProps {
 function MyApp({ Component, pageProps: { session, ...pageProps }, emotionCache = clientSideEmotionCache }: MyAppProps) {
     const [theme, setTheme] = useState(createMlabMuiTheme());
 
+    // TODO: 레이아웃 시스템 삭제하고 next13 app 폴더로 전환?
     const Layout = Component.getLayout ?? GlobalLayout;
 
     return (
@@ -36,10 +38,13 @@ function MyApp({ Component, pageProps: { session, ...pageProps }, emotionCache =
                 </Head>
                 <RecoilRoot>
                     <ThemeProvider theme={theme}>
-                        <CssBaseline />
-                        <Layout>
-                            <Component {...pageProps} />
-                        </Layout>
+                        <MlabThemeProvider>
+
+                            <CssBaseline />
+                            <Layout>
+                                <Component {...pageProps} />
+                            </Layout>
+                        </MlabThemeProvider>
                     </ThemeProvider>
                 </RecoilRoot>
             </CacheProvider>

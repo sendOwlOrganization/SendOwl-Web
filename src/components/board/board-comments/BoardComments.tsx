@@ -10,6 +10,11 @@ interface BoardCommentsProps {
     comments: Comment[];
 }
 
+/**
+ * @deprecated 예전 ui
+ * @param comments
+ * @constructor
+ */
 const BoardComments = ({ comments }: BoardCommentsProps) => {
     const { mode } = useThemeMode();
     return (
